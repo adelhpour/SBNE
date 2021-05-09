@@ -1,5 +1,5 @@
 # SBNE: SBML Network Editor
-SBNE is a network editor tool allowing the users and developers of systems/synthetic biology to straightforwardly read, manipulate, and write to the layout and render extensions of an SBML model using libSBML. Its “autolayout” and “autorender” algorithms can also be implemented to automatically generate all the necessary information about the layout and render extensions of an SBML model as well.
+SBNE is a network editor tool allowing the users and developers of systems/synthetic biology to straightforwardly read, manipulate, and write to the layout and render extensions of an SBML model using libSBML. Its “autolayout” and “autorender” algorithms can also be implemented to automatically generate all the necessary information about the layout and render extensions of an SBML model as well. It is built on the basis of <a href="https://github.com/sys-bio/sbnw">sbnw</a>.
 
 ## Contents
 SBNE is made up of a portable library called libSBNE, originally written in C++ with language bindings for Python, and a software tool called SBNE-GUI, a graphical interface enabling users to load, display, edit, and save an SBML network.
