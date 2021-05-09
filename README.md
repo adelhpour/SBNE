@@ -32,7 +32,7 @@ The steps to build SBNE from its source code are as follows:
 
     + Set `CMAKE_INSTALL_PREFIX` to `<root directory>/install`.
 
-    + Set `LIBSBML_PREFIX` to the install directory where libSBML libraries were built in the [previous stage](###Build_libSBML_from_source_(with_enabled_layout_and_render_packages)) (that must be something like `<root directory of libSBML>/install`).
+    + Set `LIBSBML_PREFIX` to the install directory where libSBML libraries were built in the previosu stage (that must be something like `<root directory of libSBML>/install`).
     
     + Check `WITH_PYTHON` box if you want to build the language bindings for Python.
 
@@ -54,7 +54,7 @@ The steps to build SBNE from its source code are as follows:
 
 ### Use libSBNE library (C++ API)
 To use libSBNE, you first need to:
-* [build](##How_to_Build) libSBML and libSBNE. 
+* Build libSBML and libSBNE. 
 
 * Add libSBNE include directory (`<root directory>/install/include`)  and libSBML include directory (something like `<root directory of libSBML>/install/include`) to the "include directory" of your project.
 
@@ -74,7 +74,7 @@ And now you are able to make use of API functions in your code.
 ### Use Python bindings
 To use SBNE Python bindings, you first need to:
 
-* [build](##How_to_Build) libSBML and libSBNE with enabled `WITH_PYTHON` option.
+* Build libSBML and libSBNE with enabled `WITH_PYTHON` option.
 
 * Add the directory of the built Python library (`<root directory>/install/lib/pyhton[version]/site-packages/libsbne`)  to your `PYTHONPATH`.
 
@@ -83,6 +83,6 @@ And then you are able to `import _libsbne` and make use of API functions in your
 ### Use SBNE-GUI (Graphical Interface)
 To use the graphical interface, you need to:
 
-* [build](##How_to_Build) libSBML and libSBNE with enabled `WITH_GUI` option.
+* Build libSBML and libSBNE with enabled `WITH_GUI` option.
 
 * Go to  `<root directory>/install/bin`, and run SBNE-GUI.
