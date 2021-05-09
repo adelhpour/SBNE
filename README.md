@@ -36,7 +36,7 @@ The steps to build SBNE from its source code are as follows:
     
     + Check `WITH_PYTHON` box if you want to build the language bindings for Python.
 
-    + Check `WITH_GUI` box if you want to build the SBNE-GUI.
+    + Check `WITH_GUI` box if you want to build SBNE-GUI.
 
         - ******NOTE******: To build SBNE-GUI, Qt5 development tools are needed to be already installed on your machine. In that case, if you check `WITH_GUI` box at this step, CMake requires you later to set the value of `Qt5_DIR` to the directory where `Qt5Config.cmake` and other Qt dependencies are located.
 
