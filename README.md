@@ -69,7 +69,7 @@ Then, include the following headers in your script:
 
 And now you are able to make use of API functions in your code.
 
-******NOTE******: A simple script which makes use of the API to read the SBML docoument of an SBML (xml) file, (if not included) add layout and render features to it, and finally write it to an SBML (xml) file is included in `<root directory>/source/include/testcases`.
+******NOTE******: A simple script which makes use of the API to read the SBML docoument of an SBML (xml) file, add layout and render features (if not included) to it, and finally write it to an SBML (xml) file is included in `<root directory>/source/include/testcases`.
 
 ### Use Python bindings
 To use SBNE Python bindings, you first need to:
