@@ -78,7 +78,7 @@ To use SBNE Python bindings, you first need to:
 
 * Add the directory of the built Python library (`<root directory>/install/lib/pyhton[version]/site-packages/libsbne`)  to your `PYTHONPATH`.
 
-And then you are able to `import _libsbne` and make use of API functions in your script.
+And then you are able to `import _libsbne` and make use of API functions in your Python script.
 
 ### Use SBNE-GUI (Graphical Interface)
 To use the graphical interface, you need to:
