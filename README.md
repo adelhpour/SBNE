@@ -67,9 +67,9 @@ Then, include the following headers in your script:
     #include "sbne/sbml/ne_render.h"
 ```
 
-And now you are able to make use of API functions in your code.
+And now you are able to make use of the API functions in your code.
 
-******NOTE******: A simple script which makes use of the API to read the SBML docoument of an SBML (xml) file, add layout and render features (if not included) to it, and finally write it to an SBML (xml) file is included in `<root directory>/source/include/testcases`.
+******NOTE******: A simple script which makes use of the API to read the SBML docoument of an SBML (xml) file, add layout and render features (if not included) to it, and finally write it to an SBML (xml) file is contained in `<root directory>/source/include/testcases`.
 
 ### Use Python bindings
 To use SBNE Python bindings, you first need to:
@@ -78,7 +78,7 @@ To use SBNE Python bindings, you first need to:
 
 * Add the directory of the built Python library (`<root directory>/install/lib/pyhton[version]/site-packages/libsbne`)  to your `PYTHONPATH`.
 
-And then you are able to `import _libsbne` and make use of API functions in your Python script.
+And then you are able to `import _libsbne` and make use of the API functions in your Python script.
 
 ### Use SBNE-GUI (Graphical Interface)
 To use the graphical interface, you need to:
