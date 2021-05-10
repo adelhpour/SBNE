@@ -54,7 +54,7 @@ The steps to build SBNE from its source code are as follows:
 
 ### Use libSBNE library (C++ API)
 To use libSBNE, you first need to:
-* [Build](#how_to_build) libSBML and libSBNE. 
+* [Build](#how-to-build) libSBML and libSBNE. 
 
 * Add libSBNE include directory (`<root directory>/install/include`)  and libSBML include directory (something like `<root directory of libSBML>/install/include`) to the "include directory" of your project.
 
