@@ -1,5 +1,0 @@
-********
-NSpecies
-********
-
-.. doxygenclass:: sbne::NSpecies

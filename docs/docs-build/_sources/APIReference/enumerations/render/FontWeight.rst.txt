@@ -1,5 +1,0 @@
-**********
-FontWeight
-**********
-
-.. doxygenenum:: FontWeight

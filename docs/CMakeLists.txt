@@ -30,7 +30,7 @@ find_package(Doxygen REQUIRED)
 file(GLOB_RECURSE SBNE_PUBLIC_HEADERS ${SBNE_ROOT_SOURCE_DIR}/src/sbne/*.h)
 
 set(DOXYGEN_INPUT_DIR "${SBNE_ROOT_SOURCE_DIR}/src/sbne")
-set(DOXYGEN_OUTPUT_DIR "${SBNE_ROOT_SOURCE_DIR}/docs/doxygen-output")
+set(DOXYGEN_OUTPUT_DIR "${SBNE_ROOT_BINARY_DIR}/docs/doxygen-output")
 set(DOXYGEN_INDEX_FILE ${DOXYGEN_OUTPUT_DIR}/xml/index.xml)
 set(DOXYFILE_IN ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in)
 set(DOXYFILE_OUT ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile)
@@ -53,7 +53,7 @@ add_custom_command(OUTPUT ${DOXYGEN_INDEX_FILE}
 add_custom_target(Doxygen ALL DEPENDS ${DOXYGEN_INDEX_FILE})
 
 set(SPHINX_SOURCE ${CMAKE_CURRENT_SOURCE_DIR})
-set(SPHINX_BUILD ${CMAKE_CURRENT_SOURCE_DIR}/docs-build)
+set(SPHINX_BUILD ${CMAKE_CURRENT_BINARY_DIR}/sphinx)
 set(SPHINX_INDEX_FILE ${SPHINX_BUILD}/index.html)
 
 # Only regenerate Sphinx when:
@@ -68,9 +68,9 @@ add_custom_command(OUTPUT ${SPHINX_INDEX_FILE}
                    ${SPHINX_SOURCE} ${SPHINX_BUILD}
                    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
                    DEPENDS
-                   # Other docs files you want to track should go here                   		   ${SPHINX_SOURCE}/index.rst
+                   # Other docs files you want to track should go here                   		   ${CMAKE_CURRENT_SOURCE_DIR}/index.rst
                    ${DOXYGEN_INDEX_FILE}
-                   MAIN_DEPENDENCY ${SPHINX_SOURCE}/conf.py
+                   MAIN_DEPENDENCY ${CMAKE_CURRENT_SOURCE_DIR}/conf.py
                    COMMENT "Generating documentation with Sphinx")
 
 # Nice named target so we can run the job easily

@@ -1,5 +1,0 @@
-*************
-VGradientStop
-*************
-
-.. doxygenclass:: sbne::VGradientStop

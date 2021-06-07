@@ -47,7 +47,7 @@ Locating main-reactions
 
 In each cluster, the center of the main reaction is considered to be at the same place where the center of the cluster it belongs to is located. Once the main reaction is located, all its species are evenly distributed around it on a circular basis as shown in the following figure:
 
-.. figure:: images/auto/1.png
+.. figure:: images/8.png
     :width: 400
     :alt: Alternative text
     :align: center
@@ -67,7 +67,7 @@ At this stage, the sub-reactions with only one species whose position is set in 
     
         At this stage, each pre-located species has three unoccupied sides, so up to three sub-reactions can be located around it. If we have more than three sub-reactions which contain one particular pre-located species, the extra sub-reaction(s) is(are) located later according to the following heuristic.
 
-.. figure:: images/auto/2.png
+.. figure:: images/9.png
     :width: 600
     :alt: Alternative text
     :align: center
@@ -85,7 +85,7 @@ Accordingly, to locate the position of a sub-reaction which contains more than o
 
         For the purpose of simplicity, all the located sub-reactions shown in the following figure have only two species (which are both pre-located). It is not a general rule, and there is no upper limitation to the number of the pre-located and non-located species a sub-reaction can have at this stage.
 
-.. figure:: images/auto/3.png
+.. figure:: images/10.png
     :width: 600
     :alt: Alternative text
     :align: center
@@ -112,7 +112,7 @@ Now, by establishing layers and vacancies for the reactions of a cluster, the fo
 
 By taking into account these rules, it is possible to neatly locate reactions and their species in a cluster of reactions. The following figure shows an example in which a set of reactions are placed in such a cluster:
 
-.. figure:: images/auto/4.png
+.. figure:: images/11.png
     :width: 800
     :alt: Alternative text
     :align: center
@@ -125,7 +125,7 @@ Packing clusters into a compartment
 By iterating the previous steps, we can determine the positions of all the reactions of each cluster and their associated species. As we mentioned earlier, here we need to move the clusters of reactions relatively to find their exact positions in a compartment. This process is very similar to a "Packing Problem", through which a bunch of small rectangles are packed into a bigger one with definite dimensions. Here, we define an extent box for each cluster of reactions (a box surrounding all the reactions and species in a cluster) and then try to pack these extent boxes into a rectangle with minimum size (representing the compartment to which they belong). By doing so, the position of each cluster and its constituents is determined as shown in the following figure for a set of clusters of reactions:
 
 
-.. figure:: images/auto/5.png
+.. figure:: images/12.png
     :width: 800
     :alt: Alternative text
     :align: center
@@ -297,31 +297,31 @@ Line Endings
 
     * - Product
       - productHead
-      - .. figure:: images/auto/6.png
+      - .. figure:: images/13.png
               :width: 100
               :alt: Alternative text
               :align: center
     * - Side Product
       - sideProductHead
-      - .. figure:: images/auto/7.png
+      - .. figure:: images/14.png
               :width: 100
               :alt: Alternative text
               :align: center
     * - Modifier
       - modifierHead
-      - .. figure:: images/auto/8.png
+      - .. figure:: images/15.png
               :width: 100
               :alt: Alternative text
               :align: center
     * - Activator
       - activatorHead
-      - .. figure:: images/auto/9.png
+      - .. figure:: images/16.png
               :width: 100
               :alt: Alternative text
               :align: center
     * - Inhibitor
       - inhibitorHead
-      - .. figure:: images/auto/10.png
+      - .. figure:: images/17.png
               :width: 100
               :alt: Alternative text
               :align: center

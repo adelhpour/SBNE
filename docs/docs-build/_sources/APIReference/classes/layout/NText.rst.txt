@@ -1,5 +1,0 @@
-*****
-NText
-*****
-
-.. doxygenclass:: sbne::NText

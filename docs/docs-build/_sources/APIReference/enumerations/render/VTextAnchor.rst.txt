@@ -1,5 +1,0 @@
-***********
-VTextAnchor
-***********
-
-.. doxygenenum:: VTextAnchor

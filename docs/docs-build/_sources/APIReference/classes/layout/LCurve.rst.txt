@@ -1,5 +1,0 @@
-******
-LCurve
-******
-
-.. doxygenclass:: sbne::LCurve
