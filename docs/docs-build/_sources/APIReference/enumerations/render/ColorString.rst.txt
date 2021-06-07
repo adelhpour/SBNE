@@ -1,5 +1,0 @@
-***********
-ColorString
-***********
-
-.. doxygenenum:: ColorString

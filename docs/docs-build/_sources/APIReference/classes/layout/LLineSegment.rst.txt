@@ -1,5 +1,0 @@
-************
-LLineSegment
-************
-
-.. doxygenclass:: sbne::LLineSegment

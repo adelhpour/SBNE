@@ -10,9 +10,9 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-import os
-import sys
-sys.path.insert(0, os.path.abspath('.'))
+# import os
+# import sys
+# sys.path.insert(0, os.path.abspath('.'))
 
 
 # -- Project information -----------------------------------------------------
@@ -68,7 +68,7 @@ html_static_path = ['_static']
 
 
 # Use on readthedocs
-import subprocess
+import subprocess, os
 
 def configureDoxyfile(input_dir, output_dir):
     with open('Doxyfile.in', 'r') as file :
@@ -87,7 +87,7 @@ breathe_projects = {}
 
 if read_the_docs_build:
     input_dir = '../src/sbne'
-    output_dir = 'doxygen-output'
+    output_dir = 'build'
     configureDoxyfile(input_dir, output_dir)
     subprocess.call('doxygen', shell=True)
     breathe_projects['SBNE'] = output_dir + '/xml'

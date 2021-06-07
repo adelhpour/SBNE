@@ -1,5 +1,0 @@
-********
-VEllipse
-********
-
-.. doxygenclass:: sbne::VEllipse

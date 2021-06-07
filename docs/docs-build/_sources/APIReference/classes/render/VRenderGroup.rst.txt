@@ -1,5 +1,0 @@
-************
-VRenderGroup
-************
-
-.. doxygenclass:: sbne::VRenderGroup

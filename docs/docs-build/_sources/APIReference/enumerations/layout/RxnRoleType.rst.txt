@@ -1,5 +1,0 @@
-***********
-RxnRoleType
-***********
-
-.. doxygenenum:: RxnRoleType

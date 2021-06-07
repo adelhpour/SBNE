@@ -1,5 +1,0 @@
-******
-Veneer
-******
-
-.. doxygenclass:: sbne::Veneer

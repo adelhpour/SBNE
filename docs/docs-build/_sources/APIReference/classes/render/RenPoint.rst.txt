@@ -1,5 +1,0 @@
-********
-RenPoint
-********
-
-.. doxygenclass:: sbne::RenPoint

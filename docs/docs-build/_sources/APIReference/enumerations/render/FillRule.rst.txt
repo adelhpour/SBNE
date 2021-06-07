@@ -1,5 +1,0 @@
-********
-FillRule
-********
-
-.. doxygenenum:: FillRule

@@ -1,5 +1,0 @@
-************
-LCubicBezier
-************
-
-.. doxygenclass:: sbne::LCubicBezier

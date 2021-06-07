@@ -1,5 +1,0 @@
-************
-NCompartment
-************
-
-.. doxygenclass:: sbne::NCompartment

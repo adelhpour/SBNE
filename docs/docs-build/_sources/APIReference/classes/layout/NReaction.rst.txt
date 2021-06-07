@@ -1,5 +1,0 @@
-*********
-NReaction
-*********
-
-.. doxygenclass:: sbne::NReaction

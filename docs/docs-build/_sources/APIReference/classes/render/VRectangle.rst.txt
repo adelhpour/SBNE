@@ -1,5 +1,0 @@
-**********
-VRectangle
-**********
-
-.. doxygenclass:: sbne::VRectangle

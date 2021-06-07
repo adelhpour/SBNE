@@ -1,5 +1,0 @@
-***********************
-RenderGroupElementShape
-***********************
-
-.. doxygenenum:: RenderGroupElementShape
