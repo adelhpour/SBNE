@@ -1,0 +1,5 @@
+********
+VPolygon
+********
+
+.. doxygenclass:: sbne::VPolygon

@@ -1,0 +1,5 @@
+****************
+NGraphicalObject
+****************
+
+.. doxygenclass:: sbne::NGraphicalObject

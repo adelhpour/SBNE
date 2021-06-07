@@ -1,0 +1,5 @@
+**************
+NetworkElement
+**************
+
+.. doxygenclass:: sbne::NetworkElement

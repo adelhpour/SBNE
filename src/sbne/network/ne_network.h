@@ -13,24 +13,28 @@
 
 namespace sbne {
 
+/// @enum GrphObjType
+/// @brief Enumeration of values permitted as the value of the "type" attribute of an NGraphicalObject object.
 typedef enum {
-    GRP_OBJ_CMP,
-    GRP_OBJ_SPC,
-    GRP_OBJ_RXN,
-    GRP_OBJ_SPC_RFC,
-    GRP_OBJ_TXT,
-    NUM_GrphObjType
+    GRP_OBJ_CMP, /**< NCompartment */
+    GRP_OBJ_SPC, /**< NSpecies */
+    GRP_OBJ_RXN, /**< NReaction */
+    GRP_OBJ_SPC_RFC, /**< NSpeciesReference */
+    GRP_OBJ_TXT, /**< NText */
+    NUM_GrphObjType /**< Number of GrphObjTypes*/
 } GrphObjType;
 
+/// @enum RxnRoleType
+/// @brief Enumeration of values permitted as the value of the "role" attribute of an NSpeciesReference object.
 typedef enum {
-    RXN_ROLE_SUBSTRATE,
-    RXN_ROLE_PRODUCT,
-    RXN_ROLE_SIDESUBSTRATE,
-    RXN_ROLE_SIDEPRODUCT,
-    RXN_ROLE_MODIFIER,
-    RXN_ROLE_ACTIVATOR,
-    RXN_ROLE_INHIBITOR,
-    NUM_RxnRoleType,
+    RXN_ROLE_SUBSTRATE, /**< substrate */
+    RXN_ROLE_PRODUCT, /**< product */
+    RXN_ROLE_SIDESUBSTRATE, /**< side substrate  */
+    RXN_ROLE_SIDEPRODUCT, /**< side product */
+    RXN_ROLE_MODIFIER, /**< modifier */
+    RXN_ROLE_ACTIVATOR, /**< activator */
+    RXN_ROLE_INHIBITOR, /**< inhibitor */
+    NUM_RxnRoleType, /**< Number of RxnRoleTypes */
 } RxnRoleType;
 
 typedef enum {
@@ -118,8 +122,14 @@ typedef reactionVec::const_iterator constReactionIt;
 typedef SReferenceVec::iterator sReferenceIt;
 typedef SReferenceVec::const_iterator constSReferenceIt;
 
+/// @brief Gets the string equivalent of this RxnRoleType.
+/// @param role a RxnRoleType.
+/// @return the string equivalent of this RxnRoleType.
 std::string rxnRoleToString(RxnRoleType role);
 
+/// @brief Gets the RxnRoleType associated with this SpeciesReferenceRole_t.
+/// @param role a SpeciesReferenceRole_t.
+/// @return the RxnRoleType associated with this SpeciesReferenceRole_t.
 RxnRoleType SBMLRoleToRxnRole(SpeciesReferenceRole_t role);
 
 CoordSysQuad angleToQuadrant(double angle);
@@ -130,6 +140,8 @@ Network* networkFromLayout(const Layout& layout, Network* net);
 
 void getLineInfo(LCurve* c, const LineSegment* line);
 
+/// @class NetworkElement
+/// @brief Base class for Network objects.
 class NetworkElement{
 public:
     
@@ -166,6 +178,8 @@ protected:
     bool _isSetName;
 };
 
+/// @class Network
+/// @brief The equivalent class for SBML [Layout](http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_layout.html) .
 class Network : public NetworkElement {
 public:
     /// Constructors
@@ -423,6 +437,8 @@ protected:
     bool _isLayoutSpecified;
 };
 
+/// @class NGraphicalObject
+/// @brief The equivalent class for SBML [GraphicalObject](http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_graphical_object.html) .
 class NGraphicalObject : public NetworkElement {
 public:
     /// Constructors
@@ -515,6 +531,8 @@ protected:
     bool _isLockedPosition;
 };
 
+/// @class NCompartment
+/// @brief The equivalent class for SBML [Compartment](http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_compartment.html) and [CompartmentGlyph](http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_compartment_glyph.html) .
 class NCompartment : public NGraphicalObject {
 public:
     /// Constructors
@@ -608,6 +626,8 @@ protected:
     bool _isSetOrder;
 };
 
+/// @class NSpecies
+/// @brief The equivalent class for SBML [Species](http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_species.html) and [SpeciesGlyph](http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_species_glyph.html) .
 class NSpecies : public NGraphicalObject {
 public:
     /// Constructors
@@ -714,6 +734,8 @@ protected:
     bool _isPseudoSpecies;
 };
 
+/// @class NReaction
+/// @brief The equivalent class for SBML [Reaction](http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_reaction.html) and [ReactionGlyph](http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_reaction_glyph.html) .
 class NReaction : public NGraphicalObject {
 public:
     /// Constructors
@@ -1199,6 +1221,8 @@ protected:
     bool _isSetExtentBox;
 };
 
+/// @class NSpeciesReference
+/// @brief The equivalent class for SBML [SpeciesReference](http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_species_reference.html) and [SpeciesReferenceGlyph](http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_species_reference_glyph.html) .
 class NSpeciesReference : public NGraphicalObject {
 public:
     /// Constructors
@@ -1300,6 +1324,8 @@ protected:
     bool _isSetEndPoint;
 };
 
+/// @class NText
+/// @brief The equivalent class for SBML [TextGlyph](http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_text_glyph.html) .
 class NText : public NGraphicalObject {
 public:
     /// Constructors
@@ -1349,6 +1375,8 @@ protected:
     bool _isSetOriginOfTextId;
 };
 
+/// @class LCurve
+/// @brief The equivalent class for SBML [Curve](http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_curve.html) .
 class LCurve : public NetworkElement {
 public:
     /// Constructors
@@ -1409,6 +1437,8 @@ protected:
     listOfElements _listOfElements;
 };
 
+/// @class LLineSegment
+/// @brief The equivalent class for SBML [LineSegment](http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_line_segment.html) .
 class LLineSegment : public NetworkElement {
 public:
     /// Constructors
@@ -1449,6 +1479,8 @@ protected:
     bool _isSetEnd;
 };
 
+/// @class LCubicBezier
+/// @brief The equivalent class for SBML [CubicBezier](http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_cubic_bezier.html) .
 class LCubicBezier : public LLineSegment {
 public:
     /// Constructors

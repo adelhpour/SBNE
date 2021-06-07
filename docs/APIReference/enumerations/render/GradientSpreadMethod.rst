@@ -1,0 +1,5 @@
+********************
+GradientSpreadMethod
+********************
+
+.. doxygenenum:: GradientSpreadMethod

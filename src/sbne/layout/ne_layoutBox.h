@@ -6,6 +6,8 @@
 
 namespace sbne {
 
+/// @class LBox
+/// @brief The equivalent class for SBML [BoundingBox](http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_bounding_box.html) .
 class LBox {
 public:
     /// Constructors

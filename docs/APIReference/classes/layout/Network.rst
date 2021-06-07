@@ -1,0 +1,5 @@
+*******
+Network
+*******
+
+.. doxygenclass:: sbne::Network

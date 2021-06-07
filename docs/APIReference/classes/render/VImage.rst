@@ -1,0 +1,5 @@
+******
+VImage
+******
+
+.. doxygenclass:: sbne::VImage

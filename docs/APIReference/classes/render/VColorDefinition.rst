@@ -1,0 +1,5 @@
+****************
+VColorDefinition
+****************
+
+.. doxygenclass:: sbne::VColorDefinition

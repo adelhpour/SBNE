@@ -354,11 +354,11 @@ SBMLDocument* NESBMLDocument::getDocument() {
     return _document;
 }
 
-ne_layoutInfo* NESBMLDocument::getLayoutInfo() {
+LayoutInfo* NESBMLDocument::getLayoutInfo() {
     return _li;
 }
 
-ne_renderInfo* NESBMLDocument::getRenderInfo() {
+RenderInfo* NESBMLDocument::getRenderInfo() {
     return _ri;
 }
 

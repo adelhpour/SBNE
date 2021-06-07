@@ -147,6 +147,9 @@ if (WITH_GUI)
 	set(BUILD_STATIC_LIB ON CACHE BOOL "Build the static version of the library")
 endif()
 
+## building the Documentation
+option(BUILD_DOCS "Build sbne documentation" OFF)
+
 ## Set build type default.
 set(CMAKE_BUILD_TYPE "Release" CACHE STRING
   "Choose the type of build to perform. The options are: Debug, Release, RelWithDebInfo, MinSizeRel.")
@@ -158,6 +161,10 @@ endif()
 if (EXISTS ${LIBSBML_PREFIX})
 	message(STATUS "building src")
 	add_subdirectory(src)
+
+	if (${BUILD_DOCS})
+    		add_subdirectory(docs)
+	endif()
 else()
 	message(ERROR
             "SBNE dependencies have not been found.")

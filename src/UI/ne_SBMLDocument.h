@@ -49,10 +49,10 @@ public:
     const bool isSetDocument() const { return _isSetDocument; };
     
     // get layout info
-    ne_layoutInfo* getLayoutInfo();
+    LayoutInfo* getLayoutInfo();
     
     // get render info
-    ne_renderInfo* getRenderInfo();
+    RenderInfo* getRenderInfo();
     
     // get network
     Network* getNetwork();
@@ -86,8 +86,8 @@ public:
     
 protected:
     SBMLDocument* _document;
-    ne_layoutInfo* _li;
-    ne_renderInfo* _ri;
+    LayoutInfo* _li;
+    RenderInfo* _ri;
     bool _isSetDocument;
     bool _isLayoutModified;
     bool _isLayoutAlreadyExisted;

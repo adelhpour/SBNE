@@ -4,8 +4,8 @@ namespace sbne {
 
 // -- Input --
 
-SBMLDocument* ne_doc_readSBML(const char* fileName) {
-    SBMLDocument* document = readSBMLFromFile(fileName);
+SBMLDocument* ne_doc_readSBML(const std::string& filename) {
+    SBMLDocument* document = readSBMLFromFile(filename.c_str());
     
     if (document) {
         if (!document->getNumErrors())
@@ -22,9 +22,9 @@ SBMLDocument* ne_doc_readSBML(const char* fileName) {
 
 // -- Output --
 
-int ne_doc_writeSBML(SBMLDocument* doc, const char* fileName) {
+int ne_doc_writeSBML(SBMLDocument* doc, const std::string& filename) {
     SBMLWriter writer;
-    if (writer.writeSBML(doc, fileName))
+    if (writer.writeSBML(doc, filename.c_str()))
         return 0;
     
     std::cerr << "Failed to save SBML\n";

@@ -5,6 +5,8 @@
 
 namespace sbne {
 
+/// @class LPoint
+/// @brief The equivalent class for SBML [Point](http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_point.html) .
 class LPoint {
 public:
     /// Constructors
