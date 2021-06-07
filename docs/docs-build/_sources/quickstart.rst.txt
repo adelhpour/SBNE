@@ -154,7 +154,7 @@ Here is a simple example to show how to:
  
 To do so, once we run SBNE-GUI, we need to load an SBML file. Here, we click on "File" in the menu bar, and then click on the "Open" action.
 
-.. figure:: pics/quickstart/1.png
+.. figure:: images/quickstart/1.png
     :width: 400
     :alt: Alternative text
     :align: center
@@ -163,7 +163,7 @@ To do so, once we run SBNE-GUI, we need to load an SBML file. Here, we click on 
 
 Using the popped-up file dialog, we choose an SBML (*Example.xml*) file and open it. This action reads the SBML document in the file, (if not included) generates the Layout and Render information for the model, and renders the network of the model using this information.
 
-.. figure:: pics/quickstart/2.png
+.. figure:: images/quickstart/2.png
     :width: 800
     :alt: Alternative text
     :align: center
@@ -172,7 +172,7 @@ Using the popped-up file dialog, we choose an SBML (*Example.xml*) file and open
 
 Now, to become able to modify the features of the rendered network, we need to **double-click on the graphical item whose features we want to change**. Once it is done, a feature menu enabling us to make changes to that graphical item pops up at the left side of the GUI screen (here, we have double-clicked on the Species named *S1*, so an "Item Features" menu for "Species" has appeared). To close this menu, we can simply double-click on an empty zone within the graphics scene of the GUI.
 
-.. figure:: pics/quickstart/3.png
+.. figure:: images/quickstart/3.png
     :width: 800
     :alt: Alternative text
     :align: center
@@ -181,7 +181,7 @@ Now, to become able to modify the features of the rendered network, we need to *
 
 As an example, here we want to change the *fill color* of the graphical item representing the *S1* species. So, from the "Item Features" menu, we first expand the **Render Features** submenu, and then, under the **Fill** section, click on the **Color** button. A "Change Fill Color" dialog box, which enables us to choose a new color, pops up.
 
-.. figure:: pics/quickstart/4.png
+.. figure:: images/quickstart/4.png
     :width: 800
     :alt: Alternative text
     :align: center
@@ -190,7 +190,7 @@ As an example, here we want to change the *fill color* of the graphical item rep
 
 Then, we click on the "Fill Color" drop-down list and choose a color ("red") from the list of available colors.
 
-.. figure:: pics/quickstart/5.png
+.. figure:: images/quickstart/5.png
     :width: 800
     :alt: Alternative text
     :align: center
@@ -199,7 +199,7 @@ Then, we click on the "Fill Color" drop-down list and choose a color ("red") fro
 
 After we choose our desired color, we click on the "Apply" button in the "Change Fill Color" dialog box, so the *fill color* of the graphical item representing the *S1* species turns into the chosen color.
 
-.. figure:: pics/quickstart/6.png
+.. figure:: images/quickstart/6.png
     :width: 800
     :alt: Alternative text
     :align: center
@@ -208,7 +208,7 @@ After we choose our desired color, we click on the "Apply" button in the "Change
 
 To write the modified features to the existing SBML model file and save it, we click on "File" in the menu bar, and then click on the "Save" action. Using the popped-up file dialog, we can choose a name and directory for the SBML (.xml) file and save it. The GUI also allows us to export a *.jpg* image of the rendered network by clicking on the "Export as JPEG" action under the "File" menu bar.
 
-.. figure:: pics/quickstart/7.png
+.. figure:: images/quickstart/7.png
     :width: 400
     :alt: Alternative text
     :align: center
