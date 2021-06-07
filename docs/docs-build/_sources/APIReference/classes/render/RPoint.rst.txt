@@ -1,0 +1,5 @@
+******
+RPoint
+******
+
+.. doxygenclass:: sbne::RPoint

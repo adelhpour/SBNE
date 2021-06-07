@@ -1,0 +1,5 @@
+************
+VGlobalStyle
+************
+
+.. doxygenclass:: sbne::VGlobalStyle

@@ -1,0 +1,634 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="classsbne_1_1VEllipse" kind="class" language="C++" prot="public">
+    <compoundname>sbne::VEllipse</compoundname>
+    <basecompoundref refid="classsbne_1_1VGraphicalPrimitive2D" prot="public" virt="non-virtual">sbne::VGraphicalPrimitive2D</basecompoundref>
+    <includes refid="ne__veneer_8h" local="no">ne_veneer.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classsbne_1_1VEllipse_1ae92f2b4b2536045453972f12db5b333e" prot="protected" static="no" mutable="no">
+        <type><ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref></type>
+        <definition>RAVector sbne::VEllipse::_cx</definition>
+        <argsstring></argsstring>
+        <name>_cx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1512" column="14" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1512" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VEllipse_1a418834dda7c200c9cc406800d349498c" prot="protected" static="no" mutable="no">
+        <type><ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref></type>
+        <definition>RAVector sbne::VEllipse::_cy</definition>
+        <argsstring></argsstring>
+        <name>_cy</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1513" column="14" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1513" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VEllipse_1a5704aa01b6edc7a861710c4cb98ead29" prot="protected" static="no" mutable="no">
+        <type><ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref></type>
+        <definition>RAVector sbne::VEllipse::_cz</definition>
+        <argsstring></argsstring>
+        <name>_cz</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1514" column="14" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1514" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VEllipse_1ac26346daa3d99f8bb962d95b85c25169" prot="protected" static="no" mutable="no">
+        <type><ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref></type>
+        <definition>RAVector sbne::VEllipse::_rx</definition>
+        <argsstring></argsstring>
+        <name>_rx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1515" column="14" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1515" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VEllipse_1aece99eb4f0abcea21d47b09f3153c1fa" prot="protected" static="no" mutable="no">
+        <type><ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref></type>
+        <definition>RAVector sbne::VEllipse::_ry</definition>
+        <argsstring></argsstring>
+        <name>_ry</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1516" column="14" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1516" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VEllipse_1a6aaea1530edcf4346a97e53cc228df1e" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double sbne::VEllipse::_ratio</definition>
+        <argsstring></argsstring>
+        <name>_ratio</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1517" column="12" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1517" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VEllipse_1a16018a1a880b0962719b9a124158bfad" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sbne::VEllipse::_isSetCX</definition>
+        <argsstring></argsstring>
+        <name>_isSetCX</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1518" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1518" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VEllipse_1a61df4fd0dd8e763918955217badeaa3f" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sbne::VEllipse::_isSetCY</definition>
+        <argsstring></argsstring>
+        <name>_isSetCY</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1519" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1519" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VEllipse_1a014edaab7698847d18b152addc6e4fee" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sbne::VEllipse::_isSetCZ</definition>
+        <argsstring></argsstring>
+        <name>_isSetCZ</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1520" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1520" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VEllipse_1a5de0d695846d14f957d02f2fd788a584" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sbne::VEllipse::_isSetRX</definition>
+        <argsstring></argsstring>
+        <name>_isSetRX</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1521" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1521" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VEllipse_1aaec3701ffd04b0cfce3fa92b1b910282" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sbne::VEllipse::_isSetRY</definition>
+        <argsstring></argsstring>
+        <name>_isSetRY</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1522" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1522" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VEllipse_1a18fad198627b939c0ef56e5daac264e3" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sbne::VEllipse::_isSetRatio</definition>
+        <argsstring></argsstring>
+        <name>_isSetRatio</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1523" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1523" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classsbne_1_1VEllipse_1a6d1c77a36d82c35106ca95c24eae084c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>sbne::VEllipse::VEllipse</definition>
+        <argsstring>()</argsstring>
+        <name>VEllipse</name>
+        <briefdescription>
+<para>Constructors. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1436" column="5" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1436" bodyend="1450"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VEllipse_1a14b2aff009f1261f13f6fc331629f225" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VEllipse::setCX</definition>
+        <argsstring>(const RAVector &amp;cx)</argsstring>
+        <name>setCX</name>
+        <param>
+          <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+          <declname>cx</declname>
+        </param>
+        <briefdescription>
+<para>Functions. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1454" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="2388" bodyend="2391"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VEllipse_1aa7d92cb8947eb60d002575fbc1cb8228" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+        <definition>const RAVector &amp; sbne::VEllipse::getCX</definition>
+        <argsstring>() const</argsstring>
+        <name>getCX</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1457" column="20" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="2393" bodyend="2395"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VEllipse_1ae865e065f26a8f23c96171cc93ab72b2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const bool</type>
+        <definition>const bool sbne::VEllipse::isSetCX</definition>
+        <argsstring>() const</argsstring>
+        <name>isSetCX</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1460" column="16" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1460" bodyend="1460"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VEllipse_1a35b20b13255ffe37bc810e2911d77433" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VEllipse::setCY</definition>
+        <argsstring>(const RAVector &amp;cy)</argsstring>
+        <name>setCY</name>
+        <param>
+          <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+          <declname>cy</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1463" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="2397" bodyend="2400"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VEllipse_1a21abaccc56ac07dff88bba1c6544cf2f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+        <definition>const RAVector &amp; sbne::VEllipse::getCY</definition>
+        <argsstring>() const</argsstring>
+        <name>getCY</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1466" column="20" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="2402" bodyend="2404"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VEllipse_1a170cc9fd7de5d813e498cff14b597629" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const bool</type>
+        <definition>const bool sbne::VEllipse::isSetCY</definition>
+        <argsstring>() const</argsstring>
+        <name>isSetCY</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1469" column="16" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1469" bodyend="1469"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VEllipse_1aa28fba63f38ec6838494283e52656647" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VEllipse::setCZ</definition>
+        <argsstring>(const RAVector &amp;cz)</argsstring>
+        <name>setCZ</name>
+        <param>
+          <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+          <declname>cz</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1472" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="2406" bodyend="2409"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VEllipse_1acffee36c5e5aeeb77e38371d5460e9a2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+        <definition>const RAVector &amp; sbne::VEllipse::getCZ</definition>
+        <argsstring>() const</argsstring>
+        <name>getCZ</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1475" column="20" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="2411" bodyend="2413"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VEllipse_1a510d9d005fd8c199dbadb9e7ccff305a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const bool</type>
+        <definition>const bool sbne::VEllipse::isSetCZ</definition>
+        <argsstring>() const</argsstring>
+        <name>isSetCZ</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1478" column="16" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1478" bodyend="1478"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VEllipse_1a6b1ae1cb2490b7450f1eb9cf129c52c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VEllipse::setRX</definition>
+        <argsstring>(const RAVector &amp;rx)</argsstring>
+        <name>setRX</name>
+        <param>
+          <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+          <declname>rx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1481" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="2415" bodyend="2418"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VEllipse_1a23ac5d8ca07ad557214ef82cb1f42654" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+        <definition>const RAVector &amp; sbne::VEllipse::getRX</definition>
+        <argsstring>() const</argsstring>
+        <name>getRX</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1484" column="20" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="2420" bodyend="2422"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VEllipse_1aa1a8ae84869e4fa20ebdd93245a8d233" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const bool</type>
+        <definition>const bool sbne::VEllipse::isSetRX</definition>
+        <argsstring>() const</argsstring>
+        <name>isSetRX</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1487" column="16" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1487" bodyend="1487"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VEllipse_1ac0bd4d8d49f74209280cefb49320c7b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VEllipse::setRY</definition>
+        <argsstring>(const RAVector &amp;ry)</argsstring>
+        <name>setRY</name>
+        <param>
+          <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+          <declname>ry</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1490" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="2424" bodyend="2427"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VEllipse_1a3aa7a89506e10446137c21831531bb2c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+        <definition>const RAVector &amp; sbne::VEllipse::getRY</definition>
+        <argsstring>() const</argsstring>
+        <name>getRY</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1493" column="20" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="2429" bodyend="2431"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VEllipse_1acbca9ab275a1670b63ab4b772c9a0e45" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const bool</type>
+        <definition>const bool sbne::VEllipse::isSetRY</definition>
+        <argsstring>() const</argsstring>
+        <name>isSetRY</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1496" column="16" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1496" bodyend="1496"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VEllipse_1a3c14794d17fa2f8a4c836ed9ce3fff55" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VEllipse::setRatio</definition>
+        <argsstring>(const double &amp;ratio)</argsstring>
+        <name>setRatio</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>ratio</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1499" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="2433" bodyend="2436"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VEllipse_1a82ba23301e01f3de2db4bb8d944c664d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VEllipse::unSetRatio</definition>
+        <argsstring>()</argsstring>
+        <name>unSetRatio</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1502" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="2438" bodyend="2441"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VEllipse_1ad1d13802245f86e1cb00c477892769a0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const double &amp;</type>
+        <definition>const double &amp; sbne::VEllipse::getRatio</definition>
+        <argsstring>() const</argsstring>
+        <name>getRatio</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1505" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="2443" bodyend="2445"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VEllipse_1aa94846de39ed3d7e24dd08f0268ddbf4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const bool</type>
+        <definition>const bool sbne::VEllipse::isSetRatio</definition>
+        <argsstring>() const</argsstring>
+        <name>isSetRatio</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1508" column="16" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1508" bodyend="1508"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The equivalent class for SBML <ulink url="http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_ellipse.html">Ellipse</ulink> . </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5">
+        <label>sbne::VeneerElement</label>
+        <link refid="classsbne_1_1VeneerElement"/>
+      </node>
+      <node id="2">
+        <label>sbne::VGraphicalPrimitive2D</label>
+        <link refid="classsbne_1_1VGraphicalPrimitive2D"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>sbne::VGraphicalPrimitive1D</label>
+        <link refid="classsbne_1_1VGraphicalPrimitive1D"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>sbne::VTransformation2D</label>
+        <link refid="classsbne_1_1VTransformation2D"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>sbne::VEllipse</label>
+        <link refid="classsbne_1_1VEllipse"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="5">
+        <label>sbne::VeneerElement</label>
+        <link refid="classsbne_1_1VeneerElement"/>
+      </node>
+      <node id="2">
+        <label>sbne::VGraphicalPrimitive2D</label>
+        <link refid="classsbne_1_1VGraphicalPrimitive2D"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>sbne::VGraphicalPrimitive1D</label>
+        <link refid="classsbne_1_1VGraphicalPrimitive1D"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>sbne::VTransformation2D</label>
+        <link refid="classsbne_1_1VTransformation2D"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>sbne::VEllipse</label>
+        <link refid="classsbne_1_1VEllipse"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>_cx</edgelabel>
+          <edgelabel>_cy</edgelabel>
+          <edgelabel>_cz</edgelabel>
+          <edgelabel>_rx</edgelabel>
+          <edgelabel>_ry</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>sbne::RAVector</label>
+        <link refid="classsbne_1_1RAVector"/>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1432" column="1" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1432" bodyend="1524"/>
+    <listofallmembers>
+      <member refid="classsbne_1_1VTransformation2D_1a21c7a2b446a712534885ebb73482c199" prot="protected" virt="non-virtual"><scope>sbne::VEllipse</scope><name>_affine</name></member>
+      <member refid="classsbne_1_1VEllipse_1ae92f2b4b2536045453972f12db5b333e" prot="protected" virt="non-virtual"><scope>sbne::VEllipse</scope><name>_cx</name></member>
+      <member refid="classsbne_1_1VEllipse_1a418834dda7c200c9cc406800d349498c" prot="protected" virt="non-virtual"><scope>sbne::VEllipse</scope><name>_cy</name></member>
+      <member refid="classsbne_1_1VEllipse_1a5704aa01b6edc7a861710c4cb98ead29" prot="protected" virt="non-virtual"><scope>sbne::VEllipse</scope><name>_cz</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1a48430adb4df2b3bc2d44039feef1dbfa" prot="protected" virt="non-virtual"><scope>sbne::VEllipse</scope><name>_dashArray</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive2D_1a133bc668769f01cb29e2f143fed2ef58" prot="protected" virt="non-virtual"><scope>sbne::VEllipse</scope><name>_fill</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive2D_1ab18a27018fc45cdb0fc39a7605593e6c" prot="protected" virt="non-virtual"><scope>sbne::VEllipse</scope><name>_fillRule</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a05a1b163bba59774adf635c8aaa9411e" prot="protected" virt="non-virtual"><scope>sbne::VEllipse</scope><name>_id</name></member>
+      <member refid="classsbne_1_1VEllipse_1a16018a1a880b0962719b9a124158bfad" prot="protected" virt="non-virtual"><scope>sbne::VEllipse</scope><name>_isSetCX</name></member>
+      <member refid="classsbne_1_1VEllipse_1a61df4fd0dd8e763918955217badeaa3f" prot="protected" virt="non-virtual"><scope>sbne::VEllipse</scope><name>_isSetCY</name></member>
+      <member refid="classsbne_1_1VEllipse_1a014edaab7698847d18b152addc6e4fee" prot="protected" virt="non-virtual"><scope>sbne::VEllipse</scope><name>_isSetCZ</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1ae10bc79301140f75f6bdbd8cc33de2f4" prot="protected" virt="non-virtual"><scope>sbne::VEllipse</scope><name>_isSetDashArray</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive2D_1a9af201a8af829a9c88800d15081fa734" prot="protected" virt="non-virtual"><scope>sbne::VEllipse</scope><name>_isSetFill</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive2D_1a80b6dbb9c8261ea623126771597bd90b" prot="protected" virt="non-virtual"><scope>sbne::VEllipse</scope><name>_isSetFillRule</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a5528e39c12af204f8de8e3ac741b19e6" prot="protected" virt="non-virtual"><scope>sbne::VEllipse</scope><name>_isSetId</name></member>
+      <member refid="classsbne_1_1VeneerElement_1aadacb15ddad42dead4445e992b73d892" prot="protected" virt="non-virtual"><scope>sbne::VEllipse</scope><name>_isSetName</name></member>
+      <member refid="classsbne_1_1VEllipse_1a18fad198627b939c0ef56e5daac264e3" prot="protected" virt="non-virtual"><scope>sbne::VEllipse</scope><name>_isSetRatio</name></member>
+      <member refid="classsbne_1_1VEllipse_1a5de0d695846d14f957d02f2fd788a584" prot="protected" virt="non-virtual"><scope>sbne::VEllipse</scope><name>_isSetRX</name></member>
+      <member refid="classsbne_1_1VEllipse_1aaec3701ffd04b0cfce3fa92b1b910282" prot="protected" virt="non-virtual"><scope>sbne::VEllipse</scope><name>_isSetRY</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1ac7a0a4126b9311dc1c9a9a78f7b4297b" prot="protected" virt="non-virtual"><scope>sbne::VEllipse</scope><name>_isSetStroke</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1a52c5df7d2a0c487b551f77dbac04658f" prot="protected" virt="non-virtual"><scope>sbne::VEllipse</scope><name>_isSetStrokeWidth</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a475bf1e0d392d8947c9c5adbe91ac59c" prot="protected" virt="non-virtual"><scope>sbne::VEllipse</scope><name>_isSetTransform</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a81238d04248f95a8ef68788d3db8e913" prot="protected" virt="non-virtual"><scope>sbne::VEllipse</scope><name>_name</name></member>
+      <member refid="classsbne_1_1VEllipse_1a6aaea1530edcf4346a97e53cc228df1e" prot="protected" virt="non-virtual"><scope>sbne::VEllipse</scope><name>_ratio</name></member>
+      <member refid="classsbne_1_1VEllipse_1ac26346daa3d99f8bb962d95b85c25169" prot="protected" virt="non-virtual"><scope>sbne::VEllipse</scope><name>_rx</name></member>
+      <member refid="classsbne_1_1VEllipse_1aece99eb4f0abcea21d47b09f3153c1fa" prot="protected" virt="non-virtual"><scope>sbne::VEllipse</scope><name>_ry</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a4f1acf2b370bf8e62551537a42b2b999" prot="protected" virt="non-virtual"><scope>sbne::VEllipse</scope><name>_shape</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1afb0eeb08dabfc5218d15292a5737c872" prot="protected" virt="non-virtual"><scope>sbne::VEllipse</scope><name>_stroke</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1a2364e2328a18fd36f410c8ea6ce29b73" prot="protected" virt="non-virtual"><scope>sbne::VEllipse</scope><name>_strokeWidth</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a2d90d4d2bc3a10568268734d4a562306" prot="protected" virt="non-virtual"><scope>sbne::VEllipse</scope><name>_transform</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1a4d912ebd1970dd4701c1e0d50e995f30" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>addToDashArray</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1aa612b2cf85ef2a4094d888fea24f8b5e" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>addToDashArrayEnd</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1a3403fe71cf67924b07a40d135f2a1c35" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>constDashArrayIt</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1adcedb1b117da945a63c5c8bd03dac64e" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>dashArrayBegin</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1ae9db1f5a980351db78914d0bca836efd" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>dashArrayEnd</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1ac087bdf9512470dbcf0b7c5c5b99c184" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>dashArrayIt</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1a498fb9ec443b8518ec60ce70249e1096" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>dashArrayVec</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a33c256f3ea47fd4d3c038fdc71934d05" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>getAffine2D</name></member>
+      <member refid="classsbne_1_1VEllipse_1aa7d92cb8947eb60d002575fbc1cb8228" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>getCX</name></member>
+      <member refid="classsbne_1_1VEllipse_1a21abaccc56ac07dff88bba1c6544cf2f" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>getCY</name></member>
+      <member refid="classsbne_1_1VEllipse_1acffee36c5e5aeeb77e38371d5460e9a2" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>getCZ</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1a4c2a44a772da8d8e63ac0afccd5a70f3" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>getDashArray</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive2D_1a661e5d8ac99de8faefe2b5adbd79a2b3" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>getFill</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive2D_1a3b2fcf57f826ebb3b80448b7b5fca883" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>getFillRule</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a248c99de1375ccdae3dbf59fce7b5c6a" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>getId</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a29585cbce3cf9e33407e5eecd455f50c" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>getName</name></member>
+      <member refid="classsbne_1_1VEllipse_1ad1d13802245f86e1cb00c477892769a0" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>getRatio</name></member>
+      <member refid="classsbne_1_1VEllipse_1a23ac5d8ca07ad557214ef82cb1f42654" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>getRX</name></member>
+      <member refid="classsbne_1_1VEllipse_1a3aa7a89506e10446137c21831531bb2c" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>getRY</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a2dfd7022cd8b88858e888ab537c9bbda" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>getShape</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1aab5f1688548e2f2f6959828b13f8fa25" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>getShapeAsString</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1a0075f815683008b9264d5c5a2a432d1c" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>getStroke</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1a9f4834f4940b582a4a880f0d7144518e" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>getStrokeWidth</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a6b467805aa3d8b69a6addd87f24f6c65" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>getTransform</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1aea31862b46a5763796bf64c97beab787" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>getTransform</name></member>
+      <member refid="classsbne_1_1VEllipse_1ae865e065f26a8f23c96171cc93ab72b2" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>isSetCX</name></member>
+      <member refid="classsbne_1_1VEllipse_1a170cc9fd7de5d813e498cff14b597629" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>isSetCY</name></member>
+      <member refid="classsbne_1_1VEllipse_1a510d9d005fd8c199dbadb9e7ccff305a" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>isSetCZ</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1a346698e6af12c36af0edb4258b9c0d2c" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>isSetDashArray</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive2D_1a4ec3ec939d30c133d0478f067866aa5e" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>isSetFill</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive2D_1ae636f7409dcdc5874ad5ea989b66059b" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>isSetFillRule</name></member>
+      <member refid="classsbne_1_1VeneerElement_1af7b8bd39c05a8f08fc74edeb024ab517" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>isSetId</name></member>
+      <member refid="classsbne_1_1VeneerElement_1adc2d191b9b62b2f03385d59caa9fe377" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>isSetName</name></member>
+      <member refid="classsbne_1_1VEllipse_1aa94846de39ed3d7e24dd08f0268ddbf4" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>isSetRatio</name></member>
+      <member refid="classsbne_1_1VEllipse_1aa1a8ae84869e4fa20ebdd93245a8d233" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>isSetRX</name></member>
+      <member refid="classsbne_1_1VEllipse_1acbca9ab275a1670b63ab4b772c9a0e45" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>isSetRY</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1a7a3c7ef6f546f56e99a4e68abb357cc9" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>isSetStroke</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1a319d87fcda099e0b7a7154c717c52dbe" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>isSetStrokeWidth</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a6de4c0479d342b739ae2928f9c4a228c" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>isSetTransform</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1a0e9854c55ef65335204e76824e174fe7" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>removeElementFromDashArray</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1a5e0a0cde8738be5921b7adc18972f874" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>replaceElementInDashArray</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a4b5ed3ddc43b8703c75773e6b8f30314" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>rotate</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a479be03aa2073c42a839e6506bb9aaa8" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>scale</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a7f4732df15c8bdda897b78964741be72" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>setAffine2D</name></member>
+      <member refid="classsbne_1_1VEllipse_1a14b2aff009f1261f13f6fc331629f225" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>setCX</name></member>
+      <member refid="classsbne_1_1VEllipse_1a35b20b13255ffe37bc810e2911d77433" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>setCY</name></member>
+      <member refid="classsbne_1_1VEllipse_1aa28fba63f38ec6838494283e52656647" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>setCZ</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1aaaa763cb7984e01996f19bc56afe553f" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>setDashArray</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive2D_1a4e0d1593c5db7c62be42f7b182dbc945" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>setFill</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive2D_1acfb9933ac01ea656e78e4294e3a65b34" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>setFillRule</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a8cd21b54b5b02e4cabdaf151e2ee975e" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>setId</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a873088af375af1c882e2c8639b560e17" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>setName</name></member>
+      <member refid="classsbne_1_1VEllipse_1a3c14794d17fa2f8a4c836ed9ce3fff55" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>setRatio</name></member>
+      <member refid="classsbne_1_1VEllipse_1a6b1ae1cb2490b7450f1eb9cf129c52c6" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>setRX</name></member>
+      <member refid="classsbne_1_1VEllipse_1ac0bd4d8d49f74209280cefb49320c7b2" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>setRY</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1acccbdddff322f44386d681b3ecffc9e7" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>setStroke</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1ac5e26dbffd5dfe166fcd434568c3ff12" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>setStrokeWidth</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1aea45d28e8106bffa2ad41fee240f0680" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>setTransform</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1aaf623d0792163d869b91ad6fab7510c9" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>setTransform</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a748d77e65d96252ec3fbadeedf4ff3ad" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>skewX</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a442a0a823ab33c98cd15faad28724133" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>skewY</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1af5e0aca3a51df5a5e8f82b451e491ce8" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>translate</name></member>
+      <member refid="classsbne_1_1VEllipse_1a82ba23301e01f3de2db4bb8d944c664d" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>unSetRatio</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a1c918852773459673cc5ea588d9420cb" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>updateAffine2D</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1ab11246b7e5fb335da684847e236fa8d8" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>updateTransform</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1abf6b86241161f4d85d351bf040a0d670" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>updateTransform</name></member>
+      <member refid="classsbne_1_1VEllipse_1a6d1c77a36d82c35106ca95c24eae084c" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>VEllipse</name></member>
+      <member refid="classsbne_1_1VeneerElement_1aea6702719a7bf355a20b140849036b8a" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>VeneerElement</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1a9131f2edd189c55e890b12a1f8c25cfe" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>VGraphicalPrimitive1D</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive2D_1ad6c6b8f56cff4036dcb4995f3c0447ff" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>VGraphicalPrimitive2D</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a367cf0b70b5187de1f001dfa2b6cc666" prot="public" virt="non-virtual"><scope>sbne::VEllipse</scope><name>VTransformation2D</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,397 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="classsbne_1_1LPoint" kind="class" language="C++" prot="public">
+    <compoundname>sbne::LPoint</compoundname>
+    <includes refid="ne__layoutPoint_8h" local="no">ne_layoutPoint.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classsbne_1_1LPoint_1a27353acf55248c1754f1848088e976ef" prot="protected" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string sbne::LPoint::_id</definition>
+        <argsstring></argsstring>
+        <name>_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" line="75" column="17" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1LPoint_1a8881a5c467dde68e18a6dc7b3fc481b5" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double sbne::LPoint::_x</definition>
+        <argsstring></argsstring>
+        <name>_x</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" line="76" column="12" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1LPoint_1ab93efcb519d603024735552fb8eb2d71" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double sbne::LPoint::_y</definition>
+        <argsstring></argsstring>
+        <name>_y</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" line="77" column="12" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1LPoint_1a5decac72ae5815f805af754547c0eaf1" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double sbne::LPoint::_z</definition>
+        <argsstring></argsstring>
+        <name>_z</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" line="78" column="12" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1LPoint_1afe18c181a8f68c942a3b5988f655e3f0" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sbne::LPoint::_isSetId</definition>
+        <argsstring></argsstring>
+        <name>_isSetId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" line="79" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classsbne_1_1LPoint_1ab46328652e3f998def9568948773a486" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>sbne::LPoint::LPoint</definition>
+        <argsstring>()</argsstring>
+        <name>LPoint</name>
+        <briefdescription>
+<para>Constructors. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" line="13" column="5" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" bodystart="13" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LPoint_1a37cb74fe2d3fec412b5c15a837669639" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>sbne::LPoint::LPoint</definition>
+        <argsstring>(double x, double y, double z=0.0)</argsstring>
+        <name>LPoint</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>z</declname>
+          <defval>0.0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" line="19" column="5" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" bodystart="19" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LPoint_1a7cb1a92d50e9f1332a39cea29f3e2c13" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::LPoint::setId</definition>
+        <argsstring>(const std::string &amp;id)</argsstring>
+        <name>setId</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Functions. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" line="27" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.cpp" bodystart="5" bodyend="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LPoint_1a5c99bf2e025edc32f81e92e2ba927707" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::string &amp;</type>
+        <definition>const std::string &amp; sbne::LPoint::getId</definition>
+        <argsstring>() const</argsstring>
+        <name>getId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" line="30" column="23" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.cpp" bodystart="10" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LPoint_1ab2d5b0c0f101386c1cad5404529bcb29" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const bool</type>
+        <definition>const bool sbne::LPoint::isSetId</definition>
+        <argsstring>() const</argsstring>
+        <name>isSetId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" line="33" column="16" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" bodystart="33" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LPoint_1ad873ed420a62371328e680d86ddb0117" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::LPoint::setX</definition>
+        <argsstring>(const double &amp;x)</argsstring>
+        <name>setX</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" line="36" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.cpp" bodystart="14" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LPoint_1ad6705abd7b9715e99f4c5791835ae4ee" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const double &amp;</type>
+        <definition>const double &amp; sbne::LPoint::x</definition>
+        <argsstring>() const</argsstring>
+        <name>x</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" line="39" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.cpp" bodystart="18" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LPoint_1a5445362e4ed111aec47425ef2d812d23" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::LPoint::setY</definition>
+        <argsstring>(const double &amp;y)</argsstring>
+        <name>setY</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" line="42" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.cpp" bodystart="22" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LPoint_1a2c81f26bc9f682bf88a265e8b9faa01c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const double &amp;</type>
+        <definition>const double &amp; sbne::LPoint::y</definition>
+        <argsstring>() const</argsstring>
+        <name>y</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" line="45" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.cpp" bodystart="26" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LPoint_1aee14ff47c104e0a0e5797d51df48d609" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::LPoint::setZ</definition>
+        <argsstring>(const double &amp;z)</argsstring>
+        <name>setZ</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>z</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" line="48" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.cpp" bodystart="30" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LPoint_1a93a493522a09dc0553ba479f52c3667b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const double &amp;</type>
+        <definition>const double &amp; sbne::LPoint::z</definition>
+        <argsstring>() const</argsstring>
+        <name>z</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" line="51" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.cpp" bodystart="34" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LPoint_1a4e09df10208ac365a027d9adba674d57" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classsbne_1_1LPoint" kindref="compound">LPoint</ref></type>
+        <definition>const LPoint sbne::LPoint::operator-</definition>
+        <argsstring>() const</argsstring>
+        <name>operator-</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" line="54" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.cpp" bodystart="38" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LPoint_1af667faab648136bf7e8ee1c3fe0df9c7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const double</type>
+        <definition>const double sbne::LPoint::mag</definition>
+        <argsstring>() const</argsstring>
+        <name>mag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" line="57" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.cpp" bodystart="42" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LPoint_1ae1fa2bddba75e4c31e8981783305499b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classsbne_1_1LPoint" kindref="compound">LPoint</ref></type>
+        <definition>LPoint sbne::LPoint::operator=</definition>
+        <argsstring>(const LPoint &amp;p)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="classsbne_1_1LPoint" kindref="compound">LPoint</ref> &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" line="60" column="12" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.cpp" bodystart="46" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LPoint_1a57fed6b8b36e99838ad7725139662230" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classsbne_1_1LPoint" kindref="compound">LPoint</ref></type>
+        <definition>LPoint sbne::LPoint::operator+=</definition>
+        <argsstring>(const LPoint &amp;p)</argsstring>
+        <name>operator+=</name>
+        <param>
+          <type>const <ref refid="classsbne_1_1LPoint" kindref="compound">LPoint</ref> &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" line="63" column="12" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.cpp" bodystart="48" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LPoint_1a8c3de2c29050ae18614259d5ad8e647b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classsbne_1_1LPoint" kindref="compound">LPoint</ref></type>
+        <definition>LPoint sbne::LPoint::operator-=</definition>
+        <argsstring>(const LPoint &amp;p)</argsstring>
+        <name>operator-=</name>
+        <param>
+          <type>const <ref refid="classsbne_1_1LPoint" kindref="compound">LPoint</ref> &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" line="66" column="12" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.cpp" bodystart="50" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LPoint_1ad079217fdad9264dd4c0d9a05d7d3f51" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::LPoint::shift</definition>
+        <argsstring>(const double &amp;dx, const double &amp;dy, const double &amp;dz=0)</argsstring>
+        <name>shift</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>dx</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>dy</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>dz</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" line="69" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.cpp" bodystart="52" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LPoint_1a91b8f27ffd1d41561c59c224b9df4bca" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::string</type>
+        <definition>const std::string sbne::LPoint::toString</definition>
+        <argsstring>() const</argsstring>
+        <name>toString</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" line="72" column="23" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.cpp" bodystart="58" bodyend="63"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The equivalent class for SBML <ulink url="http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_point.html">Point</ulink> . </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" line="10" column="1" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutPoint.h" bodystart="10" bodyend="80"/>
+    <listofallmembers>
+      <member refid="classsbne_1_1LPoint_1a27353acf55248c1754f1848088e976ef" prot="protected" virt="non-virtual"><scope>sbne::LPoint</scope><name>_id</name></member>
+      <member refid="classsbne_1_1LPoint_1afe18c181a8f68c942a3b5988f655e3f0" prot="protected" virt="non-virtual"><scope>sbne::LPoint</scope><name>_isSetId</name></member>
+      <member refid="classsbne_1_1LPoint_1a8881a5c467dde68e18a6dc7b3fc481b5" prot="protected" virt="non-virtual"><scope>sbne::LPoint</scope><name>_x</name></member>
+      <member refid="classsbne_1_1LPoint_1ab93efcb519d603024735552fb8eb2d71" prot="protected" virt="non-virtual"><scope>sbne::LPoint</scope><name>_y</name></member>
+      <member refid="classsbne_1_1LPoint_1a5decac72ae5815f805af754547c0eaf1" prot="protected" virt="non-virtual"><scope>sbne::LPoint</scope><name>_z</name></member>
+      <member refid="classsbne_1_1LPoint_1a5c99bf2e025edc32f81e92e2ba927707" prot="public" virt="non-virtual"><scope>sbne::LPoint</scope><name>getId</name></member>
+      <member refid="classsbne_1_1LPoint_1ab2d5b0c0f101386c1cad5404529bcb29" prot="public" virt="non-virtual"><scope>sbne::LPoint</scope><name>isSetId</name></member>
+      <member refid="classsbne_1_1LPoint_1ab46328652e3f998def9568948773a486" prot="public" virt="non-virtual"><scope>sbne::LPoint</scope><name>LPoint</name></member>
+      <member refid="classsbne_1_1LPoint_1a37cb74fe2d3fec412b5c15a837669639" prot="public" virt="non-virtual"><scope>sbne::LPoint</scope><name>LPoint</name></member>
+      <member refid="classsbne_1_1LPoint_1af667faab648136bf7e8ee1c3fe0df9c7" prot="public" virt="non-virtual"><scope>sbne::LPoint</scope><name>mag</name></member>
+      <member refid="classsbne_1_1LPoint_1a57fed6b8b36e99838ad7725139662230" prot="public" virt="non-virtual"><scope>sbne::LPoint</scope><name>operator+=</name></member>
+      <member refid="classsbne_1_1LPoint_1a4e09df10208ac365a027d9adba674d57" prot="public" virt="non-virtual"><scope>sbne::LPoint</scope><name>operator-</name></member>
+      <member refid="classsbne_1_1LPoint_1a8c3de2c29050ae18614259d5ad8e647b" prot="public" virt="non-virtual"><scope>sbne::LPoint</scope><name>operator-=</name></member>
+      <member refid="classsbne_1_1LPoint_1ae1fa2bddba75e4c31e8981783305499b" prot="public" virt="non-virtual"><scope>sbne::LPoint</scope><name>operator=</name></member>
+      <member refid="classsbne_1_1LPoint_1a7cb1a92d50e9f1332a39cea29f3e2c13" prot="public" virt="non-virtual"><scope>sbne::LPoint</scope><name>setId</name></member>
+      <member refid="classsbne_1_1LPoint_1ad873ed420a62371328e680d86ddb0117" prot="public" virt="non-virtual"><scope>sbne::LPoint</scope><name>setX</name></member>
+      <member refid="classsbne_1_1LPoint_1a5445362e4ed111aec47425ef2d812d23" prot="public" virt="non-virtual"><scope>sbne::LPoint</scope><name>setY</name></member>
+      <member refid="classsbne_1_1LPoint_1aee14ff47c104e0a0e5797d51df48d609" prot="public" virt="non-virtual"><scope>sbne::LPoint</scope><name>setZ</name></member>
+      <member refid="classsbne_1_1LPoint_1ad079217fdad9264dd4c0d9a05d7d3f51" prot="public" virt="non-virtual"><scope>sbne::LPoint</scope><name>shift</name></member>
+      <member refid="classsbne_1_1LPoint_1a91b8f27ffd1d41561c59c224b9df4bca" prot="public" virt="non-virtual"><scope>sbne::LPoint</scope><name>toString</name></member>
+      <member refid="classsbne_1_1LPoint_1ad6705abd7b9715e99f4c5791835ae4ee" prot="public" virt="non-virtual"><scope>sbne::LPoint</scope><name>x</name></member>
+      <member refid="classsbne_1_1LPoint_1a2c81f26bc9f682bf88a265e8b9faa01c" prot="public" virt="non-virtual"><scope>sbne::LPoint</scope><name>y</name></member>
+      <member refid="classsbne_1_1LPoint_1a93a493522a09dc0553ba479f52c3667b" prot="public" virt="non-virtual"><scope>sbne::LPoint</scope><name>z</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

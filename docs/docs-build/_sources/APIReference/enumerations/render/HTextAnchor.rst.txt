@@ -1,0 +1,5 @@
+***********
+HTextAnchor
+***********
+
+.. doxygenenum:: HTextAnchor

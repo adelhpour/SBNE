@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="structsbne_1_1vacancy" kind="struct" language="C++" prot="public">
+    <compoundname>sbne::vacancy</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structsbne_1_1vacancy_1a407195689a33bd379418ff6a4f94d85a" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double sbne::vacancy::angle</definition>
+        <argsstring></argsstring>
+        <name>angle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1659" column="12" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="1659" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsbne_1_1vacancy_1a831c56787631de1afbb0294978cc07a4" prot="public" static="no" mutable="no">
+        <type><ref refid="classsbne_1_1NSpecies" kindref="compound">NSpecies</ref> *</type>
+        <definition>NSpecies* sbne::vacancy::species</definition>
+        <argsstring></argsstring>
+        <name>species</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1660" column="14" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="1660" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsbne_1_1vacancy_1a1c5d81ebeed582ad92a5b7d0685e714b" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classsbne_1_1NReaction" kindref="compound">NReaction</ref> * &gt;</type>
+        <definition>std::vector&lt;NReaction*&gt; sbne::vacancy::reactions</definition>
+        <argsstring></argsstring>
+        <name>reactions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1661" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="1661" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsbne_1_1vacancy_1af8651d6d0d9f77d7394393eac2e46968" prot="public" static="no" mutable="no">
+        <type><ref refid="structsbne_1_1radialVacancy" kindref="compound">radialVacancy</ref></type>
+        <definition>radialVacancy sbne::vacancy::rVacancy</definition>
+        <argsstring></argsstring>
+        <name>rVacancy</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1662" column="19" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="1662" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>sbne::vacancy</label>
+        <link refid="structsbne_1_1vacancy"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>species</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>rVacancy</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>sbne::LBox</label>
+        <link refid="classsbne_1_1LBox"/>
+      </node>
+      <node id="6">
+        <label>sbne::NText</label>
+        <link refid="classsbne_1_1NText"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>sbne::NSpecies</label>
+        <link refid="classsbne_1_1NSpecies"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>sbne::NGraphicalObject</label>
+        <link refid="classsbne_1_1NGraphicalObject"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>_box</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>_text</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>sbne::NetworkElement</label>
+        <link refid="classsbne_1_1NetworkElement"/>
+      </node>
+      <node id="7">
+        <label>sbne::radialVacancy</label>
+        <link refid="structsbne_1_1radialVacancy"/>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1658" column="1" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="1658" bodyend="1663"/>
+    <listofallmembers>
+      <member refid="structsbne_1_1vacancy_1a407195689a33bd379418ff6a4f94d85a" prot="public" virt="non-virtual"><scope>sbne::vacancy</scope><name>angle</name></member>
+      <member refid="structsbne_1_1vacancy_1a1c5d81ebeed582ad92a5b7d0685e714b" prot="public" virt="non-virtual"><scope>sbne::vacancy</scope><name>reactions</name></member>
+      <member refid="structsbne_1_1vacancy_1af8651d6d0d9f77d7394393eac2e46968" prot="public" virt="non-virtual"><scope>sbne::vacancy</scope><name>rVacancy</name></member>
+      <member refid="structsbne_1_1vacancy_1a831c56787631de1afbb0294978cc07a4" prot="public" virt="non-virtual"><scope>sbne::vacancy</scope><name>species</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

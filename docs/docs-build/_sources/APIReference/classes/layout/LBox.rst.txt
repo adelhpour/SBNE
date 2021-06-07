@@ -1,0 +1,5 @@
+****
+LBox
+****
+
+.. doxygenclass:: sbne::LBox

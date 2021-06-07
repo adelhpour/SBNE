@@ -1,0 +1,110 @@
+\hypertarget{classsbne_1_1VGradientBase}{}\doxysection{sbne\+::V\+Gradient\+Base Class Reference}
+\label{classsbne_1_1VGradientBase}\index{sbne::VGradientBase@{sbne::VGradientBase}}
+
+
+The equivalent class for S\+B\+ML \href{http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_gradient_base.html}{\texttt{ Gradient\+Base}} .  
+
+
+
+
+{\ttfamily \#include $<$ne\+\_\+veneer.\+h$>$}
+
+Inheritance diagram for sbne\+::V\+Gradient\+Base\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classsbne_1_1VGradientBase}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classsbne_1_1VGradientBase_a0322f8ce7c41f5e664b3466277896684}\label{classsbne_1_1VGradientBase_a0322f8ce7c41f5e664b3466277896684}} 
+typedef std\+::vector$<$ \mbox{\hyperlink{classsbne_1_1VGradientStop}{V\+Gradient\+Stop}} $\ast$ $>$ \mbox{\hyperlink{classsbne_1_1VGradientBase_a0322f8ce7c41f5e664b3466277896684}{stop\+Vec}}
+\begin{DoxyCompactList}\small\item\em Containers. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classsbne_1_1VGradientBase_a37a57789ad3b56fd79fcc3aa73c826df}\label{classsbne_1_1VGradientBase_a37a57789ad3b56fd79fcc3aa73c826df}} 
+typedef stop\+Vec\+::iterator \mbox{\hyperlink{classsbne_1_1VGradientBase_a37a57789ad3b56fd79fcc3aa73c826df}{stop\+It}}
+\begin{DoxyCompactList}\small\item\em Iterators. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classsbne_1_1VGradientBase_a5025d00a3d55f6863fd9b75346feb32a}\label{classsbne_1_1VGradientBase_a5025d00a3d55f6863fd9b75346feb32a}} 
+typedef stop\+Vec\+::const\+\_\+iterator {\bfseries const\+Stop\+It}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classsbne_1_1VGradientBase_ab54cea0763e5fc5fc870e9670056e694}\label{classsbne_1_1VGradientBase_ab54cea0763e5fc5fc870e9670056e694}} 
+\mbox{\hyperlink{classsbne_1_1VGradientBase_ab54cea0763e5fc5fc870e9670056e694}{V\+Gradient\+Base}} ()
+\begin{DoxyCompactList}\small\item\em Constructors. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classsbne_1_1VGradientBase_a65fd75854625ee241db94cada0a26829}\label{classsbne_1_1VGradientBase_a65fd75854625ee241db94cada0a26829}} 
+const const\+Stop\+It \mbox{\hyperlink{classsbne_1_1VGradientBase_a65fd75854625ee241db94cada0a26829}{stops\+Begin}} () const
+\begin{DoxyCompactList}\small\item\em Functions related to beginning and end of containers. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classsbne_1_1VGradientBase_a77e6da60b41f761bdbb4be0a1281ead6}\label{classsbne_1_1VGradientBase_a77e6da60b41f761bdbb4be0a1281ead6}} 
+const const\+Stop\+It {\bfseries stops\+End} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1VGradientBase_a627c78731b5795bc4abd3b64546a357c}\label{classsbne_1_1VGradientBase_a627c78731b5795bc4abd3b64546a357c}} 
+void \mbox{\hyperlink{classsbne_1_1VGradientBase_a627c78731b5795bc4abd3b64546a357c}{set\+Spread\+Mehtod}} (const std\+::string \&spread\+Method)
+\begin{DoxyCompactList}\small\item\em Functions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classsbne_1_1VGradientBase_a384a444774dbe37dabcafd439551570a}\label{classsbne_1_1VGradientBase_a384a444774dbe37dabcafd439551570a}} 
+const std\+::string \& {\bfseries get\+Spread\+Method} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1VGradientBase_a4901b090d56983a1ca7af497ee600f3f}\label{classsbne_1_1VGradientBase_a4901b090d56983a1ca7af497ee600f3f}} 
+const bool {\bfseries is\+Set\+Spread\+Method} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1VGradientBase_a00b8f8af8bbd81c8da8ac8f72c1fdd55}\label{classsbne_1_1VGradientBase_a00b8f8af8bbd81c8da8ac8f72c1fdd55}} 
+void {\bfseries add\+To\+Stops} (\mbox{\hyperlink{classsbne_1_1VGradientStop}{V\+Gradient\+Stop}} $\ast$stop)
+\item 
+\mbox{\Hypertarget{classsbne_1_1VGradientBase_a3376517e9656c40848640971820b6f4c}\label{classsbne_1_1VGradientBase_a3376517e9656c40848640971820b6f4c}} 
+void {\bfseries remove\+Stop} (unsigned int stop\+Index)
+\item 
+\mbox{\Hypertarget{classsbne_1_1VGradientBase_acc046f7d95a0004b66eef1509c235d66}\label{classsbne_1_1VGradientBase_acc046f7d95a0004b66eef1509c235d66}} 
+void {\bfseries set\+Stops} (const \mbox{\hyperlink{classsbne_1_1VGradientBase_a0322f8ce7c41f5e664b3466277896684}{stop\+Vec}} \&sv)
+\item 
+\mbox{\Hypertarget{classsbne_1_1VGradientBase_a63585cd73f56ebde85c5eb4b749c81d0}\label{classsbne_1_1VGradientBase_a63585cd73f56ebde85c5eb4b749c81d0}} 
+const \mbox{\hyperlink{classsbne_1_1VGradientBase_a0322f8ce7c41f5e664b3466277896684}{stop\+Vec}} \& {\bfseries get\+Stops} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1VGradientBase_a19da6c252f14d6072c32dd50fee81a00}\label{classsbne_1_1VGradientBase_a19da6c252f14d6072c32dd50fee81a00}} 
+const size\+\_\+t {\bfseries get\+Num\+Stops} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1VGradientBase_a83c24c85e27fde8831f92ffbbad5d883}\label{classsbne_1_1VGradientBase_a83c24c85e27fde8831f92ffbbad5d883}} 
+\mbox{\hyperlink{classsbne_1_1VGradientStop}{V\+Gradient\+Stop}} $\ast$ {\bfseries find\+Stop\+By\+Id} (const std\+::string \&id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1VGradientBase_a966d4fb68886743428301ee0fd0b09ce}\label{classsbne_1_1VGradientBase_a966d4fb68886743428301ee0fd0b09ce}} 
+unsigned int {\bfseries find\+Stop\+Index\+By\+Id} (const std\+::string \&id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1VGradientBase_a15e63cc7920aa886deb1f15c523cf0ff}\label{classsbne_1_1VGradientBase_a15e63cc7920aa886deb1f15c523cf0ff}} 
+\mbox{\hyperlink{classsbne_1_1VGradientStop}{V\+Gradient\+Stop}} $\ast$ {\bfseries find\+Stop\+By\+Color} (const std\+::string \&s\+Color)
+\item 
+\mbox{\Hypertarget{classsbne_1_1VGradientBase_a41a1d0202411fc5033727c7dd9def082}\label{classsbne_1_1VGradientBase_a41a1d0202411fc5033727c7dd9def082}} 
+unsigned int {\bfseries find\+Stop\+Index\+By\+Color} (const std\+::string \&s\+Color)
+\item 
+\mbox{\Hypertarget{classsbne_1_1VGradientBase_a7e3ca0cf590f03dd49e92c6bd219355f}\label{classsbne_1_1VGradientBase_a7e3ca0cf590f03dd49e92c6bd219355f}} 
+std\+::string {\bfseries get\+Stop\+Unique\+Id} ()
+\item 
+\mbox{\Hypertarget{classsbne_1_1VGradientBase_ab6f1239882ebeae2b593a2b8a85027f1}\label{classsbne_1_1VGradientBase_ab6f1239882ebeae2b593a2b8a85027f1}} 
+void {\bfseries sort\+Stops} ()
+\item 
+\mbox{\Hypertarget{classsbne_1_1VGradientBase_a84b871317988053abf90e571401249c9}\label{classsbne_1_1VGradientBase_a84b871317988053abf90e571401249c9}} 
+virtual const bool {\bfseries is\+Set\+As\+Linear\+Gradient} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1VGradientBase_af02ffe5aee479094d93828a1dc245e19}\label{classsbne_1_1VGradientBase_af02ffe5aee479094d93828a1dc245e19}} 
+virtual const bool {\bfseries is\+Set\+As\+Radial\+Gradient} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classsbne_1_1VGradientBase_a95172832e82995a375362fa0baad486d}\label{classsbne_1_1VGradientBase_a95172832e82995a375362fa0baad486d}} 
+\mbox{\hyperlink{classsbne_1_1VGradientBase_a0322f8ce7c41f5e664b3466277896684}{stop\+Vec}} {\bfseries \+\_\+stops}
+\item 
+\mbox{\Hypertarget{classsbne_1_1VGradientBase_a7a833b2e6673d68fb182976aa888d4e7}\label{classsbne_1_1VGradientBase_a7a833b2e6673d68fb182976aa888d4e7}} 
+std\+::string {\bfseries \+\_\+spread\+Method}
+\item 
+\mbox{\Hypertarget{classsbne_1_1VGradientBase_a2f90f2be6541d08a74cee6b9c7c20e1f}\label{classsbne_1_1VGradientBase_a2f90f2be6541d08a74cee6b9c7c20e1f}} 
+bool {\bfseries \+\_\+is\+Set\+Spread\+Method}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The equivalent class for S\+B\+ML \href{http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_gradient_base.html}{\texttt{ Gradient\+Base}} . 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/home/\+Documents/\+Education/\+S\+B/\+Projects/\+Made/\+S\+B\+N\+E/sbne/\+S\+B\+N\+E/src/sbne/veneer/ne\+\_\+veneer.\+h\item 
+/\+Users/home/\+Documents/\+Education/\+S\+B/\+Projects/\+Made/\+S\+B\+N\+E/sbne/\+S\+B\+N\+E/src/sbne/veneer/ne\+\_\+veneer.\+cpp\end{DoxyCompactItemize}

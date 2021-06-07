@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="classsbne_1_1VColorDefinition" kind="class" language="C++" prot="public">
+    <compoundname>sbne::VColorDefinition</compoundname>
+    <basecompoundref refid="classsbne_1_1VeneerElement" prot="public" virt="non-virtual">sbne::VeneerElement</basecompoundref>
+    <includes refid="ne__veneer_8h" local="no">ne_veneer.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classsbne_1_1VColorDefinition_1a9817df55affbf097426ddf9f45e7fd06" prot="protected" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string sbne::VColorDefinition::_value</definition>
+        <argsstring></argsstring>
+        <name>_value</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="520" column="17" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="520" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VColorDefinition_1a96fcd156595898cb52e363963d565a67" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sbne::VColorDefinition::_isSetValue</definition>
+        <argsstring></argsstring>
+        <name>_isSetValue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="521" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="521" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classsbne_1_1VColorDefinition_1ad00f6044e371b65fb51e5a85cd57e837" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>sbne::VColorDefinition::VColorDefinition</definition>
+        <argsstring>()</argsstring>
+        <name>VColorDefinition</name>
+        <briefdescription>
+<para>Constructors. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="503" column="5" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="503" bodyend="506"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VColorDefinition_1a98c1c88e1851fcce0267f898a464f935" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VColorDefinition::setValue</definition>
+        <argsstring>(const std::string &amp;value)</argsstring>
+        <name>setValue</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Functions. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="510" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="1640" bodyend="1643"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VColorDefinition_1ac0bd2b04253d988ad152cd6ac88cb4d0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::string &amp;</type>
+        <definition>const std::string &amp; sbne::VColorDefinition::getValue</definition>
+        <argsstring>() const</argsstring>
+        <name>getValue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="513" column="23" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="1645" bodyend="1647"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VColorDefinition_1a9d34c995f6e1c073fb6dc9f7b0e126b8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const bool</type>
+        <definition>const bool sbne::VColorDefinition::isSetValue</definition>
+        <argsstring>() const</argsstring>
+        <name>isSetValue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="516" column="16" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="516" bodyend="516"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The equivalent class for SBML <ulink url="http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_color_definition.html">ColorDefinition</ulink> . </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>sbne::VeneerElement</label>
+        <link refid="classsbne_1_1VeneerElement"/>
+      </node>
+      <node id="1">
+        <label>sbne::VColorDefinition</label>
+        <link refid="classsbne_1_1VColorDefinition"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>sbne::VeneerElement</label>
+        <link refid="classsbne_1_1VeneerElement"/>
+      </node>
+      <node id="1">
+        <label>sbne::VColorDefinition</label>
+        <link refid="classsbne_1_1VColorDefinition"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="500" column="1" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="500" bodyend="522"/>
+    <listofallmembers>
+      <member refid="classsbne_1_1VeneerElement_1a05a1b163bba59774adf635c8aaa9411e" prot="protected" virt="non-virtual"><scope>sbne::VColorDefinition</scope><name>_id</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a5528e39c12af204f8de8e3ac741b19e6" prot="protected" virt="non-virtual"><scope>sbne::VColorDefinition</scope><name>_isSetId</name></member>
+      <member refid="classsbne_1_1VeneerElement_1aadacb15ddad42dead4445e992b73d892" prot="protected" virt="non-virtual"><scope>sbne::VColorDefinition</scope><name>_isSetName</name></member>
+      <member refid="classsbne_1_1VColorDefinition_1a96fcd156595898cb52e363963d565a67" prot="protected" virt="non-virtual"><scope>sbne::VColorDefinition</scope><name>_isSetValue</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a81238d04248f95a8ef68788d3db8e913" prot="protected" virt="non-virtual"><scope>sbne::VColorDefinition</scope><name>_name</name></member>
+      <member refid="classsbne_1_1VColorDefinition_1a9817df55affbf097426ddf9f45e7fd06" prot="protected" virt="non-virtual"><scope>sbne::VColorDefinition</scope><name>_value</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a248c99de1375ccdae3dbf59fce7b5c6a" prot="public" virt="non-virtual"><scope>sbne::VColorDefinition</scope><name>getId</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a29585cbce3cf9e33407e5eecd455f50c" prot="public" virt="non-virtual"><scope>sbne::VColorDefinition</scope><name>getName</name></member>
+      <member refid="classsbne_1_1VColorDefinition_1ac0bd2b04253d988ad152cd6ac88cb4d0" prot="public" virt="non-virtual"><scope>sbne::VColorDefinition</scope><name>getValue</name></member>
+      <member refid="classsbne_1_1VeneerElement_1af7b8bd39c05a8f08fc74edeb024ab517" prot="public" virt="non-virtual"><scope>sbne::VColorDefinition</scope><name>isSetId</name></member>
+      <member refid="classsbne_1_1VeneerElement_1adc2d191b9b62b2f03385d59caa9fe377" prot="public" virt="non-virtual"><scope>sbne::VColorDefinition</scope><name>isSetName</name></member>
+      <member refid="classsbne_1_1VColorDefinition_1a9d34c995f6e1c073fb6dc9f7b0e126b8" prot="public" virt="non-virtual"><scope>sbne::VColorDefinition</scope><name>isSetValue</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a8cd21b54b5b02e4cabdaf151e2ee975e" prot="public" virt="non-virtual"><scope>sbne::VColorDefinition</scope><name>setId</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a873088af375af1c882e2c8639b560e17" prot="public" virt="non-virtual"><scope>sbne::VColorDefinition</scope><name>setName</name></member>
+      <member refid="classsbne_1_1VColorDefinition_1a98c1c88e1851fcce0267f898a464f935" prot="public" virt="non-virtual"><scope>sbne::VColorDefinition</scope><name>setValue</name></member>
+      <member refid="classsbne_1_1VColorDefinition_1ad00f6044e371b65fb51e5a85cd57e837" prot="public" virt="non-virtual"><scope>sbne::VColorDefinition</scope><name>VColorDefinition</name></member>
+      <member refid="classsbne_1_1VeneerElement_1aea6702719a7bf355a20b140849036b8a" prot="public" virt="non-virtual"><scope>sbne::VColorDefinition</scope><name>VeneerElement</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

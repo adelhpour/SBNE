@@ -1,0 +1,5 @@
+******
+LPoint
+******
+
+.. doxygenclass:: sbne::LPoint

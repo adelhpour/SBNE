@@ -1,0 +1,305 @@
+\hypertarget{classsbne_1_1Network}{}\doxysection{sbne\+::Network Class Reference}
+\label{classsbne_1_1Network}\index{sbne::Network@{sbne::Network}}
+
+
+The equivalent class for S\+B\+ML \href{http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_layout.html}{\texttt{ Layout}} .  
+
+
+
+
+{\ttfamily \#include $<$ne\+\_\+network.\+h$>$}
+
+Inheritance diagram for sbne\+::Network\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classsbne_1_1Network}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a28093c4e3363df30916c9fdc9df28377}\label{classsbne_1_1Network_a28093c4e3363df30916c9fdc9df28377}} 
+typedef std\+::vector$<$ \mbox{\hyperlink{classsbne_1_1NText}{N\+Text}} $\ast$ $>$ \mbox{\hyperlink{classsbne_1_1Network_a28093c4e3363df30916c9fdc9df28377}{text\+Vec}}
+\begin{DoxyCompactList}\small\item\em Containers. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classsbne_1_1Network_aa1acafb2a76e32a293af823eb8d6bf52}\label{classsbne_1_1Network_aa1acafb2a76e32a293af823eb8d6bf52}} 
+typedef std\+::vector$<$ \mbox{\hyperlink{classsbne_1_1NGraphicalObject}{N\+Graphical\+Object}} $\ast$ $>$ {\bfseries g\+Object\+Vec}
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_ab558b6cfb1eb50d677453f8b3e1c739e}\label{classsbne_1_1Network_ab558b6cfb1eb50d677453f8b3e1c739e}} 
+typedef text\+Vec\+::iterator \mbox{\hyperlink{classsbne_1_1Network_ab558b6cfb1eb50d677453f8b3e1c739e}{text\+It}}
+\begin{DoxyCompactList}\small\item\em Iterators. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a74070082dedf3179eda880c0d7922bca}\label{classsbne_1_1Network_a74070082dedf3179eda880c0d7922bca}} 
+typedef text\+Vec\+::const\+\_\+iterator {\bfseries const\+Text\+It}
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a9fcf05f19d3ba7ed848a9a5fb1482c48}\label{classsbne_1_1Network_a9fcf05f19d3ba7ed848a9a5fb1482c48}} 
+typedef g\+Object\+Vec\+::iterator {\bfseries g\+Object\+It}
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_aeb231537ff7f5a8c14ca227202015809}\label{classsbne_1_1Network_aeb231537ff7f5a8c14ca227202015809}} 
+typedef g\+Object\+Vec\+::const\+\_\+iterator {\bfseries const\+G\+Object\+It}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_ac67dea33b041322b1c469999beb3b1ec}\label{classsbne_1_1Network_ac67dea33b041322b1c469999beb3b1ec}} 
+\mbox{\hyperlink{classsbne_1_1Network_ac67dea33b041322b1c469999beb3b1ec}{Network}} ()
+\begin{DoxyCompactList}\small\item\em Constructors. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a5f7279b4d9747cb782f65d17d9eccddf}\label{classsbne_1_1Network_a5f7279b4d9747cb782f65d17d9eccddf}} 
+const const\+Compartment\+It \mbox{\hyperlink{classsbne_1_1Network_a5f7279b4d9747cb782f65d17d9eccddf}{compartments\+Begin}} () const
+\begin{DoxyCompactList}\small\item\em Functions related to beginning and end of containers. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a39bf8afaebc3e93700d931c41fd71a99}\label{classsbne_1_1Network_a39bf8afaebc3e93700d931c41fd71a99}} 
+const const\+Compartment\+It {\bfseries compartments\+End} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a304a69343d7803bda9744ac7fae55506}\label{classsbne_1_1Network_a304a69343d7803bda9744ac7fae55506}} 
+const const\+Species\+It {\bfseries species\+Begin} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_ac2f5b27f34163032263bc3b26669b14d}\label{classsbne_1_1Network_ac2f5b27f34163032263bc3b26669b14d}} 
+const const\+Species\+It {\bfseries species\+End} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a669e2c71a6e31ca68d8a2db3a78ed08e}\label{classsbne_1_1Network_a669e2c71a6e31ca68d8a2db3a78ed08e}} 
+const const\+Reaction\+It {\bfseries reactions\+Begin} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a19e96566b9afb187ec1045a1fae5eceb}\label{classsbne_1_1Network_a19e96566b9afb187ec1045a1fae5eceb}} 
+const const\+Reaction\+It {\bfseries reactions\+End} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_abc313e25664425bb042f820b9e31babd}\label{classsbne_1_1Network_abc313e25664425bb042f820b9e31babd}} 
+const const\+Text\+It {\bfseries texts\+Begin} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_afff4dd03d494f83e4185f09394ac9d4d}\label{classsbne_1_1Network_afff4dd03d494f83e4185f09394ac9d4d}} 
+const const\+Text\+It {\bfseries texts\+End} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a26683283a7c679b0e7962a9b574307d2}\label{classsbne_1_1Network_a26683283a7c679b0e7962a9b574307d2}} 
+const const\+G\+Object\+It {\bfseries g\+Objects\+Begin} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_af76034cba2b58c3e39b4abbadc38e595}\label{classsbne_1_1Network_af76034cba2b58c3e39b4abbadc38e595}} 
+const const\+G\+Object\+It {\bfseries g\+Objects\+End} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a8677e8272b375bd4e7b65fbf3d202b6e}\label{classsbne_1_1Network_a8677e8272b375bd4e7b65fbf3d202b6e}} 
+void \mbox{\hyperlink{classsbne_1_1Network_a8677e8272b375bd4e7b65fbf3d202b6e}{add\+Compartment}} (\mbox{\hyperlink{classsbne_1_1NCompartment}{N\+Compartment}} $\ast$c)
+\begin{DoxyCompactList}\small\item\em Functions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classsbne_1_1Network_ae71e472036cf3d898bf82ebe72449b75}\label{classsbne_1_1Network_ae71e472036cf3d898bf82ebe72449b75}} 
+void {\bfseries remove\+Compartment} (int compartment\+Index)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_aa64f83aa0eb74fe48bb44a7da65c8e0a}\label{classsbne_1_1Network_aa64f83aa0eb74fe48bb44a7da65c8e0a}} 
+void {\bfseries set\+Compartments} (const compartment\+Vec \&cv)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a21a2b054525e9db0439e088b48ddbd15}\label{classsbne_1_1Network_a21a2b054525e9db0439e088b48ddbd15}} 
+const compartment\+Vec \& {\bfseries get\+Compartments} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a05c1a40d8921728010f5e7ea402fcdb8}\label{classsbne_1_1Network_a05c1a40d8921728010f5e7ea402fcdb8}} 
+const size\+\_\+t {\bfseries get\+Num\+Compartments} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a255c9cd4eb54d5d50bca9de57d2731c8}\label{classsbne_1_1Network_a255c9cd4eb54d5d50bca9de57d2731c8}} 
+\mbox{\hyperlink{classsbne_1_1NCompartment}{N\+Compartment}} $\ast$ {\bfseries find\+Compartment\+By\+Id} (const std\+::string \&id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a854f9043118d74922609246587d2719f}\label{classsbne_1_1Network_a854f9043118d74922609246587d2719f}} 
+int {\bfseries find\+Compartment\+Index\+By\+Id} (const std\+::string \&id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a6d7174fe12af9abc93b2f33c33357681}\label{classsbne_1_1Network_a6d7174fe12af9abc93b2f33c33357681}} 
+\mbox{\hyperlink{classsbne_1_1NCompartment}{N\+Compartment}} $\ast$ {\bfseries find\+Compartment\+By\+Glyph\+Id} (const std\+::string \&glyph\+Id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_aea1d49a58addc8bb77cade0d72008212}\label{classsbne_1_1Network_aea1d49a58addc8bb77cade0d72008212}} 
+int {\bfseries find\+Compartment\+Index\+By\+Glyph\+Id} (const std\+::string \&glyph\+Id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a676a00c6e46d40169711281f91ab6493}\label{classsbne_1_1Network_a676a00c6e46d40169711281f91ab6493}} 
+std\+::string {\bfseries get\+Compartment\+Unique\+Id} ()
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a2216cdb5c67a577e2f58f2d3cebab6b3}\label{classsbne_1_1Network_a2216cdb5c67a577e2f58f2d3cebab6b3}} 
+std\+::string {\bfseries get\+Compartment\+Unique\+Glyph\+Id} (const std\+::string \&id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a5f65f8ae5ce3d55d44f37bccc5a3c439}\label{classsbne_1_1Network_a5f65f8ae5ce3d55d44f37bccc5a3c439}} 
+void {\bfseries add\+Species} (\mbox{\hyperlink{classsbne_1_1NSpecies}{N\+Species}} $\ast$s)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a926cc109040727cc0e21f3c296fcfa15}\label{classsbne_1_1Network_a926cc109040727cc0e21f3c296fcfa15}} 
+void {\bfseries remove\+Species} (int species\+Index)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a8a0f5db31a834ab9f680a3cec5a3f7c7}\label{classsbne_1_1Network_a8a0f5db31a834ab9f680a3cec5a3f7c7}} 
+void {\bfseries set\+Species} (const species\+Vec \&sv)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_aa7b34f6ba52408392f6ee3b310e61b78}\label{classsbne_1_1Network_aa7b34f6ba52408392f6ee3b310e61b78}} 
+const species\+Vec \& {\bfseries get\+Species} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a50a92e6ea23409feb978209a0d19993d}\label{classsbne_1_1Network_a50a92e6ea23409feb978209a0d19993d}} 
+const size\+\_\+t {\bfseries get\+Num\+Species} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_ab62548db8e2fe89815736939e6b175f8}\label{classsbne_1_1Network_ab62548db8e2fe89815736939e6b175f8}} 
+\mbox{\hyperlink{classsbne_1_1NSpecies}{N\+Species}} $\ast$ {\bfseries find\+Species\+By\+Id} (const std\+::string \&id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_aeac1b72dc94804950e2f64302101d88f}\label{classsbne_1_1Network_aeac1b72dc94804950e2f64302101d88f}} 
+int {\bfseries find\+Species\+Index\+By\+Id} (const std\+::string \&id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a1788e54567748c6733fb3d9b61c6afdd}\label{classsbne_1_1Network_a1788e54567748c6733fb3d9b61c6afdd}} 
+\mbox{\hyperlink{classsbne_1_1NSpecies}{N\+Species}} $\ast$ {\bfseries find\+Species\+By\+Glyph\+Id} (const std\+::string \&glyph\+Id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a8c1d5047b7c04fe35b4f566ee4b75c3a}\label{classsbne_1_1Network_a8c1d5047b7c04fe35b4f566ee4b75c3a}} 
+int {\bfseries find\+Species\+Index\+By\+Glyph\+Id} (const std\+::string \&glyph\+Id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a0a81298edc6e43fab1742c1ea92a0306}\label{classsbne_1_1Network_a0a81298edc6e43fab1742c1ea92a0306}} 
+std\+::string {\bfseries get\+Species\+Unique\+Id} ()
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a8d703bc1891d22723bd3f92d386a52e5}\label{classsbne_1_1Network_a8d703bc1891d22723bd3f92d386a52e5}} 
+std\+::string {\bfseries get\+Species\+Unique\+Glyph\+Id} (const std\+::string \&id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a5b317f570437ea6b3ed8f857ab38f3bf}\label{classsbne_1_1Network_a5b317f570437ea6b3ed8f857ab38f3bf}} 
+void {\bfseries add\+Reaction} (\mbox{\hyperlink{classsbne_1_1NReaction}{N\+Reaction}} $\ast$r)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_abb052f831808d45ce0f9d34eb34174a4}\label{classsbne_1_1Network_abb052f831808d45ce0f9d34eb34174a4}} 
+void {\bfseries remove\+Reaction} (int reaction\+Index)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_ad19d45021f1ee70486caae8873356dd6}\label{classsbne_1_1Network_ad19d45021f1ee70486caae8873356dd6}} 
+void {\bfseries set\+Reactions} (const reaction\+Vec \&rv)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_ae144d16076d78121c29596707c01451e}\label{classsbne_1_1Network_ae144d16076d78121c29596707c01451e}} 
+const reaction\+Vec \& {\bfseries get\+Reactions} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a7c3c5086016b36cd763890d8e4c22af5}\label{classsbne_1_1Network_a7c3c5086016b36cd763890d8e4c22af5}} 
+const size\+\_\+t {\bfseries get\+Num\+Reactions} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_ac7fd313abe51caa613cb08b16713312e}\label{classsbne_1_1Network_ac7fd313abe51caa613cb08b16713312e}} 
+\mbox{\hyperlink{classsbne_1_1NReaction}{N\+Reaction}} $\ast$ {\bfseries find\+Reaction\+By\+Id} (const std\+::string \&id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a630b3d5d87616d7d5b9d78a8e8318cee}\label{classsbne_1_1Network_a630b3d5d87616d7d5b9d78a8e8318cee}} 
+int {\bfseries find\+Reaction\+Index\+By\+Id} (const std\+::string \&id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a382d53998f0169ab9b3c75502ca89a93}\label{classsbne_1_1Network_a382d53998f0169ab9b3c75502ca89a93}} 
+\mbox{\hyperlink{classsbne_1_1NReaction}{N\+Reaction}} $\ast$ {\bfseries find\+Reaction\+By\+Glyph\+Id} (const std\+::string \&glyph\+Id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_adf07dcf82665772dd0db70e1da150b4d}\label{classsbne_1_1Network_adf07dcf82665772dd0db70e1da150b4d}} 
+int {\bfseries find\+Reaction\+Index\+By\+Glyph\+Id} (const std\+::string \&glyph\+Id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a5075ca6928f652fcf0758a4dc2fd7542}\label{classsbne_1_1Network_a5075ca6928f652fcf0758a4dc2fd7542}} 
+std\+::string {\bfseries get\+Reaction\+Unique\+Id} ()
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a89fd340e14624266e5e715a4cfc17ad1}\label{classsbne_1_1Network_a89fd340e14624266e5e715a4cfc17ad1}} 
+std\+::string {\bfseries get\+Reaction\+Unique\+Glyph\+Id} (const std\+::string \&id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a79db8eedb39b647265b527a4c78d5660}\label{classsbne_1_1Network_a79db8eedb39b647265b527a4c78d5660}} 
+void {\bfseries add\+Text} (\mbox{\hyperlink{classsbne_1_1NText}{N\+Text}} $\ast$t)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_abd81d289bbd40a1d8f4b2a65cd3fba32}\label{classsbne_1_1Network_abd81d289bbd40a1d8f4b2a65cd3fba32}} 
+void {\bfseries remove\+Text} (int text\+Index)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a14962e2a9242bdb88b89b518f8b2c377}\label{classsbne_1_1Network_a14962e2a9242bdb88b89b518f8b2c377}} 
+void {\bfseries set\+Texts} (const \mbox{\hyperlink{classsbne_1_1Network_a28093c4e3363df30916c9fdc9df28377}{text\+Vec}} \&tv)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_ae1e28592aa3630dc93057d162139fa8c}\label{classsbne_1_1Network_ae1e28592aa3630dc93057d162139fa8c}} 
+const \mbox{\hyperlink{classsbne_1_1Network_a28093c4e3363df30916c9fdc9df28377}{text\+Vec}} \& {\bfseries get\+Texts} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a0c75a90938b07af7d2604f880c6b7d83}\label{classsbne_1_1Network_a0c75a90938b07af7d2604f880c6b7d83}} 
+const size\+\_\+t {\bfseries get\+Num\+Texts} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a330a25bd53e7772595177ec044640f14}\label{classsbne_1_1Network_a330a25bd53e7772595177ec044640f14}} 
+\mbox{\hyperlink{classsbne_1_1NText}{N\+Text}} $\ast$ {\bfseries find\+Text\+By\+Id} (const std\+::string \&id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_aba90b49901a0ce1e6d96a4cf8893872c}\label{classsbne_1_1Network_aba90b49901a0ce1e6d96a4cf8893872c}} 
+int {\bfseries find\+Text\+Index\+By\+Id} (const std\+::string \&id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a3b4fd648996899990a71e9def44c7ee5}\label{classsbne_1_1Network_a3b4fd648996899990a71e9def44c7ee5}} 
+\mbox{\hyperlink{classsbne_1_1NText}{N\+Text}} $\ast$ {\bfseries find\+Text\+By\+Glyph\+Id} (const std\+::string \&glyph\+Id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a6c257c5c7190d59dbd3650447e86b4a3}\label{classsbne_1_1Network_a6c257c5c7190d59dbd3650447e86b4a3}} 
+int {\bfseries find\+Text\+Index\+By\+Glyph\+Id} (const std\+::string \&glyph\+Id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_abd73754d3e3ae7c4dc3bb7ab999d8802}\label{classsbne_1_1Network_abd73754d3e3ae7c4dc3bb7ab999d8802}} 
+\mbox{\hyperlink{classsbne_1_1NText}{N\+Text}} $\ast$ {\bfseries find\+Text\+By\+Graphical\+Object\+Id} (const std\+::string \&g\+O\+Id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a0b15aa0e4c4313f83969e61291c22ab1}\label{classsbne_1_1Network_a0b15aa0e4c4313f83969e61291c22ab1}} 
+int {\bfseries find\+Text\+Index\+By\+Graphical\+Object\+Id} (const std\+::string \&g\+O\+Id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_aba926f25007d5cf234ac4b4831e7de1c}\label{classsbne_1_1Network_aba926f25007d5cf234ac4b4831e7de1c}} 
+std\+::string {\bfseries get\+Text\+Unique\+Glyph\+Id} ()
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a0d4871478b478088b072609eec5c2ef7}\label{classsbne_1_1Network_a0d4871478b478088b072609eec5c2ef7}} 
+void {\bfseries add\+G\+Object} (\mbox{\hyperlink{classsbne_1_1NGraphicalObject}{N\+Graphical\+Object}} $\ast$o)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_af5242ebe8f35b55a5f728f150102550d}\label{classsbne_1_1Network_af5242ebe8f35b55a5f728f150102550d}} 
+void {\bfseries remove\+G\+Object} (int g\+Object\+Index)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a9a69674c01d3da406f8c721e625d44f2}\label{classsbne_1_1Network_a9a69674c01d3da406f8c721e625d44f2}} 
+void {\bfseries set\+G\+Objects} (const g\+Object\+Vec \&ov)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_ac6863bdd49bbc6c0d72190933eac0136}\label{classsbne_1_1Network_ac6863bdd49bbc6c0d72190933eac0136}} 
+const g\+Object\+Vec \& {\bfseries get\+G\+Objects} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a51634ca3cca7c77b5977c5863b2492c1}\label{classsbne_1_1Network_a51634ca3cca7c77b5977c5863b2492c1}} 
+const size\+\_\+t {\bfseries get\+Num\+G\+Objects} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_aff408a525e5348c6f65279f176fe9d12}\label{classsbne_1_1Network_aff408a525e5348c6f65279f176fe9d12}} 
+\mbox{\hyperlink{classsbne_1_1NGraphicalObject}{N\+Graphical\+Object}} $\ast$ {\bfseries find\+G\+Object\+By\+Id} (const std\+::string \&id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a7ce321fef49c27d6626a34f649f720e6}\label{classsbne_1_1Network_a7ce321fef49c27d6626a34f649f720e6}} 
+int {\bfseries find\+G\+Object\+Index\+By\+Id} (const std\+::string \&id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_ab4e6347eab85e2b975316d99cc0dcfef}\label{classsbne_1_1Network_ab4e6347eab85e2b975316d99cc0dcfef}} 
+\mbox{\hyperlink{classsbne_1_1NGraphicalObject}{N\+Graphical\+Object}} $\ast$ {\bfseries find\+G\+Object\+By\+Glyph\+Id} (const std\+::string \&glyph\+Id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a62ad195cbd4aaaff52bdc1f26c07ce2d}\label{classsbne_1_1Network_a62ad195cbd4aaaff52bdc1f26c07ce2d}} 
+int {\bfseries find\+G\+Object\+Index\+By\+Glyph\+Id} (const std\+::string \&glyph\+Id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a4b2dbbaf16dc19160e5930e16a1d0156}\label{classsbne_1_1Network_a4b2dbbaf16dc19160e5930e16a1d0156}} 
+std\+::string {\bfseries get\+G\+Object\+Unique\+Glyph\+Id} ()
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a3c5acc6687918b5f9bb35a34d5134f96}\label{classsbne_1_1Network_a3c5acc6687918b5f9bb35a34d5134f96}} 
+void {\bfseries set\+Width} (const double \&width)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a29761a09ca91ed723a7bed494a34bded}\label{classsbne_1_1Network_a29761a09ca91ed723a7bed494a34bded}} 
+const double \& {\bfseries get\+Width} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_acb7b0fc6a9beaf1dc8d3724158474874}\label{classsbne_1_1Network_acb7b0fc6a9beaf1dc8d3724158474874}} 
+const bool {\bfseries is\+Set\+Width} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a9348a6ac2943cfaf9b72690e732fa7f7}\label{classsbne_1_1Network_a9348a6ac2943cfaf9b72690e732fa7f7}} 
+void {\bfseries set\+Height} (const double \&height)
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a50477a63c6d4f52f842139525167eb67}\label{classsbne_1_1Network_a50477a63c6d4f52f842139525167eb67}} 
+const double \& {\bfseries get\+Height} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_ac33a0a96d9c668c68b47a6ba6bac2988}\label{classsbne_1_1Network_ac33a0a96d9c668c68b47a6ba6bac2988}} 
+const bool {\bfseries is\+Set\+Height} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a56cd9053e611d86f1e90ce96e2c898fd}\label{classsbne_1_1Network_a56cd9053e611d86f1e90ce96e2c898fd}} 
+const bool {\bfseries is\+Layout\+Specified} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a2018793fe017b31928c01bfd7ecef94c}\label{classsbne_1_1Network_a2018793fe017b31928c01bfd7ecef94c}} 
+void {\bfseries set\+Layout\+Specified} (bool value)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_ad17111e4397a3a4943c022e7e3395190}\label{classsbne_1_1Network_ad17111e4397a3a4943c022e7e3395190}} 
+compartment\+Vec {\bfseries \+\_\+compartments}
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_ad879ffa33808795e18bfe7445c85bb9c}\label{classsbne_1_1Network_ad879ffa33808795e18bfe7445c85bb9c}} 
+species\+Vec {\bfseries \+\_\+species}
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_aea159d75fe7a052fc1e1b41484a3c3b7}\label{classsbne_1_1Network_aea159d75fe7a052fc1e1b41484a3c3b7}} 
+reaction\+Vec {\bfseries \+\_\+reactions}
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a094ac0290aa3946065369c74a3141168}\label{classsbne_1_1Network_a094ac0290aa3946065369c74a3141168}} 
+\mbox{\hyperlink{classsbne_1_1Network_a28093c4e3363df30916c9fdc9df28377}{text\+Vec}} {\bfseries \+\_\+texts}
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a07048a8c62cea1df5defa24c621d0bce}\label{classsbne_1_1Network_a07048a8c62cea1df5defa24c621d0bce}} 
+g\+Object\+Vec {\bfseries \+\_\+g\+Objects}
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a86f00a69b54099392ae5ddd8d2e82b0d}\label{classsbne_1_1Network_a86f00a69b54099392ae5ddd8d2e82b0d}} 
+double {\bfseries \+\_\+width}
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_af4f5b9bc887c59ef2aea0cf03a4b4a5b}\label{classsbne_1_1Network_af4f5b9bc887c59ef2aea0cf03a4b4a5b}} 
+double {\bfseries \+\_\+height}
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_ae23b791853ac4ae946512885ee0f5cad}\label{classsbne_1_1Network_ae23b791853ac4ae946512885ee0f5cad}} 
+bool {\bfseries \+\_\+is\+Set\+Width}
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a2963ea3674908b108c1a7f2d63baaba8}\label{classsbne_1_1Network_a2963ea3674908b108c1a7f2d63baaba8}} 
+bool {\bfseries \+\_\+is\+Set\+Height}
+\item 
+\mbox{\Hypertarget{classsbne_1_1Network_a9bea88d255d94a91bd7b5c78f0c4a9ab}\label{classsbne_1_1Network_a9bea88d255d94a91bd7b5c78f0c4a9ab}} 
+bool {\bfseries \+\_\+is\+Layout\+Specified}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The equivalent class for S\+B\+ML \href{http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_layout.html}{\texttt{ Layout}} . 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/home/\+Documents/\+Education/\+S\+B/\+Projects/\+Made/\+S\+B\+N\+E/sbne/\+S\+B\+N\+E/src/sbne/network/ne\+\_\+network.\+h\item 
+/\+Users/home/\+Documents/\+Education/\+S\+B/\+Projects/\+Made/\+S\+B\+N\+E/sbne/\+S\+B\+N\+E/src/sbne/network/ne\+\_\+network.\+cpp\end{DoxyCompactItemize}

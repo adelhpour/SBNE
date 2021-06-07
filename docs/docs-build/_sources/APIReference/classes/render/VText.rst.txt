@@ -1,0 +1,5 @@
+*****
+VText
+*****
+
+.. doxygenclass:: sbne::VText

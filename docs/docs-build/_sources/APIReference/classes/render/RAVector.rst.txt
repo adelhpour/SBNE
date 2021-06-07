@@ -1,0 +1,5 @@
+********
+RAVector
+********
+
+.. doxygenclass:: sbne::RAVector

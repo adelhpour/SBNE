@@ -1,0 +1,196 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="classsbne_1_1RAVector" kind="class" language="C++" prot="public">
+    <compoundname>sbne::RAVector</compoundname>
+    <includes refid="ne__relAbsVector_8h" local="no">ne_relAbsVector.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classsbne_1_1RAVector_1a7bed3a1638edbda5595274b325e44344" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double sbne::RAVector::_a</definition>
+        <argsstring></argsstring>
+        <name>_a</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/render/ne_relAbsVector.h" line="44" column="12" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/render/ne_relAbsVector.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1RAVector_1a895c9ffc27ffa8a72d68622404e99a16" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double sbne::RAVector::_r</definition>
+        <argsstring></argsstring>
+        <name>_r</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/render/ne_relAbsVector.h" line="45" column="12" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/render/ne_relAbsVector.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classsbne_1_1RAVector_1a5aba6ef3b3bb9e4d4796346fe142791e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>sbne::RAVector::RAVector</definition>
+        <argsstring>()</argsstring>
+        <name>RAVector</name>
+        <briefdescription>
+<para>Constructors. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/render/ne_relAbsVector.h" line="13" column="5" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/render/ne_relAbsVector.h" bodystart="13" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1RAVector_1a22475dc978ac57b65823472c49443df9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>sbne::RAVector::RAVector</definition>
+        <argsstring>(double a, double r)</argsstring>
+        <name>RAVector</name>
+        <param>
+          <type>double</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>r</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/render/ne_relAbsVector.h" line="18" column="5" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/render/ne_relAbsVector.h" bodystart="18" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1RAVector_1a18fb7b072a23f1f1b0f30a7d4bb8d624" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::RAVector::setA</definition>
+        <argsstring>(const double &amp;a)</argsstring>
+        <name>setA</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+<para>Functions. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/render/ne_relAbsVector.h" line="25" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/render/ne_relAbsVector.cpp" bodystart="5" bodyend="7"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1RAVector_1ad608d0cabe8b8cbf45fc9892b3d9865c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const double &amp;</type>
+        <definition>const double &amp; sbne::RAVector::a</definition>
+        <argsstring>() const</argsstring>
+        <name>a</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/render/ne_relAbsVector.h" line="28" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/render/ne_relAbsVector.cpp" bodystart="9" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1RAVector_1ab752c9bc3b556f40b723cfa6b8f7f7d6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::RAVector::setR</definition>
+        <argsstring>(const double &amp;r)</argsstring>
+        <name>setR</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>r</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/render/ne_relAbsVector.h" line="31" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/render/ne_relAbsVector.cpp" bodystart="13" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1RAVector_1a9ac389c7cfadea7d2f01264f741f2620" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const double &amp;</type>
+        <definition>const double &amp; sbne::RAVector::r</definition>
+        <argsstring>() const</argsstring>
+        <name>r</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/render/ne_relAbsVector.h" line="34" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/render/ne_relAbsVector.cpp" bodystart="17" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1RAVector_1af6f2598b783bd60136fc1464c442d909" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref></type>
+        <definition>RAVector sbne::RAVector::operator=</definition>
+        <argsstring>(const RAVector &amp;r)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+          <declname>r</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/render/ne_relAbsVector.h" line="36" column="14" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/render/ne_relAbsVector.cpp" bodystart="21" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1RAVector_1aa3af13ef33e9fffc7eade82e023cefe2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref></type>
+        <definition>const RAVector sbne::RAVector::operator-</definition>
+        <argsstring>() const</argsstring>
+        <name>operator-</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/render/ne_relAbsVector.h" line="38" column="20" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/render/ne_relAbsVector.cpp" bodystart="27" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1RAVector_1a1fba3098442a461a7b8f328d8eb164e0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::string</type>
+        <definition>const std::string sbne::RAVector::toString</definition>
+        <argsstring>() const</argsstring>
+        <name>toString</name>
+        <briefdescription>
+<para>Convert to String. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/render/ne_relAbsVector.h" line="41" column="23" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/render/ne_relAbsVector.cpp" bodystart="31" bodyend="41"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The equivalent class for SBML <ulink url="http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_rel_abs_vector.html">RelAbsVector</ulink> . </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/render/ne_relAbsVector.h" line="10" column="1" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/render/ne_relAbsVector.h" bodystart="10" bodyend="46"/>
+    <listofallmembers>
+      <member refid="classsbne_1_1RAVector_1a7bed3a1638edbda5595274b325e44344" prot="protected" virt="non-virtual"><scope>sbne::RAVector</scope><name>_a</name></member>
+      <member refid="classsbne_1_1RAVector_1a895c9ffc27ffa8a72d68622404e99a16" prot="protected" virt="non-virtual"><scope>sbne::RAVector</scope><name>_r</name></member>
+      <member refid="classsbne_1_1RAVector_1ad608d0cabe8b8cbf45fc9892b3d9865c" prot="public" virt="non-virtual"><scope>sbne::RAVector</scope><name>a</name></member>
+      <member refid="classsbne_1_1RAVector_1aa3af13ef33e9fffc7eade82e023cefe2" prot="public" virt="non-virtual"><scope>sbne::RAVector</scope><name>operator-</name></member>
+      <member refid="classsbne_1_1RAVector_1af6f2598b783bd60136fc1464c442d909" prot="public" virt="non-virtual"><scope>sbne::RAVector</scope><name>operator=</name></member>
+      <member refid="classsbne_1_1RAVector_1a9ac389c7cfadea7d2f01264f741f2620" prot="public" virt="non-virtual"><scope>sbne::RAVector</scope><name>r</name></member>
+      <member refid="classsbne_1_1RAVector_1a5aba6ef3b3bb9e4d4796346fe142791e" prot="public" virt="non-virtual"><scope>sbne::RAVector</scope><name>RAVector</name></member>
+      <member refid="classsbne_1_1RAVector_1a22475dc978ac57b65823472c49443df9" prot="public" virt="non-virtual"><scope>sbne::RAVector</scope><name>RAVector</name></member>
+      <member refid="classsbne_1_1RAVector_1a18fb7b072a23f1f1b0f30a7d4bb8d624" prot="public" virt="non-virtual"><scope>sbne::RAVector</scope><name>setA</name></member>
+      <member refid="classsbne_1_1RAVector_1ab752c9bc3b556f40b723cfa6b8f7f7d6" prot="public" virt="non-virtual"><scope>sbne::RAVector</scope><name>setR</name></member>
+      <member refid="classsbne_1_1RAVector_1a1fba3098442a461a7b8f328d8eb164e0" prot="public" virt="non-virtual"><scope>sbne::RAVector</scope><name>toString</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

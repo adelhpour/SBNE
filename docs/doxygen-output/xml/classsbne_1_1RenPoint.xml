@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="classsbne_1_1RenPoint" kind="class" language="C++" prot="public">
+    <compoundname>sbne::RenPoint</compoundname>
+    <basecompoundref refid="classsbne_1_1VeneerElement" prot="public" virt="non-virtual">sbne::VeneerElement</basecompoundref>
+    <derivedcompoundref refid="classsbne_1_1RCubicBezier" prot="public" virt="non-virtual">sbne::RCubicBezier</derivedcompoundref>
+    <includes refid="ne__veneer_8h" local="no">ne_veneer.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classsbne_1_1RenPoint_1aa10bda1b3f94fcbe3bcd5d86ae05ce70" prot="protected" static="no" mutable="no">
+        <type><ref refid="classsbne_1_1RPoint" kindref="compound">RPoint</ref></type>
+        <definition>RPoint sbne::RenPoint::_r</definition>
+        <argsstring></argsstring>
+        <name>_r</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="2033" column="12" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="2033" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1RenPoint_1a3c3e1ba43c4ffe16ace41ac6cd8df6f6" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sbne::RenPoint::_isSetRPoint</definition>
+        <argsstring></argsstring>
+        <name>_isSetRPoint</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="2034" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="2034" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classsbne_1_1RenPoint_1aa7b143c9cd7f7d9fb2d57b2e824a5993" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>sbne::RenPoint::RenPoint</definition>
+        <argsstring>()</argsstring>
+        <name>RenPoint</name>
+        <briefdescription>
+<para>Constructors. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="2013" column="5" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="2013" bodyend="2016"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1RenPoint_1af7d6e206b68bd22787bde5ebdf1de06b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::RenPoint::setRPoint</definition>
+        <argsstring>(const RPoint &amp;rp)</argsstring>
+        <name>setRPoint</name>
+        <param>
+          <type>const <ref refid="classsbne_1_1RPoint" kindref="compound">RPoint</ref> &amp;</type>
+          <declname>rp</declname>
+        </param>
+        <briefdescription>
+<para>Functions. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="2020" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="2934" bodyend="2937"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1RenPoint_1aa094fb05e6fe0eda5d4604a3c8c9122d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classsbne_1_1RPoint" kindref="compound">RPoint</ref> &amp;</type>
+        <definition>const RPoint &amp; sbne::RenPoint::getRPoint</definition>
+        <argsstring>() const</argsstring>
+        <name>getRPoint</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="2023" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="2939" bodyend="2941"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1RenPoint_1a83352c70905193d39613ae7341e076ae" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const bool</type>
+        <definition>const bool sbne::RenPoint::isSetRPoint</definition>
+        <argsstring>() const</argsstring>
+        <name>isSetRPoint</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="2026" column="16" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="2026" bodyend="2026"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1RenPoint_1a711d6c576e5accd135f41db130ad795a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool sbne::RenPoint::isRenderCubicBezier</definition>
+        <argsstring>()</argsstring>
+        <name>isRenderCubicBezier</name>
+        <reimplementedby refid="classsbne_1_1RCubicBezier_1a8fcbfaec1411f24279d4132664a7fe51">isRenderCubicBezier</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="2029" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="2029" bodyend="2029"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The class for the elements of VPloygon and <ref refid="classsbne_1_1RCurve" kindref="compound">RCurve</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>sbne::RenPoint</label>
+        <link refid="classsbne_1_1RenPoint"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>sbne::VeneerElement</label>
+        <link refid="classsbne_1_1VeneerElement"/>
+      </node>
+      <node id="3">
+        <label>sbne::RCubicBezier</label>
+        <link refid="classsbne_1_1RCubicBezier"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>sbne::RPoint</label>
+        <link refid="classsbne_1_1RPoint"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>_x</edgelabel>
+          <edgelabel>_y</edgelabel>
+          <edgelabel>_z</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>sbne::RenPoint</label>
+        <link refid="classsbne_1_1RenPoint"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>_r</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>sbne::VeneerElement</label>
+        <link refid="classsbne_1_1VeneerElement"/>
+      </node>
+      <node id="4">
+        <label>sbne::RAVector</label>
+        <link refid="classsbne_1_1RAVector"/>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="2010" column="1" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="2010" bodyend="2035"/>
+    <listofallmembers>
+      <member refid="classsbne_1_1VeneerElement_1a05a1b163bba59774adf635c8aaa9411e" prot="protected" virt="non-virtual"><scope>sbne::RenPoint</scope><name>_id</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a5528e39c12af204f8de8e3ac741b19e6" prot="protected" virt="non-virtual"><scope>sbne::RenPoint</scope><name>_isSetId</name></member>
+      <member refid="classsbne_1_1VeneerElement_1aadacb15ddad42dead4445e992b73d892" prot="protected" virt="non-virtual"><scope>sbne::RenPoint</scope><name>_isSetName</name></member>
+      <member refid="classsbne_1_1RenPoint_1a3c3e1ba43c4ffe16ace41ac6cd8df6f6" prot="protected" virt="non-virtual"><scope>sbne::RenPoint</scope><name>_isSetRPoint</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a81238d04248f95a8ef68788d3db8e913" prot="protected" virt="non-virtual"><scope>sbne::RenPoint</scope><name>_name</name></member>
+      <member refid="classsbne_1_1RenPoint_1aa10bda1b3f94fcbe3bcd5d86ae05ce70" prot="protected" virt="non-virtual"><scope>sbne::RenPoint</scope><name>_r</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a248c99de1375ccdae3dbf59fce7b5c6a" prot="public" virt="non-virtual"><scope>sbne::RenPoint</scope><name>getId</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a29585cbce3cf9e33407e5eecd455f50c" prot="public" virt="non-virtual"><scope>sbne::RenPoint</scope><name>getName</name></member>
+      <member refid="classsbne_1_1RenPoint_1aa094fb05e6fe0eda5d4604a3c8c9122d" prot="public" virt="non-virtual"><scope>sbne::RenPoint</scope><name>getRPoint</name></member>
+      <member refid="classsbne_1_1RenPoint_1a711d6c576e5accd135f41db130ad795a" prot="public" virt="virtual"><scope>sbne::RenPoint</scope><name>isRenderCubicBezier</name></member>
+      <member refid="classsbne_1_1VeneerElement_1af7b8bd39c05a8f08fc74edeb024ab517" prot="public" virt="non-virtual"><scope>sbne::RenPoint</scope><name>isSetId</name></member>
+      <member refid="classsbne_1_1VeneerElement_1adc2d191b9b62b2f03385d59caa9fe377" prot="public" virt="non-virtual"><scope>sbne::RenPoint</scope><name>isSetName</name></member>
+      <member refid="classsbne_1_1RenPoint_1a83352c70905193d39613ae7341e076ae" prot="public" virt="non-virtual"><scope>sbne::RenPoint</scope><name>isSetRPoint</name></member>
+      <member refid="classsbne_1_1RenPoint_1aa7b143c9cd7f7d9fb2d57b2e824a5993" prot="public" virt="non-virtual"><scope>sbne::RenPoint</scope><name>RenPoint</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a8cd21b54b5b02e4cabdaf151e2ee975e" prot="public" virt="non-virtual"><scope>sbne::RenPoint</scope><name>setId</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a873088af375af1c882e2c8639b560e17" prot="public" virt="non-virtual"><scope>sbne::RenPoint</scope><name>setName</name></member>
+      <member refid="classsbne_1_1RenPoint_1af7d6e206b68bd22787bde5ebdf1de06b" prot="public" virt="non-virtual"><scope>sbne::RenPoint</scope><name>setRPoint</name></member>
+      <member refid="classsbne_1_1VeneerElement_1aea6702719a7bf355a20b140849036b8a" prot="public" virt="non-virtual"><scope>sbne::RenPoint</scope><name>VeneerElement</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
