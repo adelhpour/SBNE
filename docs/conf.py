@@ -12,6 +12,7 @@
 #
 import os
 import sys
+sys.path.insert(0, os.path.abspath('.'))
 sys.path.insert(0, os.path.abspath('/images'))
 
 
@@ -68,7 +69,7 @@ html_static_path = []
 
 
 # Use on readthedocs
-import subprocess, os
+import subprocess
 
 def configureDoxyfile(input_dir, output_dir):
     with open('Doxyfile.in', 'r') as file :
