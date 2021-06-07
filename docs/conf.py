@@ -91,3 +91,4 @@ if read_the_docs_build:
     configureDoxyfile(input_dir, output_dir)
     subprocess.call('doxygen', shell=True)
     breathe_projects['SBNE'] = output_dir + '/xml'
+    html_extra_path = ['doxygen-output/html']
