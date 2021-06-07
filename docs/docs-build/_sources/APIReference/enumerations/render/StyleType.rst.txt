@@ -1,0 +1,5 @@
+*********
+StyleType
+*********
+
+.. doxygenenum:: StyleType

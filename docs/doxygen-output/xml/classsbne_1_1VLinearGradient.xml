@@ -1,0 +1,592 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="classsbne_1_1VLinearGradient" kind="class" language="C++" prot="public">
+    <compoundname>sbne::VLinearGradient</compoundname>
+    <basecompoundref refid="classsbne_1_1VGradientBase" prot="public" virt="non-virtual">sbne::VGradientBase</basecompoundref>
+    <includes refid="ne__veneer_8h" local="no">ne_veneer.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classsbne_1_1VLinearGradient_1a53c7383c48451a059b08a3ef986353f2" prot="protected" static="no" mutable="no">
+        <type><ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref></type>
+        <definition>RAVector sbne::VLinearGradient::_x1</definition>
+        <argsstring></argsstring>
+        <name>_x1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="691" column="14" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="686" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VLinearGradient_1a492c924645228214426233236dcfe95f" prot="protected" static="no" mutable="no">
+        <type><ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref></type>
+        <definition>RAVector sbne::VLinearGradient::_y1</definition>
+        <argsstring></argsstring>
+        <name>_y1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="692" column="14" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="692" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VLinearGradient_1a027d17f5997a8c643f13797238d9503a" prot="protected" static="no" mutable="no">
+        <type><ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref></type>
+        <definition>RAVector sbne::VLinearGradient::_z1</definition>
+        <argsstring></argsstring>
+        <name>_z1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="693" column="14" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="693" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VLinearGradient_1aed6cdec7f7fc8396ca54cc1069c0b34f" prot="protected" static="no" mutable="no">
+        <type><ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref></type>
+        <definition>RAVector sbne::VLinearGradient::_x2</definition>
+        <argsstring></argsstring>
+        <name>_x2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="694" column="14" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="694" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VLinearGradient_1a880e990812d82c16d0ae4dc48b49b610" prot="protected" static="no" mutable="no">
+        <type><ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref></type>
+        <definition>RAVector sbne::VLinearGradient::_y2</definition>
+        <argsstring></argsstring>
+        <name>_y2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="695" column="14" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="695" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VLinearGradient_1a98bac291411a2d443c4ac3c6ec25f438" prot="protected" static="no" mutable="no">
+        <type><ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref></type>
+        <definition>RAVector sbne::VLinearGradient::_z2</definition>
+        <argsstring></argsstring>
+        <name>_z2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="696" column="14" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="696" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VLinearGradient_1a2f564730ebc17e9e501dbd916f5c62a0" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sbne::VLinearGradient::_isSetX1</definition>
+        <argsstring></argsstring>
+        <name>_isSetX1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="697" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="697" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VLinearGradient_1a61eed7eab641ba59053ecdee739f23f5" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sbne::VLinearGradient::_isSetY1</definition>
+        <argsstring></argsstring>
+        <name>_isSetY1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="698" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="698" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VLinearGradient_1a1a82b0fb6d02a0c9d5ba5ca8330e192b" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sbne::VLinearGradient::_isSetZ1</definition>
+        <argsstring></argsstring>
+        <name>_isSetZ1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="699" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="699" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VLinearGradient_1a28b09ed97a49043d30ca3410d0a9e706" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sbne::VLinearGradient::_isSetX2</definition>
+        <argsstring></argsstring>
+        <name>_isSetX2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="700" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="700" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VLinearGradient_1a0c47bb8eb4d7367ff519fd7e52c769ee" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sbne::VLinearGradient::_isSetY2</definition>
+        <argsstring></argsstring>
+        <name>_isSetY2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="701" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="701" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VLinearGradient_1a2948e6ba35e0f8f1bf0aee2cb33b6f4e" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sbne::VLinearGradient::_isSetZ2</definition>
+        <argsstring></argsstring>
+        <name>_isSetZ2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="702" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="702" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classsbne_1_1VLinearGradient_1ab2d521c66618944118138d15cd791961" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>sbne::VLinearGradient::VLinearGradient</definition>
+        <argsstring>()</argsstring>
+        <name>VLinearGradient</name>
+        <briefdescription>
+<para>Constructors. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="612" column="5" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="612" bodyend="625"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VLinearGradient_1adef0696dc53c7eee272a59bf0c10696d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VLinearGradient::setX1</definition>
+        <argsstring>(const RAVector &amp;r)</argsstring>
+        <name>setX1</name>
+        <param>
+          <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+          <declname>r</declname>
+        </param>
+        <briefdescription>
+<para>Functions. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="629" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="1766" bodyend="1769"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VLinearGradient_1a41361cdbcd0671807b6e0ec7ba59c872" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+        <definition>const RAVector &amp; sbne::VLinearGradient::getX1</definition>
+        <argsstring>() const</argsstring>
+        <name>getX1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="632" column="20" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="1771" bodyend="1773"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VLinearGradient_1a91c3d94f1caded371bd0ecbc3052bf5c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const bool</type>
+        <definition>const bool sbne::VLinearGradient::isSetX1</definition>
+        <argsstring>() const</argsstring>
+        <name>isSetX1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="635" column="16" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="635" bodyend="635"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VLinearGradient_1ab8650b8fb7a260c84a8692b8f2680e85" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VLinearGradient::setY1</definition>
+        <argsstring>(const RAVector &amp;r)</argsstring>
+        <name>setY1</name>
+        <param>
+          <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+          <declname>r</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="638" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="1775" bodyend="1778"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VLinearGradient_1ad279a27ac1b7fc74bd351b3b16f042ca" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+        <definition>const RAVector &amp; sbne::VLinearGradient::getY1</definition>
+        <argsstring>() const</argsstring>
+        <name>getY1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="641" column="20" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="1780" bodyend="1782"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VLinearGradient_1ae5dadb919b912ce282890248d86f03e0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const bool</type>
+        <definition>const bool sbne::VLinearGradient::isSetY1</definition>
+        <argsstring>() const</argsstring>
+        <name>isSetY1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="644" column="16" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="644" bodyend="644"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VLinearGradient_1a851091267d6eba00ef58a77beeaafb5c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VLinearGradient::setZ1</definition>
+        <argsstring>(const RAVector &amp;r)</argsstring>
+        <name>setZ1</name>
+        <param>
+          <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+          <declname>r</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="647" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="1784" bodyend="1787"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VLinearGradient_1a9c2c0a6784f68ab5f8c965d27f4698c2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+        <definition>const RAVector &amp; sbne::VLinearGradient::getZ1</definition>
+        <argsstring>() const</argsstring>
+        <name>getZ1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="650" column="20" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="1789" bodyend="1791"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VLinearGradient_1a95ce6e0443036e4a677d66d5b319da4e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const bool</type>
+        <definition>const bool sbne::VLinearGradient::isSetZ1</definition>
+        <argsstring>() const</argsstring>
+        <name>isSetZ1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="653" column="16" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="653" bodyend="653"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VLinearGradient_1a19dface3f734b79a74ac31e3c613b282" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VLinearGradient::setX2</definition>
+        <argsstring>(const RAVector &amp;r)</argsstring>
+        <name>setX2</name>
+        <param>
+          <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+          <declname>r</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="656" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="1793" bodyend="1796"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VLinearGradient_1aec4aa5c6b63ba27d540522eeac53507c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+        <definition>const RAVector &amp; sbne::VLinearGradient::getX2</definition>
+        <argsstring>() const</argsstring>
+        <name>getX2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="659" column="20" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="1798" bodyend="1800"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VLinearGradient_1a7ed3c3b082937b7628ad9676980c8b90" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const bool</type>
+        <definition>const bool sbne::VLinearGradient::isSetX2</definition>
+        <argsstring>() const</argsstring>
+        <name>isSetX2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="662" column="16" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="662" bodyend="662"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VLinearGradient_1a08f37445832ee76f1a336f8739781257" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VLinearGradient::setY2</definition>
+        <argsstring>(const RAVector &amp;r)</argsstring>
+        <name>setY2</name>
+        <param>
+          <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+          <declname>r</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="665" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="1802" bodyend="1805"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VLinearGradient_1a2788fd16f1e5d151723631030e545720" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+        <definition>const RAVector &amp; sbne::VLinearGradient::getY2</definition>
+        <argsstring>() const</argsstring>
+        <name>getY2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="668" column="20" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="1807" bodyend="1809"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VLinearGradient_1aab024bd95176c02b372736637d6e93fc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const bool</type>
+        <definition>const bool sbne::VLinearGradient::isSetY2</definition>
+        <argsstring>() const</argsstring>
+        <name>isSetY2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="671" column="16" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="671" bodyend="671"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VLinearGradient_1a868091b023c9b6ed8c4b1448969279ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VLinearGradient::setZ2</definition>
+        <argsstring>(const RAVector &amp;r)</argsstring>
+        <name>setZ2</name>
+        <param>
+          <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+          <declname>r</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="674" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="1811" bodyend="1814"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VLinearGradient_1a9002b31ee3d4b909b08441c56e85486e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+        <definition>const RAVector &amp; sbne::VLinearGradient::getZ2</definition>
+        <argsstring>() const</argsstring>
+        <name>getZ2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="677" column="20" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="1816" bodyend="1818"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VLinearGradient_1ac75ebde6cb363a8019254e601176f2ce" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const bool</type>
+        <definition>const bool sbne::VLinearGradient::isSetZ2</definition>
+        <argsstring>() const</argsstring>
+        <name>isSetZ2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="680" column="16" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="680" bodyend="680"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VLinearGradient_1a744d57f5ff3c458ffb4f63cf7ccde11e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>const bool</type>
+        <definition>virtual const bool sbne::VLinearGradient::isSetAsLinearGradient</definition>
+        <argsstring>() const</argsstring>
+        <name>isSetAsLinearGradient</name>
+        <reimplements refid="classsbne_1_1VGradientBase_1a84b871317988053abf90e571401249c9">isSetAsLinearGradient</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="683" column="24" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="683" bodyend="683"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VLinearGradient_1a1c83f914a3ccefa79c7718429b9f1f15" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>const bool</type>
+        <definition>virtual const bool sbne::VLinearGradient::isSetAsRadialGradient</definition>
+        <argsstring>() const</argsstring>
+        <name>isSetAsRadialGradient</name>
+        <reimplements refid="classsbne_1_1VGradientBase_1af02ffe5aee479094d93828a1dc245e19">isSetAsRadialGradient</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="686" column="24" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="686" bodyend="686"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The equivalent class for SBML <ulink url="http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_linear_gradient.html">LinearGradient</ulink> . </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>sbne::VeneerElement</label>
+        <link refid="classsbne_1_1VeneerElement"/>
+      </node>
+      <node id="1">
+        <label>sbne::VLinearGradient</label>
+        <link refid="classsbne_1_1VLinearGradient"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>sbne::VGradientBase</label>
+        <link refid="classsbne_1_1VGradientBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>sbne::VeneerElement</label>
+        <link refid="classsbne_1_1VeneerElement"/>
+      </node>
+      <node id="4">
+        <label>sbne::RAVector</label>
+        <link refid="classsbne_1_1RAVector"/>
+      </node>
+      <node id="1">
+        <label>sbne::VLinearGradient</label>
+        <link refid="classsbne_1_1VLinearGradient"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>_x1</edgelabel>
+          <edgelabel>_x2</edgelabel>
+          <edgelabel>_y1</edgelabel>
+          <edgelabel>_y2</edgelabel>
+          <edgelabel>_z1</edgelabel>
+          <edgelabel>_z2</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>sbne::VGradientBase</label>
+        <link refid="classsbne_1_1VGradientBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="609" column="1" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="609" bodyend="703"/>
+    <listofallmembers>
+      <member refid="classsbne_1_1VeneerElement_1a05a1b163bba59774adf635c8aaa9411e" prot="protected" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>_id</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a5528e39c12af204f8de8e3ac741b19e6" prot="protected" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>_isSetId</name></member>
+      <member refid="classsbne_1_1VeneerElement_1aadacb15ddad42dead4445e992b73d892" prot="protected" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>_isSetName</name></member>
+      <member refid="classsbne_1_1VGradientBase_1a2f90f2be6541d08a74cee6b9c7c20e1f" prot="protected" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>_isSetSpreadMethod</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1a2f564730ebc17e9e501dbd916f5c62a0" prot="protected" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>_isSetX1</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1a28b09ed97a49043d30ca3410d0a9e706" prot="protected" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>_isSetX2</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1a61eed7eab641ba59053ecdee739f23f5" prot="protected" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>_isSetY1</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1a0c47bb8eb4d7367ff519fd7e52c769ee" prot="protected" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>_isSetY2</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1a1a82b0fb6d02a0c9d5ba5ca8330e192b" prot="protected" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>_isSetZ1</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1a2948e6ba35e0f8f1bf0aee2cb33b6f4e" prot="protected" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>_isSetZ2</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a81238d04248f95a8ef68788d3db8e913" prot="protected" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>_name</name></member>
+      <member refid="classsbne_1_1VGradientBase_1a7a833b2e6673d68fb182976aa888d4e7" prot="protected" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>_spreadMethod</name></member>
+      <member refid="classsbne_1_1VGradientBase_1a95172832e82995a375362fa0baad486d" prot="protected" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>_stops</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1a53c7383c48451a059b08a3ef986353f2" prot="protected" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>_x1</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1aed6cdec7f7fc8396ca54cc1069c0b34f" prot="protected" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>_x2</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1a492c924645228214426233236dcfe95f" prot="protected" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>_y1</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1a880e990812d82c16d0ae4dc48b49b610" prot="protected" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>_y2</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1a027d17f5997a8c643f13797238d9503a" prot="protected" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>_z1</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1a98bac291411a2d443c4ac3c6ec25f438" prot="protected" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>_z2</name></member>
+      <member refid="classsbne_1_1VGradientBase_1a00b8f8af8bbd81c8da8ac8f72c1fdd55" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>addToStops</name></member>
+      <member refid="classsbne_1_1VGradientBase_1a5025d00a3d55f6863fd9b75346feb32a" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>constStopIt</name></member>
+      <member refid="classsbne_1_1VGradientBase_1a15e63cc7920aa886deb1f15c523cf0ff" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>findStopByColor</name></member>
+      <member refid="classsbne_1_1VGradientBase_1a83c24c85e27fde8831f92ffbbad5d883" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>findStopById</name></member>
+      <member refid="classsbne_1_1VGradientBase_1a41a1d0202411fc5033727c7dd9def082" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>findStopIndexByColor</name></member>
+      <member refid="classsbne_1_1VGradientBase_1a966d4fb68886743428301ee0fd0b09ce" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>findStopIndexById</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a248c99de1375ccdae3dbf59fce7b5c6a" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>getId</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a29585cbce3cf9e33407e5eecd455f50c" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>getName</name></member>
+      <member refid="classsbne_1_1VGradientBase_1a19da6c252f14d6072c32dd50fee81a00" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>getNumStops</name></member>
+      <member refid="classsbne_1_1VGradientBase_1a384a444774dbe37dabcafd439551570a" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>getSpreadMethod</name></member>
+      <member refid="classsbne_1_1VGradientBase_1a63585cd73f56ebde85c5eb4b749c81d0" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>getStops</name></member>
+      <member refid="classsbne_1_1VGradientBase_1a7e3ca0cf590f03dd49e92c6bd219355f" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>getStopUniqueId</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1a41361cdbcd0671807b6e0ec7ba59c872" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>getX1</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1aec4aa5c6b63ba27d540522eeac53507c" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>getX2</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1ad279a27ac1b7fc74bd351b3b16f042ca" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>getY1</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1a2788fd16f1e5d151723631030e545720" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>getY2</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1a9c2c0a6784f68ab5f8c965d27f4698c2" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>getZ1</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1a9002b31ee3d4b909b08441c56e85486e" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>getZ2</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1a744d57f5ff3c458ffb4f63cf7ccde11e" prot="public" virt="virtual"><scope>sbne::VLinearGradient</scope><name>isSetAsLinearGradient</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1a1c83f914a3ccefa79c7718429b9f1f15" prot="public" virt="virtual"><scope>sbne::VLinearGradient</scope><name>isSetAsRadialGradient</name></member>
+      <member refid="classsbne_1_1VeneerElement_1af7b8bd39c05a8f08fc74edeb024ab517" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>isSetId</name></member>
+      <member refid="classsbne_1_1VeneerElement_1adc2d191b9b62b2f03385d59caa9fe377" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>isSetName</name></member>
+      <member refid="classsbne_1_1VGradientBase_1a4901b090d56983a1ca7af497ee600f3f" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>isSetSpreadMethod</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1a91c3d94f1caded371bd0ecbc3052bf5c" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>isSetX1</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1a7ed3c3b082937b7628ad9676980c8b90" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>isSetX2</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1ae5dadb919b912ce282890248d86f03e0" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>isSetY1</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1aab024bd95176c02b372736637d6e93fc" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>isSetY2</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1a95ce6e0443036e4a677d66d5b319da4e" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>isSetZ1</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1ac75ebde6cb363a8019254e601176f2ce" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>isSetZ2</name></member>
+      <member refid="classsbne_1_1VGradientBase_1a3376517e9656c40848640971820b6f4c" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>removeStop</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a8cd21b54b5b02e4cabdaf151e2ee975e" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>setId</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a873088af375af1c882e2c8639b560e17" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>setName</name></member>
+      <member refid="classsbne_1_1VGradientBase_1a627c78731b5795bc4abd3b64546a357c" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>setSpreadMehtod</name></member>
+      <member refid="classsbne_1_1VGradientBase_1acc046f7d95a0004b66eef1509c235d66" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>setStops</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1adef0696dc53c7eee272a59bf0c10696d" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>setX1</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1a19dface3f734b79a74ac31e3c613b282" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>setX2</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1ab8650b8fb7a260c84a8692b8f2680e85" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>setY1</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1a08f37445832ee76f1a336f8739781257" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>setY2</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1a851091267d6eba00ef58a77beeaafb5c" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>setZ1</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1a868091b023c9b6ed8c4b1448969279ac" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>setZ2</name></member>
+      <member refid="classsbne_1_1VGradientBase_1ab6f1239882ebeae2b593a2b8a85027f1" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>sortStops</name></member>
+      <member refid="classsbne_1_1VGradientBase_1a37a57789ad3b56fd79fcc3aa73c826df" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>stopIt</name></member>
+      <member refid="classsbne_1_1VGradientBase_1a65fd75854625ee241db94cada0a26829" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>stopsBegin</name></member>
+      <member refid="classsbne_1_1VGradientBase_1a77e6da60b41f761bdbb4be0a1281ead6" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>stopsEnd</name></member>
+      <member refid="classsbne_1_1VGradientBase_1a0322f8ce7c41f5e664b3466277896684" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>stopVec</name></member>
+      <member refid="classsbne_1_1VeneerElement_1aea6702719a7bf355a20b140849036b8a" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>VeneerElement</name></member>
+      <member refid="classsbne_1_1VGradientBase_1ab54cea0763e5fc5fc870e9670056e694" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>VGradientBase</name></member>
+      <member refid="classsbne_1_1VLinearGradient_1ab2d521c66618944118138d15cd791961" prot="public" virt="non-virtual"><scope>sbne::VLinearGradient</scope><name>VLinearGradient</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="structsbne_1_1spcReferencedSide" kind="struct" language="C++" prot="public">
+    <compoundname>sbne::spcReferencedSide</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structsbne_1_1spcReferencedSide_1a8b74d49bad5bf78d73fd287d4b3d5565" prot="public" static="no" mutable="no">
+        <type>SpcSide</type>
+        <definition>SpcSide sbne::spcReferencedSide::side</definition>
+        <argsstring></argsstring>
+        <name>side</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1628" column="13" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="1628" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsbne_1_1spcReferencedSide_1ac78862e9e11451a3b1a7185ee9227672" prot="public" static="no" mutable="no">
+        <type>SReferenceVec</type>
+        <definition>SReferenceVec sbne::spcReferencedSide::speciesReferences</definition>
+        <argsstring></argsstring>
+        <name>speciesReferences</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1629" column="19" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="1629" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1627" column="1" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="1627" bodyend="1630"/>
+    <listofallmembers>
+      <member refid="structsbne_1_1spcReferencedSide_1a8b74d49bad5bf78d73fd287d4b3d5565" prot="public" virt="non-virtual"><scope>sbne::spcReferencedSide</scope><name>side</name></member>
+      <member refid="structsbne_1_1spcReferencedSide_1ac78862e9e11451a3b1a7185ee9227672" prot="public" virt="non-virtual"><scope>sbne::spcReferencedSide</scope><name>speciesReferences</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

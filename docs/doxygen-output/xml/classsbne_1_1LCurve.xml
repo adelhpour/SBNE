@@ -1,0 +1,346 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="classsbne_1_1LCurve" kind="class" language="C++" prot="public">
+    <compoundname>sbne::LCurve</compoundname>
+    <basecompoundref refid="classsbne_1_1NetworkElement" prot="public" virt="non-virtual">sbne::NetworkElement</basecompoundref>
+    <includes refid="ne__network_8h" local="no">ne_network.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classsbne_1_1LCurve_1ae68e64110b56a58e63384ee6396a1a67" prot="public" static="no">
+        <type>std::vector&lt; <ref refid="classsbne_1_1LLineSegment" kindref="compound">LLineSegment</ref> * &gt;</type>
+        <definition>typedef std::vector&lt;LLineSegment*&gt; sbne::LCurve::listOfElements</definition>
+        <argsstring></argsstring>
+        <name>listOfElements</name>
+        <briefdescription>
+<para>Containers. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1389" column="25" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="1389" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classsbne_1_1LCurve_1aa145f8813b99d3f2d874a15f3d68b29b" prot="public" static="no">
+        <type>listOfElements::iterator</type>
+        <definition>typedef listOfElements::iterator sbne::LCurve::elementIt</definition>
+        <argsstring></argsstring>
+        <name>elementIt</name>
+        <briefdescription>
+<para>Iterators. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1393" column="38" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="1393" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classsbne_1_1LCurve_1a1e95bb0e0e232feaf23b20932d3d263a" prot="public" static="no">
+        <type>listOfElements::const_iterator</type>
+        <definition>typedef listOfElements::const_iterator sbne::LCurve::constElementIt</definition>
+        <argsstring></argsstring>
+        <name>constElementIt</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1394" column="44" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="1394" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classsbne_1_1LCurve_1a544df502108c24ad486860ac1b8fac55" prot="protected" static="no" mutable="no">
+        <type><ref refid="classsbne_1_1LCurve_1ae68e64110b56a58e63384ee6396a1a67" kindref="member">listOfElements</ref></type>
+        <definition>listOfElements sbne::LCurve::_listOfElements</definition>
+        <argsstring></argsstring>
+        <name>_listOfElements</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1437" column="20" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="1437" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classsbne_1_1LCurve_1ab3294273dcee91bc39f426a39f0b36c2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>sbne::LCurve::LCurve</definition>
+        <argsstring>()</argsstring>
+        <name>LCurve</name>
+        <briefdescription>
+<para>Constructors. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1383" column="5" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="1383" bodyend="1385"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LCurve_1a0e62934bb1a792b58888b111baa4f5a3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const constElementIt</type>
+        <definition>const constElementIt sbne::LCurve::elementsBegin</definition>
+        <argsstring>() const</argsstring>
+        <name>elementsBegin</name>
+        <briefdescription>
+<para>Functions related to beginning and end of containers. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1398" column="26" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="1398" bodyend="1398"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LCurve_1af85910bf606cd6d5d795247c2f4d9a1d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const constElementIt</type>
+        <definition>const constElementIt sbne::LCurve::elementsEnd</definition>
+        <argsstring>() const</argsstring>
+        <name>elementsEnd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1399" column="26" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="1399" bodyend="1399"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LCurve_1a159c06f666f26bfe83f77273b2cfff8b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::LCurve::addToListOfElementsEnd</definition>
+        <argsstring>(LLineSegment *l)</argsstring>
+        <name>addToListOfElementsEnd</name>
+        <param>
+          <type><ref refid="classsbne_1_1LLineSegment" kindref="compound">LLineSegment</ref> *</type>
+          <declname>l</declname>
+        </param>
+        <briefdescription>
+<para>Functions. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1403" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="3046" bodyend="3051"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LCurve_1a3eba4808fe823ebc4cc1ce945699902d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::LCurve::addToListOfElements</definition>
+        <argsstring>(LLineSegment *l, unsigned int index)</argsstring>
+        <name>addToListOfElements</name>
+        <param>
+          <type><ref refid="classsbne_1_1LLineSegment" kindref="compound">LLineSegment</ref> *</type>
+          <declname>l</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1406" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="3053" bodyend="3058"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LCurve_1abafc0ff4bc7db4b2a4ec43fc57a35dca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::LCurve::removeFromListOfElements</definition>
+        <argsstring>(unsigned int index)</argsstring>
+        <name>removeFromListOfElements</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1409" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="3060" bodyend="3065"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LCurve_1a593af45a0d34d7f0308071eaf0fc3875" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::LCurve::clearListOfElements</definition>
+        <argsstring>()</argsstring>
+        <name>clearListOfElements</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1412" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="3067" bodyend="3069"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LCurve_1abfa21432a17fbe38af605f12ad376201" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classsbne_1_1LCurve_1ae68e64110b56a58e63384ee6396a1a67" kindref="member">listOfElements</ref> &amp;</type>
+        <definition>const LCurve::listOfElements &amp; sbne::LCurve::getListOfElements</definition>
+        <argsstring>() const</argsstring>
+        <name>getListOfElements</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1415" column="26" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="3071" bodyend="3073"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LCurve_1a3e9f7e53aa06ffdb215b24ec8c0b2d31" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const size_t</type>
+        <definition>const size_t sbne::LCurve::getNumElements</definition>
+        <argsstring>() const</argsstring>
+        <name>getNumElements</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1418" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="3075" bodyend="3077"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LCurve_1a3d8e32b982248e7a12bf76a322737b54" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classsbne_1_1LLineSegment" kindref="compound">LLineSegment</ref> *</type>
+        <definition>LLineSegment * sbne::LCurve::findElementById</definition>
+        <argsstring>(const std::string &amp;id)</argsstring>
+        <name>findElementById</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1421" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="3079" bodyend="3087"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LCurve_1a27df452e1159eb83c60205fe452672ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int sbne::LCurve::findElementIndexById</definition>
+        <argsstring>(const std::string &amp;id)</argsstring>
+        <name>findElementIndexById</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1424" column="9" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="3089" bodyend="3100"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LCurve_1a867f6aba24b06011317d64c5154b921d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string sbne::LCurve::getElementUniqueId</definition>
+        <argsstring>()</argsstring>
+        <name>getElementUniqueId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1427" column="17" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="3102" bodyend="3115"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LCurve_1a3340ac91fe4a356b016f663e1031a4f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::LCurve::shiftPosition</definition>
+        <argsstring>(const double &amp;dx, const double &amp;dy)</argsstring>
+        <name>shiftPosition</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>dx</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>dy</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1430" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="3117" bodyend="3152"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LCurve_1ad52619fe1bd6fbc2ca4f3110c711105d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classsbne_1_1LBox" kindref="compound">LBox</ref></type>
+        <definition>LBox sbne::LCurve::getExtentBox</definition>
+        <argsstring>()</argsstring>
+        <name>getExtentBox</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1433" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="3154" bodyend="3199"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The equivalent class for SBML <ulink url="http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_curve.html">Curve</ulink> . </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>sbne::LCurve</label>
+        <link refid="classsbne_1_1LCurve"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>sbne::NetworkElement</label>
+        <link refid="classsbne_1_1NetworkElement"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>sbne::LCurve</label>
+        <link refid="classsbne_1_1LCurve"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>sbne::NetworkElement</label>
+        <link refid="classsbne_1_1NetworkElement"/>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1380" column="1" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="1380" bodyend="1438"/>
+    <listofallmembers>
+      <member refid="classsbne_1_1NetworkElement_1aa32d64a86727beb2b5da5d2d46ebb113" prot="protected" virt="non-virtual"><scope>sbne::LCurve</scope><name>_id</name></member>
+      <member refid="classsbne_1_1NetworkElement_1a80cf6151787ca8c7bae113296adc2962" prot="protected" virt="non-virtual"><scope>sbne::LCurve</scope><name>_isSetId</name></member>
+      <member refid="classsbne_1_1NetworkElement_1a42d9377561ef3c5d60b6953d541bbe89" prot="protected" virt="non-virtual"><scope>sbne::LCurve</scope><name>_isSetName</name></member>
+      <member refid="classsbne_1_1LCurve_1a544df502108c24ad486860ac1b8fac55" prot="protected" virt="non-virtual"><scope>sbne::LCurve</scope><name>_listOfElements</name></member>
+      <member refid="classsbne_1_1NetworkElement_1a67fcd633812ba1f2eb673696d04c138b" prot="protected" virt="non-virtual"><scope>sbne::LCurve</scope><name>_name</name></member>
+      <member refid="classsbne_1_1LCurve_1a3eba4808fe823ebc4cc1ce945699902d" prot="public" virt="non-virtual"><scope>sbne::LCurve</scope><name>addToListOfElements</name></member>
+      <member refid="classsbne_1_1LCurve_1a159c06f666f26bfe83f77273b2cfff8b" prot="public" virt="non-virtual"><scope>sbne::LCurve</scope><name>addToListOfElementsEnd</name></member>
+      <member refid="classsbne_1_1LCurve_1a593af45a0d34d7f0308071eaf0fc3875" prot="public" virt="non-virtual"><scope>sbne::LCurve</scope><name>clearListOfElements</name></member>
+      <member refid="classsbne_1_1LCurve_1a1e95bb0e0e232feaf23b20932d3d263a" prot="public" virt="non-virtual"><scope>sbne::LCurve</scope><name>constElementIt</name></member>
+      <member refid="classsbne_1_1LCurve_1aa145f8813b99d3f2d874a15f3d68b29b" prot="public" virt="non-virtual"><scope>sbne::LCurve</scope><name>elementIt</name></member>
+      <member refid="classsbne_1_1LCurve_1a0e62934bb1a792b58888b111baa4f5a3" prot="public" virt="non-virtual"><scope>sbne::LCurve</scope><name>elementsBegin</name></member>
+      <member refid="classsbne_1_1LCurve_1af85910bf606cd6d5d795247c2f4d9a1d" prot="public" virt="non-virtual"><scope>sbne::LCurve</scope><name>elementsEnd</name></member>
+      <member refid="classsbne_1_1LCurve_1a3d8e32b982248e7a12bf76a322737b54" prot="public" virt="non-virtual"><scope>sbne::LCurve</scope><name>findElementById</name></member>
+      <member refid="classsbne_1_1LCurve_1a27df452e1159eb83c60205fe452672ff" prot="public" virt="non-virtual"><scope>sbne::LCurve</scope><name>findElementIndexById</name></member>
+      <member refid="classsbne_1_1LCurve_1a867f6aba24b06011317d64c5154b921d" prot="public" virt="non-virtual"><scope>sbne::LCurve</scope><name>getElementUniqueId</name></member>
+      <member refid="classsbne_1_1LCurve_1ad52619fe1bd6fbc2ca4f3110c711105d" prot="public" virt="non-virtual"><scope>sbne::LCurve</scope><name>getExtentBox</name></member>
+      <member refid="classsbne_1_1NetworkElement_1a49ccf0816fce78a54c042a889b8431c0" prot="public" virt="non-virtual"><scope>sbne::LCurve</scope><name>getId</name></member>
+      <member refid="classsbne_1_1LCurve_1abfa21432a17fbe38af605f12ad376201" prot="public" virt="non-virtual"><scope>sbne::LCurve</scope><name>getListOfElements</name></member>
+      <member refid="classsbne_1_1NetworkElement_1a6c5b45f4c5120d1b5877249fc0961326" prot="public" virt="non-virtual"><scope>sbne::LCurve</scope><name>getName</name></member>
+      <member refid="classsbne_1_1LCurve_1a3e9f7e53aa06ffdb215b24ec8c0b2d31" prot="public" virt="non-virtual"><scope>sbne::LCurve</scope><name>getNumElements</name></member>
+      <member refid="classsbne_1_1NetworkElement_1a3d5e61ec4569c4f42143d18d971dc17b" prot="public" virt="non-virtual"><scope>sbne::LCurve</scope><name>isSetId</name></member>
+      <member refid="classsbne_1_1NetworkElement_1a18fb66423239730e737127e7a8a09514" prot="public" virt="non-virtual"><scope>sbne::LCurve</scope><name>isSetName</name></member>
+      <member refid="classsbne_1_1LCurve_1ab3294273dcee91bc39f426a39f0b36c2" prot="public" virt="non-virtual"><scope>sbne::LCurve</scope><name>LCurve</name></member>
+      <member refid="classsbne_1_1LCurve_1ae68e64110b56a58e63384ee6396a1a67" prot="public" virt="non-virtual"><scope>sbne::LCurve</scope><name>listOfElements</name></member>
+      <member refid="classsbne_1_1NetworkElement_1a9e5b9c57c3efce8e105af67e2f5f1a50" prot="public" virt="non-virtual"><scope>sbne::LCurve</scope><name>NetworkElement</name></member>
+      <member refid="classsbne_1_1LCurve_1abafc0ff4bc7db4b2a4ec43fc57a35dca" prot="public" virt="non-virtual"><scope>sbne::LCurve</scope><name>removeFromListOfElements</name></member>
+      <member refid="classsbne_1_1NetworkElement_1a657dda1b6e59fb12d266484f39258c94" prot="public" virt="non-virtual"><scope>sbne::LCurve</scope><name>setId</name></member>
+      <member refid="classsbne_1_1NetworkElement_1a69d7f91f4e75727ac1bf7208d2b2eccf" prot="public" virt="non-virtual"><scope>sbne::LCurve</scope><name>setName</name></member>
+      <member refid="classsbne_1_1LCurve_1a3340ac91fe4a356b016f663e1031a4f9" prot="public" virt="non-virtual"><scope>sbne::LCurve</scope><name>shiftPosition</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

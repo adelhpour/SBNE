@@ -1,0 +1,286 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="C++" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Installation &mdash; SBNE 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Qucik Start" href="quickstart.html" />
+    <link rel="prev" title="Overview" href="overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SBNE
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#build-from-source">Build from source</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#build-libsbml-from-source-with-enabled-layout-and-render-packages">Build libSBML from source (with enabled layout and render packages)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#build-sbne-from-source">Build SBNE from source</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Qucik Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auto.html">Auto-Layout/Render</a></li>
+<li class="toctree-l1"><a class="reference internal" href="APIReference/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SBNE</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Installation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/installation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="build-from-source">
+<h2>Build from source<a class="headerlink" href="#build-from-source" title="Permalink to this headline">¶</a></h2>
+<p>To build SBNE from its source code you need to:</p>
+<div class="section" id="build-libsbml-from-source-with-enabled-layout-and-render-packages">
+<h3>Build libSBML from source (with enabled layout and render packages)<a class="headerlink" href="#build-libsbml-from-source-with-enabled-layout-and-render-packages" title="Permalink to this headline">¶</a></h3>
+<p>As SBNE depends on <a class="reference external" href="http://model.caltech.edu/software/libsbml/">libSBML</a>, first, it is required to build the latest version of libSBML from its <a class="reference external" href="http://sourceforge.net/projects/sbml/files/libsbml">source</a>. In doing so, this <a class="reference external" href="https://www.youtube.com/watch?v=e_Lydwzx-Hg">video</a> and <a class="reference external" href="http://sbml.org/Software/libSBML/5.18.0/docs/cpp-api/libsbml-installation.html">instruction page</a> can come in handy for you. As, for SBNE, we need to build libSBML with its Layout and Render extensions, while following these instructions, you must remember to check <code class="docutils literal notranslate"><span class="pre">ENABLE_LAYOUT</span></code> and <code class="docutils literal notranslate"><span class="pre">ENABLE_RENDER</span></code> boxes in CMake-gui configuration of libSBML.</p>
+</div>
+<div class="section" id="build-sbne-from-source">
+<h3>Build SBNE from source<a class="headerlink" href="#build-sbne-from-source" title="Permalink to this headline">¶</a></h3>
+<p>The steps to build SBNE from its source code are as follows:</p>
+<ul>
+<li><p>Create a directory for your entire SBNE project. This directory has to be placed in somewhere not admin-blocked and is recommended to have the following file structure:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;root directory&gt;
+├── build
+├── install
+├── source
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Clone or download <a class="reference external" href="https://github.com/adelhpour/sbne">SBNE source</a> to <cite>&lt;root directory&gt;/source</cite>.</p></li>
+<li><p><a class="reference external" href="https://cmake.org/download/">Download</a> and Install CMake and then open CMake-gui.</p>
+<blockquote>
+<div><ul>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">&lt;root</span> <span class="pre">directory&gt;/source/sbne-main</span></code> (where the top-level <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> is located) as the source directory.</p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">&lt;root</span> <span class="pre">directory&gt;/build</span></code> as the build (binary) directory.</p></li>
+<li><p>Click &quot;Configure&quot; button and choose your compiler.</p></li>
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">CMAKE_INSTALL_PREFIX</span></code> to <code class="docutils literal notranslate"><span class="pre">&lt;root</span> <span class="pre">directory&gt;/install</span></code>.</p></li>
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">LIBSBML_PREFIX</span></code> to the install directory where you installed libSBML libraries in the previous stage (that is probably something like <code class="docutils literal notranslate"><span class="pre">&lt;root</span> <span class="pre">directory</span> <span class="pre">of</span> <span class="pre">libSBML&gt;/install</span></code>).</p></li>
+<li><p>Check <code class="docutils literal notranslate"><span class="pre">WITH_PYTHON</span></code> box if you want to build the language bindings for Python.</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you check <code class="docutils literal notranslate"><span class="pre">WITH_PYTHON</span></code> box at this step, CMake will provide you with <code class="docutils literal notranslate"><span class="pre">PYTHON_INSTALL_IN_PREFIX</span></code> and <code class="docutils literal notranslate"><span class="pre">PYTHON_INSTALL_WITH_SETUP</span></code> options later. By checking the box associated with the former option, Python binidngs are installed in <code class="docutils literal notranslate"><span class="pre">&lt;root</span> <span class="pre">directory&gt;/install/lib/pyhton[version]/site-packages/libsbne</span></code> and by checking the box associated with the latter one they will be installed to the standard location for third-party Python modules.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>Check <code class="docutils literal notranslate"><span class="pre">WITH_GUI</span></code> box if you want to build SBNE-GUI.</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To build SBNE-GUI, Qt5 development tools are needed to be already installed on your machine. In that case, if you check <code class="docutils literal notranslate"><span class="pre">WITH_GUI</span></code> box at this step, CMake requires you later to set the value of <code class="docutils literal notranslate"><span class="pre">Qt5_DIR</span></code> to the directory where <code class="docutils literal notranslate"><span class="pre">Qt5Config.cmake</span></code> and other Qt dependencies are located.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>Click &quot;Configure&quot; button time and again until no red variable row remains.</p></li>
+<li><p>Click &quot;Generate&quot; button.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Now that you have figured out all the configuration settings, all you need is building the project as follows:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>On Windows, you can either click on &quot;Open Project&quot; button on CMake-gui or open the generated <code class="docutils literal notranslate"><span class="pre">.sln</span></code> file in <code class="docutils literal notranslate"><span class="pre">&lt;root</span> <span class="pre">directory&gt;/build</span></code> in Visual Studio. Once Visual Studio is launched, change the configuration to &quot;Release&quot;, and build <code class="docutils literal notranslate"><span class="pre">ALL-BUILD</span></code> and <code class="docutils literal notranslate"><span class="pre">INSTALL</span></code>.</p></li>
+<li><p>On macOS and Linux, simply go to <code class="docutils literal notranslate"><span class="pre">&lt;root</span> <span class="pre">directory&gt;/build</span></code> and run <code class="docutils literal notranslate"><span class="pre">make</span></code> and then <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">install</span></code> on terminal.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="quickstart.html" class="btn btn-neutral float-right" title="Qucik Start" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="overview.html" class="btn btn-neutral float-left" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Adel Heydarabadipour.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,5 @@
+***************
+VRadialGradient
+***************
+
+.. doxygenclass:: sbne::VRadialGradient

@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_ff429ef6d899fcfae462c5c9cda7a773" kind="dir">
+    <compoundname>/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/sbml</compoundname>
+    <innerfile refid="ne__layout_8cpp">ne_layout.cpp</innerfile>
+    <innerfile refid="ne__layout_8h">ne_layout.h</innerfile>
+    <innerfile refid="ne__render_8cpp">ne_render.cpp</innerfile>
+    <innerfile refid="ne__render_8h">ne_render.h</innerfile>
+    <innerfile refid="ne__sbml_8cpp">ne_sbml.cpp</innerfile>
+    <innerfile refid="ne__sbml_8h">ne_sbml.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/sbml/"/>
+  </compounddef>
+</doxygen>

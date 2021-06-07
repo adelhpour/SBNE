@@ -1,0 +1,830 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="C++" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Auto-Layout/Render &mdash; SBNE 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API Reference" href="APIReference/index.html" />
+    <link rel="prev" title="Qucik Start" href="quickstart.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SBNE
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Qucik Start</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Auto-Layout/Render</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#auto-layout">Auto-Layout</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#basic-idea">Basic idea</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#steps">Steps</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#clustering-reactions">Clustering reactions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#locating-main-reactions">Locating main-reactions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#locating-sub-reactions-with-one-pre-located-species">Locating sub-reactions with One pre-located species</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#locating-sub-reactions-with-more-than-one-pre-located-species">Locating sub-reactions with More-Than-One pre-located species</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reaction-layers-and-vacancies">Reaction Layers and Vacancies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#packing-clusters-into-a-compartment">Packing clusters into a compartment</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#auto-render">Auto-Render</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#default-render-values">Default Render Values</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#colors">Colors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#background-color">Background Color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#line-endings">Line Endings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#styles">Styles</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="APIReference/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">Appendix</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SBNE</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Auto-Layout/Render</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/auto.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="auto-layout-render">
+<h1>Auto-Layout/Render<a class="headerlink" href="#auto-layout-render" title="Permalink to this headline">¶</a></h1>
+<p>As a number of SBML models do not contain Layout and Render information, automatically generating all the necessary information about the Layout and Render extensions for an SBML model is one of the main features of SBNE. Here, we have developed and implemented an algorithm to set the position and dimensions of each graphical object in the network of an SBML model (Layout features) and determined the default values for other graphical features of each type of graphical object in that network (Render features).</p>
+<div class="section" id="auto-layout">
+<h2>Auto-Layout<a class="headerlink" href="#auto-layout" title="Permalink to this headline">¶</a></h2>
+<p>The auto-layout algorithm, which is implemented by <a class="reference internal" href="APIReference/functions/LayoutInfo/ne_li_addLayoutFeaturesToNetowrk.html#ne-li-addlayoutfeaturestonetowrk"><span class="std std-ref">ne_li_addLayoutFeaturesToNetowrk</span></a>, is a tool to set the position and dimensions of each graphical object in the network of an SBML model, including <a class="reference internal" href="APIReference/classes/layout/NCompartment.html#ncompartment"><span class="std std-ref">Compartments</span></a>, <a class="reference internal" href="APIReference/classes/layout/NSpecies.html#nspecies"><span class="std std-ref">Species</span></a>, <a class="reference internal" href="APIReference/classes/layout/NReaction.html#nreaction"><span class="std std-ref">Reactions</span></a>, <a class="reference internal" href="APIReference/classes/layout/NSpeciesReference.html#nspeciesreference"><span class="std std-ref">SpeciesReferences</span></a>, and <a class="reference internal" href="APIReference/classes/layout/NText.html#ntext"><span class="std std-ref">Texts</span></a>.</p>
+<div class="section" id="basic-idea">
+<h3>Basic idea<a class="headerlink" href="#basic-idea" title="Permalink to this headline">¶</a></h3>
+<p>The network of an SBML model consists of compartments, reactions, species (nodes), and speciesreferences (edges). We consider that, in each compartment, there are some clusters of reactions with the following features:</p>
+<ul class="simple">
+<li><p>No two clusters share a mutual species with one another.</p></li>
+<li><p>The reaction with the highest number of species in each cluster is considered to be the <strong>main-reaction</strong> of that cluster and other reactions are the <strong>sub-reactions</strong> which are connected to it through their mutual species.</p></li>
+</ul>
+<p>With this in mind, the whole problem of setting the position of the graphical objects in a network is reduced to:</p>
+<ul class="simple">
+<li><p>Locating main-reactions,</p></li>
+<li><p>Locating the species of each main-reaction,</p></li>
+<li><p>Locating the sub-reactions connected to each main-reaction,</p></li>
+<li><p>Locating the species of each sub-reaction,</p></li>
+<li><p>Packing clusters of reactions into a compartment,</p></li>
+</ul>
+<p>respectively. We have developed a number of heuristics to set the position and dimensions of each graphical object, accordingly.</p>
+</div>
+<div class="section" id="steps">
+<h3>Steps<a class="headerlink" href="#steps" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="clustering-reactions">
+<h4>Clustering reactions<a class="headerlink" href="#clustering-reactions" title="Permalink to this headline">¶</a></h4>
+<p>First, we determine the clusters of reactions. Reactions which share a mutual species fall into the same cluster, and the one with the highest number of species is considered to be the main-reaction of that cluster. Sub-reactions of a cluster are sorted so that the ones which are directly connected to the main-reaction through one (or more) mutual species come before the ones which are connected to the main-reaction through one (or more) intermediate sub-reaction(s).</p>
+<p>To locate the reactions of each cluster, we first imagine the center of each cluster is located at the origin of our coordinate system. Later, once all the reactions and species of the clusters are located, we move the clusters relatively so that we can find the best position for each one.</p>
+</div>
+<div class="section" id="locating-main-reactions">
+<h4>Locating main-reactions<a class="headerlink" href="#locating-main-reactions" title="Permalink to this headline">¶</a></h4>
+<p>In each cluster, the center of the main reaction is considered to be at the same place where the center of the cluster it belongs to is located. Once the main reaction is located, all its species are evenly distributed around it on a circular basis as shown in the following figure:</p>
+<div class="figure align-center" id="id1">
+<a class="reference internal image-reference" href="_images/8.png"><img alt="Alternative text" src="_images/8.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-text">The species of a main reaction are evenly distributed around it on a circular basis.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="locating-sub-reactions-with-one-pre-located-species">
+<h4>Locating sub-reactions with One pre-located species<a class="headerlink" href="#locating-sub-reactions-with-one-pre-located-species" title="Permalink to this headline">¶</a></h4>
+<p>At this stage, the sub-reactions with only one species whose position is set in the previous stages are located. Here, the center of a sub-reaction is placed at one of the sides of its pre-located species on the line either along the one connecting the pre-located species to the center of the main reaction or perpendicular to it. Once a sub-reaction is located, its non-located species are evenly distributed around it on a circular basis as shown in the following figure:</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For the purpose of simplicity, all the located sub-reactions shown in the following figure have one non-located species. It is not a general rule, and there is no limitation to the number of the non-located species a sub-reaction can have at this stage.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>At this stage, each pre-located species has three unoccupied sides, so up to three sub-reactions can be located around it. If we have more than three sub-reactions which contain one particular pre-located species, the extra sub-reaction(s) is(are) located later according to the following heuristic.</p>
+</div>
+</div></blockquote>
+<div class="figure align-center" id="id2">
+<a class="reference internal image-reference" href="_images/9.png"><img alt="Alternative text" src="_images/9.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-text">Sub-reactions with one pre-located species are located at the side of their pre-located species.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="locating-sub-reactions-with-more-than-one-pre-located-species">
+<h4>Locating sub-reactions with More-Than-One pre-located species<a class="headerlink" href="#locating-sub-reactions-with-more-than-one-pre-located-species" title="Permalink to this headline">¶</a></h4>
+<p>Here, we defined the concept of <strong>pseudospecies</strong>, a term for a hypothetical species which works as a proxy for one or more than one species. A pseudospecies is located on the circumference of a circle with an arbitrary radius and centered on the center of the main reaction. The angle of a pseudospecies on this circle is determined by averaging over the angles of the species it represents (the angle of each species is calculated using the reference direction, a horizontal line passing through the center of the main reaction).</p>
+<p>Accordingly, to locate the position of a sub-reaction which contains more than one pre-located species, we first create a pseudospecies as a representative for its pre-located species and then, like previous stage, we locate the sub-reaction at one of the sides of this pseudospecies. Finally, the non-located species of the sub-reaction are evenly distributed around it on a circular basis as shown in the following figure:</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For the purpose of simplicity, all the located sub-reactions shown in the following figure have only two species (which are both pre-located). It is not a general rule, and there is no upper limitation to the number of the pre-located and non-located species a sub-reaction can have at this stage.</p>
+</div>
+</div></blockquote>
+<div class="figure align-center" id="id3">
+<a class="reference internal image-reference" href="_images/10.png"><img alt="Alternative text" src="_images/10.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-text">Sub-reactions with more than one pre-located species are located at the side of the pseudospecies representing their pre-located species.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="reaction-layers-and-vacancies">
+<h4>Reaction Layers and Vacancies<a class="headerlink" href="#reaction-layers-and-vacancies" title="Permalink to this headline">¶</a></h4>
+<p>As mentioned in the previous stage, one of the features of our auto-layout algorithm is creating pseudospecies to represent one or more than one pre-located species. As the number of required pseudospecies in a cluster of reactions grows, finding an appropriate position to locate pseudospecies gains crucial importance in optimally positioning the elements of a network.</p>
+<p>In this regard, we introduced the concept of layers and their vacancies for each reaction in a cluster. The <strong>layers</strong> of a reaction are some concentric circles centered on the center of that reaction and radiuses with values starting from the distance between the center and the pre-located species of that reaction and increasing stepwise per each layer. The <strong>vacancies</strong> of each layer are the arcs made by dividing the circumference of that layer into equally-sized sections, with total number twice the number of the species of the reaction.</p>
+<p>Now, by establishing layers and vacancies for the reactions of a cluster, the following rules are followed to locate the position of each pseudospecies through filling the vacancies:</p>
+<ul class="simple">
+<li><p>The species of each reaction fill the vacancies of the first layer of that reaction.</p></li>
+<li><p>Reactions which are positioned at the side of a species do not fill the vacancies of the reaction that species belongs to.</p></li>
+<li><p>Reactions which are positioned at the side of a species fill the vacancies of the reaction to which the reaction that species belongs to is connected (and the vacancies of the reactions to which the intermediate reaction is connected, and so on).</p></li>
+<li><p>Pseudospecies representing pre-located species all of which belong to one reaction fill vacancies of both that reaction and the main reaction of the cluster.</p></li>
+<li><p>Pseudospecies representing pre-located species from different reactions only fill the vacancies of the main reaction of the cluster.</p></li>
+<li><p>Pseudospecies created to locate the additional (more than three) reactions among the sub-reactions with one particular pre-located species only fill vacancies of the main reaction of the cluster.</p></li>
+<li><p>Vacancies for pseudospecies are chosen to be as close as possible to a place in the middle of the pre-located species they represent.</p></li>
+<li><p>pseudospecies are positioned at the center of the vacancy to which they are assigned.</p></li>
+</ul>
+<p>By taking into account these rules, it is possible to neatly locate reactions and their species in a cluster of reactions. The following figure shows an example in which a set of reactions are placed in such a cluster:</p>
+<div class="figure align-center" id="id4">
+<a class="reference internal image-reference" href="_images/11.png"><img alt="Alternative text" src="_images/11.png" style="width: 800px;" /></a>
+<p class="caption"><span class="caption-text">A set of reactions are located at the side of the pseudospecies which have filled the vacancies in the layers of the reactions containing the pre-located species they are representing.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="packing-clusters-into-a-compartment">
+<h4>Packing clusters into a compartment<a class="headerlink" href="#packing-clusters-into-a-compartment" title="Permalink to this headline">¶</a></h4>
+<p>By iterating the previous steps, we can determine the positions of all the reactions of each cluster and their associated species. As we mentioned earlier, here we need to move the clusters of reactions relatively to find their exact positions in a compartment. This process is very similar to a &quot;Packing Problem&quot;, through which a bunch of small rectangles are packed into a bigger one with definite dimensions. Here, we define an extent box for each cluster of reactions (a box surrounding all the reactions and species in a cluster) and then try to pack these extent boxes into a rectangle with minimum size (representing the compartment to which they belong). By doing so, the position of each cluster and its constituents is determined as shown in the following figure for a set of clusters of reactions:</p>
+<div class="figure align-center" id="id5">
+<a class="reference internal image-reference" href="_images/12.png"><img alt="Alternative text" src="_images/12.png" style="width: 800px;" /></a>
+<p class="caption"><span class="caption-text">Locating each cluster of reactions in its exact position by packing them into their containing compartment.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="auto-render">
+<h2>Auto-Render<a class="headerlink" href="#auto-render" title="Permalink to this headline">¶</a></h2>
+<p>The auto-render algorithm, which is implemented by <a class="reference internal" href="APIReference/functions/RenderInfo/ne_ri_addDefaultRenderFeaturesToVeneer.html#ne-ri-adddefaultrenderfeaturestoveneer"><span class="std std-ref">ne_ri_addDefaultRenderFeaturesToVeneer</span></a>, is a tool to set the default values for the graphical features of graphical objects in a network of an SBML model, including <a class="reference internal" href="APIReference/classes/render/VColorDefinition.html#vcolordefinition"><span class="std std-ref">Colors</span></a>, <a class="reference internal" href="APIReference/classes/render/VGradientBase.html#vgradientbase"><span class="std std-ref">Gradients</span></a>, <a class="reference internal" href="APIReference/classes/render/VLineEnding.html#vlineending"><span class="std std-ref">Line Endings</span></a> and <a class="reference internal" href="APIReference/classes/render/VGlobalStyle.html#vglobalstyle"><span class="std std-ref">Styles</span></a>.</p>
+<div class="section" id="default-render-values">
+<h3>Default Render Values<a class="headerlink" href="#default-render-values" title="Permalink to this headline">¶</a></h3>
+<p>Our auto-render algorithm sets the following default values for graphical features of an SBML model:</p>
+<div class="section" id="colors">
+<h4>Colors<a class="headerlink" href="#colors" title="Permalink to this headline">¶</a></h4>
+<p>A series of colors are added to the <a class="reference internal" href="APIReference/classes/render/Veneer.html#veneer"><span class="std std-ref">Veneer</span></a> of the network. The added colors are:</p>
+<table class="colwidths-given docutils align-center">
+<colgroup>
+<col style="width: 3%" />
+<col style="width: 3%" />
+<col style="width: 94%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p class="centered">
+<strong>Name</strong></p></th>
+<th class="head"><p class="centered">
+<strong>Hex</strong></p></th>
+<th class="head"><p class="centered">
+<strong>Color</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>White</p></td>
+<td><p>#ffffff</p></td>
+<td><embed>
+    <div style="padding:10px;color:#fff;background:#ffffff;"></div>
+</embed></td>
+</tr>
+<tr class="row-odd"><td><p>Black</p></td>
+<td><p>#000000</p></td>
+<td><embed>
+    <div style="padding:10px;color:#fff;background:#000000;"></div>
+</embed></td>
+</tr>
+<tr class="row-even"><td><p>Red</p></td>
+<td><p>#ff0000</p></td>
+<td><embed>
+    <div style="padding:10px;color:#fff;background:#ff0000;"></div>
+</embed></td>
+</tr>
+<tr class="row-odd"><td><p>DarkRed</p></td>
+<td><p>#800000</p></td>
+<td><embed>
+    <div style="padding:10px;color:#fff;background:#800000;"></div>
+</embed></td>
+</tr>
+<tr class="row-even"><td><p>Green</p></td>
+<td><p>#00ff00</p></td>
+<td><embed>
+    <div style="padding:10px;color:#fff;background:#00ff00;"></div>
+</embed></td>
+</tr>
+<tr class="row-odd"><td><p>DarkGreen</p></td>
+<td><p>#008000</p></td>
+<td><embed>
+    <div style="padding:10px;color:#fff;background:#008000;"></div>
+</embed></td>
+</tr>
+<tr class="row-even"><td><p>Blue</p></td>
+<td><p>#0000ff</p></td>
+<td><embed>
+  <div style="padding:10px;color:#fff;background:#0000ff;"></div>
+</embed></td>
+</tr>
+<tr class="row-odd"><td><p>DarkBlue</p></td>
+<td><p>#000080</p></td>
+<td><embed>
+  <div style="padding:10px;color:#fff;background:#000080;"></div>
+</embed></td>
+</tr>
+<tr class="row-even"><td><p>Cyan</p></td>
+<td><p>#00ffff</p></td>
+<td><embed>
+  <div style="padding:10px;color:#fff;background:#00ffff;"></div>
+</embed></td>
+</tr>
+<tr class="row-odd"><td><p>DarkCyan</p></td>
+<td><p>#008080</p></td>
+<td><embed>
+  <div style="padding:10px;color:#fff;background:#008080;"></div>
+</embed></td>
+</tr>
+<tr class="row-even"><td><p>Magenta</p></td>
+<td><p>#ff00ff</p></td>
+<td><embed>
+  <div style="padding:10px;color:#fff;background:#ff00ff;"></div>
+</embed></td>
+</tr>
+<tr class="row-odd"><td><p>DarkMagenta</p></td>
+<td><p>#800080</p></td>
+<td><embed>
+  <div style="padding:10px;color:#fff;background:#800080;"></div>
+</embed></td>
+</tr>
+<tr class="row-even"><td><p>Gray</p></td>
+<td><p>#a0a0a4</p></td>
+<td><embed>
+  <div style="padding:10px;color:#fff;background:#a0a0a4;"></div>
+</embed></td>
+</tr>
+<tr class="row-odd"><td><p>DarkGray</p></td>
+<td><p>#808080</p></td>
+<td><embed>
+  <div style="padding:10px;color:#fff;background:#808080;"></div>
+</embed></td>
+</tr>
+<tr class="row-even"><td><p>LightGray</p></td>
+<td><p>#c0c0c0</p></td>
+<td><embed>
+  <div style="padding:10px;color:#fff;background:#c0c0c0;"></div>
+</embed></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="background-color">
+<h4>Background Color<a class="headerlink" href="#background-color" title="Permalink to this headline">¶</a></h4>
+<p>The background color of the network scene is set to <strong>White</strong>.</p>
+</div>
+<div class="section" id="line-endings">
+<h4>Line Endings<a class="headerlink" href="#line-endings" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference internal" href="APIReference/classes/render/VLineEnding.html#vlineending"><span class="std std-ref">Line Endings</span></a> are the geometric shapes put at the start/end head of the curves (<a class="reference internal" href="APIReference/classes/layout/NSpeciesReference.html#nspeciesreference"><span class="std std-ref">SpeciesReferences</span></a>) in a network to show the role of the species they are connected to in reactions. Thus, for each species role in reactions, a Line Ending is defined as follows and added to the <a class="reference internal" href="APIReference/classes/render/Veneer.html#veneer"><span class="std std-ref">Veneer</span></a> of the network:</p>
+<table class="colwidths-given docutils align-center">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p class="centered">
+<strong>Role</strong></p></th>
+<th class="head"><p class="centered">
+<strong>Name</strong></p></th>
+<th class="head"><p class="centered">
+<strong>Line Ending</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Product</p></td>
+<td><p>productHead</p></td>
+<td><div class="figure align-center">
+<a class="reference internal image-reference" href="_images/13.png"><img alt="Alternative text" src="_images/13.png" style="width: 100px;" /></a>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Side Product</p></td>
+<td><p>sideProductHead</p></td>
+<td><div class="figure align-center">
+<a class="reference internal image-reference" href="_images/14.png"><img alt="Alternative text" src="_images/14.png" style="width: 100px;" /></a>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>Modifier</p></td>
+<td><p>modifierHead</p></td>
+<td><div class="figure align-center">
+<a class="reference internal image-reference" href="_images/15.png"><img alt="Alternative text" src="_images/15.png" style="width: 100px;" /></a>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Activator</p></td>
+<td><p>activatorHead</p></td>
+<td><div class="figure align-center">
+<a class="reference internal image-reference" href="_images/16.png"><img alt="Alternative text" src="_images/16.png" style="width: 100px;" /></a>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>Inhibitor</p></td>
+<td><p>inhibitorHead</p></td>
+<td><div class="figure align-center">
+<a class="reference internal image-reference" href="_images/17.png"><img alt="Alternative text" src="_images/17.png" style="width: 100px;" /></a>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="styles">
+<h4>Styles<a class="headerlink" href="#styles" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference internal" href="APIReference/classes/render/VGlobalStyle.html#vglobalstyle"><span class="std std-ref">Styles</span></a> are used to determine how a graphical object is rendered in a network based on either its type or its role in reactions. Thus, both for each type of graphical objects and for each role in reactions, a Style with the following features is defined and added to the <a class="reference internal" href="APIReference/classes/render/Veneer.html#veneer"><span class="std std-ref">Veneer</span></a> of the network.</p>
+<ul class="simple">
+<li><p>Features of the Styles for different <strong>types</strong> of graphical objects:</p></li>
+</ul>
+<table class="colwidths-given docutils align-center">
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p class="centered">
+<strong>Feature</strong></p></th>
+<th class="head"><p class="centered">
+<strong>COMPARTMENTGLYPH</strong></p></th>
+<th class="head"><p class="centered">
+<strong>SPECIESGLYPH</strong></p></th>
+<th class="head"><p class="centered">
+<strong>REACTIONGLYPH</strong></p></th>
+<th class="head"><p class="centered">
+<strong>SPECIESREFERENCEGLYPH</strong></p></th>
+<th class="head"><p class="centered">
+<strong>TEXTGLYPH</strong></p></th>
+<th class="head"><p class="centered">
+<strong>GENERALGLYPH</strong></p></th>
+<th class="head"><p class="centered">
+<strong>GRAPHICALOBJECT</strong></p></th>
+<th class="head"><p class="centered">
+<strong>ANY</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>stroke</strong></p></td>
+<td><p>DarkGray</p></td>
+<td><p>Black</p></td>
+<td><p>Black</p></td>
+<td><p>Black</p></td>
+<td><p>Black</p></td>
+<td><p>Black</p></td>
+<td><p>Black</p></td>
+<td><p>Black</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>stroke-width</strong></p></td>
+<td><p>8.0</p></td>
+<td><p>2.0</p></td>
+<td><p>2.0</p></td>
+<td><p>2.0</p></td>
+<td><p>2.0</p></td>
+<td><p>2.0</p></td>
+<td><p>2.0</p></td>
+<td><p>2.0</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>fill</strong></p></td>
+<td><p>LightGray</p></td>
+<td><p>White</p></td>
+<td><p>White</p></td>
+<td><p>White</p></td>
+<td><p>White</p></td>
+<td><p>White</p></td>
+<td><p>White</p></td>
+<td><p>White</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>font-family</strong></p></td>
+<td><p>monospace</p></td>
+<td><p>monospace</p></td>
+<td><p>monospace</p></td>
+<td><p>monospace</p></td>
+<td><p>monospace</p></td>
+<td><p>monospace</p></td>
+<td><p>monospace</p></td>
+<td><p>monospace</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>font-size</strong></p></td>
+<td><p>24 %0</p></td>
+<td><p>24 %0</p></td>
+<td><p>24 %0</p></td>
+<td><p>24 %0</p></td>
+<td><p>24 %0</p></td>
+<td><p>24 %0</p></td>
+<td><p>24 %0</p></td>
+<td><p>24 %0</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>font-weight</strong></p></td>
+<td><p>normal</p></td>
+<td><p>normal</p></td>
+<td><p>normal</p></td>
+<td><p>normal</p></td>
+<td><p>normal</p></td>
+<td><p>normal</p></td>
+<td><p>normal</p></td>
+<td><p>normal</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>font-style</strong></p></td>
+<td><p>normal</p></td>
+<td><p>normal</p></td>
+<td><p>normal</p></td>
+<td><p>normal</p></td>
+<td><p>normal</p></td>
+<td><p>normal</p></td>
+<td><p>normal</p></td>
+<td><p>normal</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>text-anchor</strong></p></td>
+<td><p>middle</p></td>
+<td><p>middle</p></td>
+<td><p>middle</p></td>
+<td><p>middle</p></td>
+<td><p>middle</p></td>
+<td><p>middle</p></td>
+<td><p>middle</p></td>
+<td><p>middle</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>vtext-anchor</strong></p></td>
+<td><p>middle</p></td>
+<td><p>middle</p></td>
+<td><p>middle</p></td>
+<td><p>middle</p></td>
+<td><p>middle</p></td>
+<td><p>middle</p></td>
+<td><p>middle</p></td>
+<td><p>middle</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>geometric shape</strong></p></td>
+<td><p>(Rounded) Rectangle</p></td>
+<td><p>(Rounded) Rectangle</p></td>
+<td><p>_</p></td>
+<td><p>_</p></td>
+<td><p>_</p></td>
+<td><p>_</p></td>
+<td><p>_</p></td>
+<td><p>_</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>startHead</strong></p></td>
+<td><p>_</p></td>
+<td><p>_</p></td>
+<td><p>_</p></td>
+<td><p>_</p></td>
+<td><p>_</p></td>
+<td><p>_</p></td>
+<td><p>_</p></td>
+<td><p>_</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>endHead</strong></p></td>
+<td><p>_</p></td>
+<td><p>_</p></td>
+<td><p>_</p></td>
+<td><p>_</p></td>
+<td><p>_</p></td>
+<td><p>_</p></td>
+<td><p>_</p></td>
+<td><p>_</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Features of the Styles for different <strong>roles</strong> in a reaction:</p></li>
+</ul>
+<table class="colwidths-given docutils align-center">
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p class="centered">
+<strong>Feature</strong></p></th>
+<th class="head"><p class="centered">
+<strong>substrate</strong></p></th>
+<th class="head"><p class="centered">
+<strong>side substrate</strong></p></th>
+<th class="head"><p class="centered">
+<strong>product</strong></p></th>
+<th class="head"><p class="centered">
+<strong>side product</strong></p></th>
+<th class="head"><p class="centered">
+<strong>modifier</strong></p></th>
+<th class="head"><p class="centered">
+<strong>activator</strong></p></th>
+<th class="head"><p class="centered">
+<strong>inhibitor</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>stroke</strong></p></td>
+<td><p>Black</p></td>
+<td><p>Black</p></td>
+<td><p>Black</p></td>
+<td><p>Black</p></td>
+<td><p>Black</p></td>
+<td><p>Black</p></td>
+<td><p>Black</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>stroke-width</strong></p></td>
+<td><p>2.0</p></td>
+<td><p>2.0</p></td>
+<td><p>2.0</p></td>
+<td><p>2.0</p></td>
+<td><p>2.0</p></td>
+<td><p>2.0</p></td>
+<td><p>2.0</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>fill</strong></p></td>
+<td><p>White</p></td>
+<td><p>White</p></td>
+<td><p>White</p></td>
+<td><p>White</p></td>
+<td><p>White</p></td>
+<td><p>White</p></td>
+<td><p>White</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>font-family</strong></p></td>
+<td><p>monospace</p></td>
+<td><p>monospace</p></td>
+<td><p>monospace</p></td>
+<td><p>monospace</p></td>
+<td><p>monospace</p></td>
+<td><p>monospace</p></td>
+<td><p>monospace</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>font-size</strong></p></td>
+<td><p>24 %0</p></td>
+<td><p>24 %0</p></td>
+<td><p>24 %0</p></td>
+<td><p>24 %0</p></td>
+<td><p>24 %0</p></td>
+<td><p>24 %0</p></td>
+<td><p>24 %0</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>font-weight</strong></p></td>
+<td><p>normal</p></td>
+<td><p>normal</p></td>
+<td><p>normal</p></td>
+<td><p>normal</p></td>
+<td><p>normal</p></td>
+<td><p>normal</p></td>
+<td><p>normal</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>font-style</strong></p></td>
+<td><p>normal</p></td>
+<td><p>normal</p></td>
+<td><p>normal</p></td>
+<td><p>normal</p></td>
+<td><p>normal</p></td>
+<td><p>normal</p></td>
+<td><p>normal</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>text-anchor</strong></p></td>
+<td><p>middle</p></td>
+<td><p>middle</p></td>
+<td><p>middle</p></td>
+<td><p>middle</p></td>
+<td><p>middle</p></td>
+<td><p>middle</p></td>
+<td><p>middle</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>vtext-anchor</strong></p></td>
+<td><p>middle</p></td>
+<td><p>middle</p></td>
+<td><p>middle</p></td>
+<td><p>middle</p></td>
+<td><p>middle</p></td>
+<td><p>middle</p></td>
+<td><p>middle</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>geometric shape</strong></p></td>
+<td><p>_</p></td>
+<td><p>_</p></td>
+<td><p>_</p></td>
+<td><p>_</p></td>
+<td><p>_</p></td>
+<td><p>_</p></td>
+<td><p>_</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>startHead</strong></p></td>
+<td><p>_</p></td>
+<td><p>_</p></td>
+<td><p>_</p></td>
+<td><p>_</p></td>
+<td><p>_</p></td>
+<td><p>_</p></td>
+<td><p>_</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>endHead</strong></p></td>
+<td><p>_</p></td>
+<td><p>_</p></td>
+<td><p>productHead</p></td>
+<td><p>sideProductHead</p></td>
+<td><p>modifierHead</p></td>
+<td><p>activatorHead</p></td>
+<td><p>inhibitorHead</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="APIReference/index.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="quickstart.html" class="btn btn-neutral float-left" title="Qucik Start" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Adel Heydarabadipour.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,5 @@
+***********
+VLocalStyle
+***********
+
+.. doxygenclass:: sbne::VLocalStyle

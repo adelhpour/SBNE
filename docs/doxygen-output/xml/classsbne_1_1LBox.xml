@@ -1,0 +1,736 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="classsbne_1_1LBox" kind="class" language="C++" prot="public">
+    <compoundname>sbne::LBox</compoundname>
+    <includes refid="ne__layoutBox_8h" local="no">ne_layoutBox.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classsbne_1_1LBox_1a3c879686d12b191f25e787042b4e8bfb" prot="protected" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string sbne::LBox::_id</definition>
+        <argsstring></argsstring>
+        <name>_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="130" column="17" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" bodystart="130" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1LBox_1af958e98c6317f75969f2636c796b75fc" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double sbne::LBox::_x</definition>
+        <argsstring></argsstring>
+        <name>_x</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="131" column="12" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" bodystart="131" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1LBox_1abfe30feae41565ba0e6e58d89b0707c7" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double sbne::LBox::_y</definition>
+        <argsstring></argsstring>
+        <name>_y</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="132" column="12" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" bodystart="132" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1LBox_1a7b21e595730f48588f98068fecafe58a" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double sbne::LBox::_z</definition>
+        <argsstring></argsstring>
+        <name>_z</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="133" column="12" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" bodystart="133" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1LBox_1ac0994c1824a23d86eb368e4cd0aa1385" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double sbne::LBox::_width</definition>
+        <argsstring></argsstring>
+        <name>_width</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="134" column="12" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1LBox_1afa3de91f2099aead92561c3668fad6df" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double sbne::LBox::_height</definition>
+        <argsstring></argsstring>
+        <name>_height</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="135" column="12" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" bodystart="135" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1LBox_1ab71b0563123a6b48d1ff1f9859497336" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double sbne::LBox::_depth</definition>
+        <argsstring></argsstring>
+        <name>_depth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="136" column="12" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1LBox_1a95596fec8c45b74efb2e7cc6c4e92f3c" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sbne::LBox::_isSetId</definition>
+        <argsstring></argsstring>
+        <name>_isSetId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="137" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classsbne_1_1LBox_1a9a0e506b72b582229dbf9432062b7ca3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>sbne::LBox::LBox</definition>
+        <argsstring>()</argsstring>
+        <name>LBox</name>
+        <briefdescription>
+<para>Constructors. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="14" column="5" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" bodystart="14" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1abb0336aa4d9bd166adfd223a846f594d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>sbne::LBox::LBox</definition>
+        <argsstring>(const LBox &amp;box)</argsstring>
+        <name>LBox</name>
+        <param>
+          <type>const <ref refid="classsbne_1_1LBox" kindref="compound">LBox</ref> &amp;</type>
+          <declname>box</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="23" column="5" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" bodystart="23" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1ae5c1c62b142df624aa5e75ddb53b785d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>sbne::LBox::LBox</definition>
+        <argsstring>(const LPoint &amp;min, const LPoint &amp;max)</argsstring>
+        <name>LBox</name>
+        <param>
+          <type>const <ref refid="classsbne_1_1LPoint" kindref="compound">LPoint</ref> &amp;</type>
+          <declname>min</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classsbne_1_1LPoint" kindref="compound">LPoint</ref> &amp;</type>
+          <declname>max</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="27" column="5" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" bodystart="27" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1a93e55d1016a4f2d1504764f5b5b6d82d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>sbne::LBox::LBox</definition>
+        <argsstring>(const double &amp;x, const double &amp;y, const double &amp;z, const double &amp;width, const double &amp;height, const double &amp;depth)</argsstring>
+        <name>LBox</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>height</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>depth</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="33" column="5" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" bodystart="33" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1a26b3b02aae6bc533904663beedd58492" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>sbne::LBox::LBox</definition>
+        <argsstring>(const double &amp;x, const double &amp;y, const double &amp;width, const double &amp;height)</argsstring>
+        <name>LBox</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>height</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="36" column="5" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" bodystart="36" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1ae8e0f6096cb3de5da7f0bf071de6fbbe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classsbne_1_1LBox" kindref="compound">LBox</ref></type>
+        <definition>LBox sbne::LBox::operator=</definition>
+        <argsstring>(const LBox &amp;b)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="classsbne_1_1LBox" kindref="compound">LBox</ref> &amp;</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>Functions. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="40" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.cpp" bodystart="5" bodyend="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1ac15a62581748fda2eeb48ac6d3163384" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::LBox::setId</definition>
+        <argsstring>(const std::string &amp;id)</argsstring>
+        <name>setId</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="43" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.cpp" bodystart="8" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1a76e33187a78c9ef06c9417c9d9567c18" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::string &amp;</type>
+        <definition>const std::string &amp; sbne::LBox::getId</definition>
+        <argsstring>() const</argsstring>
+        <name>getId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="46" column="23" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.cpp" bodystart="13" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1afe23028790646112ba27fa8be13e97e2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const bool</type>
+        <definition>const bool sbne::LBox::isSetId</definition>
+        <argsstring>() const</argsstring>
+        <name>isSetId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="49" column="16" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" bodystart="49" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1a8026465a30d33f95cbbb451ed74b92de" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::LBox::setX</definition>
+        <argsstring>(const double &amp;x)</argsstring>
+        <name>setX</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="52" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.cpp" bodystart="17" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1a932dba16dfd6f486675f172cddc8ffe8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const double &amp;</type>
+        <definition>const double &amp; sbne::LBox::x</definition>
+        <argsstring>() const</argsstring>
+        <name>x</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="55" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.cpp" bodystart="21" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1aeaa6b26fc34d18073716ca371ed65b0a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::LBox::setY</definition>
+        <argsstring>(const double &amp;y)</argsstring>
+        <name>setY</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="58" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.cpp" bodystart="25" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1aa462a5bab57ca51f09829ab0971ff546" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const double &amp;</type>
+        <definition>const double &amp; sbne::LBox::y</definition>
+        <argsstring>() const</argsstring>
+        <name>y</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="61" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.cpp" bodystart="29" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1ab25f8af10dc55e166ac25e5bdbac2ea4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::LBox::setZ</definition>
+        <argsstring>(const double &amp;z)</argsstring>
+        <name>setZ</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>z</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="64" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.cpp" bodystart="33" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1a1b570c1a8c8b9b484829fa9fc649e663" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const double &amp;</type>
+        <definition>const double &amp; sbne::LBox::z</definition>
+        <argsstring>() const</argsstring>
+        <name>z</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="67" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.cpp" bodystart="37" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1a8c6cf9f36f0ba705e8e135c3a050c263" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::LBox::setWidth</definition>
+        <argsstring>(const double &amp;width)</argsstring>
+        <name>setWidth</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>width</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="70" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.cpp" bodystart="41" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1a0b4251826b04a66215cd2b7705fb69cc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const double &amp;</type>
+        <definition>const double &amp; sbne::LBox::width</definition>
+        <argsstring>() const</argsstring>
+        <name>width</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="73" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.cpp" bodystart="46" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1a852dd64fbb6b5e61253a6c376d0e65da" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::LBox::setHeight</definition>
+        <argsstring>(const double &amp;height)</argsstring>
+        <name>setHeight</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>height</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="76" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.cpp" bodystart="50" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1a70f75b7207cdb6545dac93b93ce69950" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const double &amp;</type>
+        <definition>const double &amp; sbne::LBox::height</definition>
+        <argsstring>() const</argsstring>
+        <name>height</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="79" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.cpp" bodystart="54" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1a895dd13e6f885a664ed931699e685775" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::LBox::setDepth</definition>
+        <argsstring>(const double &amp;depth)</argsstring>
+        <name>setDepth</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>depth</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="82" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.cpp" bodystart="58" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1a9157a20b701b6cfee6434d84d021c990" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const double &amp;</type>
+        <definition>const double &amp; sbne::LBox::depth</definition>
+        <argsstring>() const</argsstring>
+        <name>depth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="85" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.cpp" bodystart="62" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1af46e39e18b9cec2f62f8a8d8435b7cf9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::LBox::setUpperLeftCorner</definition>
+        <argsstring>(const LPoint &amp;p)</argsstring>
+        <name>setUpperLeftCorner</name>
+        <param>
+          <type>const <ref refid="classsbne_1_1LPoint" kindref="compound">LPoint</ref> &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="88" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.cpp" bodystart="66" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1aae4203a4e1e7140d848df3f9e5b640f4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classsbne_1_1LPoint" kindref="compound">LPoint</ref></type>
+        <definition>const LPoint sbne::LBox::upperLeftCorner</definition>
+        <argsstring>() const</argsstring>
+        <name>upperLeftCorner</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="91" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.cpp" bodystart="71" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1ab1036ad64a2e5d08d49c2884c8969207" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classsbne_1_1LPoint" kindref="compound">LPoint</ref></type>
+        <definition>const LPoint sbne::LBox::upperRightCorner</definition>
+        <argsstring>() const</argsstring>
+        <name>upperRightCorner</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="94" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.cpp" bodystart="75" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1ab69820a1e72e0d9c791d96767809bdda" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classsbne_1_1LPoint" kindref="compound">LPoint</ref></type>
+        <definition>const LPoint sbne::LBox::bottomLeftCorner</definition>
+        <argsstring>() const</argsstring>
+        <name>bottomLeftCorner</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="97" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.cpp" bodystart="79" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1a342b78105cd7d2568ad4b93545fda87e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classsbne_1_1LPoint" kindref="compound">LPoint</ref></type>
+        <definition>const LPoint sbne::LBox::bottomRightCorner</definition>
+        <argsstring>() const</argsstring>
+        <name>bottomRightCorner</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="100" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.cpp" bodystart="83" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1a468d071abbcd9de78bffc637e5550339" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classsbne_1_1LPoint" kindref="compound">LPoint</ref></type>
+        <definition>const LPoint sbne::LBox::center</definition>
+        <argsstring>() const</argsstring>
+        <name>center</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="103" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.cpp" bodystart="87" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1a9782771325b6e9aa349bd1c41f742002" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classsbne_1_1LPoint" kindref="compound">LPoint</ref></type>
+        <definition>const LPoint sbne::LBox::diagonal</definition>
+        <argsstring>() const</argsstring>
+        <name>diagonal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="106" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.cpp" bodystart="91" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1a0b38d73cba57dbf7b1ab99cc858abe00" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const double &amp;</type>
+        <definition>const double &amp; sbne::LBox::maxDimension</definition>
+        <argsstring>() const</argsstring>
+        <name>maxDimension</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="109" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.cpp" bodystart="95" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1a3d9c49588e1d899028ee628a406d03cc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const double &amp;</type>
+        <definition>const double &amp; sbne::LBox::minDimension</definition>
+        <argsstring>() const</argsstring>
+        <name>minDimension</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="112" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.cpp" bodystart="99" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1a42d7d00bf4453a286a5487e780413828" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const double</type>
+        <definition>const double sbne::LBox::area</definition>
+        <argsstring>() const</argsstring>
+        <name>area</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="115" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.cpp" bodystart="103" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1a480c3d7e80f19c25af1753afc21e6e0a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::LBox::extendWidth</definition>
+        <argsstring>(const double &amp;addedWidth)</argsstring>
+        <name>extendWidth</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>addedWidth</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="118" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.cpp" bodystart="107" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1a995f1929f016f1055386ced37e76d3ee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::LBox::extendHeight</definition>
+        <argsstring>(const double &amp;addedHeight)</argsstring>
+        <name>extendHeight</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>addedHeight</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="121" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.cpp" bodystart="111" bodyend="113"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1a66d5b186bfb0dd13a0eaa6a99b8890cc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::LBox::extendDepth</definition>
+        <argsstring>(const double &amp;addedDepth)</argsstring>
+        <name>extendDepth</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>addedDepth</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="124" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.cpp" bodystart="115" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LBox_1a885c34a283ad2e53e85190b9921fdc2d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::LBox::shiftPosition</definition>
+        <argsstring>(const double &amp;dx, const double &amp;dy, const double &amp;dz=0)</argsstring>
+        <name>shiftPosition</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>dx</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>dy</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>dz</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="127" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.cpp" bodystart="119" bodyend="123"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The equivalent class for SBML <ulink url="http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_bounding_box.html">BoundingBox</ulink> . </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" line="11" column="1" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/layout/ne_layoutBox.h" bodystart="11" bodyend="138"/>
+    <listofallmembers>
+      <member refid="classsbne_1_1LBox_1ab71b0563123a6b48d1ff1f9859497336" prot="protected" virt="non-virtual"><scope>sbne::LBox</scope><name>_depth</name></member>
+      <member refid="classsbne_1_1LBox_1afa3de91f2099aead92561c3668fad6df" prot="protected" virt="non-virtual"><scope>sbne::LBox</scope><name>_height</name></member>
+      <member refid="classsbne_1_1LBox_1a3c879686d12b191f25e787042b4e8bfb" prot="protected" virt="non-virtual"><scope>sbne::LBox</scope><name>_id</name></member>
+      <member refid="classsbne_1_1LBox_1a95596fec8c45b74efb2e7cc6c4e92f3c" prot="protected" virt="non-virtual"><scope>sbne::LBox</scope><name>_isSetId</name></member>
+      <member refid="classsbne_1_1LBox_1ac0994c1824a23d86eb368e4cd0aa1385" prot="protected" virt="non-virtual"><scope>sbne::LBox</scope><name>_width</name></member>
+      <member refid="classsbne_1_1LBox_1af958e98c6317f75969f2636c796b75fc" prot="protected" virt="non-virtual"><scope>sbne::LBox</scope><name>_x</name></member>
+      <member refid="classsbne_1_1LBox_1abfe30feae41565ba0e6e58d89b0707c7" prot="protected" virt="non-virtual"><scope>sbne::LBox</scope><name>_y</name></member>
+      <member refid="classsbne_1_1LBox_1a7b21e595730f48588f98068fecafe58a" prot="protected" virt="non-virtual"><scope>sbne::LBox</scope><name>_z</name></member>
+      <member refid="classsbne_1_1LBox_1a42d7d00bf4453a286a5487e780413828" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>area</name></member>
+      <member refid="classsbne_1_1LBox_1ab69820a1e72e0d9c791d96767809bdda" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>bottomLeftCorner</name></member>
+      <member refid="classsbne_1_1LBox_1a342b78105cd7d2568ad4b93545fda87e" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>bottomRightCorner</name></member>
+      <member refid="classsbne_1_1LBox_1a468d071abbcd9de78bffc637e5550339" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>center</name></member>
+      <member refid="classsbne_1_1LBox_1a9157a20b701b6cfee6434d84d021c990" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>depth</name></member>
+      <member refid="classsbne_1_1LBox_1a9782771325b6e9aa349bd1c41f742002" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>diagonal</name></member>
+      <member refid="classsbne_1_1LBox_1a66d5b186bfb0dd13a0eaa6a99b8890cc" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>extendDepth</name></member>
+      <member refid="classsbne_1_1LBox_1a995f1929f016f1055386ced37e76d3ee" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>extendHeight</name></member>
+      <member refid="classsbne_1_1LBox_1a480c3d7e80f19c25af1753afc21e6e0a" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>extendWidth</name></member>
+      <member refid="classsbne_1_1LBox_1a76e33187a78c9ef06c9417c9d9567c18" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>getId</name></member>
+      <member refid="classsbne_1_1LBox_1a70f75b7207cdb6545dac93b93ce69950" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>height</name></member>
+      <member refid="classsbne_1_1LBox_1afe23028790646112ba27fa8be13e97e2" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>isSetId</name></member>
+      <member refid="classsbne_1_1LBox_1a9a0e506b72b582229dbf9432062b7ca3" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>LBox</name></member>
+      <member refid="classsbne_1_1LBox_1abb0336aa4d9bd166adfd223a846f594d" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>LBox</name></member>
+      <member refid="classsbne_1_1LBox_1ae5c1c62b142df624aa5e75ddb53b785d" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>LBox</name></member>
+      <member refid="classsbne_1_1LBox_1a93e55d1016a4f2d1504764f5b5b6d82d" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>LBox</name></member>
+      <member refid="classsbne_1_1LBox_1a26b3b02aae6bc533904663beedd58492" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>LBox</name></member>
+      <member refid="classsbne_1_1LBox_1a0b38d73cba57dbf7b1ab99cc858abe00" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>maxDimension</name></member>
+      <member refid="classsbne_1_1LBox_1a3d9c49588e1d899028ee628a406d03cc" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>minDimension</name></member>
+      <member refid="classsbne_1_1LBox_1ae8e0f6096cb3de5da7f0bf071de6fbbe" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>operator=</name></member>
+      <member refid="classsbne_1_1LBox_1a895dd13e6f885a664ed931699e685775" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>setDepth</name></member>
+      <member refid="classsbne_1_1LBox_1a852dd64fbb6b5e61253a6c376d0e65da" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>setHeight</name></member>
+      <member refid="classsbne_1_1LBox_1ac15a62581748fda2eeb48ac6d3163384" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>setId</name></member>
+      <member refid="classsbne_1_1LBox_1af46e39e18b9cec2f62f8a8d8435b7cf9" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>setUpperLeftCorner</name></member>
+      <member refid="classsbne_1_1LBox_1a8c6cf9f36f0ba705e8e135c3a050c263" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>setWidth</name></member>
+      <member refid="classsbne_1_1LBox_1a8026465a30d33f95cbbb451ed74b92de" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>setX</name></member>
+      <member refid="classsbne_1_1LBox_1aeaa6b26fc34d18073716ca371ed65b0a" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>setY</name></member>
+      <member refid="classsbne_1_1LBox_1ab25f8af10dc55e166ac25e5bdbac2ea4" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>setZ</name></member>
+      <member refid="classsbne_1_1LBox_1a885c34a283ad2e53e85190b9921fdc2d" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>shiftPosition</name></member>
+      <member refid="classsbne_1_1LBox_1aae4203a4e1e7140d848df3f9e5b640f4" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>upperLeftCorner</name></member>
+      <member refid="classsbne_1_1LBox_1ab1036ad64a2e5d08d49c2884c8969207" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>upperRightCorner</name></member>
+      <member refid="classsbne_1_1LBox_1a0b4251826b04a66215cd2b7705fb69cc" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>width</name></member>
+      <member refid="classsbne_1_1LBox_1a932dba16dfd6f486675f172cddc8ffe8" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>x</name></member>
+      <member refid="classsbne_1_1LBox_1aa462a5bab57ca51f09829ab0971ff546" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>y</name></member>
+      <member refid="classsbne_1_1LBox_1a1b570c1a8c8b9b484829fa9fc649e663" prot="public" virt="non-virtual"><scope>sbne::LBox</scope><name>z</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

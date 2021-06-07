@@ -1,0 +1,5 @@
+*****************
+NSpeciesReference
+*****************
+
+.. doxygenclass:: sbne::NSpeciesReference

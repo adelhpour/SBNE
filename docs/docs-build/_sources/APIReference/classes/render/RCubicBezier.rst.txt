@@ -1,0 +1,5 @@
+************
+RCubicBezier
+************
+
+.. doxygenclass:: sbne::RCubicBezier

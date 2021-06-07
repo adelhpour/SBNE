@@ -1,0 +1,5 @@
+***********
+VLineEnding
+***********
+
+.. doxygenclass:: sbne::VLineEnding

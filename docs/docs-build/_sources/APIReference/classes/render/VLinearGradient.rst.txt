@@ -1,0 +1,5 @@
+***************
+VLinearGradient
+***************
+
+.. doxygenclass:: sbne::VLinearGradient

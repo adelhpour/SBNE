@@ -1,0 +1,5 @@
+***********
+GrphObjType
+***********
+
+.. doxygenenum:: GrphObjType

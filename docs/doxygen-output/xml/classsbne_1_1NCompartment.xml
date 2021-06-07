@@ -1,0 +1,621 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="classsbne_1_1NCompartment" kind="class" language="C++" prot="public">
+    <compoundname>sbne::NCompartment</compoundname>
+    <basecompoundref refid="classsbne_1_1NGraphicalObject" prot="public" virt="non-virtual">sbne::NGraphicalObject</basecompoundref>
+    <includes refid="ne__network_8h" local="no">ne_network.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classsbne_1_1NCompartment_1abf9960b0c0d7f1e668c9b8765fce76b8" prot="protected" static="no" mutable="no">
+        <type>speciesVec</type>
+        <definition>speciesVec sbne::NCompartment::_species</definition>
+        <argsstring></argsstring>
+        <name>_species</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="623" column="16" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="623" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1NCompartment_1a237d1d0ea417734f246e1416bab220eb" prot="protected" static="no" mutable="no">
+        <type>reactionVec</type>
+        <definition>reactionVec sbne::NCompartment::_reactions</definition>
+        <argsstring></argsstring>
+        <name>_reactions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="624" column="17" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="624" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1NCompartment_1ac466a65ee3c7031c88d908e063c85be2" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double sbne::NCompartment::_order</definition>
+        <argsstring></argsstring>
+        <name>_order</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="625" column="12" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="625" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1NCompartment_1a82651a0d0a29f65f8d6f1bdb5e9c5b5d" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sbne::NCompartment::_isSetOrder</definition>
+        <argsstring></argsstring>
+        <name>_isSetOrder</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="626" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="626" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classsbne_1_1NCompartment_1afdcd9bdd7637a1a7aee4ce7357e81955" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>sbne::NCompartment::NCompartment</definition>
+        <argsstring>()</argsstring>
+        <name>NCompartment</name>
+        <briefdescription>
+<para>Constructors. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="539" column="5" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="539" bodyend="544"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1NCompartment_1af45116e3f539510c962e38e441da824a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const constSpeciesIt</type>
+        <definition>const constSpeciesIt sbne::NCompartment::speciesBegin</definition>
+        <argsstring>() const</argsstring>
+        <name>speciesBegin</name>
+        <briefdescription>
+<para>Functions related to beginning and end of containers. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="548" column="26" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="548" bodyend="548"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1NCompartment_1a36a738f622f2b98d4950d202523cdcc5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const constSpeciesIt</type>
+        <definition>const constSpeciesIt sbne::NCompartment::speciesEnd</definition>
+        <argsstring>() const</argsstring>
+        <name>speciesEnd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="549" column="26" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="549" bodyend="549"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1NCompartment_1aec960fa144ee3cb542c70d2f8573796a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const constReactionIt</type>
+        <definition>const constReactionIt sbne::NCompartment::reactionsBegin</definition>
+        <argsstring>() const</argsstring>
+        <name>reactionsBegin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="552" column="27" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="552" bodyend="552"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1NCompartment_1a0c9a72c3c231e79862d9174479c29030" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const constReactionIt</type>
+        <definition>const constReactionIt sbne::NCompartment::reactionsEnd</definition>
+        <argsstring>() const</argsstring>
+        <name>reactionsEnd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="553" column="27" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="553" bodyend="553"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1NCompartment_1a610fecbf12ca88d7d1807b4ed1ae7ed9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::NCompartment::addSpecies</definition>
+        <argsstring>(NSpecies *s)</argsstring>
+        <name>addSpecies</name>
+        <param>
+          <type><ref refid="classsbne_1_1NSpecies" kindref="compound">NSpecies</ref> *</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+<para>Functions. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="557" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="1294" bodyend="1299"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1NCompartment_1a1bb324523efd2571bab7da6c4e7c94fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::NCompartment::removeSpecies</definition>
+        <argsstring>(int speciesIndex)</argsstring>
+        <name>removeSpecies</name>
+        <param>
+          <type>int</type>
+          <declname>speciesIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="560" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="1301" bodyend="1312"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1NCompartment_1ad8705a9adaa233e511d86b53483f2776" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::NCompartment::setSpecies</definition>
+        <argsstring>(const speciesVec &amp;sv)</argsstring>
+        <name>setSpecies</name>
+        <param>
+          <type>const speciesVec &amp;</type>
+          <declname>sv</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="563" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="1314" bodyend="1316"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1NCompartment_1add24c1e2dda87d6123a5ec3a488a35b8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const speciesVec &amp;</type>
+        <definition>const speciesVec &amp; sbne::NCompartment::getSpecies</definition>
+        <argsstring>() const</argsstring>
+        <name>getSpecies</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="566" column="22" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="1318" bodyend="1320"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1NCompartment_1af38a55237a3a4c5972d6b94725626e55" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const size_t</type>
+        <definition>const size_t sbne::NCompartment::getNumSpecies</definition>
+        <argsstring>() const</argsstring>
+        <name>getNumSpecies</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="569" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="1322" bodyend="1324"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1NCompartment_1a955328ab565fb85681d1ead108550fe5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classsbne_1_1NSpecies" kindref="compound">NSpecies</ref> *</type>
+        <definition>NSpecies * sbne::NCompartment::findSpeciesById</definition>
+        <argsstring>(const std::string &amp;id)</argsstring>
+        <name>findSpeciesById</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="572" column="14" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="1326" bodyend="1334"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1NCompartment_1a46b25852ac0f2787e8af45dafc88302c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int sbne::NCompartment::findSpeciesIndexById</definition>
+        <argsstring>(const std::string &amp;id)</argsstring>
+        <name>findSpeciesIndexById</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="575" column="9" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="1336" bodyend="1347"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1NCompartment_1a937461dfe03328b6f491013238015157" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classsbne_1_1NSpecies" kindref="compound">NSpecies</ref> *</type>
+        <definition>NSpecies * sbne::NCompartment::findSpeciesByGlyphId</definition>
+        <argsstring>(const std::string &amp;glyphId)</argsstring>
+        <name>findSpeciesByGlyphId</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>glyphId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="578" column="14" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="1349" bodyend="1357"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1NCompartment_1aa6a519354cae703cf55690bd3d5c9a4e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int sbne::NCompartment::findSpeciesIndexByGlyphId</definition>
+        <argsstring>(const std::string &amp;glyphId)</argsstring>
+        <name>findSpeciesIndexByGlyphId</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>glyphId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="581" column="9" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="1359" bodyend="1370"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1NCompartment_1a725f6a17f97224bd4916ceeb6fc8fc20" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::NCompartment::addReaction</definition>
+        <argsstring>(NReaction *r)</argsstring>
+        <name>addReaction</name>
+        <param>
+          <type><ref refid="classsbne_1_1NReaction" kindref="compound">NReaction</ref> *</type>
+          <declname>r</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="584" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="1372" bodyend="1377"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1NCompartment_1a9fdd2e1fc43b62a4869cfeed20ca2d77" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::NCompartment::removeReaction</definition>
+        <argsstring>(int reactionIndex)</argsstring>
+        <name>removeReaction</name>
+        <param>
+          <type>int</type>
+          <declname>reactionIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="587" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="1379" bodyend="1390"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1NCompartment_1aa85872a63ad54a666c8c201cb6fa0f3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::NCompartment::setReactions</definition>
+        <argsstring>(const reactionVec &amp;rv)</argsstring>
+        <name>setReactions</name>
+        <param>
+          <type>const reactionVec &amp;</type>
+          <declname>rv</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="590" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="1392" bodyend="1394"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1NCompartment_1a7ab0f6041b42b8bf6fbe74f53ee8c61d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const reactionVec &amp;</type>
+        <definition>const reactionVec &amp; sbne::NCompartment::getReactions</definition>
+        <argsstring>() const</argsstring>
+        <name>getReactions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="593" column="23" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="1396" bodyend="1398"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1NCompartment_1ada69624067f58f030d19fa55efc69b72" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const size_t</type>
+        <definition>const size_t sbne::NCompartment::getNumReactions</definition>
+        <argsstring>() const</argsstring>
+        <name>getNumReactions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="596" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="1400" bodyend="1402"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1NCompartment_1aadf0d2b2c75f3ef88f77488a03497c2d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classsbne_1_1NReaction" kindref="compound">NReaction</ref> *</type>
+        <definition>NReaction * sbne::NCompartment::findReactionById</definition>
+        <argsstring>(const std::string &amp;id)</argsstring>
+        <name>findReactionById</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="599" column="15" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="1404" bodyend="1412"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1NCompartment_1ac6787ac93ae40a6c4e5fe7175bac9162" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int sbne::NCompartment::findReactionIndexById</definition>
+        <argsstring>(const std::string &amp;id)</argsstring>
+        <name>findReactionIndexById</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="602" column="9" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="1414" bodyend="1425"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1NCompartment_1aa7ac1b627daf58c28d1675e01d7c7536" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classsbne_1_1NReaction" kindref="compound">NReaction</ref> *</type>
+        <definition>NReaction * sbne::NCompartment::findReactionByGlyphId</definition>
+        <argsstring>(const std::string &amp;glyphId)</argsstring>
+        <name>findReactionByGlyphId</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>glyphId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="605" column="15" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="1427" bodyend="1435"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1NCompartment_1ad65c9c0723f8d2b2290f2323f1861e32" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int sbne::NCompartment::findReactionIndexByGlyphId</definition>
+        <argsstring>(const std::string &amp;glyphId)</argsstring>
+        <name>findReactionIndexByGlyphId</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>glyphId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="608" column="9" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="1437" bodyend="1448"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1NCompartment_1a958a1b51fad48a976acb1cc22e3038b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::NCompartment::setOrder</definition>
+        <argsstring>(const double &amp;order)</argsstring>
+        <name>setOrder</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>order</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="611" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="1450" bodyend="1453"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1NCompartment_1af63f86000953a29c1f3679f23d8f32bd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const double &amp;</type>
+        <definition>const double &amp; sbne::NCompartment::getOrder</definition>
+        <argsstring>() const</argsstring>
+        <name>getOrder</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="614" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="1455" bodyend="1457"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1NCompartment_1a246cf9aeb221e04d76d4ff21b9663dd7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const bool</type>
+        <definition>const bool sbne::NCompartment::isSetOrder</definition>
+        <argsstring>() const</argsstring>
+        <name>isSetOrder</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="617" column="16" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="617" bodyend="617"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1NCompartment_1a3dd71ff903664d83ca44c5d2834776d5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::NCompartment::shiftItems</definition>
+        <argsstring>(const double &amp;dx, const double &amp;dy)</argsstring>
+        <name>shiftItems</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>dx</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>dy</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="620" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="1459" bodyend="1464"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The equivalent class for SBML <ulink url="http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_compartment.html">Compartment</ulink> and <ulink url="http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_compartment_glyph.html">CompartmentGlyph</ulink> . </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>sbne::NCompartment</label>
+        <link refid="classsbne_1_1NCompartment"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>sbne::NGraphicalObject</label>
+        <link refid="classsbne_1_1NGraphicalObject"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>sbne::NetworkElement</label>
+        <link refid="classsbne_1_1NetworkElement"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4">
+        <label>sbne::LBox</label>
+        <link refid="classsbne_1_1LBox"/>
+      </node>
+      <node id="1">
+        <label>sbne::NCompartment</label>
+        <link refid="classsbne_1_1NCompartment"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>sbne::NText</label>
+        <link refid="classsbne_1_1NText"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>sbne::NGraphicalObject</label>
+        <link refid="classsbne_1_1NGraphicalObject"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>_box</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>_text</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>sbne::NetworkElement</label>
+        <link refid="classsbne_1_1NetworkElement"/>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="536" column="1" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="536" bodyend="627"/>
+    <listofallmembers>
+      <member refid="classsbne_1_1NGraphicalObject_1aac23199161a083aabf72fbb1cf164d63" prot="protected" virt="non-virtual"><scope>sbne::NCompartment</scope><name>_box</name></member>
+      <member refid="classsbne_1_1NGraphicalObject_1a8d5480e6a47aba4cd8fca7b51e1e423d" prot="protected" virt="non-virtual"><scope>sbne::NCompartment</scope><name>_glyphId</name></member>
+      <member refid="classsbne_1_1NetworkElement_1aa32d64a86727beb2b5da5d2d46ebb113" prot="protected" virt="non-virtual"><scope>sbne::NCompartment</scope><name>_id</name></member>
+      <member refid="classsbne_1_1NGraphicalObject_1a80f3fda1aa55126f48b9196b448ac430" prot="protected" virt="non-virtual"><scope>sbne::NCompartment</scope><name>_isLockedPosition</name></member>
+      <member refid="classsbne_1_1NGraphicalObject_1a517821ca8920cac74fee342cdcaba734" prot="protected" virt="non-virtual"><scope>sbne::NCompartment</scope><name>_isMatchWithGlyph</name></member>
+      <member refid="classsbne_1_1NGraphicalObject_1a2fa484f696922faf26492037163efd97" prot="protected" virt="non-virtual"><scope>sbne::NCompartment</scope><name>_isSetBox</name></member>
+      <member refid="classsbne_1_1NGraphicalObject_1a9ff64fd60a77f35dbb356fefc06dbf57" prot="protected" virt="non-virtual"><scope>sbne::NCompartment</scope><name>_isSetGlyphId</name></member>
+      <member refid="classsbne_1_1NetworkElement_1a80cf6151787ca8c7bae113296adc2962" prot="protected" virt="non-virtual"><scope>sbne::NCompartment</scope><name>_isSetId</name></member>
+      <member refid="classsbne_1_1NetworkElement_1a42d9377561ef3c5d60b6953d541bbe89" prot="protected" virt="non-virtual"><scope>sbne::NCompartment</scope><name>_isSetName</name></member>
+      <member refid="classsbne_1_1NGraphicalObject_1a2ced5449dae8ac18dc2057a67f9bbdfd" prot="protected" virt="non-virtual"><scope>sbne::NCompartment</scope><name>_isSetObjectRole</name></member>
+      <member refid="classsbne_1_1NCompartment_1a82651a0d0a29f65f8d6f1bdb5e9c5b5d" prot="protected" virt="non-virtual"><scope>sbne::NCompartment</scope><name>_isSetOrder</name></member>
+      <member refid="classsbne_1_1NGraphicalObject_1a8c1b56e56d9ca725520ef2020a39e121" prot="protected" virt="non-virtual"><scope>sbne::NCompartment</scope><name>_isSetText</name></member>
+      <member refid="classsbne_1_1NGraphicalObject_1ae70dfb2b5f6ac5339c7a4fa97bb16d49" prot="protected" virt="non-virtual"><scope>sbne::NCompartment</scope><name>_isUsed</name></member>
+      <member refid="classsbne_1_1NetworkElement_1a67fcd633812ba1f2eb673696d04c138b" prot="protected" virt="non-virtual"><scope>sbne::NCompartment</scope><name>_name</name></member>
+      <member refid="classsbne_1_1NGraphicalObject_1ae5bf212b3f7ee0bfe98092c83387502f" prot="protected" virt="non-virtual"><scope>sbne::NCompartment</scope><name>_objectRole</name></member>
+      <member refid="classsbne_1_1NCompartment_1ac466a65ee3c7031c88d908e063c85be2" prot="protected" virt="non-virtual"><scope>sbne::NCompartment</scope><name>_order</name></member>
+      <member refid="classsbne_1_1NCompartment_1a237d1d0ea417734f246e1416bab220eb" prot="protected" virt="non-virtual"><scope>sbne::NCompartment</scope><name>_reactions</name></member>
+      <member refid="classsbne_1_1NCompartment_1abf9960b0c0d7f1e668c9b8765fce76b8" prot="protected" virt="non-virtual"><scope>sbne::NCompartment</scope><name>_species</name></member>
+      <member refid="classsbne_1_1NGraphicalObject_1afd1e4ef1c224335a9e01094f509a51b2" prot="protected" virt="non-virtual"><scope>sbne::NCompartment</scope><name>_text</name></member>
+      <member refid="classsbne_1_1NGraphicalObject_1aac6aeb7ea1e119834a765b4ea1c174e8" prot="protected" virt="non-virtual"><scope>sbne::NCompartment</scope><name>_type</name></member>
+      <member refid="classsbne_1_1NCompartment_1a725f6a17f97224bd4916ceeb6fc8fc20" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>addReaction</name></member>
+      <member refid="classsbne_1_1NCompartment_1a610fecbf12ca88d7d1807b4ed1ae7ed9" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>addSpecies</name></member>
+      <member refid="classsbne_1_1NCompartment_1aa7ac1b627daf58c28d1675e01d7c7536" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>findReactionByGlyphId</name></member>
+      <member refid="classsbne_1_1NCompartment_1aadf0d2b2c75f3ef88f77488a03497c2d" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>findReactionById</name></member>
+      <member refid="classsbne_1_1NCompartment_1ad65c9c0723f8d2b2290f2323f1861e32" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>findReactionIndexByGlyphId</name></member>
+      <member refid="classsbne_1_1NCompartment_1ac6787ac93ae40a6c4e5fe7175bac9162" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>findReactionIndexById</name></member>
+      <member refid="classsbne_1_1NCompartment_1a937461dfe03328b6f491013238015157" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>findSpeciesByGlyphId</name></member>
+      <member refid="classsbne_1_1NCompartment_1a955328ab565fb85681d1ead108550fe5" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>findSpeciesById</name></member>
+      <member refid="classsbne_1_1NCompartment_1aa6a519354cae703cf55690bd3d5c9a4e" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>findSpeciesIndexByGlyphId</name></member>
+      <member refid="classsbne_1_1NCompartment_1a46b25852ac0f2787e8af45dafc88302c" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>findSpeciesIndexById</name></member>
+      <member refid="classsbne_1_1NGraphicalObject_1ae4ea1886a4dab45082fec9cd27af34cb" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>getBox</name></member>
+      <member refid="classsbne_1_1NGraphicalObject_1a70f8228d0edfa1937ad377122e9e2e29" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>getGlyphId</name></member>
+      <member refid="classsbne_1_1NetworkElement_1a49ccf0816fce78a54c042a889b8431c0" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>getId</name></member>
+      <member refid="classsbne_1_1NetworkElement_1a6c5b45f4c5120d1b5877249fc0961326" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>getName</name></member>
+      <member refid="classsbne_1_1NCompartment_1ada69624067f58f030d19fa55efc69b72" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>getNumReactions</name></member>
+      <member refid="classsbne_1_1NCompartment_1af38a55237a3a4c5972d6b94725626e55" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>getNumSpecies</name></member>
+      <member refid="classsbne_1_1NGraphicalObject_1a997483281544bf8aced10d1c85b90183" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>getObjectRole</name></member>
+      <member refid="classsbne_1_1NCompartment_1af63f86000953a29c1f3679f23d8f32bd" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>getOrder</name></member>
+      <member refid="classsbne_1_1NCompartment_1a7ab0f6041b42b8bf6fbe74f53ee8c61d" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>getReactions</name></member>
+      <member refid="classsbne_1_1NCompartment_1add24c1e2dda87d6123a5ec3a488a35b8" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>getSpecies</name></member>
+      <member refid="classsbne_1_1NGraphicalObject_1a1378fb293e59f3205190fe8ee5034efa" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>getText</name></member>
+      <member refid="classsbne_1_1NGraphicalObject_1ac3d2e9c5efcc9d06bd0bd61ebd14c7f6" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>getType</name></member>
+      <member refid="classsbne_1_1NGraphicalObject_1a31ab794b00adc4a98f62e38c5f1dd2aa" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>isLockedPosition</name></member>
+      <member refid="classsbne_1_1NGraphicalObject_1ac2f14466b33eb4efbc58c4d754b9cb6f" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>isMatchWithGlyph</name></member>
+      <member refid="classsbne_1_1NGraphicalObject_1ae1bfed6ef9aaca5513bfdfed81da7d31" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>isSetBox</name></member>
+      <member refid="classsbne_1_1NGraphicalObject_1a4d5d20937adb0a8c2286e30e5dd5e293" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>isSetGlyphId</name></member>
+      <member refid="classsbne_1_1NetworkElement_1a3d5e61ec4569c4f42143d18d971dc17b" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>isSetId</name></member>
+      <member refid="classsbne_1_1NetworkElement_1a18fb66423239730e737127e7a8a09514" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>isSetName</name></member>
+      <member refid="classsbne_1_1NGraphicalObject_1aba84191fce00b4223f0bf9047ef7b529" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>isSetObjectRole</name></member>
+      <member refid="classsbne_1_1NCompartment_1a246cf9aeb221e04d76d4ff21b9663dd7" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>isSetOrder</name></member>
+      <member refid="classsbne_1_1NGraphicalObject_1a4aab9d4fa27f0adac1f8cb395bec5893" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>isSetText</name></member>
+      <member refid="classsbne_1_1NGraphicalObject_1a6bf3c9ea4e389b559e5b296b36d505c3" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>isUsed</name></member>
+      <member refid="classsbne_1_1NCompartment_1afdcd9bdd7637a1a7aee4ce7357e81955" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>NCompartment</name></member>
+      <member refid="classsbne_1_1NetworkElement_1a9e5b9c57c3efce8e105af67e2f5f1a50" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>NetworkElement</name></member>
+      <member refid="classsbne_1_1NGraphicalObject_1abbd08007d1b586f9ba16f04481c323f8" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>NGraphicalObject</name></member>
+      <member refid="classsbne_1_1NCompartment_1aec960fa144ee3cb542c70d2f8573796a" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>reactionsBegin</name></member>
+      <member refid="classsbne_1_1NCompartment_1a0c9a72c3c231e79862d9174479c29030" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>reactionsEnd</name></member>
+      <member refid="classsbne_1_1NCompartment_1a9fdd2e1fc43b62a4869cfeed20ca2d77" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>removeReaction</name></member>
+      <member refid="classsbne_1_1NCompartment_1a1bb324523efd2571bab7da6c4e7c94fe" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>removeSpecies</name></member>
+      <member refid="classsbne_1_1NGraphicalObject_1a287a52e6a47df5234ba3e598c3836846" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>setBox</name></member>
+      <member refid="classsbne_1_1NGraphicalObject_1a7ab97c50b3ce8e95bd865f6d27012213" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>setGlyphId</name></member>
+      <member refid="classsbne_1_1NetworkElement_1a657dda1b6e59fb12d266484f39258c94" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>setId</name></member>
+      <member refid="classsbne_1_1NGraphicalObject_1a6a7dc2315062a656e8a6b02699fee20e" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>setLockedPosition</name></member>
+      <member refid="classsbne_1_1NGraphicalObject_1af9354419576291c43e897c74eb67391a" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>setMatchWithGlyph</name></member>
+      <member refid="classsbne_1_1NetworkElement_1a69d7f91f4e75727ac1bf7208d2b2eccf" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>setName</name></member>
+      <member refid="classsbne_1_1NGraphicalObject_1a99669a74685bda90091a6a91bfc94a4c" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>setObjectRole</name></member>
+      <member refid="classsbne_1_1NCompartment_1a958a1b51fad48a976acb1cc22e3038b2" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>setOrder</name></member>
+      <member refid="classsbne_1_1NCompartment_1aa85872a63ad54a666c8c201cb6fa0f3a" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>setReactions</name></member>
+      <member refid="classsbne_1_1NCompartment_1ad8705a9adaa233e511d86b53483f2776" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>setSpecies</name></member>
+      <member refid="classsbne_1_1NGraphicalObject_1ac044f1506a1e05d910ae5dff3b760509" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>setText</name></member>
+      <member refid="classsbne_1_1NGraphicalObject_1aaeecfe35e72c615a3e229b66734572b2" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>setUsed</name></member>
+      <member refid="classsbne_1_1NCompartment_1a3dd71ff903664d83ca44c5d2834776d5" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>shiftItems</name></member>
+      <member refid="classsbne_1_1NCompartment_1af45116e3f539510c962e38e441da824a" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>speciesBegin</name></member>
+      <member refid="classsbne_1_1NCompartment_1a36a738f622f2b98d4950d202523cdcc5" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>speciesEnd</name></member>
+      <member refid="classsbne_1_1NGraphicalObject_1a84bcb056ecf46743d158b63e3139526b" prot="public" virt="non-virtual"><scope>sbne::NCompartment</scope><name>unSetBox</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

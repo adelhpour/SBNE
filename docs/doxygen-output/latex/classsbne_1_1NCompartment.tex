@@ -1,0 +1,125 @@
+\hypertarget{classsbne_1_1NCompartment}{}\doxysection{sbne\+::N\+Compartment Class Reference}
+\label{classsbne_1_1NCompartment}\index{sbne::NCompartment@{sbne::NCompartment}}
+
+
+The equivalent class for S\+B\+ML \href{http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_compartment.html}{\texttt{ Compartment}} and \href{http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_compartment_glyph.html}{\texttt{ Compartment\+Glyph}} .  
+
+
+
+
+{\ttfamily \#include $<$ne\+\_\+network.\+h$>$}
+
+Inheritance diagram for sbne\+::N\+Compartment\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classsbne_1_1NCompartment}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classsbne_1_1NCompartment_afdcd9bdd7637a1a7aee4ce7357e81955}\label{classsbne_1_1NCompartment_afdcd9bdd7637a1a7aee4ce7357e81955}} 
+\mbox{\hyperlink{classsbne_1_1NCompartment_afdcd9bdd7637a1a7aee4ce7357e81955}{N\+Compartment}} ()
+\begin{DoxyCompactList}\small\item\em Constructors. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classsbne_1_1NCompartment_af45116e3f539510c962e38e441da824a}\label{classsbne_1_1NCompartment_af45116e3f539510c962e38e441da824a}} 
+const const\+Species\+It \mbox{\hyperlink{classsbne_1_1NCompartment_af45116e3f539510c962e38e441da824a}{species\+Begin}} () const
+\begin{DoxyCompactList}\small\item\em Functions related to beginning and end of containers. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classsbne_1_1NCompartment_a36a738f622f2b98d4950d202523cdcc5}\label{classsbne_1_1NCompartment_a36a738f622f2b98d4950d202523cdcc5}} 
+const const\+Species\+It {\bfseries species\+End} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1NCompartment_aec960fa144ee3cb542c70d2f8573796a}\label{classsbne_1_1NCompartment_aec960fa144ee3cb542c70d2f8573796a}} 
+const const\+Reaction\+It {\bfseries reactions\+Begin} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1NCompartment_a0c9a72c3c231e79862d9174479c29030}\label{classsbne_1_1NCompartment_a0c9a72c3c231e79862d9174479c29030}} 
+const const\+Reaction\+It {\bfseries reactions\+End} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1NCompartment_a610fecbf12ca88d7d1807b4ed1ae7ed9}\label{classsbne_1_1NCompartment_a610fecbf12ca88d7d1807b4ed1ae7ed9}} 
+void \mbox{\hyperlink{classsbne_1_1NCompartment_a610fecbf12ca88d7d1807b4ed1ae7ed9}{add\+Species}} (\mbox{\hyperlink{classsbne_1_1NSpecies}{N\+Species}} $\ast$s)
+\begin{DoxyCompactList}\small\item\em Functions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classsbne_1_1NCompartment_a1bb324523efd2571bab7da6c4e7c94fe}\label{classsbne_1_1NCompartment_a1bb324523efd2571bab7da6c4e7c94fe}} 
+void {\bfseries remove\+Species} (int species\+Index)
+\item 
+\mbox{\Hypertarget{classsbne_1_1NCompartment_ad8705a9adaa233e511d86b53483f2776}\label{classsbne_1_1NCompartment_ad8705a9adaa233e511d86b53483f2776}} 
+void {\bfseries set\+Species} (const species\+Vec \&sv)
+\item 
+\mbox{\Hypertarget{classsbne_1_1NCompartment_add24c1e2dda87d6123a5ec3a488a35b8}\label{classsbne_1_1NCompartment_add24c1e2dda87d6123a5ec3a488a35b8}} 
+const species\+Vec \& {\bfseries get\+Species} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1NCompartment_af38a55237a3a4c5972d6b94725626e55}\label{classsbne_1_1NCompartment_af38a55237a3a4c5972d6b94725626e55}} 
+const size\+\_\+t {\bfseries get\+Num\+Species} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1NCompartment_a955328ab565fb85681d1ead108550fe5}\label{classsbne_1_1NCompartment_a955328ab565fb85681d1ead108550fe5}} 
+\mbox{\hyperlink{classsbne_1_1NSpecies}{N\+Species}} $\ast$ {\bfseries find\+Species\+By\+Id} (const std\+::string \&id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1NCompartment_a46b25852ac0f2787e8af45dafc88302c}\label{classsbne_1_1NCompartment_a46b25852ac0f2787e8af45dafc88302c}} 
+int {\bfseries find\+Species\+Index\+By\+Id} (const std\+::string \&id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1NCompartment_a937461dfe03328b6f491013238015157}\label{classsbne_1_1NCompartment_a937461dfe03328b6f491013238015157}} 
+\mbox{\hyperlink{classsbne_1_1NSpecies}{N\+Species}} $\ast$ {\bfseries find\+Species\+By\+Glyph\+Id} (const std\+::string \&glyph\+Id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1NCompartment_aa6a519354cae703cf55690bd3d5c9a4e}\label{classsbne_1_1NCompartment_aa6a519354cae703cf55690bd3d5c9a4e}} 
+int {\bfseries find\+Species\+Index\+By\+Glyph\+Id} (const std\+::string \&glyph\+Id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1NCompartment_a725f6a17f97224bd4916ceeb6fc8fc20}\label{classsbne_1_1NCompartment_a725f6a17f97224bd4916ceeb6fc8fc20}} 
+void {\bfseries add\+Reaction} (\mbox{\hyperlink{classsbne_1_1NReaction}{N\+Reaction}} $\ast$r)
+\item 
+\mbox{\Hypertarget{classsbne_1_1NCompartment_a9fdd2e1fc43b62a4869cfeed20ca2d77}\label{classsbne_1_1NCompartment_a9fdd2e1fc43b62a4869cfeed20ca2d77}} 
+void {\bfseries remove\+Reaction} (int reaction\+Index)
+\item 
+\mbox{\Hypertarget{classsbne_1_1NCompartment_aa85872a63ad54a666c8c201cb6fa0f3a}\label{classsbne_1_1NCompartment_aa85872a63ad54a666c8c201cb6fa0f3a}} 
+void {\bfseries set\+Reactions} (const reaction\+Vec \&rv)
+\item 
+\mbox{\Hypertarget{classsbne_1_1NCompartment_a7ab0f6041b42b8bf6fbe74f53ee8c61d}\label{classsbne_1_1NCompartment_a7ab0f6041b42b8bf6fbe74f53ee8c61d}} 
+const reaction\+Vec \& {\bfseries get\+Reactions} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1NCompartment_ada69624067f58f030d19fa55efc69b72}\label{classsbne_1_1NCompartment_ada69624067f58f030d19fa55efc69b72}} 
+const size\+\_\+t {\bfseries get\+Num\+Reactions} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1NCompartment_aadf0d2b2c75f3ef88f77488a03497c2d}\label{classsbne_1_1NCompartment_aadf0d2b2c75f3ef88f77488a03497c2d}} 
+\mbox{\hyperlink{classsbne_1_1NReaction}{N\+Reaction}} $\ast$ {\bfseries find\+Reaction\+By\+Id} (const std\+::string \&id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1NCompartment_ac6787ac93ae40a6c4e5fe7175bac9162}\label{classsbne_1_1NCompartment_ac6787ac93ae40a6c4e5fe7175bac9162}} 
+int {\bfseries find\+Reaction\+Index\+By\+Id} (const std\+::string \&id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1NCompartment_aa7ac1b627daf58c28d1675e01d7c7536}\label{classsbne_1_1NCompartment_aa7ac1b627daf58c28d1675e01d7c7536}} 
+\mbox{\hyperlink{classsbne_1_1NReaction}{N\+Reaction}} $\ast$ {\bfseries find\+Reaction\+By\+Glyph\+Id} (const std\+::string \&glyph\+Id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1NCompartment_ad65c9c0723f8d2b2290f2323f1861e32}\label{classsbne_1_1NCompartment_ad65c9c0723f8d2b2290f2323f1861e32}} 
+int {\bfseries find\+Reaction\+Index\+By\+Glyph\+Id} (const std\+::string \&glyph\+Id)
+\item 
+\mbox{\Hypertarget{classsbne_1_1NCompartment_a958a1b51fad48a976acb1cc22e3038b2}\label{classsbne_1_1NCompartment_a958a1b51fad48a976acb1cc22e3038b2}} 
+void {\bfseries set\+Order} (const double \&order)
+\item 
+\mbox{\Hypertarget{classsbne_1_1NCompartment_af63f86000953a29c1f3679f23d8f32bd}\label{classsbne_1_1NCompartment_af63f86000953a29c1f3679f23d8f32bd}} 
+const double \& {\bfseries get\+Order} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1NCompartment_a246cf9aeb221e04d76d4ff21b9663dd7}\label{classsbne_1_1NCompartment_a246cf9aeb221e04d76d4ff21b9663dd7}} 
+const bool {\bfseries is\+Set\+Order} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1NCompartment_a3dd71ff903664d83ca44c5d2834776d5}\label{classsbne_1_1NCompartment_a3dd71ff903664d83ca44c5d2834776d5}} 
+void {\bfseries shift\+Items} (const double \&dx, const double \&dy)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classsbne_1_1NCompartment_abf9960b0c0d7f1e668c9b8765fce76b8}\label{classsbne_1_1NCompartment_abf9960b0c0d7f1e668c9b8765fce76b8}} 
+species\+Vec {\bfseries \+\_\+species}
+\item 
+\mbox{\Hypertarget{classsbne_1_1NCompartment_a237d1d0ea417734f246e1416bab220eb}\label{classsbne_1_1NCompartment_a237d1d0ea417734f246e1416bab220eb}} 
+reaction\+Vec {\bfseries \+\_\+reactions}
+\item 
+\mbox{\Hypertarget{classsbne_1_1NCompartment_ac466a65ee3c7031c88d908e063c85be2}\label{classsbne_1_1NCompartment_ac466a65ee3c7031c88d908e063c85be2}} 
+double {\bfseries \+\_\+order}
+\item 
+\mbox{\Hypertarget{classsbne_1_1NCompartment_a82651a0d0a29f65f8d6f1bdb5e9c5b5d}\label{classsbne_1_1NCompartment_a82651a0d0a29f65f8d6f1bdb5e9c5b5d}} 
+bool {\bfseries \+\_\+is\+Set\+Order}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The equivalent class for S\+B\+ML \href{http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_compartment.html}{\texttt{ Compartment}} and \href{http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_compartment_glyph.html}{\texttt{ Compartment\+Glyph}} . 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/home/\+Documents/\+Education/\+S\+B/\+Projects/\+Made/\+S\+B\+N\+E/sbne/\+S\+B\+N\+E/src/sbne/network/ne\+\_\+network.\+h\item 
+/\+Users/home/\+Documents/\+Education/\+S\+B/\+Projects/\+Made/\+S\+B\+N\+E/sbne/\+S\+B\+N\+E/src/sbne/network/ne\+\_\+network.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,5 @@
+*************
+VGradientBase
+*************
+
+.. doxygenclass:: sbne::VGradientBase

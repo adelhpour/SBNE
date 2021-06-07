@@ -1,0 +1,131 @@
+\hypertarget{classsbne_1_1ReactionLayer}{}\doxysection{sbne\+::Reaction\+Layer Class Reference}
+\label{classsbne_1_1ReactionLayer}\index{sbne::ReactionLayer@{sbne::ReactionLayer}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_a0b28c9a3d2b9b714f39ec3adf468b1f3}\label{classsbne_1_1ReactionLayer_a0b28c9a3d2b9b714f39ec3adf468b1f3}} 
+typedef std\+::vector$<$ \mbox{\hyperlink{structsbne_1_1vacancy}{vacancy}} $\ast$ $>$ \mbox{\hyperlink{classsbne_1_1ReactionLayer_a0b28c9a3d2b9b714f39ec3adf468b1f3}{vacancy\+Vec}}
+\begin{DoxyCompactList}\small\item\em Containers. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_adb3e339b79de713c2ad63d1283f6d24e}\label{classsbne_1_1ReactionLayer_adb3e339b79de713c2ad63d1283f6d24e}} 
+typedef std\+::vector$<$ \mbox{\hyperlink{structsbne_1_1circumferenceVacancy}{circumference\+Vacancy}} $\ast$ $>$ {\bfseries c\+Vacancy\+Vec}
+\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_a21fab67931451db333fbb1c2494263c2}\label{classsbne_1_1ReactionLayer_a21fab67931451db333fbb1c2494263c2}} 
+typedef vacancy\+Vec\+::iterator \mbox{\hyperlink{classsbne_1_1ReactionLayer_a21fab67931451db333fbb1c2494263c2}{vacancy\+It}}
+\begin{DoxyCompactList}\small\item\em Iterators. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_abf8bd2fddd5f3f90629653d893de7f53}\label{classsbne_1_1ReactionLayer_abf8bd2fddd5f3f90629653d893de7f53}} 
+typedef vacancy\+Vec\+::const\+\_\+iterator {\bfseries const\+Vacancy\+It}
+\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_a1c03ba5b71a20d4789c6b8de9503873d}\label{classsbne_1_1ReactionLayer_a1c03ba5b71a20d4789c6b8de9503873d}} 
+typedef c\+Vacancy\+Vec\+::iterator {\bfseries c\+Vacancy\+It}
+\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_ae113d43cee726c1a4cf85e288d169ba0}\label{classsbne_1_1ReactionLayer_ae113d43cee726c1a4cf85e288d169ba0}} 
+typedef c\+Vacancy\+Vec\+::const\+\_\+iterator {\bfseries const\+C\+Vacancy\+It}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsbne_1_1ReactionLayer_a85e9bc689266dd89b0f0a31905df59cd}{Reaction\+Layer}} (const unsigned int \&layer, const unsigned int \&num\+Reaction\+Species, const double \&reaction\+Start\+Angle)
+\begin{DoxyCompactList}\small\item\em Constructors. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_a3b26040b8e8b07400c2994e32734c65e}\label{classsbne_1_1ReactionLayer_a3b26040b8e8b07400c2994e32734c65e}} 
+const const\+Vacancy\+It \mbox{\hyperlink{classsbne_1_1ReactionLayer_a3b26040b8e8b07400c2994e32734c65e}{vacancies\+Begin}} () const
+\begin{DoxyCompactList}\small\item\em Functions related to beginning and end of containers. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_a72988cd587cf65bae5de2bf1e6ca2896}\label{classsbne_1_1ReactionLayer_a72988cd587cf65bae5de2bf1e6ca2896}} 
+const const\+Vacancy\+It {\bfseries vacancies\+End} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_a4b2eaf655e1abecf7b7826ab3b4f73b0}\label{classsbne_1_1ReactionLayer_a4b2eaf655e1abecf7b7826ab3b4f73b0}} 
+const const\+C\+Vacancy\+It {\bfseries c\+Vacancies\+Begin} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_a2c51b8a7bc9809bf675e168c46030e73}\label{classsbne_1_1ReactionLayer_a2c51b8a7bc9809bf675e168c46030e73}} 
+const const\+C\+Vacancy\+It {\bfseries c\+Vacancies\+End} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_a1b67b23a78d99bb80774c9d3a764b4b0}\label{classsbne_1_1ReactionLayer_a1b67b23a78d99bb80774c9d3a764b4b0}} 
+const unsigned int \& \mbox{\hyperlink{classsbne_1_1ReactionLayer_a1b67b23a78d99bb80774c9d3a764b4b0}{get\+Layer}} () const
+\begin{DoxyCompactList}\small\item\em Functions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_a343c7689d47359fb00a37bc143423239}\label{classsbne_1_1ReactionLayer_a343c7689d47359fb00a37bc143423239}} 
+int {\bfseries add\+To\+Vacancy} (\mbox{\hyperlink{classsbne_1_1NSpecies}{N\+Species}} $\ast$s, double \&species\+Angle, const bool \&use\+Neighbor\+Vacancies)
+\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_a3f022ece6316ae4a0e36d0c745a14ef4}\label{classsbne_1_1ReactionLayer_a3f022ece6316ae4a0e36d0c745a14ef4}} 
+int {\bfseries remove\+From\+Vacancy} (\mbox{\hyperlink{classsbne_1_1NSpecies}{N\+Species}} $\ast$s, const double \&species\+Angle)
+\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_a1ac0add35c97d4e33b5dbd6555def927}\label{classsbne_1_1ReactionLayer_a1ac0add35c97d4e33b5dbd6555def927}} 
+int {\bfseries add\+To\+Vacancy} (\mbox{\hyperlink{classsbne_1_1NReaction}{N\+Reaction}} $\ast$r, const double \&joint\+Species\+Angle)
+\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_a9956046244bd322e37d19fff73d3d65f}\label{classsbne_1_1ReactionLayer_a9956046244bd322e37d19fff73d3d65f}} 
+int {\bfseries add\+To\+Vacancy} (\mbox{\hyperlink{classsbne_1_1NReaction}{N\+Reaction}} $\ast$r, \mbox{\hyperlink{classsbne_1_1NSpecies}{N\+Species}} $\ast$joint\+Species)
+\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_aa5474e1c9829c88c83368b41fbb8a1b5}\label{classsbne_1_1ReactionLayer_aa5474e1c9829c88c83368b41fbb8a1b5}} 
+int {\bfseries remove\+From\+Vacancy} (\mbox{\hyperlink{classsbne_1_1NReaction}{N\+Reaction}} $\ast$r, const double \&joint\+Species\+Angle)
+\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_aba916328b31a9388135b75bb886ec080}\label{classsbne_1_1ReactionLayer_aba916328b31a9388135b75bb886ec080}} 
+int {\bfseries remove\+From\+Vacancy} (\mbox{\hyperlink{classsbne_1_1NReaction}{N\+Reaction}} $\ast$r, \mbox{\hyperlink{classsbne_1_1NSpecies}{N\+Species}} $\ast$joint\+Species)
+\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_a417557e30fd3e5894a8a14e586895d97}\label{classsbne_1_1ReactionLayer_a417557e30fd3e5894a8a14e586895d97}} 
+int {\bfseries swap\+Species} (\mbox{\hyperlink{classsbne_1_1NSpecies}{N\+Species}} $\ast$s1, \mbox{\hyperlink{classsbne_1_1NSpecies}{N\+Species}} $\ast$s2)
+\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_aa448dc6623cfc5954f83b34c0fe8f54f}\label{classsbne_1_1ReactionLayer_aa448dc6623cfc5954f83b34c0fe8f54f}} 
+int {\bfseries find\+Vacancy} (\mbox{\hyperlink{classsbne_1_1NSpecies}{N\+Species}} $\ast$s)
+\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_aa4d22fa9645ece5005d5c865d02b9739}\label{classsbne_1_1ReactionLayer_aa4d22fa9645ece5005d5c865d02b9739}} 
+int {\bfseries find\+Vacancy} (\mbox{\hyperlink{classsbne_1_1NReaction}{N\+Reaction}} $\ast$r)
+\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_a6edba3823e12a38559d4357067a8bd77}\label{classsbne_1_1ReactionLayer_a6edba3823e12a38559d4357067a8bd77}} 
+unsigned int {\bfseries num\+Of\+Occupied\+Reaction\+In\+Vacancy} (const unsigned int \&vacancy\+Index)
+\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_ae449b40b1fe78896adc29215e6fa2695}\label{classsbne_1_1ReactionLayer_ae449b40b1fe78896adc29215e6fa2695}} 
+const size\+\_\+t {\bfseries get\+Num\+Vacancies} () const
+\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_a0375205a505c333f48804e6fc5029bb9}\label{classsbne_1_1ReactionLayer_a0375205a505c333f48804e6fc5029bb9}} 
+int {\bfseries add\+To\+Circumference\+Vacancy} (\mbox{\hyperlink{classsbne_1_1NSpeciesReference}{N\+Species\+Reference}} $\ast$sr, \mbox{\hyperlink{classsbne_1_1NSpecies}{N\+Species}} $\ast$pseudo\+Species, const int \&num\+Of\+Trasferring\+Steps)
+\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_a09085cefd666b11ee49d466e0829dfd1}\label{classsbne_1_1ReactionLayer_a09085cefd666b11ee49d466e0829dfd1}} 
+int {\bfseries add\+To\+Circumference\+Vacancy} (\mbox{\hyperlink{classsbne_1_1NSpeciesReference}{N\+Species\+Reference}} $\ast$sr, const unsigned int \&reaction\+Vacancy\+Index, const int \&num\+Of\+Angualr\+Trasferring\+Steps)
+\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_a5536dacdbae02ebd86dbeb6812eab59d}\label{classsbne_1_1ReactionLayer_a5536dacdbae02ebd86dbeb6812eab59d}} 
+int {\bfseries check\+Circumference\+Vacancy} (const unsigned int \&reaction\+Vacancy\+Index, const int \&num\+Of\+Angualr\+Trasferring\+Steps)
+\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_af87e9763db4bc5d9c11c4bca84375f77}\label{classsbne_1_1ReactionLayer_af87e9763db4bc5d9c11c4bca84375f77}} 
+int {\bfseries remove\+From\+Circumference\+Vacancy} (\mbox{\hyperlink{classsbne_1_1NSpeciesReference}{N\+Species\+Reference}} $\ast$sr)
+\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_a14e50ab40be3ebee12c36ca10e49a9f0}\label{classsbne_1_1ReactionLayer_a14e50ab40be3ebee12c36ca10e49a9f0}} 
+int {\bfseries add\+To\+Radial\+Vacancy} (\mbox{\hyperlink{classsbne_1_1NSpeciesReference}{N\+Species\+Reference}} $\ast$sr, const unsigned int \&reaction\+Vacancy\+Index)
+\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_a099ac67fd4edeb086be7e562a4c5115c}\label{classsbne_1_1ReactionLayer_a099ac67fd4edeb086be7e562a4c5115c}} 
+int {\bfseries check\+Radial\+Vacancy} (const unsigned int \&reaction\+Vacancy\+Index)
+\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_a8d50c7cda1f8c128e3b57eb82b069f52}\label{classsbne_1_1ReactionLayer_a8d50c7cda1f8c128e3b57eb82b069f52}} 
+int {\bfseries remove\+From\+Radial\+Vacancy} (\mbox{\hyperlink{classsbne_1_1NSpeciesReference}{N\+Species\+Reference}} $\ast$sr)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_a86dace4e184c2c41744790e2c1bfc9c7}\label{classsbne_1_1ReactionLayer_a86dace4e184c2c41744790e2c1bfc9c7}} 
+unsigned int {\bfseries \+\_\+layer}
+\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_aeafda51e80b060422016a665afc4c77f}\label{classsbne_1_1ReactionLayer_aeafda51e80b060422016a665afc4c77f}} 
+\mbox{\hyperlink{classsbne_1_1ReactionLayer_a0b28c9a3d2b9b714f39ec3adf468b1f3}{vacancy\+Vec}} {\bfseries \+\_\+vacancies}
+\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_a113c77cf95072410d4a0d1efb2cce00f}\label{classsbne_1_1ReactionLayer_a113c77cf95072410d4a0d1efb2cce00f}} 
+c\+Vacancy\+Vec {\bfseries \+\_\+circumference\+Vacancies}
+\item 
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_a0e3b28c567653abf048853f3272b0a4b}\label{classsbne_1_1ReactionLayer_a0e3b28c567653abf048853f3272b0a4b}} 
+double {\bfseries \+\_\+d\+Angle}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classsbne_1_1ReactionLayer_a85e9bc689266dd89b0f0a31905df59cd}\label{classsbne_1_1ReactionLayer_a85e9bc689266dd89b0f0a31905df59cd}} 
+\index{sbne::ReactionLayer@{sbne::ReactionLayer}!ReactionLayer@{ReactionLayer}}
+\index{ReactionLayer@{ReactionLayer}!sbne::ReactionLayer@{sbne::ReactionLayer}}
+\doxysubsubsection{\texorpdfstring{ReactionLayer()}{ReactionLayer()}}
+{\footnotesize\ttfamily sbne\+::\+Reaction\+Layer\+::\+Reaction\+Layer (\begin{DoxyParamCaption}\item[{const unsigned int \&}]{layer,  }\item[{const unsigned int \&}]{num\+Reaction\+Species,  }\item[{const double \&}]{reaction\+Start\+Angle }\end{DoxyParamCaption})}
+
+
+
+Constructors. 
+
+the first part
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/home/\+Documents/\+Education/\+S\+B/\+Projects/\+Made/\+S\+B\+N\+E/sbne/\+S\+B\+N\+E/src/sbne/network/ne\+\_\+network.\+h\item 
+/\+Users/home/\+Documents/\+Education/\+S\+B/\+Projects/\+Made/\+S\+B\+N\+E/sbne/\+S\+B\+N\+E/src/sbne/network/ne\+\_\+network.\+cpp\end{DoxyCompactItemize}

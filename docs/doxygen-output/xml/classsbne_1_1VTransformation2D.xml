@@ -1,0 +1,532 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="classsbne_1_1VTransformation2D" kind="class" language="C++" prot="public">
+    <compoundname>sbne::VTransformation2D</compoundname>
+    <basecompoundref refid="classsbne_1_1VeneerElement" prot="public" virt="non-virtual">sbne::VeneerElement</basecompoundref>
+    <derivedcompoundref refid="classsbne_1_1VGraphicalPrimitive1D" prot="public" virt="non-virtual">sbne::VGraphicalPrimitive1D</derivedcompoundref>
+    <derivedcompoundref refid="classsbne_1_1VImage" prot="public" virt="non-virtual">sbne::VImage</derivedcompoundref>
+    <includes refid="ne__veneer_8h" local="no">ne_veneer.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classsbne_1_1VTransformation2D_1a4f1acf2b370bf8e62551537a42b2b999" prot="protected" static="no" mutable="no">
+        <type>RenderGroupElementShape</type>
+        <definition>RenderGroupElementShape sbne::VTransformation2D::_shape</definition>
+        <argsstring></argsstring>
+        <name>_shape</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="881" column="29" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="881" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VTransformation2D_1a2d90d4d2bc3a10568268734d4a562306" prot="protected" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string sbne::VTransformation2D::_transform</definition>
+        <argsstring></argsstring>
+        <name>_transform</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="882" column="17" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="882" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VTransformation2D_1a21c7a2b446a712534885ebb73482c199" prot="protected" static="no" mutable="no">
+        <type>Affine2d</type>
+        <definition>Affine2d sbne::VTransformation2D::_affine</definition>
+        <argsstring></argsstring>
+        <name>_affine</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="883" column="14" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="883" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VTransformation2D_1a475bf1e0d392d8947c9c5adbe91ac59c" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sbne::VTransformation2D::_isSetTransform</definition>
+        <argsstring></argsstring>
+        <name>_isSetTransform</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="884" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="884" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classsbne_1_1VTransformation2D_1a367cf0b70b5187de1f001dfa2b6cc666" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>sbne::VTransformation2D::VTransformation2D</definition>
+        <argsstring>()</argsstring>
+        <name>VTransformation2D</name>
+        <briefdescription>
+<para>Constructors. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="822" column="5" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="822" bodyend="825"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VTransformation2D_1a2dfd7022cd8b88858e888ab537c9bbda" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>RenderGroupElementShape</type>
+        <definition>RenderGroupElementShape sbne::VTransformation2D::getShape</definition>
+        <argsstring>()</argsstring>
+        <name>getShape</name>
+        <briefdescription>
+<para>Functions. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="829" column="29" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="1887" bodyend="1889"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VTransformation2D_1aab5f1688548e2f2f6959828b13f8fa25" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string sbne::VTransformation2D::getShapeAsString</definition>
+        <argsstring>()</argsstring>
+        <name>getShapeAsString</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="832" column="17" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="1891" bodyend="1893"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VTransformation2D_1aea45d28e8106bffa2ad41fee240f0680" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VTransformation2D::setTransform</definition>
+        <argsstring>(const double &amp;a, const double &amp;b, const double &amp;c, const double &amp;d, const double &amp;e, const double &amp;f)</argsstring>
+        <name>setTransform</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>c</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>d</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>e</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="835" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="1895" bodyend="1901"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VTransformation2D_1aaf623d0792163d869b91ad6fab7510c9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VTransformation2D::setTransform</definition>
+        <argsstring>(const double m[6])</argsstring>
+        <name>setTransform</name>
+        <param>
+          <type>const double</type>
+          <declname>m</declname>
+          <array>[6]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="838" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="1903" bodyend="1909"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VTransformation2D_1ab11246b7e5fb335da684847e236fa8d8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VTransformation2D::updateTransform</definition>
+        <argsstring>(unsigned int index, const double &amp;value)</argsstring>
+        <name>updateTransform</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="841" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="1911" bodyend="1919"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VTransformation2D_1abf6b86241161f4d85d351bf040a0d670" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VTransformation2D::updateTransform</definition>
+        <argsstring>()</argsstring>
+        <name>updateTransform</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="844" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="1921" bodyend="1924"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VTransformation2D_1a6b467805aa3d8b69a6addd87f24f6c65" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::string &amp;</type>
+        <definition>const std::string &amp; sbne::VTransformation2D::getTransform</definition>
+        <argsstring>() const</argsstring>
+        <name>getTransform</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="847" column="23" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="1926" bodyend="1928"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VTransformation2D_1aea31862b46a5763796bf64c97beab787" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const void</type>
+        <definition>const void sbne::VTransformation2D::getTransform</definition>
+        <argsstring>(double *m) const</argsstring>
+        <name>getTransform</name>
+        <param>
+          <type>double *</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="850" column="16" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="1930" bodyend="1939"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VTransformation2D_1a6de4c0479d342b739ae2928f9c4a228c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const bool</type>
+        <definition>const bool sbne::VTransformation2D::isSetTransform</definition>
+        <argsstring>() const</argsstring>
+        <name>isSetTransform</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="853" column="16" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="853" bodyend="853"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VTransformation2D_1a7f4732df15c8bdda897b78964741be72" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VTransformation2D::setAffine2D</definition>
+        <argsstring>(const double &amp;a, const double &amp;b, const double &amp;c, const double &amp;d, const double &amp;e, const double &amp;f)</argsstring>
+        <name>setAffine2D</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>c</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>d</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>e</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="856" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="1941" bodyend="1944"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VTransformation2D_1a1c918852773459673cc5ea588d9420cb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VTransformation2D::updateAffine2D</definition>
+        <argsstring>(const int &amp;r, const int &amp;c, const double &amp;value)</argsstring>
+        <name>updateAffine2D</name>
+        <param>
+          <type>const int &amp;</type>
+          <declname>r</declname>
+        </param>
+        <param>
+          <type>const int &amp;</type>
+          <declname>c</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="859" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="1946" bodyend="1949"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VTransformation2D_1a33c256f3ea47fd4d3c038fdc71934d05" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const Affine2d &amp;</type>
+        <definition>const Affine2d &amp; sbne::VTransformation2D::getAffine2D</definition>
+        <argsstring>() const</argsstring>
+        <name>getAffine2D</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="862" column="20" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="1951" bodyend="1953"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VTransformation2D_1af5e0aca3a51df5a5e8f82b451e491ce8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VTransformation2D::translate</definition>
+        <argsstring>(const double &amp;tx, const double &amp;ty)</argsstring>
+        <name>translate</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>tx</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>ty</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="865" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="1955" bodyend="1959"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VTransformation2D_1a479be03aa2073c42a839e6506bb9aaa8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VTransformation2D::scale</definition>
+        <argsstring>(const double &amp;sx, const double &amp;sy)</argsstring>
+        <name>scale</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>sx</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>sy</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="868" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="1961" bodyend="1965"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VTransformation2D_1a4b5ed3ddc43b8703c75773e6b8f30314" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VTransformation2D::rotate</definition>
+        <argsstring>(const double &amp;alpha)</argsstring>
+        <name>rotate</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>alpha</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="871" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="1967" bodyend="1971"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VTransformation2D_1a748d77e65d96252ec3fbadeedf4ff3ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VTransformation2D::skewX</definition>
+        <argsstring>(const double &amp;alpha)</argsstring>
+        <name>skewX</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>alpha</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="874" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="1973" bodyend="1977"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VTransformation2D_1a442a0a823ab33c98cd15faad28724133" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VTransformation2D::skewY</definition>
+        <argsstring>(const double &amp;beta)</argsstring>
+        <name>skewY</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>beta</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="877" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="1979" bodyend="1983"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The equivalent class for SBML <ulink url="http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_transformation2_d.html">Transformation2D</ulink> . </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="12">
+        <label>sbne::VImage</label>
+        <link refid="classsbne_1_1VImage"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>sbne::VeneerElement</label>
+        <link refid="classsbne_1_1VeneerElement"/>
+      </node>
+      <node id="5">
+        <label>sbne::VGraphicalPrimitive2D</label>
+        <link refid="classsbne_1_1VGraphicalPrimitive2D"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>sbne::VGraphicalPrimitive1D</label>
+        <link refid="classsbne_1_1VGraphicalPrimitive1D"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>sbne::VLineEnding</label>
+        <link refid="classsbne_1_1VLineEnding"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>sbne::VTransformation2D</label>
+        <link refid="classsbne_1_1VTransformation2D"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>sbne::VText</label>
+        <link refid="classsbne_1_1VText"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>sbne::VEllipse</label>
+        <link refid="classsbne_1_1VEllipse"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>sbne::RCurve</label>
+        <link refid="classsbne_1_1RCurve"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>sbne::VPolygon</label>
+        <link refid="classsbne_1_1VPolygon"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>sbne::VRectangle</label>
+        <link refid="classsbne_1_1VRectangle"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>sbne::VRenderGroup</label>
+        <link refid="classsbne_1_1VRenderGroup"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>sbne::VeneerElement</label>
+        <link refid="classsbne_1_1VeneerElement"/>
+      </node>
+      <node id="1">
+        <label>sbne::VTransformation2D</label>
+        <link refid="classsbne_1_1VTransformation2D"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="819" column="1" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="819" bodyend="885"/>
+    <listofallmembers>
+      <member refid="classsbne_1_1VTransformation2D_1a21c7a2b446a712534885ebb73482c199" prot="protected" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>_affine</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a05a1b163bba59774adf635c8aaa9411e" prot="protected" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>_id</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a5528e39c12af204f8de8e3ac741b19e6" prot="protected" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>_isSetId</name></member>
+      <member refid="classsbne_1_1VeneerElement_1aadacb15ddad42dead4445e992b73d892" prot="protected" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>_isSetName</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a475bf1e0d392d8947c9c5adbe91ac59c" prot="protected" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>_isSetTransform</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a81238d04248f95a8ef68788d3db8e913" prot="protected" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>_name</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a4f1acf2b370bf8e62551537a42b2b999" prot="protected" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>_shape</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a2d90d4d2bc3a10568268734d4a562306" prot="protected" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>_transform</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a33c256f3ea47fd4d3c038fdc71934d05" prot="public" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>getAffine2D</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a248c99de1375ccdae3dbf59fce7b5c6a" prot="public" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>getId</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a29585cbce3cf9e33407e5eecd455f50c" prot="public" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>getName</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a2dfd7022cd8b88858e888ab537c9bbda" prot="public" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>getShape</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1aab5f1688548e2f2f6959828b13f8fa25" prot="public" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>getShapeAsString</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a6b467805aa3d8b69a6addd87f24f6c65" prot="public" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>getTransform</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1aea31862b46a5763796bf64c97beab787" prot="public" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>getTransform</name></member>
+      <member refid="classsbne_1_1VeneerElement_1af7b8bd39c05a8f08fc74edeb024ab517" prot="public" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>isSetId</name></member>
+      <member refid="classsbne_1_1VeneerElement_1adc2d191b9b62b2f03385d59caa9fe377" prot="public" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>isSetName</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a6de4c0479d342b739ae2928f9c4a228c" prot="public" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>isSetTransform</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a4b5ed3ddc43b8703c75773e6b8f30314" prot="public" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>rotate</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a479be03aa2073c42a839e6506bb9aaa8" prot="public" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>scale</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a7f4732df15c8bdda897b78964741be72" prot="public" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>setAffine2D</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a8cd21b54b5b02e4cabdaf151e2ee975e" prot="public" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>setId</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a873088af375af1c882e2c8639b560e17" prot="public" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>setName</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1aea45d28e8106bffa2ad41fee240f0680" prot="public" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>setTransform</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1aaf623d0792163d869b91ad6fab7510c9" prot="public" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>setTransform</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a748d77e65d96252ec3fbadeedf4ff3ad" prot="public" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>skewX</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a442a0a823ab33c98cd15faad28724133" prot="public" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>skewY</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1af5e0aca3a51df5a5e8f82b451e491ce8" prot="public" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>translate</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a1c918852773459673cc5ea588d9420cb" prot="public" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>updateAffine2D</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1ab11246b7e5fb335da684847e236fa8d8" prot="public" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>updateTransform</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1abf6b86241161f4d85d351bf040a0d670" prot="public" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>updateTransform</name></member>
+      <member refid="classsbne_1_1VeneerElement_1aea6702719a7bf355a20b140849036b8a" prot="public" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>VeneerElement</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a367cf0b70b5187de1f001dfa2b6cc666" prot="public" virt="non-virtual"><scope>sbne::VTransformation2D</scope><name>VTransformation2D</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

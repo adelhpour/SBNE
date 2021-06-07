@@ -1,0 +1,5 @@
+*************
+VeneerElement
+*************
+
+.. doxygenclass:: sbne::VeneerElement
