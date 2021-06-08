@@ -1,0 +1,249 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="classsbne_1_1LLineSegment" kind="class" language="C++" prot="public">
+    <compoundname>sbne::LLineSegment</compoundname>
+    <basecompoundref refid="classsbne_1_1NetworkElement" prot="public" virt="non-virtual">sbne::NetworkElement</basecompoundref>
+    <derivedcompoundref refid="classsbne_1_1LCubicBezier" prot="public" virt="non-virtual">sbne::LCubicBezier</derivedcompoundref>
+    <includes refid="ne__network_8h" local="no">ne_network.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classsbne_1_1LLineSegment_1a425cf2ef39da967d6ee4fceafa0d6536" prot="protected" static="no" mutable="no">
+        <type><ref refid="classsbne_1_1LPoint" kindref="compound">LPoint</ref></type>
+        <definition>LPoint sbne::LLineSegment::_start</definition>
+        <argsstring></argsstring>
+        <name>_start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1476" column="12" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="1476" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1LLineSegment_1aa742c022df8d84163c352bbc16d5b823" prot="protected" static="no" mutable="no">
+        <type><ref refid="classsbne_1_1LPoint" kindref="compound">LPoint</ref></type>
+        <definition>LPoint sbne::LLineSegment::_end</definition>
+        <argsstring></argsstring>
+        <name>_end</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1477" column="12" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="1477" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1LLineSegment_1aa752509966f46525f3ca9ba4a494401d" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sbne::LLineSegment::_isSetStart</definition>
+        <argsstring></argsstring>
+        <name>_isSetStart</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1478" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="1478" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1LLineSegment_1ad83e9e8e7fd6bf76b0c09b423467ac24" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sbne::LLineSegment::_isSetEnd</definition>
+        <argsstring></argsstring>
+        <name>_isSetEnd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1479" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="1479" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classsbne_1_1LLineSegment_1ac5b8ccc6875289ea2ea03c5cd88a9c9f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>sbne::LLineSegment::LLineSegment</definition>
+        <argsstring>()</argsstring>
+        <name>LLineSegment</name>
+        <briefdescription>
+<para>Constructors. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1445" column="5" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="1445" bodyend="1450"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LLineSegment_1a89aafac48f3964632fbbb4f485121490" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::LLineSegment::setStart</definition>
+        <argsstring>(const LPoint &amp;p)</argsstring>
+        <name>setStart</name>
+        <param>
+          <type>const <ref refid="classsbne_1_1LPoint" kindref="compound">LPoint</ref> &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+<para>Functions. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1454" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="3203" bodyend="3206"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LLineSegment_1aa5e424d68a113851777e59af6afa7992" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classsbne_1_1LPoint" kindref="compound">LPoint</ref> &amp;</type>
+        <definition>const LPoint &amp; sbne::LLineSegment::getStart</definition>
+        <argsstring>() const</argsstring>
+        <name>getStart</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1457" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="3208" bodyend="3210"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LLineSegment_1a011b548af309743e050f3e454302c432" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const bool</type>
+        <definition>const bool sbne::LLineSegment::isSetStart</definition>
+        <argsstring>() const</argsstring>
+        <name>isSetStart</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1460" column="16" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="1460" bodyend="1460"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LLineSegment_1a48a2860d0594d0c2f9a606c5e60bf270" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::LLineSegment::setEnd</definition>
+        <argsstring>(const LPoint &amp;p)</argsstring>
+        <name>setEnd</name>
+        <param>
+          <type>const <ref refid="classsbne_1_1LPoint" kindref="compound">LPoint</ref> &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1463" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="3212" bodyend="3215"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LLineSegment_1aae4302b88c33eb7764f2ad899f9ed350" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classsbne_1_1LPoint" kindref="compound">LPoint</ref> &amp;</type>
+        <definition>const LPoint &amp; sbne::LLineSegment::getEnd</definition>
+        <argsstring>() const</argsstring>
+        <name>getEnd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1466" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.cpp" bodystart="3217" bodyend="3219"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LLineSegment_1a7613ee46f20adc558c24037f9ed343d4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const bool</type>
+        <definition>const bool sbne::LLineSegment::isSetEnd</definition>
+        <argsstring>() const</argsstring>
+        <name>isSetEnd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1469" column="16" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="1469" bodyend="1469"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1LLineSegment_1a94aacfa9b89838e0378d53f891b2c6db" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool sbne::LLineSegment::isCubicBezier</definition>
+        <argsstring>()</argsstring>
+        <name>isCubicBezier</name>
+        <reimplementedby refid="classsbne_1_1LCubicBezier_1a97224d318fa8c5ad9c122bbe5a460bbe">isCubicBezier</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1472" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="1472" bodyend="1472"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The equivalent class for SBML <ulink url="http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_line_segment.html">LineSegment</ulink> . </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>sbne::LLineSegment</label>
+        <link refid="classsbne_1_1LLineSegment"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>sbne::LCubicBezier</label>
+        <link refid="classsbne_1_1LCubicBezier"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>sbne::NetworkElement</label>
+        <link refid="classsbne_1_1NetworkElement"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>sbne::LLineSegment</label>
+        <link refid="classsbne_1_1LLineSegment"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>_end</edgelabel>
+          <edgelabel>_start</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>sbne::NetworkElement</label>
+        <link refid="classsbne_1_1NetworkElement"/>
+      </node>
+      <node id="3">
+        <label>sbne::LPoint</label>
+        <link refid="classsbne_1_1LPoint"/>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" line="1442" column="1" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/network/ne_network.h" bodystart="1442" bodyend="1480"/>
+    <listofallmembers>
+      <member refid="classsbne_1_1LLineSegment_1aa742c022df8d84163c352bbc16d5b823" prot="protected" virt="non-virtual"><scope>sbne::LLineSegment</scope><name>_end</name></member>
+      <member refid="classsbne_1_1NetworkElement_1aa32d64a86727beb2b5da5d2d46ebb113" prot="protected" virt="non-virtual"><scope>sbne::LLineSegment</scope><name>_id</name></member>
+      <member refid="classsbne_1_1LLineSegment_1ad83e9e8e7fd6bf76b0c09b423467ac24" prot="protected" virt="non-virtual"><scope>sbne::LLineSegment</scope><name>_isSetEnd</name></member>
+      <member refid="classsbne_1_1NetworkElement_1a80cf6151787ca8c7bae113296adc2962" prot="protected" virt="non-virtual"><scope>sbne::LLineSegment</scope><name>_isSetId</name></member>
+      <member refid="classsbne_1_1NetworkElement_1a42d9377561ef3c5d60b6953d541bbe89" prot="protected" virt="non-virtual"><scope>sbne::LLineSegment</scope><name>_isSetName</name></member>
+      <member refid="classsbne_1_1LLineSegment_1aa752509966f46525f3ca9ba4a494401d" prot="protected" virt="non-virtual"><scope>sbne::LLineSegment</scope><name>_isSetStart</name></member>
+      <member refid="classsbne_1_1NetworkElement_1a67fcd633812ba1f2eb673696d04c138b" prot="protected" virt="non-virtual"><scope>sbne::LLineSegment</scope><name>_name</name></member>
+      <member refid="classsbne_1_1LLineSegment_1a425cf2ef39da967d6ee4fceafa0d6536" prot="protected" virt="non-virtual"><scope>sbne::LLineSegment</scope><name>_start</name></member>
+      <member refid="classsbne_1_1LLineSegment_1aae4302b88c33eb7764f2ad899f9ed350" prot="public" virt="non-virtual"><scope>sbne::LLineSegment</scope><name>getEnd</name></member>
+      <member refid="classsbne_1_1NetworkElement_1a49ccf0816fce78a54c042a889b8431c0" prot="public" virt="non-virtual"><scope>sbne::LLineSegment</scope><name>getId</name></member>
+      <member refid="classsbne_1_1NetworkElement_1a6c5b45f4c5120d1b5877249fc0961326" prot="public" virt="non-virtual"><scope>sbne::LLineSegment</scope><name>getName</name></member>
+      <member refid="classsbne_1_1LLineSegment_1aa5e424d68a113851777e59af6afa7992" prot="public" virt="non-virtual"><scope>sbne::LLineSegment</scope><name>getStart</name></member>
+      <member refid="classsbne_1_1LLineSegment_1a94aacfa9b89838e0378d53f891b2c6db" prot="public" virt="virtual"><scope>sbne::LLineSegment</scope><name>isCubicBezier</name></member>
+      <member refid="classsbne_1_1LLineSegment_1a7613ee46f20adc558c24037f9ed343d4" prot="public" virt="non-virtual"><scope>sbne::LLineSegment</scope><name>isSetEnd</name></member>
+      <member refid="classsbne_1_1NetworkElement_1a3d5e61ec4569c4f42143d18d971dc17b" prot="public" virt="non-virtual"><scope>sbne::LLineSegment</scope><name>isSetId</name></member>
+      <member refid="classsbne_1_1NetworkElement_1a18fb66423239730e737127e7a8a09514" prot="public" virt="non-virtual"><scope>sbne::LLineSegment</scope><name>isSetName</name></member>
+      <member refid="classsbne_1_1LLineSegment_1a011b548af309743e050f3e454302c432" prot="public" virt="non-virtual"><scope>sbne::LLineSegment</scope><name>isSetStart</name></member>
+      <member refid="classsbne_1_1LLineSegment_1ac5b8ccc6875289ea2ea03c5cd88a9c9f" prot="public" virt="non-virtual"><scope>sbne::LLineSegment</scope><name>LLineSegment</name></member>
+      <member refid="classsbne_1_1NetworkElement_1a9e5b9c57c3efce8e105af67e2f5f1a50" prot="public" virt="non-virtual"><scope>sbne::LLineSegment</scope><name>NetworkElement</name></member>
+      <member refid="classsbne_1_1LLineSegment_1a48a2860d0594d0c2f9a606c5e60bf270" prot="public" virt="non-virtual"><scope>sbne::LLineSegment</scope><name>setEnd</name></member>
+      <member refid="classsbne_1_1NetworkElement_1a657dda1b6e59fb12d266484f39258c94" prot="public" virt="non-virtual"><scope>sbne::LLineSegment</scope><name>setId</name></member>
+      <member refid="classsbne_1_1NetworkElement_1a69d7f91f4e75727ac1bf7208d2b2eccf" prot="public" virt="non-virtual"><scope>sbne::LLineSegment</scope><name>setName</name></member>
+      <member refid="classsbne_1_1LLineSegment_1a89aafac48f3964632fbbb4f485121490" prot="public" virt="non-virtual"><scope>sbne::LLineSegment</scope><name>setStart</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

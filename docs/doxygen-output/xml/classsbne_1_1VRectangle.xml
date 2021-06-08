@@ -1,0 +1,784 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="classsbne_1_1VRectangle" kind="class" language="C++" prot="public">
+    <compoundname>sbne::VRectangle</compoundname>
+    <basecompoundref refid="classsbne_1_1VGraphicalPrimitive2D" prot="public" virt="non-virtual">sbne::VGraphicalPrimitive2D</basecompoundref>
+    <includes refid="ne__veneer_8h" local="no">ne_veneer.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classsbne_1_1VRectangle_1aa4edc3e7dac02b12c75e214d5ab49f27" prot="protected" static="no" mutable="no">
+        <type><ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref></type>
+        <definition>RAVector sbne::VRectangle::_x</definition>
+        <argsstring></argsstring>
+        <name>_x</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1412" column="14" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1412" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VRectangle_1af121f9763b51b838392fab58df051650" prot="protected" static="no" mutable="no">
+        <type><ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref></type>
+        <definition>RAVector sbne::VRectangle::_y</definition>
+        <argsstring></argsstring>
+        <name>_y</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1413" column="14" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1413" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VRectangle_1a0e8d05db6829cf578369aa1b77c2ebb4" prot="protected" static="no" mutable="no">
+        <type><ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref></type>
+        <definition>RAVector sbne::VRectangle::_z</definition>
+        <argsstring></argsstring>
+        <name>_z</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1414" column="14" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1414" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VRectangle_1a2edf44a220eea6695abc9a664c8ff461" prot="protected" static="no" mutable="no">
+        <type><ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref></type>
+        <definition>RAVector sbne::VRectangle::_width</definition>
+        <argsstring></argsstring>
+        <name>_width</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1415" column="14" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1415" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VRectangle_1a2c1399e5f88b53e4c519bacd64e0c38d" prot="protected" static="no" mutable="no">
+        <type><ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref></type>
+        <definition>RAVector sbne::VRectangle::_height</definition>
+        <argsstring></argsstring>
+        <name>_height</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1416" column="14" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1416" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VRectangle_1adf20b383bff7824efe9ffcd94b885d1d" prot="protected" static="no" mutable="no">
+        <type><ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref></type>
+        <definition>RAVector sbne::VRectangle::_rx</definition>
+        <argsstring></argsstring>
+        <name>_rx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1417" column="14" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1417" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VRectangle_1aa6dbb84d96a16b84c61db457c1d9883c" prot="protected" static="no" mutable="no">
+        <type><ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref></type>
+        <definition>RAVector sbne::VRectangle::_ry</definition>
+        <argsstring></argsstring>
+        <name>_ry</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1418" column="14" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1418" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VRectangle_1aef3e2c4795a56e9ead366ccaeb70a451" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double sbne::VRectangle::_ratio</definition>
+        <argsstring></argsstring>
+        <name>_ratio</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1419" column="12" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1419" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VRectangle_1a2e171126892cd5ec5c3f0cf9351cae68" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sbne::VRectangle::_isSetX</definition>
+        <argsstring></argsstring>
+        <name>_isSetX</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1420" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1420" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VRectangle_1a26b6bd50ca24cd0b5f116fac5c560893" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sbne::VRectangle::_isSetY</definition>
+        <argsstring></argsstring>
+        <name>_isSetY</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1421" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1421" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VRectangle_1a7c4f552ae9b598d8628095e94345d631" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sbne::VRectangle::_isSetZ</definition>
+        <argsstring></argsstring>
+        <name>_isSetZ</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1422" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1422" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VRectangle_1ac105647b46798c84f09ed6ec8771c122" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sbne::VRectangle::_isSetWidth</definition>
+        <argsstring></argsstring>
+        <name>_isSetWidth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1423" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1423" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VRectangle_1a8160c4e121f47ff04f9f717141a1d9c2" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sbne::VRectangle::_isSetHeight</definition>
+        <argsstring></argsstring>
+        <name>_isSetHeight</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1424" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1424" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VRectangle_1a7059216c216c93b6a28b3b8b6539888d" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sbne::VRectangle::_isSetRX</definition>
+        <argsstring></argsstring>
+        <name>_isSetRX</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1425" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1425" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VRectangle_1aa31f7cd5b5821185cea2eacc481bdc8d" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sbne::VRectangle::_isSetRY</definition>
+        <argsstring></argsstring>
+        <name>_isSetRY</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1426" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1426" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsbne_1_1VRectangle_1ab81205a2c6842c1e613d94688306329c" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sbne::VRectangle::_isSetRatio</definition>
+        <argsstring></argsstring>
+        <name>_isSetRatio</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1427" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1427" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classsbne_1_1VRectangle_1ad6fb14de9571255789c60034f4258e78" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>sbne::VRectangle::VRectangle</definition>
+        <argsstring>()</argsstring>
+        <name>VRectangle</name>
+        <briefdescription>
+<para>Constructors. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1314" column="5" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1314" bodyend="1332"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VRectangle_1a3cfe6e044819a8205f9e5a80233a066f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VRectangle::setX</definition>
+        <argsstring>(const RAVector &amp;x)</argsstring>
+        <name>setX</name>
+        <param>
+          <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>Functions. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1336" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="2310" bodyend="2313"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VRectangle_1a6a710e6641c81efaa9e8c065c94192d2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+        <definition>const RAVector &amp; sbne::VRectangle::getX</definition>
+        <argsstring>() const</argsstring>
+        <name>getX</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1339" column="20" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="2315" bodyend="2317"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VRectangle_1ae7656288f645bc39a2814c3ce14387ec" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const bool</type>
+        <definition>const bool sbne::VRectangle::isSetX</definition>
+        <argsstring>() const</argsstring>
+        <name>isSetX</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1342" column="16" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1342" bodyend="1342"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VRectangle_1a9a1c3f8e1b79c134c08a74273e61e163" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VRectangle::setY</definition>
+        <argsstring>(const RAVector &amp;y)</argsstring>
+        <name>setY</name>
+        <param>
+          <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1345" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="2319" bodyend="2322"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VRectangle_1a01b5bd87cf218c93cccc6165487542d9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+        <definition>const RAVector &amp; sbne::VRectangle::getY</definition>
+        <argsstring>() const</argsstring>
+        <name>getY</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1348" column="20" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="2324" bodyend="2326"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VRectangle_1ad97a80b70d902ceb15b897b07c2b3b19" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const bool</type>
+        <definition>const bool sbne::VRectangle::isSetY</definition>
+        <argsstring>() const</argsstring>
+        <name>isSetY</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1351" column="16" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1351" bodyend="1351"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VRectangle_1ade8bf1b4fe58c284c559084934b8b988" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VRectangle::setZ</definition>
+        <argsstring>(const RAVector &amp;z)</argsstring>
+        <name>setZ</name>
+        <param>
+          <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+          <declname>z</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1354" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="2328" bodyend="2331"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VRectangle_1a60d02e2c732b01266f87bcb8b1164d40" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+        <definition>const RAVector &amp; sbne::VRectangle::getZ</definition>
+        <argsstring>() const</argsstring>
+        <name>getZ</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1357" column="20" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="2333" bodyend="2335"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VRectangle_1a82140b8fdfc6c1be3715c73d1e15e03b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const bool</type>
+        <definition>const bool sbne::VRectangle::isSetZ</definition>
+        <argsstring>() const</argsstring>
+        <name>isSetZ</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1360" column="16" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1360" bodyend="1360"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VRectangle_1ae7794d5362340a2e4801e43e402573db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VRectangle::setWidth</definition>
+        <argsstring>(const RAVector &amp;width)</argsstring>
+        <name>setWidth</name>
+        <param>
+          <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+          <declname>width</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1363" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="2337" bodyend="2340"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VRectangle_1af922b97188575e92aad3e50ba810f5aa" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+        <definition>const RAVector &amp; sbne::VRectangle::getWidth</definition>
+        <argsstring>() const</argsstring>
+        <name>getWidth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1366" column="20" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="2342" bodyend="2344"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VRectangle_1a1a076f66ff9b797beb0076c21abde267" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const bool</type>
+        <definition>const bool sbne::VRectangle::isSetWidth</definition>
+        <argsstring>() const</argsstring>
+        <name>isSetWidth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1369" column="16" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1369" bodyend="1369"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VRectangle_1a53e664e8d3cc1e0f73f5308924ab1669" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VRectangle::setHeight</definition>
+        <argsstring>(const RAVector &amp;height)</argsstring>
+        <name>setHeight</name>
+        <param>
+          <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+          <declname>height</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1372" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="2346" bodyend="2349"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VRectangle_1a9224d0c6fa99cecb6d52892b2713c26f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+        <definition>const RAVector &amp; sbne::VRectangle::getHeight</definition>
+        <argsstring>() const</argsstring>
+        <name>getHeight</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1375" column="20" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="2351" bodyend="2353"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VRectangle_1a89de9c9cf1f5021aa1fdbecc9b06dbbf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const bool</type>
+        <definition>const bool sbne::VRectangle::isSetHeight</definition>
+        <argsstring>() const</argsstring>
+        <name>isSetHeight</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1378" column="16" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1378" bodyend="1378"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VRectangle_1a0fecff23032a4cd76d1ad85c9a9db190" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VRectangle::setRX</definition>
+        <argsstring>(const RAVector &amp;rx)</argsstring>
+        <name>setRX</name>
+        <param>
+          <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+          <declname>rx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1381" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="2355" bodyend="2358"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VRectangle_1ab6e4add7f1e2adee5134f61d33657364" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+        <definition>const RAVector &amp; sbne::VRectangle::getRX</definition>
+        <argsstring>() const</argsstring>
+        <name>getRX</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1384" column="20" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="2360" bodyend="2362"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VRectangle_1a69de3b994391f97806425042ddaadf58" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const bool</type>
+        <definition>const bool sbne::VRectangle::isSetRX</definition>
+        <argsstring>() const</argsstring>
+        <name>isSetRX</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1387" column="16" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1387" bodyend="1387"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VRectangle_1adfe211fa24cbdca7dd58ba8fc5052a8b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VRectangle::setRY</definition>
+        <argsstring>(const RAVector &amp;ry)</argsstring>
+        <name>setRY</name>
+        <param>
+          <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+          <declname>ry</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1390" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="2364" bodyend="2367"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VRectangle_1a9f7981b183a4fb0245616738e5a291d7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classsbne_1_1RAVector" kindref="compound">RAVector</ref> &amp;</type>
+        <definition>const RAVector &amp; sbne::VRectangle::getRY</definition>
+        <argsstring>() const</argsstring>
+        <name>getRY</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1393" column="20" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="2369" bodyend="2371"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VRectangle_1a1bb21982e545fb03a765c03cf7d243b6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const bool</type>
+        <definition>const bool sbne::VRectangle::isSetRY</definition>
+        <argsstring>() const</argsstring>
+        <name>isSetRY</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1396" column="16" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1396" bodyend="1396"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VRectangle_1aee12c0b734a62c5e93c5fffd8b7a3a7a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VRectangle::setRatio</definition>
+        <argsstring>(const double &amp;ratio)</argsstring>
+        <name>setRatio</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>ratio</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1399" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="2373" bodyend="2376"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VRectangle_1a91e305c87bc354736fadd098bba3aa39" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sbne::VRectangle::unSetRatio</definition>
+        <argsstring>()</argsstring>
+        <name>unSetRatio</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1402" column="10" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="2378" bodyend="2381"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VRectangle_1a5a16c749984506ce8bacb5a65dcd44ef" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const double &amp;</type>
+        <definition>const double &amp; sbne::VRectangle::getRatio</definition>
+        <argsstring>() const</argsstring>
+        <name>getRatio</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1405" column="18" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.cpp" bodystart="2383" bodyend="2385"/>
+      </memberdef>
+      <memberdef kind="function" id="classsbne_1_1VRectangle_1ac8d8bd106452799272b54cc11ef4a491" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const bool</type>
+        <definition>const bool sbne::VRectangle::isSetRatio</definition>
+        <argsstring>() const</argsstring>
+        <name>isSetRatio</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1408" column="16" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1408" bodyend="1408"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The equivalent class for SBML <ulink url="http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_rectangle.html">Rectangle</ulink> . </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5">
+        <label>sbne::VeneerElement</label>
+        <link refid="classsbne_1_1VeneerElement"/>
+      </node>
+      <node id="2">
+        <label>sbne::VGraphicalPrimitive2D</label>
+        <link refid="classsbne_1_1VGraphicalPrimitive2D"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>sbne::VGraphicalPrimitive1D</label>
+        <link refid="classsbne_1_1VGraphicalPrimitive1D"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>sbne::VTransformation2D</label>
+        <link refid="classsbne_1_1VTransformation2D"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>sbne::VRectangle</label>
+        <link refid="classsbne_1_1VRectangle"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="5">
+        <label>sbne::VeneerElement</label>
+        <link refid="classsbne_1_1VeneerElement"/>
+      </node>
+      <node id="2">
+        <label>sbne::VGraphicalPrimitive2D</label>
+        <link refid="classsbne_1_1VGraphicalPrimitive2D"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>sbne::VGraphicalPrimitive1D</label>
+        <link refid="classsbne_1_1VGraphicalPrimitive1D"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>sbne::VTransformation2D</label>
+        <link refid="classsbne_1_1VTransformation2D"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>sbne::RAVector</label>
+        <link refid="classsbne_1_1RAVector"/>
+      </node>
+      <node id="1">
+        <label>sbne::VRectangle</label>
+        <link refid="classsbne_1_1VRectangle"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>_height</edgelabel>
+          <edgelabel>_rx</edgelabel>
+          <edgelabel>_ry</edgelabel>
+          <edgelabel>_width</edgelabel>
+          <edgelabel>_x</edgelabel>
+          <edgelabel>_y</edgelabel>
+          <edgelabel>_z</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" line="1311" column="1" bodyfile="/Users/home/Documents/Education/SB/Projects/Made/SBNE/sbne/SBNE/src/sbne/veneer/ne_veneer.h" bodystart="1311" bodyend="1428"/>
+    <listofallmembers>
+      <member refid="classsbne_1_1VTransformation2D_1a21c7a2b446a712534885ebb73482c199" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_affine</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1a48430adb4df2b3bc2d44039feef1dbfa" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_dashArray</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive2D_1a133bc668769f01cb29e2f143fed2ef58" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_fill</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive2D_1ab18a27018fc45cdb0fc39a7605593e6c" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_fillRule</name></member>
+      <member refid="classsbne_1_1VRectangle_1a2c1399e5f88b53e4c519bacd64e0c38d" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_height</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a05a1b163bba59774adf635c8aaa9411e" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_id</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1ae10bc79301140f75f6bdbd8cc33de2f4" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_isSetDashArray</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive2D_1a9af201a8af829a9c88800d15081fa734" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_isSetFill</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive2D_1a80b6dbb9c8261ea623126771597bd90b" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_isSetFillRule</name></member>
+      <member refid="classsbne_1_1VRectangle_1a8160c4e121f47ff04f9f717141a1d9c2" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_isSetHeight</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a5528e39c12af204f8de8e3ac741b19e6" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_isSetId</name></member>
+      <member refid="classsbne_1_1VeneerElement_1aadacb15ddad42dead4445e992b73d892" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_isSetName</name></member>
+      <member refid="classsbne_1_1VRectangle_1ab81205a2c6842c1e613d94688306329c" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_isSetRatio</name></member>
+      <member refid="classsbne_1_1VRectangle_1a7059216c216c93b6a28b3b8b6539888d" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_isSetRX</name></member>
+      <member refid="classsbne_1_1VRectangle_1aa31f7cd5b5821185cea2eacc481bdc8d" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_isSetRY</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1ac7a0a4126b9311dc1c9a9a78f7b4297b" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_isSetStroke</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1a52c5df7d2a0c487b551f77dbac04658f" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_isSetStrokeWidth</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a475bf1e0d392d8947c9c5adbe91ac59c" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_isSetTransform</name></member>
+      <member refid="classsbne_1_1VRectangle_1ac105647b46798c84f09ed6ec8771c122" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_isSetWidth</name></member>
+      <member refid="classsbne_1_1VRectangle_1a2e171126892cd5ec5c3f0cf9351cae68" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_isSetX</name></member>
+      <member refid="classsbne_1_1VRectangle_1a26b6bd50ca24cd0b5f116fac5c560893" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_isSetY</name></member>
+      <member refid="classsbne_1_1VRectangle_1a7c4f552ae9b598d8628095e94345d631" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_isSetZ</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a81238d04248f95a8ef68788d3db8e913" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_name</name></member>
+      <member refid="classsbne_1_1VRectangle_1aef3e2c4795a56e9ead366ccaeb70a451" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_ratio</name></member>
+      <member refid="classsbne_1_1VRectangle_1adf20b383bff7824efe9ffcd94b885d1d" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_rx</name></member>
+      <member refid="classsbne_1_1VRectangle_1aa6dbb84d96a16b84c61db457c1d9883c" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_ry</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a4f1acf2b370bf8e62551537a42b2b999" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_shape</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1afb0eeb08dabfc5218d15292a5737c872" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_stroke</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1a2364e2328a18fd36f410c8ea6ce29b73" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_strokeWidth</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a2d90d4d2bc3a10568268734d4a562306" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_transform</name></member>
+      <member refid="classsbne_1_1VRectangle_1a2edf44a220eea6695abc9a664c8ff461" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_width</name></member>
+      <member refid="classsbne_1_1VRectangle_1aa4edc3e7dac02b12c75e214d5ab49f27" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_x</name></member>
+      <member refid="classsbne_1_1VRectangle_1af121f9763b51b838392fab58df051650" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_y</name></member>
+      <member refid="classsbne_1_1VRectangle_1a0e8d05db6829cf578369aa1b77c2ebb4" prot="protected" virt="non-virtual"><scope>sbne::VRectangle</scope><name>_z</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1a4d912ebd1970dd4701c1e0d50e995f30" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>addToDashArray</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1aa612b2cf85ef2a4094d888fea24f8b5e" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>addToDashArrayEnd</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1a3403fe71cf67924b07a40d135f2a1c35" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>constDashArrayIt</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1adcedb1b117da945a63c5c8bd03dac64e" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>dashArrayBegin</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1ae9db1f5a980351db78914d0bca836efd" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>dashArrayEnd</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1ac087bdf9512470dbcf0b7c5c5b99c184" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>dashArrayIt</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1a498fb9ec443b8518ec60ce70249e1096" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>dashArrayVec</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a33c256f3ea47fd4d3c038fdc71934d05" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>getAffine2D</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1a4c2a44a772da8d8e63ac0afccd5a70f3" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>getDashArray</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive2D_1a661e5d8ac99de8faefe2b5adbd79a2b3" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>getFill</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive2D_1a3b2fcf57f826ebb3b80448b7b5fca883" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>getFillRule</name></member>
+      <member refid="classsbne_1_1VRectangle_1a9224d0c6fa99cecb6d52892b2713c26f" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>getHeight</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a248c99de1375ccdae3dbf59fce7b5c6a" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>getId</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a29585cbce3cf9e33407e5eecd455f50c" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>getName</name></member>
+      <member refid="classsbne_1_1VRectangle_1a5a16c749984506ce8bacb5a65dcd44ef" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>getRatio</name></member>
+      <member refid="classsbne_1_1VRectangle_1ab6e4add7f1e2adee5134f61d33657364" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>getRX</name></member>
+      <member refid="classsbne_1_1VRectangle_1a9f7981b183a4fb0245616738e5a291d7" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>getRY</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a2dfd7022cd8b88858e888ab537c9bbda" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>getShape</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1aab5f1688548e2f2f6959828b13f8fa25" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>getShapeAsString</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1a0075f815683008b9264d5c5a2a432d1c" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>getStroke</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1a9f4834f4940b582a4a880f0d7144518e" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>getStrokeWidth</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a6b467805aa3d8b69a6addd87f24f6c65" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>getTransform</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1aea31862b46a5763796bf64c97beab787" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>getTransform</name></member>
+      <member refid="classsbne_1_1VRectangle_1af922b97188575e92aad3e50ba810f5aa" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>getWidth</name></member>
+      <member refid="classsbne_1_1VRectangle_1a6a710e6641c81efaa9e8c065c94192d2" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>getX</name></member>
+      <member refid="classsbne_1_1VRectangle_1a01b5bd87cf218c93cccc6165487542d9" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>getY</name></member>
+      <member refid="classsbne_1_1VRectangle_1a60d02e2c732b01266f87bcb8b1164d40" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>getZ</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1a346698e6af12c36af0edb4258b9c0d2c" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>isSetDashArray</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive2D_1a4ec3ec939d30c133d0478f067866aa5e" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>isSetFill</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive2D_1ae636f7409dcdc5874ad5ea989b66059b" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>isSetFillRule</name></member>
+      <member refid="classsbne_1_1VRectangle_1a89de9c9cf1f5021aa1fdbecc9b06dbbf" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>isSetHeight</name></member>
+      <member refid="classsbne_1_1VeneerElement_1af7b8bd39c05a8f08fc74edeb024ab517" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>isSetId</name></member>
+      <member refid="classsbne_1_1VeneerElement_1adc2d191b9b62b2f03385d59caa9fe377" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>isSetName</name></member>
+      <member refid="classsbne_1_1VRectangle_1ac8d8bd106452799272b54cc11ef4a491" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>isSetRatio</name></member>
+      <member refid="classsbne_1_1VRectangle_1a69de3b994391f97806425042ddaadf58" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>isSetRX</name></member>
+      <member refid="classsbne_1_1VRectangle_1a1bb21982e545fb03a765c03cf7d243b6" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>isSetRY</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1a7a3c7ef6f546f56e99a4e68abb357cc9" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>isSetStroke</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1a319d87fcda099e0b7a7154c717c52dbe" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>isSetStrokeWidth</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a6de4c0479d342b739ae2928f9c4a228c" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>isSetTransform</name></member>
+      <member refid="classsbne_1_1VRectangle_1a1a076f66ff9b797beb0076c21abde267" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>isSetWidth</name></member>
+      <member refid="classsbne_1_1VRectangle_1ae7656288f645bc39a2814c3ce14387ec" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>isSetX</name></member>
+      <member refid="classsbne_1_1VRectangle_1ad97a80b70d902ceb15b897b07c2b3b19" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>isSetY</name></member>
+      <member refid="classsbne_1_1VRectangle_1a82140b8fdfc6c1be3715c73d1e15e03b" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>isSetZ</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1a0e9854c55ef65335204e76824e174fe7" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>removeElementFromDashArray</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1a5e0a0cde8738be5921b7adc18972f874" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>replaceElementInDashArray</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a4b5ed3ddc43b8703c75773e6b8f30314" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>rotate</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a479be03aa2073c42a839e6506bb9aaa8" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>scale</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a7f4732df15c8bdda897b78964741be72" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>setAffine2D</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1aaaa763cb7984e01996f19bc56afe553f" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>setDashArray</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive2D_1a4e0d1593c5db7c62be42f7b182dbc945" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>setFill</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive2D_1acfb9933ac01ea656e78e4294e3a65b34" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>setFillRule</name></member>
+      <member refid="classsbne_1_1VRectangle_1a53e664e8d3cc1e0f73f5308924ab1669" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>setHeight</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a8cd21b54b5b02e4cabdaf151e2ee975e" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>setId</name></member>
+      <member refid="classsbne_1_1VeneerElement_1a873088af375af1c882e2c8639b560e17" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>setName</name></member>
+      <member refid="classsbne_1_1VRectangle_1aee12c0b734a62c5e93c5fffd8b7a3a7a" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>setRatio</name></member>
+      <member refid="classsbne_1_1VRectangle_1a0fecff23032a4cd76d1ad85c9a9db190" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>setRX</name></member>
+      <member refid="classsbne_1_1VRectangle_1adfe211fa24cbdca7dd58ba8fc5052a8b" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>setRY</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1acccbdddff322f44386d681b3ecffc9e7" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>setStroke</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1ac5e26dbffd5dfe166fcd434568c3ff12" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>setStrokeWidth</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1aea45d28e8106bffa2ad41fee240f0680" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>setTransform</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1aaf623d0792163d869b91ad6fab7510c9" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>setTransform</name></member>
+      <member refid="classsbne_1_1VRectangle_1ae7794d5362340a2e4801e43e402573db" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>setWidth</name></member>
+      <member refid="classsbne_1_1VRectangle_1a3cfe6e044819a8205f9e5a80233a066f" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>setX</name></member>
+      <member refid="classsbne_1_1VRectangle_1a9a1c3f8e1b79c134c08a74273e61e163" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>setY</name></member>
+      <member refid="classsbne_1_1VRectangle_1ade8bf1b4fe58c284c559084934b8b988" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>setZ</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a748d77e65d96252ec3fbadeedf4ff3ad" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>skewX</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a442a0a823ab33c98cd15faad28724133" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>skewY</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1af5e0aca3a51df5a5e8f82b451e491ce8" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>translate</name></member>
+      <member refid="classsbne_1_1VRectangle_1a91e305c87bc354736fadd098bba3aa39" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>unSetRatio</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a1c918852773459673cc5ea588d9420cb" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>updateAffine2D</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1ab11246b7e5fb335da684847e236fa8d8" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>updateTransform</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1abf6b86241161f4d85d351bf040a0d670" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>updateTransform</name></member>
+      <member refid="classsbne_1_1VeneerElement_1aea6702719a7bf355a20b140849036b8a" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>VeneerElement</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive1D_1a9131f2edd189c55e890b12a1f8c25cfe" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>VGraphicalPrimitive1D</name></member>
+      <member refid="classsbne_1_1VGraphicalPrimitive2D_1ad6c6b8f56cff4036dcb4995f3c0447ff" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>VGraphicalPrimitive2D</name></member>
+      <member refid="classsbne_1_1VRectangle_1ad6fb14de9571255789c60034f4258e78" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>VRectangle</name></member>
+      <member refid="classsbne_1_1VTransformation2D_1a367cf0b70b5187de1f001dfa2b6cc666" prot="public" virt="non-virtual"><scope>sbne::VRectangle</scope><name>VTransformation2D</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
