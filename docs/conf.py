@@ -83,11 +83,11 @@ html_static_path = ['_static']
 
 
 def configureDoxyfile(input_dir, output_dir):
-with open('Doxyfile.in', 'r') as file :
-    filedata = file.read()
+    with open('Doxyfile.in', 'r') as file :
+        filedata = file.read()
 
-filedata = filedata.replace('@SBNE_ROOT_SOURCE_DIR@', input_dir)
-filedata = filedata.replace('@DOXYGEN_OUTPUT_DIR@', output_dir)
+    filedata = filedata.replace('@SBNE_ROOT_SOURCE_DIR@', input_dir)
+    filedata = filedata.replace('@DOXYGEN_OUTPUT_DIR@', output_dir)
 
-with open('Doxyfile', 'w') as file:
-    file.write(filedata)
+    with open('Doxyfile', 'w') as file:
+        file.write(filedata)
