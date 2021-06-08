@@ -2,6 +2,8 @@
 API Reference
 *************
 
+As mentioned :ref:`here <quickstart:Using portable C++ library (C++ API)>`, by making use of the features of C++ API, a user can simply load the SBML document of an SBML file, automatically add Layout and Render features to it, straightforwardly make any change to these features, and finally write the added/modified features to the SBML file. In this regard, instructions on how to effectively use each component of C++ API, including its  **Enumeration**, **Classes**, **Structs**, and **Functions**, are provided here:
+
 Enumerations
 ############
 
