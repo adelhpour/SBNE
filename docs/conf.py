@@ -36,6 +36,21 @@ extensions = [ "breathe", "sphinx.ext.autosectionlabel"]
 autosectionlabel_prefix_document = True
 
 # Breathe Configuration
+# Use on readthedocs
+import subprocess, os
+
+# Check if we're running on Read the Docs' servers
+read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
+
+breathe_projects = {}
+
+if read_the_docs_build:
+    input_dir = '..'
+    output_dir = 'doxygen-output'
+    configureDoxyfile(input_dir, output_dir)
+    subprocess.call('doxygen', shell=True)
+    breathe_projects['SBNE'] = output_dir + '/xml'
+    
 breathe_default_project = "SBNE"
 
 # Add any paths that contain templates here, relative to this directory.
@@ -67,27 +82,12 @@ html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
 
-# Use on readthedocs
-import subprocess, os
-
 def configureDoxyfile(input_dir, output_dir):
-    with open('Doxyfile.in', 'r') as file :
-        filedata = file.read()
+with open('Doxyfile.in', 'r') as file :
+    filedata = file.read()
 
-    filedata = filedata.replace('@DOXYGEN_INPUT_DIR@', input_dir)
-    filedata = filedata.replace('@DOXYGEN_OUTPUT_DIR@', output_dir)
+filedata = filedata.replace('@SBNE_ROOT_SOURCE_DIR@', input_dir)
+filedata = filedata.replace('@DOXYGEN_OUTPUT_DIR@', output_dir)
 
-    with open('Doxyfile', 'w') as file:
-        file.write(filedata)
-
-# Check if we're running on Read the Docs' servers
-read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
-
-breathe_projects = {}
-
-if read_the_docs_build:
-    input_dir = '../src/sbne'
-    output_dir = './doxygen-output'
-    configureDoxyfile(input_dir, output_dir)
-    subprocess.call('doxygen', shell=True)
-    breathe_projects['SBNE'] = output_dir + '/xml'
+with open('Doxyfile', 'w') as file:
+    file.write(filedata)
