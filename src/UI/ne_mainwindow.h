@@ -28,7 +28,7 @@
 #include <QTimeLine>
 #include <QScrollBar>
 #include <QScrollArea>
-#include <QFontDataBase>
+#include <QFontDatabase>
 
 #include "sbne/sbml/ne_sbml.h"
 #include "sbne/sbml/ne_layout.h"

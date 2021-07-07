@@ -7,11 +7,11 @@ Using portable C++ library (C++ API)
 
 To use the portable C++ library, called libSBNE, you first need to:
 
-*  :ref:`Build <installation:Build from Source>` libSBML and libSBNE from source.
+*  Either :ref:`Build <installation:Build from Source>` libSBML and libSBNE from source, or install SBNE (C++ API component) using its :ref:`precompiled binaries <installation:Download SBNE binaries>`.
 
-*  Add libSBNE include directory (``<root directory>/install/include``) and libSBML include directory (probably something like ``<root directory of libSBML>/install/include``) to the "include directory" of your project.
+*  Add both libSBNE include directory (``<SBNE install directory>/include``) and libSBML include directory (``<libSBML install directory>/include``) to the "include directory" of your project.
 
-*  Add libSBNE library (in ``<root directory>/install/lib``) and libSBML library (probably in somewhere like ``<root directory of libSBML>/install/lib``) to the "dependencies" of your project.
+*  Add both libSBNE library (in ``<SBNE install directory>/lib`` for Unix and ``<SBNE install directory>/bin`` for Windows) and libSBML library (in ``<libSBML install directory>/lib`` for Unix and ``<libSBML install directory>/bin`` for Windows) to the "dependencies" of your project.
 
 * Include the following headers in your script:
 
@@ -79,13 +79,14 @@ Using Python bindings
 
 To use the language bindings of SBNE for Python, you first need to:
  
-*  :ref:`Build <installation:Build from Source>` libSBML and SBNE with enabled ``WITH_PYTHON`` option.
+* Either :ref:`Build <installation:Build from Source>` libSBML and SBNE (with enabled ``WITH_PYTHON`` option) from source, or install SBNE (Python Bindings component) using its :ref:`precompiled binaries <installation:Download SBNE binaries>`.
+* In case you either enabled ``PYTHON_INSTALL_IN_PREFIX`` option while building SBNE from source or installed SBNE using its binaries,
 
-.. note::
+    * Add the directory of the built Python library (``<SBNE install directory>/lib/pyhton[version]/site-packages/libsbne``) to your ``PYTHONPATH``.
+    * ``import _libsbne`` in your script.
+* In case you enabled ``PYTHON_INSTALL_WITH_SETUP`` option while building SBNE from source,
 
-    While building SBNE, if you just enabled ``PYTHON_INSTALL_IN_PREFIX`` option, here you need to add the directory of the built Python library (``<root directory>/install/lib/pyhton[version]/site-packages/libsbne``) to your ``PYTHONPATH``. In case you enabled ``PYTHON_INSTALL_WITH_SETUP`` option, no directory is needed to be added.
-    
-* ``import _libsbne`` in your script.
+    * ``import libsbne`` in your script.
 
 Now, you can make use of the functions of the API in your Python script.
 
@@ -137,9 +138,11 @@ Using SBNE-GUI (Graphical User Interface)
 
 To use the graphical user interface of SBNE, you need to:
 
-* :ref:`Build <installation:Build from Source>` libSBML and libSBNE with enabled ``WITH_GUI`` option.
-* Go to ``<root directory>/install/bin``.
-* Run SBNE-GUI.
+* Either :ref:`Build <installation:Build from Source>` libSBML and libSBNE (with enabled ``WITH_GUI`` option) from source, or install SBNE (SBNE-GUI component) using its :ref:`precompiled binaries <installation:Download SBNE binaries>`.
+* Go to ``<SBNE install directory>/bin``:
+
+    * On Microsoft Windows and macOS, double-click on SBNE-GUI executable.
+    * On Linux, run ``./SBNE-GUI`` command.
 
 GUI example
 ===========

@@ -18,7 +18,7 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    package_dir={"libsbne": "."},
+    package_dir={"": "."},
     packages=find_packages(),
     package_data={"": ['*.dll', '*.so', '*.pyd', '*.dylib']},
     python_requires=">=3.6"

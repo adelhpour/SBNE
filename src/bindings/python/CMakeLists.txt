@@ -35,10 +35,10 @@ add_custom_command(
     ARGS  -I${CMAKE_CURRENT_SOURCE_DIR}/../swig/
         -I${CMAKE_CURRENT_SOURCE_DIR} 
         -I${CMAKE_CURRENT_BINARY_DIR} 
-        -I${SBNE_ROOT_BINARY_DIR}/src
-        -I${SBNE_ROOT_SOURCE_DIR}/src
-        -I${SBNE_ROOT_BINARY_DIR}/src/sbne
-        -I${SBNE_ROOT_SOURCE_DIR}/src/sbne
+        -I${CMAKE_SOURCE_DIR}/src
+        -I${CMAKE_SOURCE_DIR}/src
+        -I${CMAKE_BINARY_DIR}/src/sbne
+        -I${CMAKE_SOURCE_DIR}/src/sbne
         -DGENERATING_DOCS
         -c++
         -python   
@@ -58,16 +58,18 @@ add_custom_target(binding_python_swig ALL DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/li
 # Build native library
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../swig)
-include_directories(${SBNE_ROOT_SOURCE_DIR}/src)
-include_directories(${Python_INCLUDE_DIRS})
+include_directories(${CMAKE_SOURCE_DIR}/src)
 include_directories(${LIBSBML_INCLUDEDIR})
-include_directories(BEFORE ${SBNE_ROOT_BINARY_DIR}/src)
+include_directories(${Python_INCLUDE_DIRS})
+include_directories(BEFORE ${CMAKE_BINARY_DIR}/src)
 include_directories(BEFORE ${CMAKE_CURRENT_BINARY_DIR})
 
 add_library(binding_python_lib SHARED libsbne_wrap.cpp)
 
-target_link_libraries(binding_python_lib sbne-static ${LIBSBML_LIBRARY} ${Python_LIBRARIES})
-
+target_link_libraries(binding_python_lib
+		      sbne-static
+		      ${LIBSBML_LIBRARY}
+		      ${Python_LIBRARIES})
 
 add_dependencies(binding_python_lib binding_python_swig)
 set_target_properties (binding_python_lib PROPERTIES OUTPUT_NAME "_libsbne")
@@ -84,21 +86,22 @@ else()
     endif()
 endif()
 
-if (APPLE)
+if (WIN32)
+	add_custom_command(TARGET binding_python_lib POST_BUILD
+	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${LIBSBML_PREFIX}/bin/libsbml.dll
+	$<TARGET_FILE_DIR:binding_python_lib>)
+elseif (APPLE)
 	add_custom_command(TARGET binding_python_lib 
     	POST_BUILD COMMAND 
-    	${CMAKE_INSTALL_NAME_TOOL} -change "libsbml.5.dylib" 					"${LIBSBML_LIBDIR}/libsbml.5.dylib"
+    	${CMAKE_INSTALL_NAME_TOOL} -change "libsbml.5.dylib" "@rpath/libsbml.5.dylib"
     	$<TARGET_FILE:binding_python_lib>)
-endif()
+endif(WIN32)
 
 ## Determine the python installation directory
-set(PYTHON_PACKAGE_INSTALL_DIR)
+set(PYTHON_PACKAGE_INSTALL_DIR ${CMAKE_INSTALL_LIBDIR}/python${Python_VERSION}/site-packages)
 if (UNIX OR CYGWIN) 
     execute_process(COMMAND "${Python_EXECUTABLE}" -c "import sys;import platform; sys.stdout.write(platform.python_version()[:3])"
         OUTPUT_VARIABLE Python_VERSION)
-    set(PYTHON_PACKAGE_INSTALL_DIR ${CMAKE_INSTALL_LIBDIR}/python${Python_VERSION}/site-packages)
-else()
-    set(PYTHON_PACKAGE_INSTALL_DIR ${CMAKE_INSTALL_LIBDIR}/python${Python_VERSION}/site-packages)
 endif()
 
 ## Install using the configured install prefix
@@ -106,34 +109,37 @@ option (PYTHON_INSTALL_IN_PREFIX
     "Install python binaries using the specified install prefix." ON)
 
 if (PYTHON_INSTALL_IN_PREFIX)
-    install(TARGETS binding_python_lib DESTINATION ${PYTHON_PACKAGE_INSTALL_DIR}/libsbne )
+    install(TARGETS binding_python_lib DESTINATION ${PYTHON_PACKAGE_INSTALL_DIR}/libsbne 	COMPONENT sbne_python_bindings)
 
-    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libsbne.py  DESTINATION ${PYTHON_PACKAGE_INSTALL_DIR}/libsbne)
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libsbne.py  DESTINATION ${PYTHON_PACKAGE_INSTALL_DIR} COMPONENT sbne_python_bindings)
+
+	if (WIN32)
+    		install(FILES ${LIBSBML_PREFIX}/bin/libsbml.dll DESTINATION 				${PYTHON_PACKAGE_INSTALL_DIR}/libsbne COMPONENT sbne_python_bindings)
+	endif(WIN32)
 
 endif(PYTHON_INSTALL_IN_PREFIX)
-
-
-## copy lib dependencies to the build and install directory (for windows)
-if (SBNE_WIN_COPY_DEPS_TO_INSTALL)
-	add_custom_command(TARGET binding_python_lib POST_BUILD
-	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${LIBSBML_PREFIX}/bin/libsbml.dll 	$<TARGET_FILE_DIR:binding_python_lib>)
-
-	if (PYTHON_INSTALL_IN_PREFIX)
-		install(FILES ${LIBSBML_PREFIX}/bin/libsbml.dll DESTINATION 				${PYTHON_PACKAGE_INSTALL_DIR}/libsbne)
-	endif()
-endif()
-
 
 ## Install using setup.py
 option (PYTHON_INSTALL_WITH_SETUP
     "Use setup.py to install the compiled python binaries (be sure to install with the appropriate privileges)." OFF)
 
 if (PYTHON_INSTALL_WITH_SETUP)
+	
+	## setup.py
+	configure_file(${CMAKE_CURRENT_SOURCE_DIR}/setup.py.cmake 				${CMAKE_CURRENT_BINARY_DIR}/setup.py)
 
-    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/setup.py.cmake ${CMAKE_CURRENT_BINARY_DIR}/setup.py)
+	install(FILES ${CMAKE_CURRENT_BINARY_DIR}/setup.py  DESTINATION 			${PYTHON_PACKAGE_INSTALL_DIR} COMPONENT sbne_python_bindings)
 
-    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libsbne.py  DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/libsbne RENAME __init__.py )
+	## libsbne.py
+	if (NOT EXISTS ${PYTHON_PACKAGE_INSTALL_DIR}/libsbne.py)
+		install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libsbne.py  DESTINATION 			${PYTHON_PACKAGE_INSTALL_DIR} COMPONENT sbne_python_bindings)
+	endif()
 
-    install(CODE "execute_process(COMMAND \"${CMAKE_COMMAND}\" -E chdir ${CMAKE_CURRENT_BINARY_DIR} pip install .)")
+	## __init__.py
+	install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libsbne.py  DESTINATION 			${CMAKE_CURRENT_BINARY_DIR}/libsbne RENAME __init__.py COMPONENT python_extra)
+
+	install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libsbne/__init__.py  DESTINATION 		${PYTHON_PACKAGE_INSTALL_DIR}/libsbne COMPONENT sbne_python_bindings)
+
+    	install(CODE "execute_process(COMMAND \"${CMAKE_COMMAND}\" -E chdir 			${CMAKE_INSTALL_PREFIX}/${PYTHON_PACKAGE_INSTALL_DIR} pip install .)" COMPONENT python_extra)
         
 endif(PYTHON_INSTALL_WITH_SETUP)

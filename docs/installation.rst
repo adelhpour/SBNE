@@ -62,4 +62,7 @@ The steps to build SBNE from its source code are as follows:
     
     *  On macOS and Linux, simply go to ``<root directory>/build`` and run ``make`` and then ``make install`` on terminal.
 
+Download SBNE binaries
+######################
 
+Installation with precompiled binaries is provided for users who intend to use SBNE without changing its source code. Using Qt Installer Framework, we have created installers for Microsoft Windows (.exe), macOS (.dmg), and Linux (.run) platforms, which are available in the `Releases page <https://github.com/adelhpour/SBNE/releases>`_ of the repository on GitHub.

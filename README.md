@@ -1,88 +1,28 @@
 # SBNE: SBML Network Editor
-SBNE is a network editor tool allowing the users and developers of systems/synthetic biology to straightforwardly read, manipulate, and write to the layout and render extensions of an SBML model using libSBML. Its “autolayout” and “autorender” algorithms can also be implemented to automatically generate all the necessary information about the layout and render extensions of an SBML model as well. It is built on the basis of <a href="https://github.com/sys-bio/sbnw">sbnw</a>.
+SBNE is a network editor tool for systems/synthetic biology users and developers to:
+* Straightforwardly read, manipulate, and write to the Layout and Render extensions of an SBML model.
+* Automatically generate all the necessary information about the Layout and Render extensions of an SBML model.
+* Meticulously render a biological network using the information about the Layout and Render extensions of an SBML model.
 
-## Contents
-SBNE is made up of a portable library called libSBNE, originally written in C++ with language bindings for Python, and a software tool called SBNE-GUI, a graphical interface enabling users to load, display, edit, and save an SBML network.
+## Features
+SBNE makes use of <a href="http://model.caltech.edu/software/libsbml/libsbml-docs/api/c++">libSBML</a> and is built on the basis of <a href="https://github.com/sys-bio/sbnw">sbnw</a>. It provides the users with:
+* A portable C++ library (C++ API),
+* Language bindings of the API for Python,
+* A Graphical User Interface.
 
-## How to Build
+## Platforms
+SBNE runs on:
+* Microsoft Windows,
+* macOS,
+* Linux.
 
-### Build libSBML from source (with enabled layout and render packages)
-As SBNE depeneds on libSBML library, first, it is required for you to build the latest version of libSBML from its <a href="http://sourceforge.net/projects/sbml/files/libsbml/">source</a>. This <a href="https://www.youtube.com/watch?v=e_Lydwzx-Hg">video</a> and <a href="http://sbml.org/Software/libSBML/5.18.0/docs/cpp-api/libsbml-installation.html">instruction page</a> can come in handy for you to do so. The only point you need to pay attention to, while you are following the instructions, is checking the `ENABLE_LAYOUT` and `ENABLE_RENDER` boxes in CMake-gui configuration of libSBML.
+## Installation
+To use SBNE:
+* Either Build SBNE from source by following its <a href="https://sbne.readthedocs.io/en/latest/installation.html">instructions</a>
+* Or head over to the <a href="https://github.com/adelhpour/SBNE/releases">Releases</a> page and download its binaries.
 
-### Build SBNE from source
-The steps to build SBNE from its source code are as follows:
-* Create a directory for your entire SBNE project. This directory has to be placed in somewhere not admin-blocked and is recommended to have the following file structure:
+## Documentation
+You can see the documentation of SBNE <a href="https://sbne.readthedocs.io/en/latest">here</a>.
 
-```
-<root directory>
-├── build
-├── install
-├── source
-```
-
-* Clone or download <a href="https://github.com/adelhpour/sbne/">SBNE source</a> to the `<root directory>/source`.
-
-* <a href="https://cmake.org/download/">Download</a> and Install CMake and then open CMake-gui.
-
-    + Select `<root directory>/source/sbne-master` (where the top-level `CMakeLists.txt` is located) as the source directory.
-    
-    + Select `<root directory>/build` as the build (binary) directory.
-
-    + Click "Configure" button and choose your compiler.
-
-    + Set `CMAKE_INSTALL_PREFIX` to `<root directory>/install`.
-
-    + Set `LIBSBML_PREFIX` to the install directory where libSBML libraries were built in the [previous stage](#Build-libSBML-from-source-with-enabled-layout-and-render-packages) (that must be something like `<root directory of libSBML>/install`).
-    
-    + Check `WITH_PYTHON` box if you want to build the language bindings for Python.
-
-    + Check `WITH_GUI` box if you want to build SBNE-GUI.
-
-        - ******NOTE******: To build SBNE-GUI, Qt5 development tools are needed to be already installed on your machine. In that case, if you check `WITH_GUI` box at this step, CMake requires you later to set the value of `Qt5_DIR` to the directory where `Qt5Config.cmake` and other Qt dependencies are located.
-
-    + Click "Configure" button time and again until all red variable rows turn into white.
-
-    + Click "Generate" button.
-
-* Now that you have figured out all the configuration settings, all you need is building the project as follows:
-
-    + On Windows, you can either click on "Open Project" button on CMake-gui or open the generated `.sln` file in  `<root directory>/build` in Visual Studio.  Once the Visual Studio is launched, change the configuration to "Release", and build `ALL-BUILD` and `INSTALL`.
-
-    + On Linux and macOS, simply go to `<root directory>/build` and  run `make` and then `make install`  on terminal.
-
-## How to Use
-
-### Use libSBNE library (C++ API)
-To use libSBNE, you first need to:
-* [Build](#how-to-build) libSBML and libSBNE. 
-
-* Add libSBNE include directory (`<root directory>/install/include`)  and libSBML include directory (something like `<root directory of libSBML>/install/include`) to the "include directory" of your project.
-
-* Add libSBNE library (in `<root directory>/install/lib` ) and libSBML library  (in somewhere like `<root directory of libSBML>/install/lib`) to the "dependencies" of your project.
-
-Then, include the following headers in your script:
-```
-    #include "sbne/sbml/ne_sbml.h"
-    #include "sbne/sbml/ne_layout.h"
-    #include "sbne/sbml/ne_render.h"
-```
-
-And now you are able to make use of the API functions in your code.
-
-******NOTE******: A simple script which makes use of the API to read the SBML docoument of an SBML (xml) file, add layout and render features (if not included) to it, and finally write it to an SBML (xml) file is contained in `<root directory>/source/include/testcases`.
-
-### Use Python bindings
-To use SBNE Python bindings, you first need to:
-
-* [Build](#how-to-build) libSBML and libSBNE with enabled `WITH_PYTHON` option.
-
-* Add the directory of the built Python library (`<root directory>/install/lib/pyhton[version]/site-packages/libsbne`)  to your `PYTHONPATH`.
-
-And then you are able to `import _libsbne` and make use of the API functions in your Python script.
-
-### Use SBNE-GUI (Graphical Interface)
-To use the graphical interface, you need to:
-
-* [Build](#how-to-build) libSBML and libSBNE with enabled `WITH_GUI` option.
-
-* Go to  `<root directory>/install/bin`, and run SBNE-GUI.
+## License
+SBNE is licensed under <a href="https://sbne.readthedocs.io/en/latest/appendix.html">The MIT License</a>.

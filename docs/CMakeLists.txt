@@ -27,10 +27,10 @@ message(STATUS "SPHINX_EXECUTABLE: ${SPHINX_EXECUTABLE}")
 find_package(Doxygen REQUIRED)
 
 # Find all the public headers
-file(GLOB_RECURSE SBNE_PUBLIC_HEADERS ${SBNE_ROOT_SOURCE_DIR}/src/sbne/*.h)
+file(GLOB_RECURSE SBNE_PUBLIC_HEADERS ${CMAKE_SOURCE_DIR}/src/sbne/*.h)
 
-set(DOXYGEN_INPUT_DIR "${SBNE_ROOT_SOURCE_DIR}/src/sbne")
-set(DOXYGEN_OUTPUT_DIR "${SBNE_ROOT_BINARY_DIR}/docs/doxygen-output")
+set(DOXYGEN_INPUT_DIR "${CMAKE_SOURCE_DIR}/src/sbne")
+set(DOXYGEN_OUTPUT_DIR "${CMAKE_BINARY_DIR}/docs/doxygen-output")
 set(DOXYGEN_INDEX_FILE ${DOXYGEN_OUTPUT_DIR}/xml/index.xml)
 set(DOXYFILE_IN ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in)
 set(DOXYFILE_OUT ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile)
@@ -79,4 +79,4 @@ add_custom_target(Sphinx ALL DEPENDS ${SPHINX_INDEX_FILE})
 # Add an install target to install the docs
 include(GNUInstallDirs)
 install(DIRECTORY ${SPHINX_BUILD}
-DESTINATION ${CMAKE_INSTALL_DOCDIR})
+DESTINATION ${CMAKE_INSTALL_DOCDIR} COMPONENT doc_extra)

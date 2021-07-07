@@ -1,4 +1,5 @@
-## the source files
+### files
+## sources
 set(SOURCES 
     sbne/core/ne_core.cpp
     sbne/layout/ne_autoLayout.cpp
@@ -14,7 +15,9 @@ set(SOURCES
     sbne/sbml/ne_render.cpp
     )
 
-## the headers
+set(SBNE_SOURCES ${SOURCES})
+
+## headers
 set(HEADERS 
     sbne/core/ne_core.h
     sbne/layout/ne_autoLayout.h
@@ -30,32 +33,23 @@ set(HEADERS
     sbne/sbml/ne_render.h
     )
 
-set(SBNE_SOURCES ${SOURCES})
 set(SBNE_HEADERS ${HEADERS})
 
-## libSBNE shared library
+### shared library
 ## build
 add_library(sbne SHARED ${SBNE_SOURCES})
 
 ## add include directories
-target_include_directories(sbne PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}
+target_include_directories(sbne PUBLIC
+	${CMAKE_CURRENT_SOURCE_DIR}
         ${LIBSBML_INCLUDEDIR})
 
-#add libraries
-target_link_libraries(sbne PRIVATE 
+## add libraries
+target_link_libraries(sbne
 	${LIBSBML_LIBRARY}
 	${LIBSBML_EXTRA_LIBS})
 
-## set the directory of the dependencies as full path in macOS
-if(APPLE)
-	add_custom_command(TARGET sbne 
-    	POST_BUILD COMMAND 
-    	${CMAKE_INSTALL_NAME_TOOL} -change "libsbml.5.dylib"					"${LIBSBML_LIBDIR}/libsbml.5.dylib"
-    	$<TARGET_FILE:sbne>)
-endif()
-
-## libSBNE static library
+### static library
 if (BUILD_STATIC_LIB)
 	## build
 	add_library(sbne-static STATIC ${SBNE_SOURCES})
@@ -70,30 +64,46 @@ if (BUILD_STATIC_LIB)
 		${LIBSBML_STATIC_LIBRARY})
 endif()
 
-## install
-## set library dist
-install(TARGETS sbne RUNTIME DESTINATION bin LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)
-install(TARGETS sbne-static RUNTIME DESTINATION bin LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)
+if (WIN32)
+	add_custom_command(TARGET sbne POST_BUILD
+	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${LIBSBML_PREFIX}/bin/libsbml.dll
+	$<TARGET_FILE_DIR:sbne>)
 
-## copy headers to include directory
+elseif (APPLE)
+	add_custom_command(TARGET sbne POST_BUILD
+	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${LIBSBML_LIBS}
+	$<TARGET_FILE_DIR:sbne>)
+
+	add_custom_command(TARGET sbne POST_BUILD
+		COMMAND ${CMAKE_INSTALL_NAME_TOOL} -change
+		"libsbml.5.dylib" "@rpath/libsbml.5.dylib"
+		$<TARGET_FILE:sbne>)
+endif(WIN32)
+
+### install
+## set library dist
+install(TARGETS sbne RUNTIME DESTINATION bin COMPONENT sbne_cpp_api LIBRARY DESTINATION lib COMPONENT sbne_cpp_api ARCHIVE DESTINATION lib COMPONENT sbne_cpp_api)
+install(TARGETS sbne-static RUNTIME DESTINATION bin COMPONENT sbne_cpp_api LIBRARY DESTINATION lib COMPONENT sbne_cpp_api ARCHIVE DESTINATION lib COMPONENT sbne_cpp_api)
+
+## install headers
 foreach(dir core layout math network render sbml veneer)
     file(GLOB header_files "${CMAKE_CURRENT_SOURCE_DIR}/sbne/${dir}/*.h")
-    install(FILES ${header_files} DESTINATION include/sbne/${dir})
+    install(FILES ${header_files} DESTINATION include/sbne/${dir} COMPONENT sbne_cpp_api)
 endforeach(dir)
 
-## copy lib dependencies to the build and install directory (for windows)
-if (SBNE_WIN_COPY_DEPS_TO_INSTALL)
-	add_custom_command(TARGET SBNE-GUI POST_BUILD
-	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${LIBSBML_PREFIX}/bin/libsbml.dll 	$<TARGET_FILE_DIR:sbne>)
-	install(FILES ${LIBSBML_PREFIX}/bin/libsbml.dll DESTINATION lib)
-endif()
+## install lib dependencies
+if (WIN32)
+	install(FILES ${LIBSBML_PREFIX}/bin/libsbml.dll DESTINATION bin COMPONENT 		sbne_cpp_api)
+else ()
+	install(FILES ${LIBSBML_LIBS} DESTINATION lib COMPONENT sbne_cpp_api)
+endif(WIN32)
 
-## create GUI
+### build GUI
 if (WITH_GUI)
 	add_subdirectory(UI)
 endif()
 
-## create language bindings
+### build language bindings
 if (WITH_SWIG)
 	add_subdirectory(bindings)
 endif()

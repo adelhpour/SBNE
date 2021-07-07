@@ -1,25 +1,8 @@
-cmake_minimum_required(VERSION 2.6)
-
-cmake_policy(SET CMP0020 NEW)
+cmake_minimum_required(VERSION 3.3)
 
 project(sbne)
 
-set(SBNE_ROOT_SOURCE_DIR "${CMAKE_SOURCE_DIR}" CACHE PATH
-    "Path to the SBNE root source directory")
-
-set(SBNE_ROOT_BINARY_DIR "${CMAKE_BINARY_DIR}" CACHE PATH
-    "Path to the SBNE root build directory")
-
-if (${CMAKE_VERSION} VERSION_GREATER 2.8.4)
-	include(GNUInstallDirs)
-else ()
-	set (CMAKE_INSTALL_LIBDIR "lib")
-	set (CMAKE_INSTALL_INCLUDEDIR "include")
-	set (CMAKE_INSTALL_BINDIR "bin")
-	set (CMAKE_INSTALL_DATADIR "share")
-	set (CMAKE_INSTALL_FULL_LIBDIR "${CMAKE_INSTALL_PREFIX}/lib")
-	set (CMAKE_INSTALL_FULL_INCLUDEDIR "${CMAKE_INSTALL_PREFIX}/include")
-endif ()
+include(GNUInstallDirs)
 
 ## Determine the version
 set(SBNE_VERSION_MAJOR)
@@ -51,9 +34,6 @@ if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/VERSION.txt")
 
 endif()
 
-## add external projects including libsbml
-include(ExternalProject)
-
 ## get libsbml directories
 if (WIN32)
 	set(LIBSBML_PREFIX "C:/Program Files/libsbml" CACHE PATH "libSBML root directory (contains lib, include, etc.)")
@@ -63,61 +43,40 @@ endif()
 
 set(LIBSBML_INCLUDEDIR ${LIBSBML_PREFIX}/include)
 set(LIBSBML_LIBDIR ${LIBSBML_PREFIX}/lib)
-
-link_directories(${LIBSBML_LIBDIR})
-include_directories(${LIBSBML_INCLUDEDIR})
+file(GLOB LIBSBML_LIBS "${LIBSBML_LIBDIR}/libsbml.*")
 
 ## Find libsbml libraries
-find_library(LIBSBML_LIBRARY sbml libsbml 
-	HINTS ${LIBSBML_PREFIX}/lib)
+find_library(LIBSBML_LIBRARY
+	     NAMES sbml libsbml 
+	     PATHS ${LIBSBML_LIBDIR})
 
-find_library(LIBSBML_STATIC_LIBRARY sbml-static libsbml-static 
-	HINTS ${LIBSBML_PREFIX}/lib)
-
-## link to static libsbml
-set(SBNE_LINK_TO_STATIC_LIBSBML ON CACHE BOOL
-	"Link to a static version of libSBML where available")
+find_library(LIBSBML_STATIC_LIBRARY
+	     NAMES sbml-static libsbml-static 
+	     PATHS ${LIBSBML_LIBDIR})
 
 ## whether to build the static version of the library
 set(BUILD_STATIC_LIB ON CACHE BOOL "Build the static version of the library")
 
 if(WIN32)
-	set(SBNE_WIN_COPY_DEPS_TO_INSTALL ON CACHE BOOL "When true, libraries that 		sbne and guide depends on (libSBML and its dependencies) will be copied to the 		sbne installation directory")
-
 	## on windows Ws2_32.lib is needed to be included for the dll
     	list(APPEND LIBSBML_EXTRA_LIBS "Ws2_32.lib")
 elseif(UNIX)
-	## turn off windows specific flag
-    	set(SBNE_WIN_COPY_DEPS_TO_INSTALL OFF CACHE BOOL 
-		"Should be off for Linux and MAC")
-
-	## enable use of RPATH
-    	set(ENABLE_FULL_RPATH 1 CACHE BOOL 
-		"Enable full RPath in generated executable code")
-
 	## set use of RPATH for Mac
 	if (APPLE)
 		set(CMAKE_MACOSX_RPATH true)
+		set(CMAKE_INSTALL_RPATH ${CMAKE_INSTALL_RPATH} 						"${CMAKE_BINARY_DIR}/src")
 	endif()
 
-	## set C/C++ compiler flags
-    	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0 -Wall -Wno-inline")
-    	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -fPIC -std=gnu++11")
-endif ()
-
-## handling the path
-## http://www.cmake.org/Wiki/CMake_RPATH_handling
-if (ENABLE_FULL_RPATH)
+	## set RPATH features
 	set(CMAKE_SKIP_BUILD_RPATH FALSE)
 	set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
 	set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 	set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
-	list(FIND CMAKE_PLATFORM_IMPLICIT_LINK_DIRECTORIES
-		"${CMAKE_INSTALL_PREFIX}/lib" isSystemDir)
-	if("${isSystemDir}" STREQUAL "-1")
-		set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
-	endif("${isSystemDir}" STREQUAL "-1")
-endif(ENABLE_FULL_RPATH)
+
+	## set C/C++ compiler flags
+    	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0 -Wall -Wno-inline")
+    	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -fPIC -std=gnu++11")
+endif (WIN32)
 
 ## Re-generate the swig bindings
 option(WITH_SWIG
@@ -128,7 +87,7 @@ option(WITH_PYTHON
 	"Generate the Python language interface for SBNE." OFF)
 
 if (WITH_PYTHON)
-	set(BUILD_STATIC_LIB ON CACHE BOOL "Build the static version of the library")
+	set(BUILD_STATIC_LIB ON)
 	set(WITH_SWIG ON CACHE BOOL "Regenerate the programming language interface code 	for Python using SWIG.")
 endif()
 
@@ -142,13 +101,22 @@ endif()
 option(WITH_GUI "Generate QT_GUI" OFF)
 
 if (WITH_GUI)
+	set(BUILD_STATIC_LIB ON)
+
 	# find Qt5 and required components
-	find_package(Qt5 COMPONENTS REQUIRED Core Gui Widgets)
-	set(BUILD_STATIC_LIB ON CACHE BOOL "Build the static version of the library")
-endif()
+	if (APPLE)
+		find_package(Qt5 COMPONENTS Core Gui Widgets DBus PrintSupport REQUIRED)
+		set(CMAKE_INSTALL_RPATH ${CMAKE_INSTALL_RPATH} 						"${CMAKE_INSTALL_PREFIX}/bin/SBNE-GUI.app/Contents/Frameworks")
+	else ()
+		find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED)
+	endif(APPLE)
+endif(WITH_GUI)
 
 ## building the Documentation
 option(BUILD_DOCS "Build sbne documentation" OFF)
+
+## Package the project
+option(BUILD_PACKAGING "Package SBNE into binary distributions" OFF)
 
 ## Set build type default.
 set(CMAKE_BUILD_TYPE "Release" CACHE STRING
@@ -158,12 +126,16 @@ if("${CMAKE_BUILD_TYPE}" STREQUAL "")
 endif()
 
 ## only allow building of sbne targets after the dependencies have been found
-if (EXISTS ${LIBSBML_PREFIX})
+if (EXISTS ${LIBSBML_LIBRARY})
 	message(STATUS "building src")
 	add_subdirectory(src)
 
 	if (${BUILD_DOCS})
     		add_subdirectory(docs)
+	endif()
+
+	if (${BUILD_PACKAGING})
+    		add_subdirectory(packaging)
 	endif()
 else()
 	message(ERROR
@@ -184,39 +156,3 @@ Libsbml Variables
     LIBSBML_STATIC_LIBRARY                  ${LIBSBML_STATIC_LIBRARY}
     LIBSBML_EXTRA_LIBS                      ${LIBSBML_EXTRA_LIBS}
 ")
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
