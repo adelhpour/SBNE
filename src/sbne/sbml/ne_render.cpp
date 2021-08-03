@@ -703,14 +703,12 @@ RenderInfo* ne_doc_processRenderInfo(SBMLDocument* doc) {
     
     // get the veneer from render information
     // global render
-    if (gri) {
+    if (gri)
         ven = veneerFromRender(*gri, ven);
-    }
     
     // local render
-    if(lri) {
+    if(lri)
         ven = veneerFromRender(*lri, ven);
-    }
     
     // get sbml level
     r->level = doc->getLevel();
@@ -1155,7 +1153,7 @@ Veneer* ne_ri_addDefaultRenderFeaturesToVeneer(RenderInfo* r) {
         Veneer* ven = ne_ri_getVeneer(r);
         
         // set background color
-        ne_ven_setBackgroundColor(ven, colorStringToStr(CLR_STR_WHITE));
+        ne_ven_setBackgroundColor(ven, colorStringToStr(CLR_STR_LIGHT_GRAY));
         
         // add default colors
         for (int i = 0; i < NUM_ColorString; i++)
@@ -2004,13 +2002,13 @@ int ne_stl_setStyleValues(VGlobalStyle* s, StyleType type, RxnRoleType role) {
             // set the default style for compartments
             if (styleTypeToStr(type) == "COMPARTMENTGLYPH") {
                 // set stroke color
-                ne_grp_setStrokeColor(group, colorStringToStr(CLR_STR_DARK_GRAY));
+                ne_grp_setStrokeColor(group, colorStringToStr(CLR_STR_DARK_CYAN));
                 
                 // set stroke width
-                ne_grp_setStrokeWidth(group, 8.0);
+                ne_grp_setStrokeWidth(group, 6.0);
                 
                 // set fill color
-                ne_grp_setFillColor(group, colorStringToStr(CLR_STR_LIGHT_GRAY));
+                ne_grp_setFillColor(group, colorStringToStr(CLR_STR_GRAY));
                 
                 // add a rectangle as a graphical shape to group
                 VTransformation2D* gS = ne_grp_addGeometricShape(group, GRP_ELT_SHPE_REC, false);
@@ -2028,7 +2026,8 @@ int ne_stl_setStyleValues(VGlobalStyle* s, StyleType type, RxnRoleType role) {
             }
             // set the default style for reactions
             else if (styleTypeToStr(type) == "REACTIONGLYPH") {
-                // to be added if required
+                // add a circle as a graphical shape to group
+                VTransformation2D* gS = ne_grp_addGeometricShape(group, GRP_ELT_SHPE_ELP, false);
             }
             // set the default style for texts
             else if (styleTypeToStr(type) == "TEXTGLYPH") {
@@ -2652,7 +2651,7 @@ int ne_gs_setShapeFeatures(VTransformation2D* gS, const int& numvertices, const 
                 rAV->setR(50.);
                 ne_elp_setDimensionRX(gS, rAV);
                 rAV->setR(50.);
-                ne_elp_setDimensionRX(gS, rAV);
+                ne_elp_setDimensionRY(gS, rAV);
                     
                 return 0;
                 

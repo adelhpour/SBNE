@@ -117,14 +117,14 @@ SBMLDocument* ne_doc_populateSBMLdocWithLayoutInfo(SBMLDocument* doc ,LayoutInfo
                 
             // set dimensions
             Dimensions* dimensinos = new Dimensions();
-            if (net->isSetWidth())
-                dimensinos->setWidth(net->getWidth());
-            else
+            if (net->isSetBox()) {
+                dimensinos->setWidth(net->getBox().width());
+                dimensinos->setHeight(net->getBox().height());
+            }
+            else {
                 dimensinos->setWidth(1024.0);
-            if (net->isSetHeight())
-                dimensinos->setHeight(net->getHeight());
-            else
                 dimensinos->setHeight(1024.0);
+            }
             layout->setDimensions(dimensinos);
             
             // add compartments glyphs
@@ -388,6 +388,29 @@ int ne_li_setNetwork(LayoutInfo* l, Network* net) {
     
     return -1;
 }
+/*
+Network* ne_li_addLayoutFeaturesToNetowrk1(LayoutInfo* l) {
+    // get network
+    Network* net = (Network*)l->net;
+    if (net) {
+        // set id
+        net->setId("SBNE_Layout");
+        
+        // set default dimensions
+        net->setBox(0.0, 0.0, 300.0, 300.0);
+        
+        // set the location and dimensions of the species, reactions, and species references of the network
+        locateNetworkItems(net);
+        
+        // set layout specified
+        net->setLayoutSpecified(true);
+    }
+    else
+        std::cout << "No network is assigned to the layoutinfo\n";
+    
+    return net;
+}
+ */
 
 Network* ne_li_addLayoutFeaturesToNetowrk(LayoutInfo* l) {
     // get network
@@ -397,8 +420,12 @@ Network* ne_li_addLayoutFeaturesToNetowrk(LayoutInfo* l) {
         net->setId("SBNE_Layout");
         
         // set default dimensions
-        net->setWidth(300.0);
-        net->setHeight(300.0);
+        net->setBox(0.0, 0.0, 300.0, 300.0);
+        
+#if GRAPHVIZ_INCLUDED
+        // set the location and dimensions of the species, reactions, and species references of the network
+        locateNetworkItems(net);
+#else
         
         // compartments
         NCompartment* c = NULL;
@@ -438,6 +465,7 @@ Network* ne_li_addLayoutFeaturesToNetowrk(LayoutInfo* l) {
         
         // find the position of the compartments in the network and set the dimensions of the network
         packCompartmentsIntoNetwork(net);
+#endif
         
         // set layout specified
         net->setLayoutSpecified(true);

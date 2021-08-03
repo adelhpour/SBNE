@@ -9,9 +9,9 @@ To use the portable C++ library, called libSBNE, you first need to:
 
 *  Either :ref:`Build <installation:Build from Source>` libSBML and libSBNE from source, or install SBNE (C++ API component) using its :ref:`precompiled binaries <installation:Download SBNE binaries>`.
 
-*  Add both libSBNE include directory (``<SBNE install directory>/include``) and libSBML include directory (``<libSBML install directory>/include``) to the "include directory" of your project.
+*  Add SBNE include directory (``<SBNE install directory>/include``) to the "include directory" of your project.
 
-*  Add both libSBNE library (in ``<SBNE install directory>/lib`` for Unix and ``<SBNE install directory>/bin`` for Windows) and libSBML library (in ``<libSBML install directory>/lib`` for Unix and ``<libSBML install directory>/bin`` for Windows) to the "dependencies" of your project.
+*  Add libSBNE library (in ``<SBNE install directory>/lib`` for Unix and in ``<SBNE install directory>/bin`` for Windows) to the "dependencies" of your project.
 
 * Include the following headers in your script:
 
@@ -209,11 +209,11 @@ After we choose our desired color, we click on the "Apply" button in the "Change
  
     Modified network of the SBML model (the *fill color* of the graphical item representing the *S1* species has turned into "red").
 
-To write the modified features to the existing SBML model file and save it, we click on "File" in the menu bar, and then click on the "Save" action. Using the popped-up file dialog, we can choose a name and directory for the SBML (.xml) file and save it. The GUI also allows us to export a *.jpg* image of the rendered network by clicking on the "Export as JPEG" action under the "File" menu bar.
+To write the modified features to the existing SBML model file and save it, we click on "File" in the menu bar, and then click on the "Save" action. Using the popped-up file dialog, we can choose a name and directory for the SBML (.xml) file and save it. The GUI also allows us to export the drawing of the rendered network in PDF format by clicking on the "Export as PDF" action under the "File" menu bar.
 
 .. figure:: images/7.png
     :width: 400
     :alt: Alternative text
     :align: center
 
-    Saving the modified SBML model and exporting an image of its rendered network.
+    Saving the modified SBML model and exporting a drawing of its rendered network as a PDF file.

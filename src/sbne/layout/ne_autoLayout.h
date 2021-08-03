@@ -3,7 +3,16 @@
 
 #include "sbne/network/ne_network.h"
 
+#if GRAPHVIZ_INCLUDED
+#include "graphviz/gvc.h"
+#endif
+
 namespace sbne {
+#if GRAPHVIZ_INCLUDED
+void locateNetworkItems(Network* net);
+#endif
+
+int setCurve(LCurve* curve, LPoint startPoint, const LPoint basePoint1, const LPoint basePoint2, const LPoint endPoint);
 
 void locateCompartmentItems(Network* net, NCompartment* c);
 

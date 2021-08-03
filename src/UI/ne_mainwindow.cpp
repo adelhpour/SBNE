@@ -25,7 +25,6 @@ MainWindow::MainWindow(QWidget *parent) :  QMainWindow(parent), ui(new Ui::MainW
     setWindowTitle(tr("SBNE"));
     setMinimumSize(120, 80);
     resize(1050, 700);
-    //resize(QWidget::maximumSize());
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     createActions();
@@ -72,9 +71,9 @@ void MainWindow::createActions() {
     saveAct->setEnabled(false);
     connect(saveAct, &QAction::triggered, this, &MainWindow::save);
     
-    screenshotAct = new QAction(tr("Export as &JPEG"), this);
-    screenshotAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_J));
-    screenshotAct->setStatusTip(tr("Export a drawing of the model as a jpg file"));
+    screenshotAct = new QAction(tr("Export as &PDF"), this);
+    screenshotAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_P));
+    screenshotAct->setStatusTip(tr("Export a drawing of the model as a PDF file"));
     screenshotAct->setEnabled(false);
     connect(screenshotAct, &QAction::triggered, this, &MainWindow::screenshot);
     
@@ -182,20 +181,20 @@ void MainWindow::save() {
 
 void MainWindow::screenshot() {
     // get the image file name by showing a file dialog to the user and asking them to enter their desired palce to save and the name of the file
-    QString fileName = QFileDialog::getSaveFileName(this, "Save Image File", QFileInfo(getCurrentFileName()).baseName() + "_Image" , "Image (*.jpg)");
+    QString fileName = QFileDialog::getSaveFileName(this, "Save PDF File", QFileInfo(getCurrentFileName()).baseName() + "_drawing", "(*.pdf)");
     
     // if file name is set successfully
     if (!fileName.isEmpty()) {
-        QPixmap pixmap = QPixmap::grabWidget(_view);
+        //QPixmap pixmap = QPixmap::grabWidget(_view);
         
-        // if not saved
-        if (!pixmap.save(fileName)) {
-            QMessageBox* savedMessageBox = new QMessageBox();
-            savedMessageBox->setWindowTitle("Failed");
-            savedMessageBox->setText("The image of the model could not be saved");
-            savedMessageBox->setIcon(QMessageBox::Critical);
-            savedMessageBox->exec();
-        }
+        QPrinter printer(QPrinter::ScreenResolution);
+        printer.setPageSize(QPageSize(QSize(getScene()->sceneRect().width(), getScene()->sceneRect().height()), QPageSize::Point));
+        printer.setPageMargins(QMarginsF(0.0, 0.0, 0.0, 0.0));
+        printer.setOutputFormat(QPrinter::PdfFormat);
+        printer.setOutputFileName(fileName);
+        
+        QPainter painter(&printer);
+        getScene()->render(&painter);
     }
 }
 
@@ -965,15 +964,17 @@ void GraphicalCompartment::updateValues(MainWindow* mw) {
             mw->setSceneRect(QRectF(qreal(ne_bb_getX(bbox)), qreal(ne_bb_getY(bbox)), qreal(ne_bb_getWidth(bbox)), qreal(ne_bb_getHeight(bbox))));
             
             // graphical item
-            _graphicalItem = new QGraphicsRectItem(qreal(ne_bb_getX(bbox)), qreal(ne_bb_getY(bbox)), qreal(ne_bb_getWidth(bbox)), qreal(ne_bb_getHeight(bbox)));
-            
-            if (isSetStyle())
-                getInfoFromStyle(mw, getStyle(), _graphicalItem);
-            
-            _graphicalItem->setZValue(0);
-            
-            setGraphicalItem(_graphicalItem);
-            mw->getScene()->addItem(_graphicalItem);
+            if (mw->getNumGCompartments() > 1) {
+                _graphicalItem = new QGraphicsRectItem(qreal(ne_bb_getX(bbox)), qreal(ne_bb_getY(bbox)), qreal(ne_bb_getWidth(bbox)), qreal(ne_bb_getHeight(bbox)));
+                
+                if (isSetStyle())
+                    getInfoFromStyle(mw, getStyle(), _graphicalItem);
+                
+                _graphicalItem->setZValue(0);
+                
+                setGraphicalItem(_graphicalItem);
+                mw->getScene()->addItem(_graphicalItem);
+            }
         }
         
         // graphical text
@@ -1157,9 +1158,11 @@ void GraphicalSpecies::updateValues(MainWindow* mw, const bool& _fitConnectedIte
         if (isSetGText())
             getGText()->updateValues(mw);
         
+#if !GRAPHVIZ_INCLUDED
         // fit species connected items to the species bounding box
         if (_fitConnectedItems)
             fitConnectedItemsToBoundingBox(mw);
+#endif
     }
 }
 

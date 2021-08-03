@@ -84,8 +84,7 @@ Network* networkFromLayout(const Layout& layout, Network* net) {
         net->setName(layout.getName());
     
     // get dimensions
-    net->setWidth(layout.getDimensions()->getWidth());
-    net->setHeight(layout.getDimensions()->getHeight());
+    net->setBox(0.0, 0.0, layout.getDimensions()->getWidth(), layout.getDimensions()->getHeight());
     
     // compartments
     for(int i = 0; i < layout.getNumCompartmentGlyphs(); ++i) {
@@ -162,12 +161,7 @@ Network* networkFromLayout(const Layout& layout, Network* net) {
         c->setGlyphId(c->getId() + "_Glyph");
         
         // set the compartment bounding box
-        LBox* b = new LBox();
-        b->setX(0.0);
-        b->setY(0.0);
-        b->setWidth(net->getWidth());
-        b->setHeight(net->getHeight());
-        c->setBox(b);
+        c->setBox(new LBox(net->getBox()));
     }
     
     // species
@@ -1201,6 +1195,19 @@ std::string Network::getGObjectUniqueGlyphId() {
     }
 }
 
+void Network::setBox(const double& x, const double& y, const double& width, const double& height) {
+    _box.setX(x);
+    _box.setY(y);
+    _box.setWidth(width);
+    _box.setHeight(height);
+    _isSetBox = true;
+}
+
+const LBox& Network::getBox() const {
+    return _box;
+}
+
+/*
 void Network::setWidth(const double& width) {
     _width = width;
     _isSetWidth = true;
@@ -1218,6 +1225,7 @@ void Network::setHeight(const double& height) {
 const double& Network::getHeight() const {
     return _height;
 }
+*/
 
 void Network::setLayoutSpecified (bool value) {
     _isLayoutSpecified = value;

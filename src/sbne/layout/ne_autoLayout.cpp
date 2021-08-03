@@ -2,6 +2,303 @@
 
 namespace sbne {
 
+#if GRAPHVIZ_INCLUDED
+void locateNetworkItems(Network* net) {
+    NSpecies* s = NULL;
+    NReaction* r = NULL;
+    NSpeciesReference* sr = NULL;
+    LBox* bBox = NULL;
+    std::string attribute;
+    std::string value;
+    double minXNetwork;
+    double minYNetwork;
+    double maxXNetwork;
+    double maxYNetwork;
+    double minXCompartment;
+    double minYCompartment;
+    double maxXCompartment;
+    double maxYCompartment;
+    
+    Agraph_t *g = NULL;
+    Agraph_t *subg = NULL;
+    Agnode_t* node1 = NULL;
+    Agnode_t* node2 = NULL;
+    Agedge_t* e = NULL;
+    GVC_t *gvc = NULL;
+    
+    // create the graph
+    gvc = gvContext();
+    value = "Graph";
+    g = agopen(&value[0], Agdirected, NULL);
+    
+    // set comparments glyphs and features
+    NCompartment* c = NULL;
+    for (constCompartmentIt cIt = net->compartmentsBegin(); cIt != net->compartmentsEnd(); ++cIt) {
+        c = *cIt;
+        value = "clusterGraph" + std::to_string(cIt - net->compartmentsBegin());
+        subg = agsubg(g, &value[0], true);
+        
+        // add species to the sub graph
+        for (constSpeciesIt sIt = c->speciesBegin(); sIt != c->speciesEnd(); ++sIt) {
+            s = *sIt;
+            
+            if (!s->isUsed()) {
+                value = s->getId();
+                node1 = agnode(subg, &value[0], true);
+                attribute = "width";
+                value = std::to_string(minSpeciesBoxWidth / 72.0);
+                agsafeset(node1, &attribute[0], &value[0], &value[0]);
+                attribute = "height";
+                value = std::to_string(minSpeciesBoxHeight / 72.0);
+                agsafeset(node1, &attribute[0], &value[0], &value[0]);
+                attribute = "fixedsize";
+                value = "false";
+                agsafeset(node1, &attribute[0], &value[0], &value[0]);
+                attribute = "shape";
+                value = "rectangle";
+                agsafeset(node1, &attribute[0], &value[0], &value[0]);
+            }
+        }
+    }
+    
+    // add reactions to the graph
+    for (constReactionIt rIt = net->reactionsBegin(); rIt != net->reactionsEnd(); ++rIt) {
+        r = *rIt;
+        if (!r->isUsed()) {
+            value = r->getId();
+            node2 = agnode(g, &value[0], true);
+            attribute = "width";
+            value = std::to_string(0.8 * minSpeciesBoxHeight / 72.0);
+            agsafeset(node2, &attribute[0], &value[0], &value[0]);
+            attribute = "height";
+            value = std::to_string(0.8 * minSpeciesBoxHeight / 72.0);
+            agsafeset(node2, &attribute[0], &value[0], &value[0]);
+            attribute = "fixedsize";
+            value = "true";
+            agsafeset(node2, &attribute[0], &value[0], &value[0]);
+            attribute = "shape";
+            value = "ellipse";
+            agsafeset(node2, &attribute[0], &value[0], &value[0]);
+            
+            // add species references to the graph
+            sr = NULL;
+            for (constSReferenceIt sRIt = r->sReferencesBegin(); sRIt != r->sReferencesEnd(); ++sRIt) {
+                sr = *sRIt;
+                if (!sr->isUsed() && sr->isSetSpecies()) {
+                    value = sr->getSpecies()->getId();
+                    node1 = agnode(g, &value[0], true);
+                    value = sr->getId();
+                    
+                    // set the species reference according to its role
+                    if (sr->getRole() == 1 || sr->getRole() == 3)
+                        e = agedge(g, node2, node1, &value[0], true);
+                    else
+                        e = agedge(g, node1, node2, &value[0], true);
+                }
+            }
+        }
+    }
+    
+    // layout the graph
+    if (net->getNumCompartments() == 1 && net->getNumSpecies() < 20)
+        gvLayout (gvc, g, "circo");
+    else
+        gvLayout (gvc, g, "twopi");
+    
+    // set the bounding box of species and compartments
+    for (constCompartmentIt cIt = net->compartmentsBegin(); cIt != net->compartmentsEnd(); ++cIt) {
+        c = *cIt;
+        
+        minXCompartment = INT_MAX;
+        minYCompartment = INT_MAX;
+        maxXCompartment = INT_MIN;
+        maxYCompartment = INT_MIN;
+        for (constSpeciesIt sIt = c->speciesBegin(); sIt != c->speciesEnd(); ++sIt) {
+            s = *sIt;
+            value = s->getId();
+            node1 = agnode(g, &value[0], false);
+            
+            if (node1) {
+                bBox = new LBox();
+                
+                // set the position
+                bBox->setX(ND_coord(node1).x - 0.5 * ND_width(node1) * 72.0);
+                bBox->setY(ND_coord(node1).y  - 0.5 * ND_height(node1) * 72.0);
+                
+                // set dimensions
+                bBox->setWidth(ND_width(node1) * 72.0);
+                bBox->setHeight(ND_height(node1) * 72.0);
+                
+                // set species box;
+                s->setBox(bBox);
+                s->setGlyphId(net->getSpeciesUniqueGlyphId(s->getId()));
+                
+                if (bBox->x() < minXNetwork)
+                    minXNetwork = bBox->x();
+                if (bBox->y() < minYNetwork)
+                    minYNetwork = bBox->y();
+                if (bBox->x() + bBox->width() > maxXNetwork)
+                    maxXNetwork = bBox->x() + bBox->width();
+                if (bBox->y() + bBox->height() > maxYNetwork)
+                    maxYNetwork = bBox->y() + bBox->height();
+                
+                if (bBox->x() < minXCompartment)
+                    minXCompartment = bBox->x();
+                if (bBox->y() < minYCompartment)
+                    minYCompartment = bBox->y();
+                if (bBox->x() + bBox->width() > maxXCompartment)
+                    maxXCompartment = bBox->x() + bBox->width();
+                if (bBox->y() + bBox->height() > maxYCompartment)
+                    maxYCompartment = bBox->y() + bBox->height();
+            }
+        }
+        
+        if (c->getNumSpecies()) {
+            bBox = new LBox();
+            
+            // set the position
+            bBox->setX(minXCompartment - 0.05 * (maxXCompartment - minXCompartment));
+            bBox->setY(minYCompartment - 0.05 * (maxYCompartment - minYCompartment));
+            
+            // set dimensions
+            bBox->setWidth(1.1 * (maxXCompartment - minXCompartment));
+            bBox->setHeight(1.1 * (maxYCompartment - minYCompartment));
+            
+            // set species box;
+            c->setBox(bBox);
+            c->setGlyphId(net->getCompartmentUniqueGlyphId(c->getId()));
+        }
+    }
+    
+    // set the bounding box of reactions
+    LCurve* curve = NULL;
+    for (constReactionIt rIt = net->reactionsBegin(); rIt != net->reactionsEnd(); ++rIt) {
+        r = *rIt;
+        value = r->getId();
+        node2 = agnode(g, &value[0], false);
+        
+        if (node2) {
+            bBox = new LBox();
+            
+            // set the position
+            bBox->setX(ND_coord(node2).x - 0.5 * ND_width(node2) * 72.0);
+            bBox->setY(ND_coord(node2).y - 0.5 * ND_height(node2) * 72.0);
+            
+            // set dimensions
+            bBox->setWidth(ND_width(node2) * 72.0);
+            bBox->setHeight(ND_width(node2) * 72.0);
+            
+            // set species box;
+            r->setBox(bBox);
+            r->setGlyphId(net->getReactionUniqueGlyphId(r->getId()));
+            
+            if (bBox->x() < minXNetwork)
+                minXNetwork = bBox->x();
+            if (bBox->y() < minYNetwork)
+                minYNetwork = bBox->y();
+            if (bBox->x() + bBox->width() > maxXNetwork)
+                maxXNetwork = bBox->x() + bBox->width();
+            if (bBox->y() + bBox->height() > maxYNetwork)
+                maxYNetwork = bBox->y() + bBox->height();
+            
+            // set the species references splines
+            for (constSReferenceIt sRIt = r->sReferencesBegin(); sRIt != r->sReferencesEnd(); ++sRIt) {
+                sr = *sRIt;
+                
+                if (sr->isSetSpecies()) {
+                    value = sr->getSpecies()->getId();
+                    node1 = agnode(g, &value[0], false);
+                    value = sr->getId();
+                    
+                    if (sr->getRole() == 1 || sr->getRole() == 3)
+                        e = agedge(g, node2, node1, &value[0], true);
+                    else
+                        e = agedge(g, node1, node2, &value[0], true);
+
+                    if (e) {
+                        curve = new LCurve();
+                        for (int i = 3; i < ED_spl(e)->list->size; i = i + 3) {
+                            setCurve(curve, LPoint(ED_spl(e)->list[0].list[i - 3].x, ED_spl(e)->list[0].list[i - 3].y), LPoint(ED_spl(e)->list[0].list[i - 2].x, ED_spl(e)->list[0].list[i - 2].y), LPoint(ED_spl(e)->list[0].list[i - 1].x, ED_spl(e)->list[0].list[i - 1].y), LPoint(ED_spl(e)->list[0].list[i].x, ED_spl(e)->list[0].list[i].y));
+                            
+                            for (int j = 0; j < 4; ++j) {
+                                if (ED_spl(e)->list[0].list[i - j].x < minXNetwork)
+                                    minXNetwork = ED_spl(e)->list[0].list[i - j].x;
+                                if (ED_spl(e)->list[0].list[i - j].y < minYNetwork)
+                                    minYNetwork = ED_spl(e)->list[0].list[i - j].y;
+                                if (ED_spl(e)->list[0].list[i - j].x > maxXNetwork)
+                                    maxXNetwork = ED_spl(e)->list[0].list[i - j].x;
+                                if (ED_spl(e)->list[0].list[i - j].y > maxYNetwork)
+                                    maxYNetwork = ED_spl(e)->list[0].list[i - j].y;
+                            }
+                        }
+                        
+                        // set curve to the species reference
+                        sr->setCurve(curve);
+                        
+                        // set id
+                        sr->setGlyphId(r->getSpeciesReferenceUniqueGlyphId(sr->getId()));
+                    }
+                }
+            }
+        }
+    }
+    
+    // update the network box
+    net->setBox(minXNetwork, minYNetwork, maxXNetwork - minXNetwork, maxYNetwork - minYNetwork);
+    
+    // delete the layout
+    gvFreeLayout(gvc, g);
+    agclose(g);
+}
+#endif
+
+int setCurve(LCurve* curve, LPoint startPoint, const LPoint basePoint1, const LPoint basePoint2, const LPoint endPoint) {
+    
+    if (curve) {
+        // create a cubic bezier
+         LLineSegment* l = new LLineSegment();
+        
+         // set id
+         l->setId(curve->getElementUniqueId());
+        
+         // set the start point of cubic bezier
+         l->setStart(startPoint);
+        
+         // set the start point of cubic bezier
+         l->setEnd(endPoint);
+        
+         // add the cubic bezier to the curve
+         curve->addToListOfElementsEnd(l);
+        
+        /*
+        // create a cubic bezier
+         LCubicBezier* cb = new LCubicBezier();
+        
+         // set id
+         cb->setId(curve->getElementUniqueId());
+        
+         // set the start point of cubic bezier
+         cb->setStart(startPoint);
+        
+         // set the base point 1 of cubic bezier
+         cb->setBasePoint1(basePoint1);
+        
+         // set the base point 2 of cubic bezier
+         cb->setBasePoint2(basePoint2);
+        
+         // set the start point of cubic bezier
+         cb->setEnd(endPoint);
+        
+         // add the cubic bezier to the curve
+         curve->addToListOfElementsEnd(cb);
+        */
+        
+        return 0;
+    }
+    
+    return -1;
+}
+
 void locateCompartmentItems(Network* net, NCompartment* c) {
    
    // add all the species and reaction to the default compartment
@@ -943,10 +1240,10 @@ void packCompartmentsIntoNetwork(Network* net) {
    
    networkBox = packBoxesIntoOptimalBox(LPoint(0.0, 0.0), compartmentBoxes);
    
-   if (networkBox.width() > net->getWidth())
-       net->setWidth(networkBox.width());
-   if (networkBox.height() > net->getHeight())
-       net->setHeight(networkBox.height());
+   if (networkBox.width() > net->getBox().width())
+       net->setBox(net->getBox().x(),  net->getBox().y(), networkBox.width(),  net->getBox().height());
+   if (networkBox.height() > net->getBox().height())
+       net->setBox(net->getBox().x(),  net->getBox().y(), net->getBox().width(), networkBox.height());
    
    unsigned int boxIndex = 0;
    LPoint shiftDistance(0.0, 0.0);

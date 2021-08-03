@@ -2,15 +2,25 @@
 Auto-Layout/Render
 ******************
 
-As a number of SBML models do not contain Layout and Render information, automatically generating all the necessary information about the Layout and Render extensions for an SBML model is one of the main features of SBNE. Here, we have developed and implemented an algorithm to set the position and dimensions of each graphical object in the network of an SBML model (Layout features) and determined the default values for other graphical features of each type of graphical object in that network (Render features).
+As a number of SBML models do not contain Layout and Render information, automatically generating all the necessary information about the Layout and Render extensions for an SBML model is one of the main features of SBNE. Here, we have both integrated `Graphviz <https://graphviz.org/>`_ algorithms and **developed a novel auto-layout algorithm** to set the position and dimensions of each graphical object in the network of an SBML model (Layout features) and determined the default values for other graphical features of each type of graphical object in that network (Render features).
 
 Auto-Layout
 ###########
 
-The auto-layout algorithm, which is implemented by :ref:`APIReference/functions/LayoutInfo/ne_li_addLayoutFeaturesToNetowrk:ne_li_addLayoutFeaturesToNetowrk`, is a tool to set the position and dimensions of each graphical object in the network of an SBML model, including :ref:`Compartments <APIReference/classes/layout/NCompartment:NCompartment>`, :ref:`Species <APIReference/classes/layout/NSpecies:NSpecies>`, :ref:`Reactions <APIReference/classes/layout/NReaction:NReaction>`, :ref:`SpeciesReferences <APIReference/classes/layout/NSpeciesReference:NSpeciesReference>`, and :ref:`Texts <APIReference/classes/layout/NText:NText>`.
+In SBNE, the auto-layout algorithm, which is implemented by :ref:`APIReference/functions/LayoutInfo/ne_li_addLayoutFeaturesToNetowrk:ne_li_addLayoutFeaturesToNetowrk`, is a tool to set the position and dimensions of each graphical object in the network of an SBML model, including :ref:`Compartments <APIReference/classes/layout/NCompartment:NCompartment>`, :ref:`Species <APIReference/classes/layout/NSpecies:NSpecies>`, :ref:`Reactions <APIReference/classes/layout/NReaction:NReaction>`, :ref:`SpeciesReferences <APIReference/classes/layout/NSpeciesReference:NSpeciesReference>`, and :ref:`Texts <APIReference/classes/layout/NText:NText>`. SBNE makes use of eihter of the following algorithms to set these values:
+
+a) Graphviz layout algorithms
+=============================
+
+If you :ref:`Build <installation:Build from Source>` SBNE with enabled ``USE_GRAPHVIZ`` option or :ref:`install <installation:Download SBNE binaries>` it using its precompiled binaries, `Graphviz <https://graphviz.org/>`_ libraries are integrated into SBNE. Graphviz is an open source graph visualization software tool which represents structural information as diagrams of abstract graphs and networks. By integrating it into SBNE, `Graphviz layout algorithms <https://graphviz.org/about/>`_ are used to automatically set the position and dimensions of each graphical object in the network of an SBML model.
+
+b) The novel layout algorithm
+=============================
+
+If you :ref:`Build <installation:Build from Source>` SBNE with disabled ``USE_GRAPHVIZ`` option, it uses the new algorithm we have developed here to to set the position and dimensions of each graphical object in the network of an SBML model. This algorithm is described in detail in the following:
 
 Basic idea
-==========
+----------
 
 The network of an SBML model consists of compartments, reactions, species (nodes), and speciesreferences (edges). We consider that, in each compartment, there are some clusters of reactions with the following features:
 
@@ -33,7 +43,7 @@ With this in mind, the whole problem of setting the position of the graphical ob
 respectively. We have developed a number of heuristics to set the position and dimensions of each graphical object, accordingly.
 
 Steps
-=====
+-----
 
 Clustering reactions
 ^^^^^^^^^^^^^^^^^^^^
@@ -143,7 +153,7 @@ Default Render Values
 Our auto-render algorithm sets the following default values for graphical features of an SBML model:
 
 Colors
-^^^^^^
+------
 
 A series of colors are added to the :ref:`Veneer <APIReference/classes/render/Veneer:Veneer>` of the network. The added colors are:
 
@@ -277,12 +287,12 @@ A series of colors are added to the :ref:`Veneer <APIReference/classes/render/Ve
             </embed>
 
 Background Color
-^^^^^^^^^^^^^^^^
+----------------
 
-The background color of the network scene is set to **White**.
+The background color of the network scene is set to **LightGray**.
 
 Line Endings
-^^^^^^^^^^^^
+------------
 
 :ref:`Line Endings <APIReference/classes/render/VLineEnding:VLineEnding>` are the geometric shapes put at the start/end head of the curves (:ref:`SpeciesReferences <APIReference/classes/layout/NSpeciesReference:NSpeciesReference>`) in a network to show the role of the species they are connected to in reactions. Thus, for each species role in reactions, a Line Ending is defined as follows and added to the :ref:`Veneer <APIReference/classes/render/Veneer:Veneer>` of the network:
 
@@ -327,7 +337,7 @@ Line Endings
               :align: center
 
 Styles
-^^^^^^
+------
 
 :ref:`Styles <APIReference/classes/render/VGlobalStyle:VGlobalStyle>` are used to determine how a graphical object is rendered in a network based on either its type or its role in reactions. Thus, both for each type of graphical objects and for each role in reactions, a Style with the following features is defined and added to the :ref:`Veneer <APIReference/classes/render/Veneer:Veneer>` of the network.
 
@@ -439,9 +449,9 @@ Styles
       - middle
       
     * - **geometric shape**
-      - (Rounded) Rectangle
-      - (Rounded) Rectangle
-      - _
+      - Rectangle (rounded)
+      - Rectangle (rounded)
+      - Ellipse (circle)
       - _
       - _
       - _

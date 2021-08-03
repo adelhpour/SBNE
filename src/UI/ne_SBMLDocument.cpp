@@ -218,6 +218,9 @@ void NESBMLDocument::loadRenderInfo(MainWindow *mw){
         // if veneer exists
         if (ne_ven_isRenderSpecified(getVeneer())) {
             
+            // set scene extends
+            mw->setSceneRect(QRectF(qreal(getNetwork()->getBox().x()), qreal(getNetwork()->getBox().y()), qreal(getNetwork()->getBox().width()), qreal(getNetwork()->getBox().height())));
+            
             // get colors from veneer
             GraphicalColor *_gColor = NULL;
             for (int i = 0; i < ne_ven_getNumColors(getVeneer()); ++i) {
@@ -864,18 +867,16 @@ void getInfoFromEllipseShape(VTransformation2D* gS, QGraphicsItem *graphicalItem
             rAV2 = ne_elp_getPositionCX(gS);
             renderRect.setX(layoutRect.x()+ qreal((ne_rav_getAbsoluteValue(rAV2) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(rAV2))) - (ne_rav_getAbsoluteValue(rAV1) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(rAV1)))));
         }
-        
     }
     
     if (ne_elp_isSetDimensionRY(gS)) {
         rAV1 = ne_elp_getDimensionRY(gS);
-        renderRect.setWidth(2 * qreal(ne_rav_getAbsoluteValue(rAV1) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(rAV1))));
+        renderRect.setHeight(2 * qreal(ne_rav_getAbsoluteValue(rAV1) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(rAV1))));
         
         if (ne_elp_isSetPositionCY(gS)) {
             rAV2 = ne_elp_getPositionCY(gS);
-            renderRect.setX(layoutRect.y()+ qreal((ne_rav_getAbsoluteValue(rAV2) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(rAV2))) - (ne_rav_getAbsoluteValue(rAV1) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(rAV1)))));
+            renderRect.setY(layoutRect.y()+ qreal((ne_rav_getAbsoluteValue(rAV2) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(rAV2))) - (ne_rav_getAbsoluteValue(rAV1) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(rAV1)))));
         }
-        
     }
     
     // the ratio of ellipse shape

@@ -16,6 +16,7 @@
 #include <QSpinBox>
 #include <QDoubleSpinBox>
 #include <QFrame>
+#include <QPrinter>
 #include <QParallelAnimationGroup>
 #include <QPropertyAnimation>
 #include <QToolButton>

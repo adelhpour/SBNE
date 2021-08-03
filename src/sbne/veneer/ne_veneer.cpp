@@ -247,257 +247,293 @@ std::string rGroupElementToStr(const RenderGroupElementShape s) {
 }
 
 Veneer* veneerFromRender(RenderInformationBase& ren, Veneer* ven) {
-    // get background color
-    if (ren.isSetBackgroundColor())
-        ven->setBackgroundColor(ren.getBackgroundColor());
-    
-    // get colors
-    for (int i = 0; i < ren.getNumColorDefinitions(); ++i) {
-        const ColorDefinition * cd = ren.getColorDefinition(i);
-        VColorDefinition* c = new VColorDefinition();
-
-        // get id
-        if (cd->isSetId())
-            c->setId(cd->getId());
-        else
-            c->setId(ven->getColorUniqueId());
-
-        // get name
-        if (cd->isSetName())
-            c->setName(cd->getName());
-
-        // get value
-        if (cd->isSetValue())
-            c->setValue(cd->getValue());
-
-        ven->addColor(c);
-    }
-
-    // get gradients
-    for (int i = 0; i < ren.getNumGradientDefinitions(); ++i) {
-        const GradientBase * gb = ren.getGradientDefinition(i);
-        VGradientBase* g = NULL;
-
-        // if it is a linear gradient
-        if (gb->isLinearGradient())
-            g = new VLinearGradient();
-
-        // if it is a radial gradient
-        if (gb->isRadialGradient())
-            g = new VRadialGradient();
-
-        // get id
-        if (gb->isSetId())
-            g->setId(gb->getId());
-        else
-            g->setId(ven->getGradientUniqueId());
-            
-        // get name
-        if (gb->isSetName())
-            g->setName(gb->getName());
-
-        // get gradient spread method
-        if (gb->isSetSpreadMethod())
-            g->setSpreadMehtod(gb->getSpreadMethodAsString());
-
-        // get gradient stops
-        for (int j = 0; j < gb->getNumGradientStops(); ++j) {
-            const GradientStop * gs = gb->getGradientStop(j);
-            VGradientStop* s = new VGradientStop();
+    if (ren.isGlobalRenderInformation()) {
+        // get background color
+        if (ren.isSetBackgroundColor())
+            ven->setBackgroundColor(ren.getBackgroundColor());
+        
+        // get colors
+        for (int i = 0; i < ren.getNumColorDefinitions(); ++i) {
+            const ColorDefinition * cd = ren.getColorDefinition(i);
+            VColorDefinition* c = new VColorDefinition();
 
             // get id
-            if (gs->isSetId())
-                s->setId(gs->getId());
+            if (cd->isSetId())
+                c->setId(cd->getId());
             else
-                s->setId(g->getStopUniqueId());
+                c->setId(ven->getColorUniqueId());
 
             // get name
-            if (gs->isSetName())
-                s->setName(gs->getName());
+            if (cd->isSetName())
+                c->setName(cd->getName());
 
-            // get stop color
-            if (gs->isSetStopColor()) {
-                // check to see it is not a gradient id
-                if (ven->findGradientById(gs->getStopColor()))
-                    std::cerr << "a gradient cannot be set as the stop color\n";
-                // check to see it is not none
-                else if (gs->getStopColor() == "none")
-                    std::cerr << "none cannot be set as the stop color\n";
-                // if the color fulfill the conditions
-                else
-                    s->setStopColor(gs->getStopColor());
-            }
-            
-            // get offset
-            if (gs->isSetOffset()) {
-                RAVector r(0.0, 0.0);
-                
-                // check to see it is not biggger than 100
-                if (gs->getOffset().getRelativeValue() > 100.0)
-                    r.setR(100.);
-                // check to see it is not smaller than 0
-                else if (gs->getOffset().getRelativeValue() < 0.0)
-                    r.setR(0.);
-                
-                s->setOffset(r);
-            }
-            
-            // add the stop to gradient
-            g->addToStops(s);
+            // get value
+            if (cd->isSetValue())
+                c->setValue(cd->getValue());
+
+            ven->addColor(c);
         }
         
-        // sort the gradient stops based on their offset values
-        g->sortStops();
+        // get gradients
+        for (int i = 0; i < ren.getNumGradientDefinitions(); ++i) {
+            const GradientBase * gb = ren.getGradientDefinition(i);
+            VGradientBase* g = NULL;
 
-        // if it is a linear gradient
-        if (gb->isLinearGradient()) {
-            VLinearGradient* lgrad = NULL;
-            
-            // cast the gradient to a linear gradient
-            try {
-                 lgrad = dynamic_cast<VLinearGradient*>(g);
+            // if it is a linear gradient
+            if (gb->isLinearGradient())
+                g = new VLinearGradient();
+
+            // if it is a radial gradient
+            if (gb->isRadialGradient())
+                g = new VRadialGradient();
+
+            // get id
+            if (gb->isSetId())
+                g->setId(gb->getId());
+            else
+                g->setId(ven->getGradientUniqueId());
+                
+            // get name
+            if (gb->isSetName())
+                g->setName(gb->getName());
+
+            // get gradient spread method
+            if (gb->isSetSpreadMethod())
+                g->setSpreadMehtod(gb->getSpreadMethodAsString());
+
+            // get gradient stops
+            for (int j = 0; j < gb->getNumGradientStops(); ++j) {
+                const GradientStop * gs = gb->getGradientStop(j);
+                VGradientStop* s = new VGradientStop();
+
+                // get id
+                if (gs->isSetId())
+                    s->setId(gs->getId());
+                else
+                    s->setId(g->getStopUniqueId());
+
+                // get name
+                if (gs->isSetName())
+                    s->setName(gs->getName());
+
+                // get stop color
+                if (gs->isSetStopColor()) {
+                    // check to see it is not a gradient id
+                    if (ven->findGradientById(gs->getStopColor()))
+                        std::cerr << "a gradient cannot be set as the stop color\n";
+                    // check to see it is not none
+                    else if (gs->getStopColor() == "none")
+                        std::cerr << "none cannot be set as the stop color\n";
+                    // if the color fulfill the conditions
+                    else
+                        s->setStopColor(gs->getStopColor());
+                }
+                
+                // get offset
+                if (gs->isSetOffset()) {
+                    RAVector r(0.0, 0.0);
+                    
+                    // check to see it is not biggger than 100
+                    if (gs->getOffset().getRelativeValue() > 100.0)
+                        r.setR(100.);
+                    // check to see it is not smaller than 0
+                    else if (gs->getOffset().getRelativeValue() < 0.0)
+                        r.setR(0.);
+                    
+                    s->setOffset(r);
+                }
+                
+                // add the stop to gradient
+                g->addToStops(s);
             }
-            catch(std::bad_cast) {
-                 std::cerr << "Unable to cast the gradient to linear gradient\n";
-            }
             
-            // get x1
-            if (((LinearGradient *)gb)->isSetX1()) {
-                RAVector r;
-                r.setA(((LinearGradient *)gb)->getX1().getAbsoluteValue());
-                r.setR(((LinearGradient *)gb)->getX1().getRelativeValue());
-                lgrad->setX1(r);
+            // sort the gradient stops based on their offset values
+            g->sortStops();
+
+            // if it is a linear gradient
+            if (gb->isLinearGradient()) {
+                VLinearGradient* lgrad = NULL;
+                
+                // cast the gradient to a linear gradient
+                try {
+                     lgrad = dynamic_cast<VLinearGradient*>(g);
+                }
+                catch(std::bad_cast) {
+                     std::cerr << "Unable to cast the gradient to linear gradient\n";
+                }
+                
+                // get x1
+                if (((LinearGradient *)gb)->isSetX1()) {
+                    RAVector r;
+                    r.setA(((LinearGradient *)gb)->getX1().getAbsoluteValue());
+                    r.setR(((LinearGradient *)gb)->getX1().getRelativeValue());
+                    lgrad->setX1(r);
+                }
+
+                // get y1
+                if (((LinearGradient *)gb)->isSetY1()) {
+                    RAVector r;
+                    r.setA(((LinearGradient *)gb)->getY1().getAbsoluteValue());
+                    r.setR(((LinearGradient *)gb)->getY1().getRelativeValue());
+                    lgrad->setY1(r);
+                }
+                
+                // get z1
+                if (((LinearGradient *)gb)->isSetZ1()) {
+                    RAVector r;
+                    r.setA(((LinearGradient *)gb)->getZ1().getAbsoluteValue());
+                    r.setR(((LinearGradient *)gb)->getZ1().getRelativeValue());
+                    lgrad->setZ1(r);
+                }
+
+                // get x2
+                if (((LinearGradient *)gb)->isSetX2()) {
+                    RAVector r;
+                    r.setA(((LinearGradient *)gb)->getX2().getAbsoluteValue());
+                    r.setR(((LinearGradient *)gb)->getX2().getRelativeValue());
+                    lgrad->setX2(r);
+                }
+                
+                // get y2
+                if (((LinearGradient *)gb)->isSetY2()) {
+                    RAVector r;
+                    r.setA(((LinearGradient *)gb)->getY2().getAbsoluteValue());
+                    r.setR(((LinearGradient *)gb)->getY2().getRelativeValue());
+                    lgrad->setY2(r);
+                }
+
+                // get z2
+                if (((LinearGradient *)gb)->isSetZ2()) {
+                    RAVector r;
+                    r.setA(((LinearGradient *)gb)->getZ2().getAbsoluteValue());
+                    r.setR(((LinearGradient *)gb)->getZ2().getRelativeValue());
+                    lgrad->setZ2(r);
+                }
+                
+                // add the linear gradient to veneer
+                ven->addGradient(lgrad);
             }
 
-            // get y1
-            if (((LinearGradient *)gb)->isSetY1()) {
-                RAVector r;
-                r.setA(((LinearGradient *)gb)->getY1().getAbsoluteValue());
-                r.setR(((LinearGradient *)gb)->getY1().getRelativeValue());
-                lgrad->setY1(r);
-            }
-            
-            // get z1
-            if (((LinearGradient *)gb)->isSetZ1()) {
-                RAVector r;
-                r.setA(((LinearGradient *)gb)->getZ1().getAbsoluteValue());
-                r.setR(((LinearGradient *)gb)->getZ1().getRelativeValue());
-                lgrad->setZ1(r);
-            }
+            // if it's a radial gradient
+            if (gb->isRadialGradient()) {
+                VRadialGradient* rgrad = NULL;
+                
+                // cast the gradient to a radial gradient
+                try {
+                    rgrad = dynamic_cast<VRadialGradient*>(g);
+                }
+                catch(std::bad_cast) {
+                    std::cerr <<"Unable to cast the gradient to radial gradient\n";
+                }
 
-            // get x2
-            if (((LinearGradient *)gb)->isSetX2()) {
-                RAVector r;
-                r.setA(((LinearGradient *)gb)->getX2().getAbsoluteValue());
-                r.setR(((LinearGradient *)gb)->getX2().getRelativeValue());
-                lgrad->setX2(r);
-            }
-            
-            // get y2
-            if (((LinearGradient *)gb)->isSetY2()) {
-                RAVector r;
-                r.setA(((LinearGradient *)gb)->getY2().getAbsoluteValue());
-                r.setR(((LinearGradient *)gb)->getY2().getRelativeValue());
-                lgrad->setY2(r);
-            }
+                // get cx
+                if (((RadialGradient *)gb)->isSetCx()) {
+                    RAVector r;
+                    r.setA(((RadialGradient *)gb)->getCx().getAbsoluteValue());
+                    r.setR(((RadialGradient *)gb)->getCx().getRelativeValue());
+                    rgrad->setCx(r);
+                }
 
-            // get z2
-            if (((LinearGradient *)gb)->isSetZ2()) {
-                RAVector r;
-                r.setA(((LinearGradient *)gb)->getZ2().getAbsoluteValue());
-                r.setR(((LinearGradient *)gb)->getZ2().getRelativeValue());
-                lgrad->setZ2(r);
+                // get cy
+                if (((RadialGradient *)gb)->isSetCy()) {
+                    RAVector r;
+                    r.setA(((RadialGradient *)gb)->getCy().getAbsoluteValue());
+                    r.setR(((RadialGradient *)gb)->getCy().getRelativeValue());
+                    rgrad->setCy(r);
+                }
+                
+                // get cz
+                if (((RadialGradient *)gb)->isSetCz()) {
+                    RAVector r;
+                    r.setA(((RadialGradient *)gb)->getCz().getAbsoluteValue());
+                    r.setR(((RadialGradient *)gb)->getCz().getRelativeValue());
+                    rgrad->setCz(r);
+                }
+
+                // get fx
+                if (((RadialGradient *)gb)->isSetFx()) {
+                    RAVector r;
+                    r.setA(((RadialGradient *)gb)->getFx().getAbsoluteValue());
+                    r.setR(((RadialGradient *)gb)->getFx().getRelativeValue());
+                    rgrad->setFx(r);
+                }
+                // if fx is not set, set it the same as cx
+                else
+                    rgrad->setFx(rgrad->getCx());
+
+                // get fy
+                if (((RadialGradient *)gb)->isSetFy()) {
+                    RAVector r;
+                    r.setA(((RadialGradient *)gb)->getFy().getAbsoluteValue());
+                    r.setR(((RadialGradient *)gb)->getFy().getRelativeValue());
+                    rgrad->setFy(r);
+                }
+                // if fy is not set, set it the same as cy
+                else
+                    rgrad->setFy(rgrad->getCy());
+
+                // get fz
+                if (((RadialGradient *)gb)->isSetFz()) {
+                    RAVector r;
+                    r.setA(((RadialGradient *)gb)->getFz().getAbsoluteValue());
+                    r.setR(((RadialGradient *)gb)->getFz().getRelativeValue());
+                    rgrad->setFz(r);
+                }
+                // if fz is not set, set it the same as cz
+                else
+                    rgrad->setFz(rgrad->getCz());
+
+                // get r
+                if (((RadialGradient *)gb)->isSetR()) {
+                    RAVector r;
+                    r.setA(((RadialGradient *)gb)->getR().getAbsoluteValue());
+                    r.setR(((RadialGradient *)gb)->getR().getRelativeValue());
+                    rgrad->setR(r);
+                }
+                
+                // add the radial gradient to veneer
+                ven->addGradient(rgrad);
             }
-            
-            // add the linear gradient to veneer
-            ven->addGradient(lgrad);
         }
+        
+        // get line endings
+        for (int i = 0; i < ren.getNumLineEndings(); ++i) {
+            const LineEnding* le = ren.getLineEnding(i);
+            VLineEnding* l = new VLineEnding();
 
-        // if it's a radial gradient
-        if (gb->isRadialGradient()) {
-            VRadialGradient* rgrad = NULL;
-            
-            // cast the gradient to a radial gradient
-            try {
-                rgrad = dynamic_cast<VRadialGradient*>(g);
-            }
-            catch(std::bad_cast) {
-                std::cerr <<"Unable to cast the gradient to radial gradient\n";
-            }
+            // get id
+            if (le->isSetId())
+                l->setId(le->getId());
 
-            // get cx
-            if (((RadialGradient *)gb)->isSetCx()) {
-                RAVector r;
-                r.setA(((RadialGradient *)gb)->getCx().getAbsoluteValue());
-                r.setR(((RadialGradient *)gb)->getCx().getRelativeValue());
-                rgrad->setCx(r);
-            }
+            // get name
+            if (le->isSetName())
+                l->setName(le->getName());
 
-            // get cy
-            if (((RadialGradient *)gb)->isSetCy()) {
-                RAVector r;
-                r.setA(((RadialGradient *)gb)->getCy().getAbsoluteValue());
-                r.setR(((RadialGradient *)gb)->getCy().getRelativeValue());
-                rgrad->setCy(r);
-            }
-            
-            // get cz
-            if (((RadialGradient *)gb)->isSetCz()) {
-                RAVector r;
-                r.setA(((RadialGradient *)gb)->getCz().getAbsoluteValue());
-                r.setR(((RadialGradient *)gb)->getCz().getRelativeValue());
-                rgrad->setCz(r);
+            // get enable rotation mapping
+            if (le->isSetEnableRotationalMapping())
+                l->setEnableRotationMapping(le->getEnableRotationalMapping());
+
+            // get bounding box
+            if (le->isSetBoundingBox()) {
+                LBox* b = new LBox();
+                b->setX(le->getBoundingBox()->x());
+                b->setY(le->getBoundingBox()->y());
+                b->setWidth(le->getBoundingBox()->width());
+                b->setHeight(le->getBoundingBox()->height());
+                l->setBox(b);
             }
 
-            // get fx
-            if (((RadialGradient *)gb)->isSetFx()) {
-                RAVector r;
-                r.setA(((RadialGradient *)gb)->getFx().getAbsoluteValue());
-                r.setR(((RadialGradient *)gb)->getFx().getRelativeValue());
-                rgrad->setFx(r);
-            }
-            // if fx is not set, set it the same as cx
-            else
-                rgrad->setFx(rgrad->getCx());
-
-            // get fy
-            if (((RadialGradient *)gb)->isSetFy()) {
-                RAVector r;
-                r.setA(((RadialGradient *)gb)->getFy().getAbsoluteValue());
-                r.setR(((RadialGradient *)gb)->getFy().getRelativeValue());
-                rgrad->setFy(r);
-            }
-            // if fy is not set, set it the same as cy
-            else
-                rgrad->setFy(rgrad->getCy());
-
-            // get fz
-            if (((RadialGradient *)gb)->isSetFz()) {
-                RAVector r;
-                r.setA(((RadialGradient *)gb)->getFz().getAbsoluteValue());
-                r.setR(((RadialGradient *)gb)->getFz().getRelativeValue());
-                rgrad->setFz(r);
-            }
-            // if fz is not set, set it the same as cz
-            else
-                rgrad->setFz(rgrad->getCz());
-
-            // get r
-            if (((RadialGradient *)gb)->isSetR()) {
-                RAVector r;
-                r.setA(((RadialGradient *)gb)->getR().getAbsoluteValue());
-                r.setR(((RadialGradient *)gb)->getR().getRelativeValue());
-                rgrad->setR(r);
+            // get render group
+            if (le->isSetGroup()) {
+                const RenderGroup* rg = le->getGroup();
+                VRenderGroup* g = getRenderGroup(rg);
+                l->setGroup(g);
             }
             
-            // add the radial gradient to veneer
-            ven->addGradient(rgrad);
+            ven->addLineEnding(l);
         }
-    }
-    
-    // get styles
-    // global styles
-    if (ren.isGlobalRenderInformation()){
+        
+        // get global styles
         for (int i = 0; i < ((GlobalRenderInformation&)ren).getNumStyles(); ++i) {
             const Style * sb = ((GlobalRenderInformation&)ren).getStyle(i);
             VGlobalStyle* s = new VGlobalStyle();
@@ -527,8 +563,8 @@ Veneer* veneerFromRender(RenderInformationBase& ren, Veneer* ven) {
             ven->addStyle(s);
         }
     }
-    // local styles
-    else if(ren.isLocalRenderInformation()){
+    else if (ren.isLocalRenderInformation()) {
+        // get local styles
         for (int i = 0; i < ((LocalRenderInformation&)ren).getNumStyles(); ++i) {
             const Style * sb = ((LocalRenderInformation&)ren).getStyle(i);
             VLocalStyle* s = new VLocalStyle();
@@ -560,43 +596,6 @@ Veneer* veneerFromRender(RenderInformationBase& ren, Veneer* ven) {
              // add the local style to veneer
             ven->addStyle(s);
         }
-    }
-    
-    // line endings
-    for (int i = 0; i < ren.getNumLineEndings(); ++i) {
-        const LineEnding* le = ren.getLineEnding(i);
-        VLineEnding* l = new VLineEnding();
-
-        // get id
-        if (le->isSetId())
-            l->setId(le->getId());
-
-        // get name
-        if (le->isSetName())
-            l->setName(le->getName());
-
-        // get enable rotation mapping
-        if (le->isSetEnableRotationalMapping())
-            l->setEnableRotationMapping(le->getEnableRotationalMapping());
-
-        // get bounding box
-        if (le->isSetBoundingBox()) {
-            LBox* b = new LBox();
-            b->setX(le->getBoundingBox()->x());
-            b->setY(le->getBoundingBox()->y());
-            b->setWidth(le->getBoundingBox()->width());
-            b->setHeight(le->getBoundingBox()->height());
-            l->setBox(b);
-        }
-
-        // get render group
-        if (le->isSetGroup()) {
-            const RenderGroup* rg = le->getGroup();
-            VRenderGroup* g = getRenderGroup(rg);
-            l->setGroup(g);
-        }
-        
-        ven->addLineEnding(l);
     }
 
     // enable render specified in veneer

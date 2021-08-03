@@ -35,10 +35,18 @@ The steps to build SBNE from its source code are as follows:
     *  Select ``<root directory>/build`` as the build (binary) directory.
 
     *  Click "Configure" button and choose your compiler.
+    
+        .. note::
+
+            At this step, CMake requires you to set the value of ``sbml_DIR`` or ``libsbml_DIR`` (depneding on your operationg system) to the directory where ``sbml-config.cmake`` or ``libsbml-config.cmake`` is located under the install directory of libSBML.
 
     *  Set ``CMAKE_INSTALL_PREFIX`` to ``<root directory>/install``.
+    
+    *  Check ``USE_GRAPHVIZ`` box if you want your SBNE to layout the network of models by  `Graphviz layout algorithms <https://graphviz.org/about>`_.
+    
+        .. note::
 
-    *  Set ``LIBSBML_PREFIX`` to the install directory where you installed libSBML libraries in the previous stage (that is probably something like ``<root directory of libSBML>/install``).
+            To integrate graphivz libraries into SBNE, you must have already installed `Graphviz development tools <https://graphviz.org/download>`_. If you have done so, you can check ``USE_GRAPHVIZ`` box at this step, and then CMake requires you to set the value of ``GRAPHVIZ_PREFIX`` to the root directory where graphviz is installed on your machine.
 
     *  Check ``WITH_PYTHON`` box if you want to build the language bindings for Python.
     

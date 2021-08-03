@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.3)
+cmake_minimum_required(VERSION 3.6 FATAL_ERROR)
 
 project(sbne)
 
@@ -34,43 +34,72 @@ if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/VERSION.txt")
 
 endif()
 
-## get libsbml directories
+## find sbml package
 if (WIN32)
-	set(LIBSBML_PREFIX "C:/Program Files/libsbml" CACHE PATH "libSBML root directory (contains lib, include, etc.)")
-elseif(UNIX)
-	set(LIBSBML_PREFIX "/usr/local" CACHE PATH "libSBML root directory (contains lib, include, etc.)")
+	find_package(libsbml REQUIRED)
+	file(GLOB LIBSBML_DLLS "${libsbml_DIR}/../../bin/libsbml.dll")
+	set(SBML_INCLUDEDIR "${libsbml_DIR}/../../include/sbml")
+else ()
+	find_package(sbml REQUIRED)
+	file(GLOB SBML_LIBS "${sbml_DIR}/../libsbml.*")
+	set(SBML_INCLUDEDIR "${sbml_DIR}/../../include/sbml")
 endif()
 
-set(LIBSBML_INCLUDEDIR ${LIBSBML_PREFIX}/include)
-set(LIBSBML_LIBDIR ${LIBSBML_PREFIX}/lib)
-file(GLOB LIBSBML_LIBS "${LIBSBML_LIBDIR}/libsbml.*")
+## Use Graphviz to layout the graphs
+option(USE_GRAPHVIZ "Use Graphviz libraries to layout the graphs" OFF)
 
-## Find libsbml libraries
-find_library(LIBSBML_LIBRARY
-	     NAMES sbml libsbml 
-	     PATHS ${LIBSBML_LIBDIR})
+if (${USE_GRAPHVIZ})
+	add_definitions(-DGRAPHVIZ_INCLUDED=true)
 
-find_library(LIBSBML_STATIC_LIBRARY
-	     NAMES sbml-static libsbml-static 
-	     PATHS ${LIBSBML_LIBDIR})
+	if (WIN32)
+		set(GRAPHVIZ_PREFIX "GRAPHVIZ_DIR-NOTFOUND" CACHE PATH "graphviz root directory containing lib, include, etc.")
+		set(GRAPHVIZ_INCLUDEDIR ${GRAPHVIZ_PREFIX}/include)
+		set(GRAPHVIZ_LIBDIR ${GRAPHVIZ_PREFIX}/lib)
+		file(GLOB GRAPHVIZ_LIBS_FIRSTHAND "${GRAPHVIZ_LIBDIR}/gvc.*" "${GRAPHVIZ_LIBDIR}/cgraph.*" "${GRAPHVIZ_LIBDIR}/cdt.*")
+		set(GRAPHVIZ_DLLS "${GRAPHVIZ_PREFIX}/bin/gvc.dll;${GRAPHVIZ_PREFIX}/bin/cgraph.dll;${GRAPHVIZ_PREFIX}/bin/cdt.dll;${GRAPHVIZ_PREFIX}/bin/pathplan.dll;${GRAPHVIZ_PREFIX}/bin/xdot.dll;${GRAPHVIZ_PREFIX}/bin/expat.dll;${GRAPHVIZ_PREFIX}/bin/gvplugin_neato_layout.dll;${GRAPHVIZ_PREFIX}/bin/gvplugin_pango.dll")
+		set(GRAPHVIZ_API_CONFIG "${GRAPHVIZ_PREFIX}/bin/config6")
+	else()
+		if (APPLE)
+			set(GRAPHVIZ_PREFIX "GRAPHVIZ_DIR-NOTFOUND" CACHE PATH "graphviz root directory containing lib, include, etc.")
+			set(GRAPHVIZ_INCLUDEDIR ${GRAPHVIZ_PREFIX}/include)
+			set(GRAPHVIZ_LIBDIR ${GRAPHVIZ_PREFIX}/lib)
+			set(GRAPHVIZ_API_CONFIG "${GRAPHVIZ_LIBDIR}/graphviz/config6")
+		else ()
+			set(GRAPHVIZ_INCLUDEDIR /usr/include)
+			set(GRAPHVIZ_LIBDIR /usr/lib/x86_64-linux-gnu)
+			set(GRAPHVIZ_API_CONFIG "${GRAPHVIZ_LIBDIR}/graphviz/config6a")
+		endif ()
+
+		file(GLOB GRAPHVIZ_LIBS_FIRSTHAND "${GRAPHVIZ_LIBDIR}/libgvc.*" "${GRAPHVIZ_LIBDIR}/libcgraph.*" "${GRAPHVIZ_LIBDIR}/libcdt.*")
+		file(GLOB GRAPHVIZ_LIBS "${GRAPHVIZ_LIBDIR}/libxdot.*" "${GRAPHVIZ_LIBDIR}/libpathplan.*")
+		file(GLOB GRAPHVIZ_APIS "${GRAPHVIZ_LIBDIR}/graphviz/libgvplugin_neato_layout.*" "${GRAPHVIZ_LIBDIR}/graphviz/libgvplugin_pango.*")
+		set(GRAPHVIZ_LIBS ${GRAPHVIZ_LIBS} ${GRAPHVIZ_LIBS_FIRSTHAND})
+	endif ()
+
+	if (NOT GRAPHVIZ_LIBS_FIRSTHAND)
+		message(FATAL_ERROR "Graphviz dependencies have not been found. Set GRAPHVIZ_PREFIX to the graphviz root directory, containing lib, include, etc.")
+	endif ()
+else ()
+	add_definitions(-DGRAPHVIZ_INCLUDED=false)
+endif (${USE_GRAPHVIZ})	
 
 ## whether to build the static version of the library
 set(BUILD_STATIC_LIB ON CACHE BOOL "Build the static version of the library")
 
 if(WIN32)
 	## on windows Ws2_32.lib is needed to be included for the dll
-    	list(APPEND LIBSBML_EXTRA_LIBS "Ws2_32.lib")
+    	list(APPEND EXTRA_LIBS "Ws2_32.lib")
 elseif(UNIX)
 	## set use of RPATH for Mac
 	if (APPLE)
 		set(CMAKE_MACOSX_RPATH true)
-		set(CMAKE_INSTALL_RPATH ${CMAKE_INSTALL_RPATH} 						"${CMAKE_BINARY_DIR}/src")
+		set(CMAKE_BUILD_RPATH "${CMAKE_BINARY_DIR}/src;${CMAKE_BINARY_DIR}/src/dependencies")
 	endif()
 
 	## set RPATH features
 	set(CMAKE_SKIP_BUILD_RPATH FALSE)
 	set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
-	set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
+	set(CMAKE_INSTALL_RPATH ${CMAKE_INSTALL_RPATH} "${CMAKE_INSTALL_PREFIX}/lib;${CMAKE_INSTALL_PREFIX}/lib/dependencies")
 	set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
 	## set C/C++ compiler flags
@@ -88,7 +117,7 @@ option(WITH_PYTHON
 
 if (WITH_PYTHON)
 	set(BUILD_STATIC_LIB ON)
-	set(WITH_SWIG ON CACHE BOOL "Regenerate the programming language interface code 	for Python using SWIG.")
+	set(WITH_SWIG ON CACHE BOOL "Regenerate the programming language interface code for Python using SWIG.")
 endif()
 
 if(WITH_SWIG)
@@ -106,9 +135,9 @@ if (WITH_GUI)
 	# find Qt5 and required components
 	if (APPLE)
 		find_package(Qt5 COMPONENTS Core Gui Widgets DBus PrintSupport REQUIRED)
-		set(CMAKE_INSTALL_RPATH ${CMAKE_INSTALL_RPATH} 						"${CMAKE_INSTALL_PREFIX}/bin/SBNE-GUI.app/Contents/Frameworks")
+		set(CMAKE_INSTALL_RPATH ${CMAKE_INSTALL_RPATH} "${CMAKE_INSTALL_PREFIX}/bin/SBNE-GUI.app/Contents/Frameworks")
 	else ()
-		find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED)
+		find_package(Qt5 COMPONENTS Core Gui Widgets PrintSupport REQUIRED)
 	endif(APPLE)
 endif(WITH_GUI)
 
@@ -125,34 +154,12 @@ if("${CMAKE_BUILD_TYPE}" STREQUAL "")
   set(CMAKE_BUILD_TYPE "Release" FORCE)
 endif()
 
-## only allow building of sbne targets after the dependencies have been found
-if (EXISTS ${LIBSBML_LIBRARY})
-	message(STATUS "building src")
-	add_subdirectory(src)
+add_subdirectory(src)
 
-	if (${BUILD_DOCS})
-    		add_subdirectory(docs)
-	endif()
+if (${BUILD_DOCS})
+    	add_subdirectory(docs)
+endif()
 
-	if (${BUILD_PACKAGING})
-    		add_subdirectory(packaging)
-	endif()
-else()
-	message(ERROR
-            "SBNE dependencies have not been found.")
-endif() 
-
-## show variables and their values
-message(STATUS "
-CMAKE Variables
-    CMAKE_SOURCE_DIR                        ${CMAKE_SOURCE_DIR}
-    CMAKE_BINARY_DIR                        ${CMAKE_CURRENT_BINARY_DIR}
-    CMAKE_INSTALL_PREFIX                    ${CMAKE_INSTALL_PREFIX}
-    CMAKE_BUILD_TYPE                        ${CMAKE_BUILD_TYPE}
-
-Libsbml Variables
-    LIBSBML_PREFIX                          ${LIBSBML_PREFIX}
-    LIBSBML_LIBRARY                         ${LIBSBML_LIBRARY}
-    LIBSBML_STATIC_LIBRARY                  ${LIBSBML_STATIC_LIBRARY}
-    LIBSBML_EXTRA_LIBS                      ${LIBSBML_EXTRA_LIBS}
-")
+if (${BUILD_PACKAGING})
+    	add_subdirectory(packaging)
+endif()

@@ -189,10 +189,11 @@ public:
         _reactions.clear();
         _texts.clear();
         _gObjects.clear();
-        _width = 0.0;
-        _height = 0.0;
-        _isSetWidth = false;
-        _isSetHeight = false;
+        //_width = 0.0;
+        //_height = 0.0;
+        //_isSetWidth = false;
+        //_isSetHeight = false;
+        _isSetBox = false;
         _isLayoutSpecified = false;
     }
     
@@ -399,23 +400,32 @@ public:
     // generate unique glyph id for for a new graphical object
     std::string getGObjectUniqueGlyphId();
     
+    // set the bounding box of network
+    void setBox(const double& x, const double& y, const double& width, const double& height);
+    
+    // get the bounding box of network
+    const LBox& getBox() const;
+    
+    // show whether the box of the network is ever updated
+    const bool isSetBox() const { return _isSetBox; }
+    
     // set the width dimension of network
-    void setWidth(const double& width);
+    //void setWidth(const double& width);
 
     // get the width dimension of network
-    const double& getWidth() const;
+    //const double& getWidth() const;
 
     // show whether the width dimension of network is set
-    const bool isSetWidth() const { return _isSetWidth; }
+    //const bool isSetWidth() const { return _isSetWidth; }
     
     // set the height dimension of network
-    void setHeight(const double& height);
+    //void setHeight(const double& height);
 
     // get the height dimension of network
-    const double& getHeight() const;
+    //const double& getHeight() const;
 
     // show whether the height dimension of network is set
-    const bool isSetHeight() const { return _isSetHeight; }
+    //const bool isSetHeight() const { return _isSetHeight; }
     
     // show whether the additional graphical object is specified (set)
     const bool isLayoutSpecified() const { return _isLayoutSpecified; }
@@ -430,10 +440,12 @@ protected:
     reactionVec _reactions;
     textVec _texts;
     gObjectVec _gObjects;
-    double _width;
-    double _height;
-    bool _isSetWidth;
-    bool _isSetHeight;
+    //double _width;
+    //double _height;
+    LBox _box;
+    bool _isSetBox;
+    //bool _isSetWidth;
+    //bool _isSetHeight;
     bool _isLayoutSpecified;
 };
 
