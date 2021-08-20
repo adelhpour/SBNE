@@ -1,5 +1,5 @@
 ***********
-Qucik Start
+Quick Start
 ***********
 
 Using portable C++ library (C++ API)
@@ -21,12 +21,12 @@ To use the portable C++ library, called libSBNE, you first need to:
         #include "sbne/sbml/ne_layout.h"
         #include "sbne/sbml/ne_render.h"
     
-Now you are able to make use of the functions of the API in your code.
+Now you are able to make use of the functions of the API in your code. Here are two examples of it:
 
-C++ example
-===========
+C++ example#1 (add layout and render features)
+==============================================
 
-Here is a simple script which makes use of the API to read the SBML document of an SBML (.xml) file, add Layout and Render features (if not included) to it, and finally write it to the SBML file.
+This example is a simple script which makes use of the API to read the SBML document of an SBML (.xml) file, add Layout and Render features (if not included) to it, and write back the document to the SBML file.
 
 .. code-block:: C++
 
@@ -74,6 +74,56 @@ Here is a simple script which makes use of the API to read the SBML document of 
         ne_doc_writeSBML(document, outputfile);
     }
 
+C++ example#2 (change layout and render features)
+=================================================
+
+This example shows how to use the ne_get() and ne_set() functions of the API to read the SBML document of an SBML (.xml) file, make a change to the Layout or Render features of it, and write back the document to the SBML file.
+
+.. code-block:: C++
+
+    #include "sbne/ne_core.h"
+
+    using namespace sbne;
+
+    int main () {
+        
+        // set filename value to the absolute path of the SBML (.xml) file.
+        const std::string filename = "Absolute path to the sbml (.xml) file";
+        
+        // set elementid value to the id of a network element.
+        const std::string elementid = "Id of a network element";
+        
+        // set color value to a desired color for the element.
+        const std::string color = "Desired color for the element";
+        
+        // create an infolist which is used by set function to set the stroke color of a network element
+        std::unordered_map<std::string, std::string> infolistset({
+            {"filename", filename},
+            {"id",elementid},
+            {"stroke",color}
+            });
+        
+        // create an infolist which is used by get function to get the stroke color of a network element
+        std::unordered_map<std::string, std::string> infolistget({
+            {"filename", filename},
+            {"id",elementid},
+            {"key","stroke"}
+            });
+        
+        // set the stroke color of the network element
+        if (!ne_set(infolistset))
+            std::cout << "The desired value is set\n";
+        else
+            std::cout << "Failed to set the desired value\n";
+        
+        // get the stroke color of the network element
+        std::string value = ne_get(infolistget);
+        if (!value.empty())
+            std::cout << "The desired value is: " << value << "\n";
+        else
+            std::cout << "Failed to get the desired value\n";
+    }
+
 Using Python bindings
 #####################
 
@@ -88,12 +138,12 @@ To use the language bindings of SBNE for Python, you first need to:
 
     * ``import libsbne`` in your script.
 
-Now, you can make use of the functions of the API in your Python script.
+Now, you can make use of the functions of the API in your Python script. Here we have provided two examples of it:
 
-Python example
-==============
+Python example#1 (add layout and render features)
+=================================================
 
-Here is a simple script which makes use of the Python bindings of the API to read the SBML document of an SBML (.xml) file, add Layout and Render features (if not included) to it, and finally write it to the SBML file.
+Here is a simple script which makes use of the Python bindings of the API to read the SBML document of an SBML (.xml) file, add Layout and Render features (if not included) to it, and write back the document to the SBML file.
 
 .. code-block:: Python
 
@@ -132,6 +182,83 @@ Here is a simple script which makes use of the Python bindings of the API to rea
 
     # write the SBML document to the outputfile
     sbne.ne_doc_writeSBML(document, outputfile)
+
+Python example#2 (change layout and render features)
+====================================================
+
+This example shows how to use the ne_get() and ne_set() functions of the Python bindings of the API to read the SBML document of an SBML (.xml) file, make a change to the Layout or Render features of it, and write back the document to the SBML file.
+
+.. code-block:: Python
+
+    import _libsbne as sbne
+
+    # set filename value to the absolute path of the SBML (.xml) file.
+    filename = "Absolute path to the sbml (.xml) file"
+
+    # set elementid value to the id of a network element.
+    elementid = "Id of a network element"
+
+    # set color value to a desired color for the element.
+    color = "Desired color for the element"
+
+    # create an infolist which is used by set function to set the stroke color of a network element
+    infolistset = {'filename': filename,
+                  'id': elementid,
+                  'stroke': color}
+
+    # create an infolist which is used by get function to get the stroke color of a network element
+    infolistget = {'filename': filename,
+                  'id': elementid,
+                  'key': 'stroke'}
+                  
+    # set the stroke color of the network element
+    if not sbne.ne_set(infolistset):
+        print("The desired value is set")
+    else:
+        print("Failed to set the desired value")
+
+    # get the stroke color of the network element
+    value = sbne.ne_get(infolistget)
+    if value:
+        print("The desired value is: ", value)
+    else:
+        print("Failed to get the desired value")
+        
+.. note::
+
+    As shown in the above C++/Python example#2, both :ref:`APIReference/functions/ne_get:ne_get` and :ref:`APIReference/functions/ne_set:ne_set` functions have an *unsoreted_map (in C++)/dictionary (in Python)* input argument which contains the required information to get/set the value of an element of the network. To initialize a variable and use it as this argument, the following **key:value** pairs are used:
+    
+        .. list-table::
+            :widths: 100 300
+            :header-rows: 1
+            :align: left
+
+            * - .. centered:: Key
+              - .. centered:: Value
+
+            * - .. centered:: "filename"
+              - The absolute path of the SBML (.xml) file
+              
+            * - .. centered:: "id"
+              - The id of a network element (like a :ref:`APIReference/classes/layout/NSpecies:NSpecies`, :ref:`APIReference/classes/render/VGlobalStyle:VGlobalStyle`, etc.)
+              
+            * - .. centered:: "geometricshape"
+              - The id/shape of a :ref:`APIReference/classes/render/VTransformation2D:VTransformation2D` element of a :ref:`APIReference/classes/render/VRenderGroup:VRenderGroup`
+              
+            * - .. centered:: "stopid"
+              - The id of a :ref:`APIReference/classes/render/VGradientStop:VGradientStop` of a :ref:`APIReference/classes/render/VGradientBase:VGradientBase`
+              
+            * - .. centered:: "index"
+              - The index of an element of a network element (like :ref:`APIReference/classes/layout/LCurve:LCurve`, :ref:`APIReference/classes/render/VPolygon:VPolygon`, etc.)
+              
+            * - .. centered:: "point"
+              - The type of a point (like "point", "renderpoint", "basepoint1", etc.)
+              
+            * - .. centered:: "key"
+              - The attribute of the network element to get (like "x", "stroke", and etc.)
+              
+            * - .. centered:: "[attribute]"
+              - The value of the [attribute] of the network element to be set
 
 Using SBNE-GUI (Graphical User Interface)
 #########################################

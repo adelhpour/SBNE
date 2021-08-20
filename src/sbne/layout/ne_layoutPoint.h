@@ -1,7 +1,7 @@
 #ifndef __NE_LAYOUTPOINT_H_
 #define __NE_LAYOUTPOINT_H_
 
-#include "sbne/core/ne_core.h"
+#include "sbne/ne_core.h"
 
 namespace sbne {
 

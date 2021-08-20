@@ -2,8 +2,8 @@
 #define __NE_FEATUREMENU_H
 
 #include "ne_mainwindow.h"
-#include "sbne/sbml/ne_layout.h"
-#include "sbne/sbml/ne_render.h"
+#include "sbne/layout/ne_layout.h"
+#include "sbne/render/ne_render.h"
 
 using namespace sbne;
 

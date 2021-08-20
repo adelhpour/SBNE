@@ -31,9 +31,9 @@
 #include <QScrollArea>
 #include <QFontDatabase>
 
-#include "sbne/sbml/ne_sbml.h"
-#include "sbne/sbml/ne_layout.h"
-#include "sbne/sbml/ne_render.h"
+#include "sbne//ne_core.h"
+#include "sbne/layout/ne_layout.h"
+#include "sbne/render/ne_render.h"
 #include "ne_featureMenu.h"
 #include "ne_SBMLDocument.h"
 

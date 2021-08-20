@@ -1,7 +1,7 @@
 #ifndef __NE_RELABSVECTOR_H_
 #define __NE_RELABSVECTOR_H_
 
-#include "sbne/core/ne_core.h"
+#include "sbne/ne_core.h"
 
 namespace sbne {
 
@@ -37,13 +37,17 @@ public:
     
     const RAVector operator-() const;
     
-    /// Convert to String
+    // convert to String
     const std::string toString() const;
+    
+    // extract a relabsvector from a string
+    static RAVector* stringToRAVector(const std::string& str);
     
 protected:
     double _a;
     double _r;
 };
+
 }
 
 #endif

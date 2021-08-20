@@ -1,7 +1,7 @@
 #ifndef __NE_AUTOLAYOUT_H_
 #define __NE_AUTOLAYOUT_H_
 
-#include "sbne/network/ne_network.h"
+#include "sbne/layout/ne_network.h"
 
 #if GRAPHVIZ_INCLUDED
 #include "graphviz/gvc.h"

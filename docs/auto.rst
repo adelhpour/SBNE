@@ -7,7 +7,7 @@ As a number of SBML models do not contain Layout and Render information, automat
 Auto-Layout
 ###########
 
-In SBNE, the auto-layout algorithm, which is implemented by :ref:`APIReference/functions/LayoutInfo/ne_li_addLayoutFeaturesToNetowrk:ne_li_addLayoutFeaturesToNetowrk`, is a tool to set the position and dimensions of each graphical object in the network of an SBML model, including :ref:`Compartments <APIReference/classes/layout/NCompartment:NCompartment>`, :ref:`Species <APIReference/classes/layout/NSpecies:NSpecies>`, :ref:`Reactions <APIReference/classes/layout/NReaction:NReaction>`, :ref:`SpeciesReferences <APIReference/classes/layout/NSpeciesReference:NSpeciesReference>`, and :ref:`Texts <APIReference/classes/layout/NText:NText>`. SBNE makes use of eihter of the following algorithms to set these values:
+In SBNE, the auto-layout algorithm, which is implemented by :ref:`APIReference/functions/LayoutInfo/ne_li_addLayoutFeaturesToNetowrk:ne_li_addLayoutFeaturesToNetowrk`, is a tool to set the position and dimensions of each graphical object in the network of an SBML model, including :ref:`Compartments <APIReference/classes/layout/NCompartment:NCompartment>`, :ref:`Species <APIReference/classes/layout/NSpecies:NSpecies>`, :ref:`Reactions <APIReference/classes/layout/NReaction:NReaction>`, :ref:`SpeciesReferences <APIReference/classes/layout/NSpeciesReference:NSpeciesReference>`, and :ref:`Texts <APIReference/classes/layout/NText:NText>`. SBNE makes use of either of the following algorithms to set these values:
 
 a) Graphviz layout algorithms
 =============================
@@ -17,7 +17,7 @@ If you :ref:`Build <installation:Build from Source>` SBNE with enabled ``USE_GRA
 b) The novel layout algorithm
 =============================
 
-If you :ref:`Build <installation:Build from Source>` SBNE with disabled ``USE_GRAPHVIZ`` option, it uses the new algorithm we have developed here to to set the position and dimensions of each graphical object in the network of an SBML model. This algorithm is described in detail in the following:
+If you :ref:`Build <installation:Build from Source>` SBNE with disabled ``USE_GRAPHVIZ`` option, it uses the new algorithm we have developed here to set the position and dimensions of each graphical object in the network of an SBML model. This algorithm is described in detail in the following:
 
 Basic idea
 ----------

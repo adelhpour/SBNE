@@ -39,4 +39,40 @@ namespace sbne {
         
         return ss.str();
     }
+
+    RAVector* RAVector::stringToRAVector(const std::string& str) {
+        RAVector* rav = NULL;
+        std::stringstream ss;
+        ss << str;
+        std::string temp;
+        int i = 0;
+        double abs, rel, extra;
+        while (!ss.eof()) {
+            ss >> temp;
+            
+            switch (i) {
+                case 0:
+                    if (std::stringstream(temp) >> abs)
+                        ++i;
+                    break;
+                case 1:
+                    if (std::stringstream(temp) >> rel)
+                        ++i;
+                    break;
+                case 2:
+                    if (std::stringstream(temp) >> extra)
+                        ++i;
+                    break;
+                default:
+                    break;
+            }
+            
+            temp = "";
+        }
+        
+        if (i == 2)
+            rav = new RAVector(abs, rel);
+        
+        return rav;
+    }
 }

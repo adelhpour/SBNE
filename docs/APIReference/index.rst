@@ -88,6 +88,14 @@ The classes and structs related to **Render extension**:
 Functions
 #########
 
+The **Get** and **Set** functions:
+
+.. toctree::
+    :maxdepth: 1
+
+    functions/ne_get.rst
+    functions/ne_set.rst
+
 The functions related to `SBMLDocument <http://model.caltech.edu/software/libsbml/5.18.0/docs/formatted/cpp-api/class_s_b_m_l_document.html>`_:
 
 .. toctree::
@@ -123,7 +131,9 @@ The functions related to :ref:`APIReference/classes/layout/Network:Network`:
 
 .. toctree::
     :maxdepth: 1
-
+    
+    functions/Network/ne_net_get.rst
+    functions/Network/ne_net_set.rst
     functions/Network/ne_net_isLayoutSpecified.rst
     functions/Network/ne_net_getNumCompartments.rst
     functions/Network/ne_net_getCompartment.rst
@@ -141,6 +151,8 @@ The functions related to :ref:`APIReference/classes/layout/NGraphicalObject:NGra
 .. toctree::
     :maxdepth: 1
 
+    functions/NGraphicalObject/ne_go_get.rst
+    functions/NGraphicalObject/ne_go_set.rst
     functions/NGraphicalObject/ne_go_isSetGlyphId.rst
     functions/NGraphicalObject/ne_go_getGlyphId.rst
     functions/NGraphicalObject/ne_go_setGlyphId.rst
@@ -153,11 +165,21 @@ The functions related to :ref:`APIReference/classes/layout/NGraphicalObject:NGra
     functions/NGraphicalObject/ne_go_unSetBoundingBox.rst
     functions/NGraphicalObject/ne_go_getType.rst
 
+The functions related to :ref:`APIReference/classes/layout/NCompartment:NCompartment`:
+
+.. toctree::
+    :maxdepth: 1
+
+    functions/NCompartment/ne_cmp_get.rst
+    functions/NCompartment/ne_cmp_set.rst
+
 The functions related to :ref:`APIReference/classes/layout/NSpecies:NSpecies`:
 
 .. toctree::
     :maxdepth: 1
 
+    functions/NSpecies/ne_spc_get.rst
+    functions/NSpecies/ne_spc_set.rst
     functions/NSpecies/ne_spc_updateBoundingBox.rst
     functions/NSpecies/ne_spc_isSetCompartment.rst
     functions/NSpecies/ne_spc_getCompartment.rst
@@ -167,6 +189,8 @@ The functions related to :ref:`APIReference/classes/layout/NReaction:NReaction`:
 .. toctree::
     :maxdepth: 1
 
+    functions/NReaction/ne_rxn_get.rst
+    functions/NReaction/ne_rxn_set.rst
     functions/NReaction/ne_rxn_getNumSpeciesReferences.rst
     functions/NReaction/ne_rxn_getSpeciesReference.rst
     functions/NReaction/ne_rxn_getSpeciesReferences.rst
@@ -181,7 +205,9 @@ The functions related to :ref:`APIReference/classes/layout/NSpeciesReference:NSp
 
 .. toctree::
     :maxdepth: 1
-
+    
+    functions/NSpeciesReference/ne_sr_get.rst
+    functions/NSpeciesReference/ne_sr_set.rst
     functions/NSpeciesReference/ne_sr_isSetReaction.rst
     functions/NSpeciesReference/ne_sr_getReaction.rst
     functions/NSpeciesReference/ne_sr_isSetSpecies.rst
@@ -196,6 +222,8 @@ The functions related to :ref:`APIReference/classes/layout/NText:NText`:
 .. toctree::
     :maxdepth: 1
 
+    functions/NText/ne_gtxt_get.rst
+    functions/NText/ne_gtxt_set.rst
     functions/NText/ne_gtxt_isSetPlainText.rst
     functions/NText/ne_gtxt_getPlainText.rst
     functions/NText/ne_gtxt_setPlainText.rst
@@ -206,6 +234,8 @@ The functions related to :ref:`APIReference/classes/layout/LCurve:LCurve`:
 .. toctree::
     :maxdepth: 1
 
+    functions/LCurve/ne_crv_get.rst
+    functions/LCurve/ne_crv_set.rst
     functions/LCurve/ne_crv_getNumElements.rst
     functions/LCurve/ne_crv_getElement.rst
     functions/LCurve/ne_crv_getElements.rst
@@ -218,6 +248,8 @@ The functions related to :ref:`APIReference/classes/layout/LLineSegment:LLineSeg
 .. toctree::
     :maxdepth: 1
 
+    functions/LLineSegment/ne_ls_get.rst
+    functions/LLineSegment/ne_ls_set.rst
     functions/LLineSegment/ne_ls_isSetStart.rst
     functions/LLineSegment/ne_ls_getStart.rst
     functions/LLineSegment/ne_ls_setStart.rst
@@ -243,6 +275,8 @@ The functions related to :ref:`APIReference/classes/layout/LBox:LBox`:
 .. toctree::
     :maxdepth: 1
 
+    functions/LBox/ne_bb_get.rst
+    functions/LBox/ne_bb_set.rst
     functions/LBox/ne_bb_getX.rst
     functions/LBox/ne_bb_setX.rst
     functions/LBox/ne_bb_getY.rst
@@ -257,6 +291,8 @@ The functions related to :ref:`APIReference/classes/layout/LPoint:LPoint`:
 .. toctree::
     :maxdepth: 1
 
+    functions/LPoint/ne_point_get.rst
+    functions/LPoint/ne_point_set.rst
     functions/LPoint/ne_point_getX.rst
     functions/LPoint/ne_point_setX.rst
     functions/LPoint/ne_point_getY.rst
@@ -288,6 +324,10 @@ The functions related to :ref:`APIReference/classes/render/Veneer:Veneer`:
 .. toctree::
     :maxdepth: 1
 
+    functions/Veneer/ne_ven_get1.rst
+    functions/Veneer/ne_ven_get2.rst
+    functions/Veneer/ne_ven_set1.rst
+    functions/Veneer/ne_ven_set2.rst
     functions/Veneer/ne_ven_isRenderSpecified.rst
     functions/Veneer/ne_ven_isSetBackgroundColor.rst
     functions/Veneer/ne_ven_getBackgroundColor.rst
@@ -317,6 +357,8 @@ The functions related to :ref:`APIReference/classes/render/VColorDefinition:VCol
 .. toctree::
     :maxdepth: 1
 
+    functions/VColorDefinition/ne_clr_get.rst
+    functions/VColorDefinition/ne_clr_set.rst
     functions/VColorDefinition/ne_clr_isSetValue.rst
     functions/VColorDefinition/ne_clr_getValue.rst
     functions/VColorDefinition/ne_clr_setValue.rst
@@ -326,6 +368,8 @@ The functions related to :ref:`APIReference/classes/render/VGradientBase:VGradie
 .. toctree::
     :maxdepth: 1
 
+    functions/VGradientBase/ne_grd_get.rst
+    functions/VGradientBase/ne_grd_set.rst
     functions/VGradientBase/ne_grd_isSetSpreadMethod.rst
     functions/VGradientBase/ne_grd_getSpreadMethod.rst
     functions/VGradientBase/ne_grd_getNumStops.rst
@@ -337,38 +381,62 @@ The functions related to :ref:`APIReference/classes/render/VLinearGradient:VLine
 
 .. toctree::
     :maxdepth: 1
-
+    
+    functions/VLinearGradient/ne_grd_isSetX1.rst
     functions/VLinearGradient/ne_grd_getX1.rst
+    functions/VLinearGradient/ne_grd_setX1.rst
+    functions/VLinearGradient/ne_grd_isSetY1.rst
     functions/VLinearGradient/ne_grd_getY1.rst
+    functions/VLinearGradient/ne_grd_setY1.rst
+    functions/VLinearGradient/ne_grd_isSetX2.rst
     functions/VLinearGradient/ne_grd_getX2.rst
+    functions/VLinearGradient/ne_grd_setX2.rst
+    functions/VLinearGradient/ne_grd_isSetY2.rst
     functions/VLinearGradient/ne_grd_getY2.rst
+    functions/VLinearGradient/ne_grd_setY2.rst
 
 The functions related to :ref:`APIReference/classes/render/VRadialGradient:VRadialGradient`:
 
 .. toctree::
     :maxdepth: 1
 
+    functions/VRadialGradient/ne_grd_isSetCx.rst
     functions/VRadialGradient/ne_grd_getCx.rst
+    functions/VRadialGradient/ne_grd_setCx.rst
+    functions/VRadialGradient/ne_grd_isSetCy.rst
     functions/VRadialGradient/ne_grd_getCy.rst
+    functions/VRadialGradient/ne_grd_setCy.rst
+    functions/VRadialGradient/ne_grd_isSetFx.rst
     functions/VRadialGradient/ne_grd_getFx.rst
+    functions/VRadialGradient/ne_grd_setFx.rst
+    functions/VRadialGradient/ne_grd_isSetFy.rst
     functions/VRadialGradient/ne_grd_getFy.rst
+    functions/VRadialGradient/ne_grd_setFy.rst
+    functions/VRadialGradient/ne_grd_isSetR.rst
     functions/VRadialGradient/ne_grd_getR.rst
+    functions/VRadialGradient/ne_grd_setR.rst
 
 The functions related to :ref:`APIReference/classes/render/VGradientStop:VGradientStop`:
 
 .. toctree::
     :maxdepth: 1
 
+    functions/VGradientStop/ne_gstp_get.rst
+    functions/VGradientStop/ne_gstp_set.rst
     functions/VGradientStop/ne_gstp_isSetOffset.rst
     functions/VGradientStop/ne_gstp_getOffset.rst
+    functions/VGradientStop/ne_gstp_setOffset.rst
     functions/VGradientStop/ne_gstp_isSetColor.rst
     functions/VGradientStop/ne_gstp_getColor.rst
+    functions/VGradientStop/ne_gstp_setColor.rst
 
 The functions related to :ref:`APIReference/classes/render/VLineEnding:VLineEnding`:
 
 .. toctree::
     :maxdepth: 1
 
+    functions/VLineEnding/ne_le_get.rst
+    functions/VLineEnding/ne_le_set.rst
     functions/VLineEnding/ne_le_setLineEndingValues.rst
     functions/VLineEnding/ne_le_isSetBoundingBox.rst
     functions/VLineEnding/ne_le_getBoundingBox.rst
@@ -385,6 +453,8 @@ The functions related to :ref:`APIReference/classes/render/VGlobalStyle:VGlobalS
 .. toctree::
     :maxdepth: 1
 
+    functions/VGlobalStyle/ne_stl_get.rst
+    functions/VGlobalStyle/ne_stl_set.rst
     functions/VGlobalStyle/ne_stl_setStyleValues.rst
     functions/VGlobalStyle/ne_stl_isSetGroup.rst
     functions/VGlobalStyle/ne_stl_getGroup.rst
@@ -404,6 +474,8 @@ The functions related to :ref:`APIReference/classes/render/VRenderGroup:VRenderG
 .. toctree::
     :maxdepth: 1
 
+    functions/VRenderGroup/ne_grp_get.rst
+    functions/VRenderGroup/ne_grp_set.rst
     functions/VRenderGroup/ne_grp_isSetStrokeColor.rst
     functions/VRenderGroup/ne_grp_getStrokeColor.rst
     functions/VRenderGroup/ne_grp_setStrokeColor.rst
@@ -455,6 +527,8 @@ The functions related to :ref:`APIReference/classes/render/VTransformation2D:VTr
 .. toctree::
     :maxdepth: 1
 
+    functions/VTransformation2D/ne_gs_get.rst
+    functions/VTransformation2D/ne_gs_set.rst
     functions/VTransformation2D/ne_gs_getShape.rst
     functions/VTransformation2D/ne_gs_setShapeFeatures.rst
     functions/VTransformation2D/ne_gs_isSetStrokeColor.rst
@@ -480,6 +554,8 @@ The functions related to :ref:`APIReference/classes/render/VImage:VImage`:
 .. toctree::
     :maxdepth: 1
 
+    functions/VImage/ne_img_get.rst
+    functions/VImage/ne_img_set.rst
     functions/VImage/ne_img_isSetPositionX.rst
     functions/VImage/ne_img_getPositionX.rst
     functions/VImage/ne_img_setPositionX.rst
@@ -501,6 +577,8 @@ The functions related to :ref:`APIReference/classes/render/RCurve:RCurve`:
 .. toctree::
     :maxdepth: 1
 
+    functions/RCurve/ne_rc_get.rst
+    functions/RCurve/ne_rc_set.rst
     functions/RCurve/ne_rc_getNumVertices.rst
     functions/RCurve/ne_rc_getVertex.rst
     functions/RCurve/ne_rc_addVertex.rst
@@ -517,6 +595,8 @@ The functions related to :ref:`APIReference/classes/render/VText:VText`:
 .. toctree::
     :maxdepth: 1
 
+    functions/VText/ne_txt_get.rst
+    functions/VText/ne_txt_set.rst
     functions/VText/ne_txt_isSetPositionX.rst
     functions/VText/ne_txt_getPositionX.rst
     functions/VText/ne_txt_setPositionX.rst
@@ -547,6 +627,8 @@ The functions related to :ref:`APIReference/classes/render/VRectangle:VRectangle
 .. toctree::
     :maxdepth: 1
 
+    functions/VRectangle/ne_rec_get.rst
+    functions/VRectangle/ne_rec_set.rst
     functions/VRectangle/ne_rec_isSetPositionX.rst
     functions/VRectangle/ne_rec_getPositionX.rst
     functions/VRectangle/ne_rec_setPositionX.rst
@@ -574,6 +656,8 @@ The functions related to :ref:`APIReference/classes/render/VEllipse:VEllipse`:
 .. toctree::
     :maxdepth: 1
 
+    functions/VEllipse/ne_elp_get.rst
+    functions/VEllipse/ne_elp_set.rst
     functions/VEllipse/ne_elp_isSetPositionCX.rst
     functions/VEllipse/ne_elp_getPositionCX.rst
     functions/VEllipse/ne_elp_setPositionCX.rst
@@ -595,6 +679,8 @@ The functions related to :ref:`APIReference/classes/render/VPolygon:VPolygon`:
 .. toctree::
     :maxdepth: 1
 
+    functions/VPolygon/ne_plg_get.rst
+    functions/VPolygon/ne_plg_set.rst
     functions/VPolygon/ne_plg_getNumVertices.rst
     functions/VPolygon/ne_plg_getVertex.rst
     functions/VPolygon/ne_plg_addVertex.rst
@@ -604,7 +690,9 @@ The functions related to :ref:`APIReference/classes/render/RenPoint:RenPoint`:
 
 .. toctree::
     :maxdepth: 1
-
+    
+    functions/RenPoint/ne_vrx_get.rst
+    functions/RenPoint/ne_vrx_set.rst
     functions/RenPoint/ne_vrx_getRenderPoint.rst
     functions/RenPoint/ne_vrx_setRenderPoint.rst
     functions/RenPoint/ne_vrx_isRenderCubicBezier.rst
@@ -618,6 +706,8 @@ The functions related to :ref:`APIReference/classes/render/RPoint:RPoint`:
 .. toctree::
     :maxdepth: 1
 
+    functions/RPoint/ne_rp_get.rst
+    functions/RPoint/ne_rp_set.rst
     functions/RPoint/ne_rp_getX.rst
     functions/RPoint/ne_rp_setX.rst
     functions/RPoint/ne_rp_getY.rst
