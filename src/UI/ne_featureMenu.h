@@ -8,6 +8,13 @@
 using namespace sbne;
 
 class MainWindow;
+class GraphicalObjectBase;
+class GraphicalSpecies;
+class GraphicalCompartment;
+class GraphicalReaction;
+class GraphicalSReference;
+class GraphicalLineEnding;
+class GraphicalText;
 class FeatureMenu;
 class FeatureMenuElement;
 class SpeciesFeatureMenu;
@@ -15,12 +22,6 @@ class CompartmentFeatureMenu;
 class ReactionReferenceFeatureMenu;
 class SpeciesReferenceFeatureMenu;
 class LineEndingFeatureMenu;
-class GraphicalSpecies;
-class GraphicalCompartment;
-class GraphicalReaction;
-class GraphicalSReference;
-class GraphicalLineEnding;
-class GraphicalText;
 class BoundingBoxFeatureMenu;
 class CurveFeatureMenu;
 class StrokeFeatureMenu;
@@ -33,9 +34,414 @@ class EllipseGeometricShapeFeatureMenu;
 class PolygonGeometricShapeFeatureMenu;
 class RenderCurveGeometricShapeFeatureMenu;
 class LineFeatureMenu;
-class PointFeatureMenu;
-class CollapsibleMenu;
-class SeparatingLine;
+class RenderPointFeatureMenu;
+class RenderCubicBezierFeatureMenu;
+
+class MyLabel : public QLabel {
+    
+public:
+    MyLabel(const QString& text = "", QWidget* parent = 0);
+};
+
+class MyLineEdit : public QLineEdit {
+    
+public:
+    MyLineEdit(QWidget* parent = 0);
+    
+    void setText(const QString& text);
+    
+    void insert(const QString& text);
+};
+
+class MySpinBox : public QSpinBox {
+    
+public:
+    MySpinBox(QWidget* parent = 0);
+};
+
+class MyDoubleSpinBox : public QDoubleSpinBox {
+    
+public:
+    MyDoubleSpinBox(QWidget* parent = 0);
+};
+
+class MyDualSpinBox : public QWidget {
+    Q_OBJECT
+    
+public:
+    MyDualSpinBox(const QString& type = "");
+    
+    const double first() const;
+    
+    const double second() const;
+    
+    void setType(const QString& type);
+    
+    void setCurrentValue(const double& first, const double& second);
+    
+    void setRange(MainWindow* mw);
+    
+    void setFirstRange(const double& min, const double& max);
+    
+    void setSecondRange(const double& min, const double& max);
+    
+    void resetValues();
+    
+signals:
+    void valueChanged(const double& first, const double& second);
+    
+protected:
+    QGridLayout contentLayout;
+    QString _type;
+    MyLabel firstLabel;
+    MyLabel secondLabel;
+    MyDoubleSpinBox firstSpinBox;
+    MyDoubleSpinBox secondSpinBox;
+};
+
+class MyRelAbsSpinBox : public QWidget {
+    Q_OBJECT
+    
+public:
+    MyRelAbsSpinBox();
+    
+    const double absoluteValue() const;
+    
+    const int relativeValue() const;
+    
+    void setCurrentValue(const double& abs, const double& rel);
+    
+    void setRange(const double& min, const double& max);
+    
+    void resetValues();
+    
+signals:
+    void valueChanged(const double& abs, const double& rel);
+    
+protected:
+    QGridLayout contentLayout;
+    MyDoubleSpinBox absoluteValueSpinBox;
+    MySpinBox relativeValueSpinBox;
+};
+
+class MyPlainTextWidget : public QWidget {
+    Q_OBJECT
+    
+public:
+    MyPlainTextWidget();
+    
+    void setPlainText(const QString& plainText);
+    
+    QString plainText();
+    
+    void enable(NGraphicalObject* gO);
+    
+    void resetValues();
+    
+signals:
+    void plainTextChanged(const QString& plainText);
+    
+protected:
+    QGridLayout contentLayout;
+    MyLineEdit plainTextLineEdit;
+    QPushButton importTextPushButton;
+    QMenu importMenu;
+};
+
+class MyComboBox : public QComboBox {
+    
+public:
+    MyComboBox(QWidget* parent = 0);
+};
+
+class MyFontSizeComboBox : public QWidget {
+    Q_OBJECT
+    
+public:
+    MyFontSizeComboBox();
+    
+    void setCurrentValue(const double& abs, const double& rel);
+    
+    void resetValues();
+    
+signals:
+    void valueChanged(const QString& abs, const QString& rel);
+    
+protected:
+    QGridLayout contentLayout;
+    MyComboBox absoluteValueComboBox;
+    MyComboBox relativeValueComboBox;
+};
+
+class MyDashArrayComboBox : public MyComboBox {
+    Q_OBJECT
+    
+public:
+    MyDashArrayComboBox(QWidget* parent = 0);
+    
+    void setDashArray(std::vector<unsigned int>* dashArrayVector);
+    
+    void resetValues();
+    
+signals:
+    void dashArrayChosen(std::vector<unsigned int>* dashArrayVector);
+};
+
+class MyHeadPickerComboBox : public QComboBox {
+    Q_OBJECT
+    
+public:
+    MyHeadPickerComboBox(QWidget* parent = 0);
+    
+    void enableItems(MainWindow* _mw);
+    
+    void setHead(const QString& head);
+    
+    void resetValues();
+    
+signals:
+    void headChosen(const QString& head);
+};
+
+class MyDimensionRatioComboBox : public MyComboBox {
+    Q_OBJECT
+    
+public:
+    MyDimensionRatioComboBox(QWidget* parent = 0);
+    
+    void setRatio(const double& ratio);
+    
+    void resetValues();
+    
+signals:
+    void ratioChosen(const double& ratio);
+};
+
+class MyColorTileButton : public QPushButton {
+        
+public:
+    MyColorTileButton(const QString& color, const QString& value, QWidget* parent = 0);
+    
+    const QString& color() const;
+    
+    const QString& value() const;
+    
+protected:
+    QString _color;
+    QString _value;
+};
+
+class MyColorPickerMenu : public QMenu {
+    Q_OBJECT
+    
+public:
+    MyColorPickerMenu();
+    
+signals:
+    void colorChosen(const QString& color, const QString& value);
+        
+private slots:
+    void colorTileButtonPicked(MyColorTileButton* colorTileButton);
+};
+
+class MyColorPickerButton : public QToolButton {
+    Q_OBJECT
+        
+public:
+    MyColorPickerButton(MainWindow* mw);
+    
+    void setBackgroundColor(const QString& color);
+    
+signals:
+    void colorChosen(const QString& color, const QString& value);
+    
+private slots:
+    
+    void setColorMenu() ;
+    
+protected:
+    MainWindow* _mw;
+};
+
+
+class MyAddOrRemoveButton : public QPushButton {
+    Q_OBJECT
+    
+public:
+    MyAddOrRemoveButton(QWidget* parent = 0);
+    
+    void enableRemove();
+    
+    void resetValues();
+};
+
+class MyAddOrRemoveReactionBoundingBoxButton : public MyAddOrRemoveButton {
+    Q_OBJECT
+    
+public:
+    MyAddOrRemoveReactionBoundingBoxButton(MainWindow* mw = NULL, QWidget* parent = 0);
+    
+    void enableFromCurveExtents(LBox* extentBox);
+    
+    void initialize(LBox* box);
+    
+    void enableRemove();
+    
+    void setBoxRanges(MainWindow* mw);
+    
+    void resetValues();
+    
+signals:
+    void boundingBoxFeaturesChosen(const double& x, const double& y, const double& width, const double& height);
+    
+    void removeBoundingBox();
+    
+protected:
+    QMenu* addingMenu;
+    QPushButton fromCurveExtentsButton;
+    MyDualSpinBox positionDualSpinBox;
+    MyDualSpinBox dimensionsDualSpinBox;
+};
+
+class MyAddRemoveButtons : public QDialogButtonBox {
+    Q_OBJECT
+    
+public:
+    MyAddRemoveButtons(QWidget* parent = 0);
+    
+signals:
+    void removeItemFeaturesChosen(const unsigned int& itemIndex);
+    
+protected:
+    QPushButton* addPushButton;
+    QPushButton* removePushButton;
+    QMenu* addingMenu;
+    QMenu* removingMenu;
+};
+
+class MyAddRemoveTextButtons : public MyAddRemoveButtons {
+    Q_OBJECT
+    
+public:
+    MyAddRemoveTextButtons(QWidget* parent = 0);
+    
+    void enableAddButton(NGraphicalObject* gO);
+    
+    void enableRemoveButton(const unsigned int& numberOfElements);
+    
+    void resetValues();
+    
+signals:
+    void textChosen(const QString& plainText);
+
+protected:
+    MyPlainTextWidget* plainTextWidget;
+};
+
+class MyAddRemoveGeometricShapeButtons : public MyAddRemoveButtons {
+    Q_OBJECT
+    
+public:
+    MyAddRemoveGeometricShapeButtons(QWidget* parent = 0);
+        
+    void enableAddButton();
+    
+    void enableRemoveButton(VRenderGroup* group);
+    
+    void resetValues(const bool& disableAddButton = false);
+    
+signals:
+    void geometricShapeChosen(const QString& geometricShape);
+};
+
+class MyAddRemoveSegmentButtons : public MyAddRemoveButtons {
+    Q_OBJECT
+    
+public:
+    
+    MyAddRemoveSegmentButtons(QWidget* parent = 0);
+        
+    void enableAddButton(MainWindow* mw, const unsigned int& numberOfElements);
+    
+    void enableRemoveButton(const unsigned int& numberOfElements);
+    
+    void resetValues();
+        
+signals:
+    void addItemFeaturesChosen(const unsigned int& itemIndex, const double& itemPointStartXValue, const double& itemPointStartYValue, const double& itemPointEndXValue, const double& itemPointEndYValue);
+        
+    void addItemFeaturesChosen(const unsigned int& itemIndex, const double& itemCubicBezierStartXValue, const double& itemCubicBezierStartYValue, const double& itemCubicBezierEndXValue, const double& itemCubicBezierEndYValue, const double& itemCubicBezierBasePoint1XValue, const double& itemCubicBezierBasePoint1YValue, const double& itemCubicBezierBasePoint2XValue, const double& itemCubicBezierBasePoint2YValue);
+};
+
+
+class MyAddRemoveVertexButtons : public MyAddRemoveButtons {
+    Q_OBJECT
+    
+public:
+    
+    MyAddRemoveVertexButtons(QWidget* parent = 0);
+        
+    void enableAddButton(MainWindow* mw, LBox* bBox, const unsigned int& numberOfElements);
+    
+    void enableRemoveButton(const unsigned int& numberOfElements);
+    
+    void resetValues();
+        
+signals:
+    void addItemFeaturesChosen(const unsigned int& itemIndex, const double& itemPointXAbsoluteValue, const double& itemPointXRelativeValue, const double& itemPointYAbsoluteValue, const double& itemPointYRelativeValue);
+        
+    void addItemFeaturesChosen(const unsigned int& itemIndex, const double& itemCubicBezierXAbsoluteValue, const double& itemCubicBezierXRelativeValue, const double& itemCubicBezierYAbsoluteValue, const double& itemCubicBezierYRelativeValue, const double& itemCubicBezierC1XAbsoluteValue, const double& itemCubicBezierC1XRelativeValue, const double& itemCubicBezierC1YAbsoluteValue, const double& itemCubicBezierC1YRelativeValue, const double& itemCubicBezierC2XAbsoluteValue, const double& itemCubicBezierC2XRelativeValue, const double& itemCubicBezierC2YAbsoluteValue, const double& itemCubicBezierC2YRelativeValue);
+};
+
+class MyStandardItem : public QStandardItem {
+    
+public:
+    MyStandardItem(const QString& text = "", const qreal& fontsize = qreal(12.0), const bool& isbold = false, const QColor& color = QColor(Qt::black));
+};
+
+class MyGroupBox : public QGroupBox {
+    Q_OBJECT
+    
+public:
+    MyGroupBox(QWidget* parent);
+};
+
+class MyTreeView : public QTreeView {
+    
+public:
+    MyTreeView(QWidget* parent);
+    
+    void clearModel();
+    
+    /// Containers
+    // branches
+    typedef std::vector<std::pair<MyStandardItem*, MyStandardItem*>> branchVec;
+    
+    /// Iterators
+    // branches
+    typedef branchVec::iterator branchIt;
+    typedef branchVec::const_iterator constBranchIt;
+    
+    /// Functions related to beginning and end of containers
+    // branches
+    const constBranchIt BranchesBegin() const { return _branches.begin(); }
+    const constBranchIt BranchesEnd() const { return _branches.end(); }
+    
+    void addBranchWidget(QWidget* branchWidget = NULL, const QString& branchTitle = "", const QString& rootTitle= "");
+    
+    void removeBranches(const QString& rootTitle= "", const unsigned int& staticbranches = 0);
+    
+protected:
+    QStandardItemModel* treeModel;
+    branchVec _branches;
+};
+
+class MyTabWidget : public QTabWidget {
+    Q_OBJECT
+    
+public:
+    MyTabWidget(QWidget* parent);
+};
 
 class FeatureMenu {
     
@@ -81,8 +487,12 @@ public:
     // hide all feature menu elemnts
     void hideFeatureMenu();
     
+    // get color picker menu
+    QMenu* getColorPickerMenu();
+    
 protected:
     fMenuElementVec _featureMenuElements;
+    MyColorPickerMenu* _colorPickerMenu;
 };
 
 class FeatureMenuElement : public QGroupBox {
@@ -91,98 +501,125 @@ class FeatureMenuElement : public QGroupBox {
 public:
     FeatureMenuElement(QWidget* parent = 0, MainWindow* mw = NULL);
     
+    /// Containers
+    // geometric shape feature menu elemnt
+    typedef std::vector<GeometricShapeFeatureMenuElement *> gSFMenuElementVec;
+    
+    // text feature menu
+    typedef std::vector<TextFeatureMenu *> textFMenuVec;
+    
+    /// Iterators
+    // geometric shape feature menu element
+    typedef gSFMenuElementVec::iterator gSFMenuElementIt;
+    typedef gSFMenuElementVec::const_iterator constGSFMenuElementIt;
+    
+    // text feature menu
+    typedef textFMenuVec::iterator textFMenuIt;
+    typedef textFMenuVec::const_iterator constTextFMenuIt;
+    
+    /// Functions related to beginning and end of containers
+    // geometric shape feature menu element
+    const constGSFMenuElementIt gSFMenuElementsBegin() const { return _gSFMenuElements.begin(); }
+    const constGSFMenuElementIt gSFMenuElementsEnd() const { return _gSFMenuElements.end(); }
+    
+    // text feature menu
+    const constTextFMenuIt textFMenuBegin() const { return _textFMenus.begin(); }
+    const constTextFMenuIt textFMenuEnd() const { return _textFMenus.end(); }
+    
+    /// Functions
     void hideInfo();
     
     virtual void resetValues() = 0;
     
-    virtual void updateStyle(VLocalStyle* style) {};
+    virtual void updateLineEnding(VLineEnding* lineEnding) {};
     
-    virtual void setStyle() {};
+    void setStyle();
     
-    virtual void unSetStyle() {};
+    void unSetStyle();
     
     virtual void updateValues() = 0;
     
-    QScrollArea contentArea;
+    void clearGSFMenuElements();
+    
+    void clearTextFMenus();
     
 private slots:
+    
+    void updateStyle(VLocalStyle* style);
     
     void changeLayoutId();
     
     void addOrRemoveBoundingBox();
     
-    virtual void addOrRemoveCurve() {};
+    void addOrRemoveCurve();
     
     void addOrRemoveStyle();
     
-    void changeText();
+    void addGeometricShape(const QString& geometricShape);
     
-    void changeGeometricShape();
+    void removeGeometricShape(const unsigned int& itemIndex);
     
-    virtual void updateGeometricShape(const QString& shapeType, const int& numberOfPolygonVertices, const QString& imageFileName);
+    //void clearGeometricShapes();
+    
+    void addText(const QString& plainText);
+    
+    void removeText(const unsigned int& itemIndex);
+    
+protected slots:
+    
+    void addBoundingBox(const double& x = 0, const double& y = 0, const double& width = 0, const double& height = 0);
+    
+    void removeBoundingBox();
     
 protected:
+    // item
     QLabel itemLabel;
-    //QGridLayout baseLayout;
+    
+    // tab
+    MyTabWidget* tabMenu;
+    
+    // tree
+    MyTreeView* renderTreeView;
+    MyTreeView* textTreeView;
+    
+    // model
+    MyGroupBox* modelBranch;
+    MyLineEdit modelIdLineEdit;
+    
+    // layout
+    MyGroupBox* layoutBranch;
+    MyLineEdit layoutIdLineEdit;
+    MyPlainTextWidget plainTextWidget;
+    MyAddOrRemoveButton  boundingBoxAddOrRemoveButton;
+    BoundingBoxFeatureMenu* bBoxFMenu;
+    MyAddOrRemoveButton curveAddOrRemoveButton;
+    CurveFeatureMenu* curveFMenu;
+    
+    // render
+    MyGroupBox* renderStyleBranch;
+    MyGroupBox* renderGeometricShapeBranch;
+    MyAddOrRemoveButton styleAddOrRemoveButton;
+    StrokeFeatureMenu* strokeFMenu;
+    FillFeatureMenu* fillFMenu;
+    MyAddRemoveGeometricShapeButtons addRemoveGeometricShapeButtons;
+    gSFMenuElementVec _gSFMenuElements;
+    
+    // text
+    MyGroupBox* textBranch;
+    MyAddRemoveTextButtons addRemoveTextButtons;
+    textFMenuVec _textFMenus;
+    
+    // layouts
     QGridLayout qLayout;
     QGridLayout modelContentLayout;
     QGridLayout layoutContentLayout;
-    QGridLayout renderContentLayout;
-    CollapsibleMenu* modelMenu;
-    CollapsibleMenu* layoutMenu;
-    CollapsibleMenu* renderMenu;
+    QGridLayout renderStyleContentLayout;
+    QGridLayout renderGeometricShapeContentLayout;
+    QGridLayout textContentLayout;
     
-    // labels
-    QLabel modelIdTitleLabel;
-    QLabel layoutIdLabel;
-    
-    // model features
-    QLabel modelIdLabel;
-    
-    // layout features
-    QPushButton layoutIdButton;
-    
-    // bounding box features
-    QLabel boundingBoxTitleLabel;
-    QLabel boundingBoxLabel;
-    QPushButton boundingBoxButton;
-    BoundingBoxFeatureMenu* bBoxFMenu;
-    
-    // curve features
-    QLabel curveTitleLabel;
-    QLabel curveLabel;
-    QPushButton curveButton;
-    CurveFeatureMenu* curveFMenu;
-    
-    // style features
-    QLabel styleLabel;
-    QPushButton styleButton;
-    
-    // stroke features
-    QLabel strokeTitleLabel;
-    StrokeFeatureMenu* strokeFMenu;
-    
-    // fill features
-    QLabel fillTitleLabel;
-    FillFeatureMenu* fillFMenu;
-    
-    // text features
-    QLabel textTitleLabel;
-    QLabel textLabel;
-    QPushButton textButton;
-    TextFeatureMenu* textFMenu;
-        
-    // geometric shape
-    QLabel geometricShapeTitleLabel;
-    QLabel geometricShapeLabel;
-    QPushButton geometricShapeButton;
-    GeometricShapeFeatureMenuElement* gSFMenuElement;
-    
-    QFont featureTitleFont;
-    QFont headlineFont;
-    QString pushButtonStyleSheet;
-    QString disabledPushButtonStyleSheet;
+    // info
     MainWindow* _mw;
+    GraphicalObjectBase* _gObject;
     GraphicalText* _gText;
     NGraphicalObject* _gO;
     VGlobalStyle* _style;
@@ -195,29 +632,17 @@ class SpeciesFeatureMenu : public FeatureMenuElement {
 public:
     SpeciesFeatureMenu(QWidget* parent = 0, MainWindow* mw = NULL);
     
-    void showInfo(GraphicalSpecies* gS);
+    void showInfo(GraphicalObjectBase* gObject);
     
     void resetValues();
     
 private slots:
     
-    virtual void updateStyle(VLocalStyle* style);
-    
-    virtual void setStyle();
-    
-    virtual void unSetStyle();
-    
     virtual void updateValues();
     
 protected:
-    // info
-    GraphicalSpecies* gSpecies;
-    
-    // labels
-    QLabel compartmentTitleLabel;
-    
-    // model features
-    QLabel compartmentLabel;
+    // model
+    MyLineEdit compartmentIdLineEdit;
 };
 
 class CompartmentFeatureMenu : public FeatureMenuElement {
@@ -226,23 +651,16 @@ class CompartmentFeatureMenu : public FeatureMenuElement {
 public:
     CompartmentFeatureMenu(QWidget* parent = 0, MainWindow* mw = NULL);
     
-    void showInfo(GraphicalCompartment* gC);
+    void showInfo(GraphicalObjectBase* gObject);
     
     void resetValues();
     
 private slots:
     
-    virtual void updateStyle(VLocalStyle* style);
-    
-    virtual void setStyle();
-    
-    virtual void unSetStyle();
-    
     virtual void updateValues();
     
 protected:
-    // info
-    GraphicalCompartment* gCompartment;
+    
 };
 
 class ReactionFeatureMenu : public FeatureMenuElement {
@@ -251,25 +669,17 @@ class ReactionFeatureMenu : public FeatureMenuElement {
 public:
     ReactionFeatureMenu(QWidget* parent = 0, MainWindow* mw = NULL);
     
-    void showInfo(GraphicalReaction* gR);
+    void showInfo(GraphicalObjectBase* gObject);
     
     void resetValues();
     
 private slots:
     
-    virtual void addOrRemoveCurve();
-    
-    virtual void updateStyle(VLocalStyle* style);
-    
-    virtual void setStyle();
-    
-    virtual void unSetStyle();
-    
     virtual void updateValues();
     
 protected:
-    // info
-    GraphicalReaction* gReaction;
+    // layout
+    MyAddOrRemoveReactionBoundingBoxButton addOrRemoveReactionBoundingBoxButton;
 };
 
 class SpeciesReferenceFeatureMenu : public FeatureMenuElement {
@@ -278,37 +688,23 @@ class SpeciesReferenceFeatureMenu : public FeatureMenuElement {
 public:
     SpeciesReferenceFeatureMenu(QWidget* parent = 0, MainWindow* mw = NULL);
     
-    void showInfo(GraphicalSReference* gSR);
+    void showInfo(GraphicalObjectBase* gObject);
+    
+    void hideInfo();
     
     void resetValues();
     
 private slots:
     
-    virtual void addOrRemoveCurve();
-    
-    virtual void updateStyle(VLocalStyle* style);
-    
-    virtual void setStyle();
-    
-    virtual void unSetStyle();
-    
     virtual void updateValues();
     
 protected:
-    GraphicalSReference* gSReference;
+    // model
+    MyLineEdit reactionIdLineEdit;
+    MyLineEdit speciesIdLineEdit;
+    MyLineEdit roleLineEdit;
     
-    // labels
-    QLabel modelReactionTitleLabel;
-    QLabel modelSpeciesTitleLabel;
-    QLabel modelRoleTitleLabel;
-
-    // model features
-    QLabel modelReactionLabel;
-    QLabel modelSpeciesLabel;
-    QLabel modelRoleLabel;
-    
-    // head features
-    QLabel headTitleLabel;
+    // render
     HeadFeatureMenu* headFMenu;
 };
 
@@ -318,15 +714,13 @@ class LineEndingFeatureMenu : public FeatureMenuElement {
 public:
     LineEndingFeatureMenu(QWidget* parent = 0, MainWindow* mw = NULL);
     
-    void showInfo(GraphicalLineEnding* gLE, GraphicalSReference* gSR, QString head);
+    void showInfo(GraphicalObjectBase* gObject, GraphicalSReference* gSReference, QString head);
     
     void resetValues();
     
 private slots:
     
-    void updateLineEnding(VLineEnding* lineEnding);
-    
-    virtual void updateGeometricShape(const QString& shapeType, const int& numberOfPolygonVertices, const QString& imageFileName);
+    virtual void updateLineEnding(VLineEnding* lineEnding);
     
     virtual void updateValues();
     
@@ -335,45 +729,18 @@ private slots:
     void changeEnableRotation();
     
 protected:
-    // info
-    GraphicalLineEnding* gLineEnding;
-    GraphicalSReference* gSReference;
-    QString _head;
+    // layout
     
-    // labels
-    QLabel positionLabel;
-    QLabel positionXLabel;
-    QLabel positionYLabel;
-    QLabel renderIdLabel;
-    QLabel boundingBoxLabel;
-    QLabel boundingBoxXLabel;
-    QLabel boundingBoxYLabel;
-    QLabel boundingBoxWidthLabel;
-    QLabel boundingBoxHeightLabel;
-    QLabel graphicalShapeLabel;
-    QLabel enableRotationLabel;
-    QLabel strokeColorLabel;
-    QLabel strokeWidthLabel;
-    QLabel fillColorLabel;
-
-    // layout features
-    QPushButton positionXButton;
-    QPushButton positionYButton;
-    
-    // render features
-    QPushButton renderIdButton;
-    QPushButton boundingBoxXButton;
-    QPushButton boundingBoxYButton;
-    QPushButton boundingBoxWidthButton;
-    QPushButton boundingBoxHeightButton;
-    QPushButton graphicalShapeButton;
+    // render
+    MyLineEdit renderIdLineEdit;
     QPushButton enableRotationButton;
-    QPushButton strokeColorButton;
-    QPushButton strokeWidthButton;
-    QPushButton fillColorButton;
+    
+    // info
+    GraphicalSReference* _gSReference;
+    QString _head;
 };
 
-class BoundingBoxFeatureMenu : public QGroupBox {
+class BoundingBoxFeatureMenu : public MyGroupBox {
     Q_OBJECT
     
 public:
@@ -385,49 +752,42 @@ public:
     
     void resetValues();
     
+    void collapseTree();
+    
 signals:
     
-    void bBoxChanged();
+    void bBoxPositionChanged();
     
-    void bBoxDimensionsChanged(QString shapeType, int numberOfPolygonVertices, QString imageFileName);
+    void bBoxDimensionsChanged();
     
     void lEndingChanged(VLineEnding* lineEnding);
     
 private slots:
     
-    void changePositionX();
+    void changePosition(const double& x, const double& y);
     
-    void changePositionY();
-    
-    void changeDimensionWidth();
-    
-    void changeDimensionHeight();
+    void changeDimensions(const double& width, const double& height);
     
 protected:
-    
-    // labels
-    QLabel positionLabel;
-    QLabel positionXLabel;
-    QLabel positionYLabel;
-    QLabel dimensionLabel;
-    QLabel dimensionWidthLabel;
-    QLabel dimensionHeightLabel;
-    
     // features
-    QPushButton positionXButton;
-    QPushButton positionYButton;
-    QPushButton dimensionWidthButton;
-    QPushButton dimensionHeightButton;
+    MyTreeView* bBoxTreeView;
+    MyGroupBox* bBoxPositionBranch;
+    MyGroupBox* bBoxDimensionsBranch;
+    MyDualSpinBox positionDualSpinBox;
+    MyDualSpinBox dimensionsDualSpinBox;
     
+    // layouts
+    QGridLayout bBoxPositionLayout;
+    QGridLayout bBoxDimensionsLayout;
     QGridLayout bBoxLayout;
-    QFont featureTitleFont;
-    QString pushButtonStyleSheet;
+    
+    // info
     MainWindow* _mw;
     NGraphicalObject* _gO;
     VLineEnding* _lE;
 };
 
-class CurveFeatureMenu : public QGroupBox  {
+class CurveFeatureMenu : public MyGroupBox  {
     Q_OBJECT
     
 public:
@@ -448,43 +808,47 @@ public:
     const constLineFeatureMenuIt lineFeatureMenusEnd() const { return _lineFeatureMenus.end(); }
     
     /// Functions
-    void showInfo(LCurve* curve, const bool& askForElementForEmptyCurve);
+    void showInfo(LCurve* curve);
     
     void resetValues();
+    
+    void collapseTree();
     
 signals:
     void curveChanged();
     
 private slots:
     
-    void changeCurve();
+    void addLine(const unsigned int& itemIndex, const double& itemPointStartXValue, const double& itemPointStartYValue, const double& itemPointEndXValue, const double& itemPointEndYValue);
     
-    void addLineFeatureMenu();
+    void addCubicBezier(const unsigned int& itemIndex, const double& itemCubicBezierStartXValue, const double& itemCubicBezierStartYValue, const double& itemCubicBezierEndXValue, const double& itemCubicBezierEndYValue, const double& itemCubicBezierBasePoint1XValue, const double& itemCubicBezierBasePoint1YValue, const double& itemCubicBezierBasePoint2XValue, const double& itemCubicBezierBasePoint2YValue);
     
-    void removeLineFeatureMenu();
+    void removeLine(const unsigned int& itemIndex);
     
 protected:
-    QPushButton addLineButton;
-    QPushButton removeLineButton;
+    // features
+    MyAddRemoveSegmentButtons addRemoveSegmentButtons;
     lineFeatureMenuVec _lineFeatureMenus;
+    MyTreeView* curveTreeView;
+    MyGroupBox* curveSegmentsBranch;
     
+    // layouts
     QGridLayout curveLayout;
-    QFont featureTitleFont;
-    QString pushButtonStyleSheet;
-    QString disabledPushButtonStyleSheet;
+    QGridLayout curveSegmentsLayout;
+    
+    // info
     MainWindow* _mw;
     LCurve* _curve;
+    QWidget* _parent;
 };
 
-class StrokeFeatureMenu : public QGroupBox {
+class StrokeFeatureMenu : public MyGroupBox {
     Q_OBJECT
     
 public:
     StrokeFeatureMenu(QWidget* parent = 0, MainWindow* mw = NULL);
     
-    void showInfo(NGraphicalObject* gO, VGlobalStyle* style);
-    
-    void showInfo(VTransformation2D* gS);
+    void showInfo(NGraphicalObject* gO, VGlobalStyle* style, const int& gSIndex = -1);
     
     void resetValues();
     
@@ -493,44 +857,37 @@ signals:
     void styleChanged(VLocalStyle* style);
     
 private slots:
-    void changeStrokeColor();
+    void changeStrokeColor(const QString& color, const QString& value);
     
     void changeStrokeWidth();
     
-    void changeStrokeDashArray();
+    void changeStrokeDashArray(std::vector<unsigned int>* dashArrayVector);
     
 protected:
+    // features
+    MyColorPickerButton* strokeColorPickerButton;
+    MySpinBox strokeWidthSpinBox;
+    MyDashArrayComboBox strokedashArrayComboBox;
     
-    // labels
-    QLabel strokeColorLabel;
-    QLabel strokeWidthLabel;
-    QLabel strokeDashArrayLabel;
-    
-    // render features
-    QPushButton strokeColorButton;
-    QPushButton strokeWidthButton;
-    QPushButton strokeDashArrayButton;
-    
+    // layouts
     QGridLayout strokeLayout;
-    QFont featureTitleFont;
-    QString pushButtonStyleSheet;
+    
+    // info
     MainWindow* _mw;
     NGraphicalObject* _gO;
     VGlobalStyle* _style;
-    VTransformation2D* _gS;
+    int _gSIndex;
 };
 
-class FillFeatureMenu : public QGroupBox {
+class FillFeatureMenu : public MyGroupBox {
     Q_OBJECT
     
 public:
     FillFeatureMenu(QWidget* parent = 0, MainWindow* mw = NULL);
     
-    void showInfo(NGraphicalObject* gO, VGlobalStyle* style);
+    void showInfo(NGraphicalObject* gO, VGlobalStyle* style, const int& gSIndex = -1);
     
     void showInfo(VLineEnding* lE);
-    
-    void showInfo(VTransformation2D* gS);
     
     void resetValues();
     
@@ -541,68 +898,72 @@ signals:
     void lEndingChanged(VLineEnding* lineEnding);
     
 private slots:
-    void changeFillColor();
+    
+    void changeFillColor(const QString& color, const QString& value);
     
 protected:
+    // features
+    MyColorPickerButton* fillColorPickerButton;
     
-    // labels
-    QLabel fillColorLabel;
-    
-    // render features
-    QPushButton fillColorButton;
-    
+    // layouts
     QGridLayout fillLayout;
-    QFont featureTitleFont;
-    QString pushButtonStyleSheet;
-    QString disabledPushButtonStyleSheet;
+    
+    // info
     MainWindow* _mw;
     NGraphicalObject* _gO;
     VGlobalStyle* _style;
     VLineEnding* _lE;
-    VTransformation2D* _gS;
+    int _gSIndex;
 };
 
-class HeadFeatureMenu : public QGroupBox {
+class HeadFeatureMenu : public MyGroupBox {
     Q_OBJECT
     
 public:
     HeadFeatureMenu(QWidget* parent = 0, MainWindow* mw = NULL);
     
-    void showInfo(NGraphicalObject* gO, VGlobalStyle* style);
+    void showInfo(NGraphicalObject* gO, VGlobalStyle* style, const int& gSIndex = -1);
+    
+    void showInfo(VLineEnding* lE);
     
     void resetValues();
+    
+    void collapseTree();
     
 signals:
     
     void styleChanged(VLocalStyle* style);
     
 private slots:
-    void changeStartHead();
     
-    void changeEndHead();
+    void changeStartHead(const QString& head);
+    
+    void changeEndHead(const QString& head);
     
     void updateValues();
     
 protected:
+    // features
+    MyHeadPickerComboBox startHeadPickerComboBox;
+    MyHeadPickerComboBox endHeadPickerComboBox;
+    MyTreeView* headTreeView;
+    MyGroupBox* headStartBranch;
+    MyGroupBox* headEndBranch;
     
-    // labels
-    QLabel startHeadLabel;
-    QLabel endHeadLabel;
-    
-    // render features
-    QPushButton startHeadButton;
-    QPushButton endHeadButton;
-    
+    // layouts
+    QGridLayout headStartLayout;
+    QGridLayout headEndLayout;
     QGridLayout headLayout;
-    QFont featureTitleFont;
-    QString pushButtonStyleSheet;
-    QString disabledPushButtonStyleSheet;
+    
+    // info
     MainWindow* _mw;
     NGraphicalObject* _gO;
     VGlobalStyle* _style;
+    VLineEnding* _lE;
+    int _gSIndex;
 };
 
-class TextFeatureMenu : public QGroupBox {
+class TextFeatureMenu : public MyGroupBox {
     Q_OBJECT
     
 public:
@@ -617,54 +978,58 @@ signals:
     void textChanged();
     
 private slots:
-    void changeFontSize();
     
-    void changeFontFamily();
+    void changePlainText(const QString& plainText);
     
-    void changeFontWeight();
+    void changeFontSize(const QString& abs, const QString& rel);
     
-    void changeFontStyle();
+    void changeFontFamily(int index);
     
-    void changeFontColor();
+    void changeFontWeight(int index);
     
-    void changeTextAnchor();
+    void changeFontStyle(int index);
     
-    void changeVTextAnchor();
+    void changeFontColor(const QString& color, const QString& value);
+    
+    void changeTextAnchor(int index);
+    
+    void changeVTextAnchor(int index);
     
 protected:
-    
-    // labels
-    QLabel fontSizeLabel;
-    QLabel fontFamilyLabel;
-    QLabel fontWeightLabel;
-    QLabel fontStyleLabel;
-    QLabel fontColorLabel;
-    QLabel textAnchorLabel;
-    QLabel vTextAnchorLabel;
-    
     // features
-    QPushButton fontSizeButton;
-    QPushButton fontFamilyButton;
-    QPushButton fontWeightButton;
-    QPushButton fontStyleButton;
-    QPushButton fontColorButton;
-    QPushButton textAnchorButton;
-    QPushButton vTextAnchorButton;
+    MyPlainTextWidget plainTextWidget;
+    MyFontSizeComboBox fontSizeComboBox;
+    MyComboBox fontFamilyComboBox;
+    MyComboBox fontWeightComboBox;
+    MyComboBox fontStyleComboBox;
+    MyColorPickerButton* fontColorPickerButton;
+    MyComboBox textAnchorComboBox;
+    MyComboBox vTextAnchorComboBox;
+    MyGroupBox* textFontBranch;
+    MyGroupBox* textAlignmentBranch;
+    BoundingBoxFeatureMenu* bBoxFMenu;
+    MyTreeView* textFeatureTreeView;
     
+    // layout
+    QGridLayout textFontLayout;
+    QGridLayout textAlignmentLayout;
     QGridLayout textLayout;
-    QFont featureTitleFont;
-    QString pushButtonStyleSheet;
-    QString disabledPushButtonStyleSheet;
+    
+    // info
     MainWindow* _mw;
-    GraphicalText* gText;
+    GraphicalText* _gText;
     NGraphicalObject* _gO;
 };
 
-class GeometricShapeFeatureMenuElement : public QGroupBox {
+class GeometricShapeFeatureMenuElement : public MyGroupBox {
     Q_OBJECT
     
 public:
     GeometricShapeFeatureMenuElement(QWidget* parent = 0, MainWindow* mw = NULL);
+    
+    virtual void resetValues() = 0;
+    
+    void collapseTree();
     
 signals:
     
@@ -672,70 +1037,70 @@ signals:
     
     void lEndingChanged(VLineEnding* lineEnding);
     
-private slots:
-    
 protected:
+    // features
+    MyTreeView* gShapeTreeView;
+    StrokeFeatureMenu* strokeFMenu;
+    FillFeatureMenu* fillFMenu;
+    
+    // layouts
     QGridLayout gShapeLayout;
-    QFont featureTitleFont;
-    QString pushButtonStyleSheet;
-    QString disabledPushButtonStyleSheet;
+    
+    // info
     MainWindow* _mw;
     NGraphicalObject* _gO;
     VGlobalStyle* _style;
     VLineEnding* _lE;
+    unsigned int _gSIndex;
 };
 
 class RectangleGeometricShapeFeatureMenu : public GeometricShapeFeatureMenuElement {
     Q_OBJECT
     
 public:
-    RectangleGeometricShapeFeatureMenu(QWidget* parent = 0, MainWindow* mw = NULL);
+    RectangleGeometricShapeFeatureMenu(QWidget* parent = 0, MainWindow* mw = NULL, const bool& isLineEnding = false);
     
-    void showInfo(NGraphicalObject* gO, VGlobalStyle* style);
+    void showInfo(NGraphicalObject* gO, VGlobalStyle* style, const unsigned int& gSIndex);
     
-    void showInfo(VLineEnding* lE);
+    void showInfo(VLineEnding* lE, const unsigned int& gSIndex);
     
-    void resetValues();
+    virtual void resetValues();
     
     void getInfoFromRectangleShape(VRectangle* rectangle);
     
 private slots:
     
-    void changePositionX();
+    void changePositionX(const double& abs, const double& rel);
     
-    void changePositionY();
+    void changePositionY(const double& abs, const double& rel);
 
-    void changeDimensionWidth();
+    void changeDimensionWidth(const double& abs, const double& rel);
     
-    void changeDimensionHeight();
+    void changeDimensionHeight(const double& abs, const double& rel);
     
-    void changeDimensionRatio();
+    void changeDimensionRatio(const double& ratio);
     
-    void changeCornerCurvatureRX();
+    void changeCornerCurvatureRX(const double& abs, const double& rel);
     
-    void changeCornerCurvatureRY();
+    void changeCornerCurvatureRY(const double& abs, const double& rel);
     
 protected:
-    // labels
-    QLabel positionLabel;
-    QLabel positionXLabel;
-    QLabel positionYLabel;
-    QLabel dimensionLabel;
-    QLabel dimensionWidthLabel;
-    QLabel dimensionHeightLabel;
-    QLabel dimensionRatioLabel;
-    QLabel cornerCurvatureLabel;
-    QLabel cornerCurvatureRXLabel;
-    QLabel cornerCurvatureRYLabel;
-    
     // features
-    QPushButton positionXButton;
-    QPushButton positionYButton;
-    QPushButton dimensionWidthButton;
-    QPushButton dimensionHeightButton;
-    QPushButton dimensionRatioButton;
-    QPushButton cornerCurvatureRXButton;
-    QPushButton cornerCurvatureRYButton;
+    MyRelAbsSpinBox positionXRelAbsSpinBox;
+    MyRelAbsSpinBox positionYRelAbsSpinBox;
+    MyRelAbsSpinBox dimensionWidthRelAbsSpinBox;
+    MyRelAbsSpinBox dimensionHeightRelAbsSpinBox;
+    MyDimensionRatioComboBox dimensionRatioComboBox;
+    MyRelAbsSpinBox cornerCurvatureRXRelAbsSpinBox;
+    MyRelAbsSpinBox cornerCurvatureRYRelAbsSpinBox;
+    MyGroupBox* rectanglePositionBranch;
+    MyGroupBox* rectangleDimensionsBranch;
+    MyGroupBox* rectangleCornerCurvaturesBranch;
+    
+    // layouts
+    QGridLayout rectanglePositionLayout;
+    QGridLayout rectangleDimensionsLayout;
+    QGridLayout rectangleCornerCurvaturesLayout;
 };
 
 class ImageGeometricShapeFeatureMenu : public GeometricShapeFeatureMenuElement {
@@ -744,100 +1109,94 @@ class ImageGeometricShapeFeatureMenu : public GeometricShapeFeatureMenuElement {
 public:
     ImageGeometricShapeFeatureMenu(QWidget* parent = 0, MainWindow* mw = NULL);
     
-    void showInfo(NGraphicalObject* gO, VGlobalStyle* style);
+    void showInfo(NGraphicalObject* gO, VGlobalStyle* style, const unsigned int& gSIndex);
     
-    void showInfo(VLineEnding* lE);
+    void showInfo(VLineEnding* lE, const unsigned int& gSIndex);
     
-    void resetValues();
+    virtual void resetValues();
     
     void getInfoFromImageShape(VImage* image);
     
 private slots:
     
-    void changePositionX();
+    void changePositionX(const double& abs, const double& rel);
     
-    void changePositionY();
+    void changePositionY(const double& abs, const double& rel);
 
-    void changeDimensionWidth();
+    void changeDimensionWidth(const double& abs, const double& rel);
     
-    void changeDimensionHeight();
+    void changeDimensionHeight(const double& abs, const double& rel);
     
     void changeHref();
     
 protected:
-    // labels
-    QLabel positionLabel;
-    QLabel positionXLabel;
-    QLabel positionYLabel;
-    QLabel dimensionLabel;
-    QLabel dimensionWidthLabel;
-    QLabel dimensionHeightLabel;
-    QLabel pathLabel;
-    QLabel hrefLabel;
-    
     // features
-    QPushButton positionXButton;
-    QPushButton positionYButton;
-    QPushButton dimensionWidthButton;
-    QPushButton dimensionHeightButton;
+    MyRelAbsSpinBox positionXRelAbsSpinBox;
+    MyRelAbsSpinBox positionYRelAbsSpinBox;
+    MyRelAbsSpinBox dimensionWidthRelAbsSpinBox;
+    MyRelAbsSpinBox dimensionHeightRelAbsSpinBox;
     QPushButton hrefButton;
-    
     QString href;
+    MyGroupBox* imagePositionBranch;
+    MyGroupBox* imageDimensionsBranch;
+    MyGroupBox* imagePathBranch;
+    
+    // layouts
+    QGridLayout imagePositionLayout;
+    QGridLayout imageDimensionsLayout;
+    QGridLayout imagePathLayout;
 };
 
 class EllipseGeometricShapeFeatureMenu : public GeometricShapeFeatureMenuElement {
     Q_OBJECT
     
 public:
-    EllipseGeometricShapeFeatureMenu(QWidget* parent = 0, MainWindow* mw = NULL);
+    EllipseGeometricShapeFeatureMenu(QWidget* parent = 0, MainWindow* mw = NULL, const bool& isLineEnding = false);
     
-    void showInfo(NGraphicalObject* gO, VGlobalStyle* style);
+    void showInfo(NGraphicalObject* gO, VGlobalStyle* style, const unsigned int& gSIndex);
     
-    void showInfo(VLineEnding* lE);
+    void showInfo(VLineEnding* lE, const unsigned int& gSIndex);
     
-    void resetValues();
+    virtual void resetValues();
     
     void getInfoFromEllipseShape(VEllipse* ellipse);
     
 private slots:
     
-    void changePositionCX();
+    void changePositionCX(const double& abs, const double& rel);
     
-    void changePositionCY();
+    void changePositionCY(const double& abs, const double& rel);
     
-    void changeDimensionRX();
+    void changeDimensionRX(const double& abs, const double& rel);
     
-    void changeDimensionRY();
+    void changeDimensionRY(const double& abs, const double& rel);
     
-    void changeDimensionRatio();
+    void changeDimensionRatio(const double& ratio);
     
 protected:
-    // labels
-    QLabel positionLabel;
-    QLabel positionCXLabel;
-    QLabel positionCYLabel;
-    QLabel dimensionLabel;
-    QLabel dimensionRXLabel;
-    QLabel dimensionRYLabel;
-    QLabel dimensionRatioLabel;
-    
     // features
-    QPushButton positionCXButton;
-    QPushButton positionCYButton;
-    QPushButton dimensionRXButton;
-    QPushButton dimensionRYButton;
-    QPushButton dimensionRatioButton;
+    MyRelAbsSpinBox positionCXRelAbsSpinBox;
+    MyRelAbsSpinBox positionCYRelAbsSpinBox;
+    MyRelAbsSpinBox dimensionRXRelAbsSpinBox;
+    MyRelAbsSpinBox dimensionRYRelAbsSpinBox;
+    MyDimensionRatioComboBox dimensionRatioComboBox;
+    MyGroupBox* ellipsePositionBranch;
+    MyGroupBox* ellipseDimensionsBranch;
+    
+    // layouts
+    QGridLayout ellipsePositionLayout;
+    QGridLayout ellipseDimensionsLayout;
 };
 
 class PolygonGeometricShapeFeatureMenu : public GeometricShapeFeatureMenuElement {
     Q_OBJECT
     
 public:
-    PolygonGeometricShapeFeatureMenu(QWidget* parent = 0, MainWindow* mw = NULL);
+    PolygonGeometricShapeFeatureMenu(QWidget* parent = 0, MainWindow* mw = NULL, const bool& isRCurve = false, const bool& isLineEnding = false);
     
     /// Containers
     // point feature menu
-    typedef std::vector<PointFeatureMenu*> pointFeatureMenuVec;
+    typedef std::vector<RenderPointFeatureMenu*> pointFeatureMenuVec;
     
     /// Iterators
     // point feature menu
@@ -850,56 +1209,64 @@ public:
     const constPointFeatureMenuIt pointFeatureMenusEnd() const { return _pointFeatureMenus.end(); }
     
     /// Functions
-    virtual void showInfo(NGraphicalObject* gO, VGlobalStyle* style);
+    void showInfo(NGraphicalObject* gO, VGlobalStyle* style, const unsigned int& gSIndex);
     
-    virtual void showInfo(VLineEnding* lE);
+    void showInfo(VLineEnding* lE, const unsigned int& gSIndex);
 
-    void resetValues();
+    virtual void resetValues();
     
-    void getInfoFromGShape(VPolygon* polygon);
+    void collapseTree();
     
-signals:
+    virtual void getInfoFromGShape(VTransformation2D* t2d);
     
 private slots:
     
-    void changeStyle(VLocalStyle* style);
+    void addPoint(const unsigned int& itemIndex, const double& itemPointXAbsoluteValue, const double& itemPointXRelativeValue, const double& itemPointYAbsoluteValue, const double& itemPointYRelativeValue);
     
-    void changeLEnding(VLineEnding* lineEnding);
+    void addCubicBezier(const unsigned int& itemIndex, const double& itemCubicBezierXAbsoluteValue, const double& itemCubicBezierXRelativeValue, const double& itemCubicBezierYAbsoluteValue, const double& itemCubicBezierYRelativeValue, const double& itemCubicBezierC1XAbsoluteValue, const double& itemCubicBezierC1XRelativeValue, const double& itemCubicBezierC1YAbsoluteValue, const double& itemCubicBezierC1YRelativeValue, const double& itemCubicBezierC2XAbsoluteValue, const double& itemCubicBezierC2XRelativeValue, const double& itemCubicBezierC2YAbsoluteValue, const double& itemCubicBezierC2YRelativeValue);
     
-    void addPointFeatureMenu();
-    
-    void removePointFeatureMenu();
+    void removePoint(const unsigned int& itemIndex);
     
 protected:
-    QPushButton addPointButton;
-    QPushButton removePointButton;
-    RenderGroupElementShape gShapeType;
+    // features
+    MyAddRemoveVertexButtons addRemoveVertexButtons;
     pointFeatureMenuVec _pointFeatureMenus;
+    MyGroupBox* gShapeVerticesBranch;
+    
+    // layouts
+    QGridLayout gShapeVerticesLayout;
+    
+    // info
+    RenderGroupElementShape gShapeType;
 };
 
 class RenderCurveGeometricShapeFeatureMenu : public PolygonGeometricShapeFeatureMenu {
     Q_OBJECT
     
 public:
-    RenderCurveGeometricShapeFeatureMenu(QWidget* parent = 0, MainWindow* mw = NULL);
+    RenderCurveGeometricShapeFeatureMenu(QWidget* parent = 0, MainWindow* mw = NULL, const bool& isLineEnding = false);
     
     /// Functions
-    virtual void showInfo(NGraphicalObject* gO, VGlobalStyle* style);
+    virtual void resetValues();
     
-    virtual void showInfo(VLineEnding* lE);
+    virtual void getInfoFromGShape(VTransformation2D* t2d);
     
-    void getInfoFromGShape(RCurve* rcurve);
+protected:
+    // features
+    HeadFeatureMenu* headFMenu;
 };
 
-class LineFeatureMenu : public QGroupBox {
+class LineFeatureMenu : public MyGroupBox {
     Q_OBJECT
     
 public:
-    LineFeatureMenu(QWidget* parent = 0, MainWindow* mw = NULL, const unsigned int& pointIndex = 0);
+    LineFeatureMenu(QWidget* parent = 0, MainWindow* mw = NULL);
     
-    void showInfo(LLineSegment* line);
+    virtual void showInfo(LLineSegment* line);
     
-    void resetValues();
+    virtual void resetValues();
+    
+    void collapseTree();
     
 signals:
     
@@ -907,70 +1274,75 @@ signals:
     
 private slots:
     
-    void changeStartX();
+    void changeStart(const double& x, const double& y);
     
-    void changeStartY();
-    
-    void changeEndX();
-    
-    void changeEndY();
-    
-    void changeBasePoint1X();
-    
-    void changeBasePoint1Y();
-    
-    void changeBasePoint2X();
-    
-    void changeBasePoint2Y();
+    void changeEnd(const double& x, const double& y);
     
 protected:
-    // labels
-    QLabel lineLabel;
-    QLabel startLabel;
-    QLabel startXLabel;
-    QLabel startYLabel;
-    QLabel endLabel;
-    QLabel endXLabel;
-    QLabel endYLabel;
-    QLabel basePoint1Label;
-    QLabel basePoint1XLabel;
-    QLabel basePoint1YLabel;
-    QLabel basePoint2Label;
-    QLabel basePoint2XLabel;
-    QLabel basePoint2YLabel;
-    
     // featurs
-    QPushButton startXButton;
-    QPushButton startYButton;
-    QPushButton endXButton;
-    QPushButton endYButton;
-    QPushButton basePoint1XButton;
-    QPushButton basePoint1YButton;
-    QPushButton basePoint2XButton;
-    QPushButton basePoint2YButton;
+    MyDualSpinBox startDualSpinBox;
+    MyDualSpinBox endDualSpinBox;
+    MyDualSpinBox basePoint1DualSpinBox;
+    MyDualSpinBox basePoint2DualSpinBox;
+    MyTreeView* lineTreeView;
+    MyGroupBox* lineStartBranch;
+    MyGroupBox* lineEndBranch;
+    MyGroupBox* lineBasePoint1Branch;
+    MyGroupBox* lineBasePoint2Branch;
     
-    QFont featureTitleFont;
-    QString pushButtonStyleSheet;
+    // layouts
     QGridLayout lineFeatureLayout;
-    LLineSegment* _line;
-    MainWindow* _mw;
+    QGridLayout lineStartLayout;
+    QGridLayout lineEndLayout;
+    QGridLayout lineBasePoint1Layout;
+    QGridLayout lineBasePoint2Layout;
     
-    unsigned int _lineIndex;
+    // info
+    MainWindow* _mw;
+    LLineSegment* _line;
 };
 
-class PointFeatureMenu : public QGroupBox {
+class CubicBezierFeatureMenu : public LineFeatureMenu {
     Q_OBJECT
     
 public:
-    PointFeatureMenu(QWidget* parent = 0, MainWindow* mw = NULL, const unsigned int& pointIndex = 0);
+    CubicBezierFeatureMenu(QWidget* parent = 0, MainWindow* mw = NULL);
     
-    void showInfo(NGraphicalObject* gO, VGlobalStyle* style, RenPoint* renderPoint);
+    virtual void showInfo(LLineSegment* line);
     
-    void showInfo(VLineEnding* lE, RenPoint* renderPoint);
+    virtual void resetValues();
     
-    void resetValues();
+private slots:
     
-    void getInfoFromRenderPoint(RenPoint* renderPoint);
+    void changeBasePoint1(const double& x, const double& y);
+    
+    void changeBasePoint2(const double& x, const double& y);
+    
+protected:
+    // featurs
+    MyDualSpinBox basePoint1DualSpinBox;
+    MyDualSpinBox basePoint2DualSpinBox;
+    MyGroupBox* cubicBezierBasePoint1Branch;
+    MyGroupBox* cubicBezierBasePoint2Branch;
+    
+    // layouts
+    QGridLayout cubicBezierBasePoint1Layout;
+    QGridLayout cubicBezierBasePoint2Layout;
+};
+
+class RenderPointFeatureMenu : public MyGroupBox {
+    Q_OBJECT
+    
+public:
+    RenderPointFeatureMenu(QWidget* parent = 0, MainWindow* mw = NULL);
+    
+    void showInfo(NGraphicalObject* gO, VGlobalStyle* style, const unsigned int& gSIndex, const unsigned int& pointIndex);
+    
+    void showInfo(VLineEnding* lE, const unsigned int& gSIndex, const unsigned int& pointIndex);
+    
+    virtual void resetValues();
+    
+    virtual void getInfoFromRenderPoint(RenPoint* renderPoint);
     
 signals:
     
@@ -980,76 +1352,53 @@ signals:
     
 private slots:
     
-    void changeRPointX();
+    void changeRPointX(const double& abs, const double& rel);
     
-    void changeRPointY();
-    
-    void changeBasePoint1X();
-    
-    void changeBasePoint1Y();
-    
-    void changeBasePoint2X();
-    
-    void changeBasePoint2Y();
+    void changeRPointY(const double& abs, const double& rel);
     
 protected:
-    QLabel pointLabel;
-    QLabel pointXLabel;
-    QLabel pointYLabel;
-    QLabel basePoint1XLabel;
-    QLabel basePoint1YLabel;
-    QLabel basePoint2XLabel;
-    QLabel basePoint2YLabel;
-    QPushButton pointXButton;
-    QPushButton pointYButton;
-    QPushButton basePoint1XButton;
-    QPushButton basePoint1YButton;
-    QPushButton basePoint2XButton;
-    QPushButton basePoint2YButton;
+    // features
+    MyRelAbsSpinBox pointXRelAbsSpinBox;
+    MyRelAbsSpinBox pointYRelAbsSpinBox;
     
-    QFont featureTitleFont;
-    QString pushButtonStyleSheet;
+    // layouts
     QGridLayout pointFeatureLayout;
-    RenPoint* _renderPoint;
+    
+    // info
     MainWindow* _mw;
     NGraphicalObject* _gO;
     VGlobalStyle* _style;
     VLineEnding* _lE;
-    
+    int _gSIndex;
     unsigned int _pointIndex;
 };
 
-class CollapsibleMenu : public QWidget {
+class RenderCubicBezierFeatureMenu : public RenderPointFeatureMenu {
     Q_OBJECT
     
 public:
-    CollapsibleMenu(QWidget* parent, const QString& title, const int& animationDuration);
+    RenderCubicBezierFeatureMenu(QWidget* parent = 0, MainWindow* mw = NULL);
     
-    void setContentLayout(QLayout& contentLayout);
+    virtual void resetValues();
     
-    void collapseMenuWithoutAnimation();
-  
+    virtual void getInfoFromRenderPoint(RenPoint* renderPoint);
+    
 private slots:
     
-protected:
-    QGridLayout _mainLayout;
-    QToolButton _toggleButton;
-    QFrame _headerLine;
-    QParallelAnimationGroup _toggleAnimation;
-    QScrollArea _contentArea;
-    int _animationDuration;
-};
-
-class SeparatingLine : public QFrame {
-    Q_OBJECT
+    void changeBasePoint1X(const double& abs, const double& rel);
     
-public:
-    SeparatingLine(QWidget* parent);
-  
-private slots:
+    void changeBasePoint1Y(const double& abs, const double& rel);
+    
+    void changeBasePoint2X(const double& abs, const double& rel);
+    
+    void changeBasePoint2Y(const double& abs, const double& rel);
     
 protected:
-    
+    // features
+    MyRelAbsSpinBox basePoint1XRelAbsSpinBox;
+    MyRelAbsSpinBox basePoint1YRelAbsSpinBox;
+    MyRelAbsSpinBox basePoint2XRelAbsSpinBox;
+    MyRelAbsSpinBox basePoint2YRelAbsSpinBox;
 };
 
-#endif // GFFEAUTREMENU_H
+#endif // NEFEAUTREMENU_H

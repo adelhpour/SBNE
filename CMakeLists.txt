@@ -70,7 +70,7 @@ if (${USE_GRAPHVIZ})
 			set(GRAPHVIZ_API_CONFIG "${GRAPHVIZ_LIBDIR}/graphviz/config6a")
 		endif ()
 
-		file(GLOB GRAPHVIZ_LIBS_FIRSTHAND "${GRAPHVIZ_LIBDIR}/libgvc.*" "${GRAPHVIZ_LIBDIR}/libcgraph.*" "${GRAPHVIZ_LIBDIR}/libcdt.*")
+		file(GLOB GRAPHVIZ_LIBS_FIRSTHAND "${GRAPHVIZ_LIBDIR}/libgvc.*" "${GRAPHVIZ_LIBDIR}/libcgraph.*" "${GRAPHVIZ_LIBDIR}/libcdt.*" "${GRAPHVIZ_LIBDIR}/libexpat.so*")
 		file(GLOB GRAPHVIZ_LIBS "${GRAPHVIZ_LIBDIR}/libxdot.*" "${GRAPHVIZ_LIBDIR}/libpathplan.*")
 		file(GLOB GRAPHVIZ_APIS "${GRAPHVIZ_LIBDIR}/graphviz/libgvplugin_neato_layout.*" "${GRAPHVIZ_LIBDIR}/graphviz/libgvplugin_pango.*")
 		set(GRAPHVIZ_LIBS ${GRAPHVIZ_LIBS} ${GRAPHVIZ_LIBS_FIRSTHAND})
@@ -94,17 +94,21 @@ elseif(UNIX)
 	if (APPLE)
 		set(CMAKE_MACOSX_RPATH true)
 		set(CMAKE_BUILD_RPATH "${CMAKE_BINARY_DIR}/src;${CMAKE_BINARY_DIR}/src/dependencies")
+		set(CMAKE_INSTALL_RPATH ${CMAKE_INSTALL_RPATH} "@loader_path;@loader_path/dependencies")
+		## set C/C++ compiler flags
+    		set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0 -Wall -Wno-inline")
+    		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -fPIC -std=gnu++11")
+	else ()
+		set(CMAKE_INSTALL_RPATH ${CMAKE_INSTALL_RPATH} "$ORIGIN;$ORIGIN/dependencies")
+		## set C/C++ compiler flags
+    		set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0 -Wall -Wno-inline")
+    		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -fPIC -std=gnu++11 -Wl,--disable-new-dtags")
 	endif()
 
 	## set RPATH features
 	set(CMAKE_SKIP_BUILD_RPATH FALSE)
 	set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
-	set(CMAKE_INSTALL_RPATH ${CMAKE_INSTALL_RPATH} "${CMAKE_INSTALL_PREFIX}/lib;${CMAKE_INSTALL_PREFIX}/lib/dependencies")
 	set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
-
-	## set C/C++ compiler flags
-    	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0 -Wall -Wno-inline")
-    	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -fPIC -std=gnu++11")
 endif (WIN32)
 
 ## Re-generate the swig bindings
@@ -135,9 +139,14 @@ if (WITH_GUI)
 	# find Qt5 and required components
 	if (APPLE)
 		find_package(Qt5 COMPONENTS Core Gui Widgets DBus PrintSupport REQUIRED)
-		set(CMAKE_INSTALL_RPATH ${CMAKE_INSTALL_RPATH} "${CMAKE_INSTALL_PREFIX}/bin/SBNE-GUI.app/Contents/Frameworks")
+		set(CMAKE_INSTALL_RPATH ${CMAKE_INSTALL_RPATH} "@loader_path/../Frameworks;@loader_path/../Frameworks/dependencies")
 	else ()
 		find_package(Qt5 COMPONENTS Core Gui Widgets PrintSupport REQUIRED)
+
+		if (UNIX)
+			set(CMAKE_INSTALL_RPATH ${CMAKE_INSTALL_RPATH} "$ORIGIN/../lib/dependencies")
+			file(GLOB Qt_EXTRA "${Qt5_DIR}/../../libicudata.*" "${Qt5_DIR}/../../libicui18n.*" "${Qt5_DIR}/../../libicuuc.*")
+		endif (UNIX)
 	endif(APPLE)
 endif(WITH_GUI)
 

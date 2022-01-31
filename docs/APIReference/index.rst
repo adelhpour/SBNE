@@ -2,7 +2,7 @@
 API Reference
 *************
 
-As mentioned :ref:`here <quickstart:Using portable C++ library (C++ API)>`, by making use of the features of C++ API, a user can simply load the SBML document of an SBML file, automatically add Layout and Render features to it, straightforwardly make any change to these features, and finally write the added/modified features to the SBML file. In this regard, instructions on how to effectively use each component of C++ API, including its  **Enumeration**, **Classes**, **Structs**, and **Functions**, are provided here:
+As mentioned :ref:`before <quickstart:Using portable C++ library (C++ API)>`, by making use of the features of C++ API, a user can simply load the SBML document of an SBML file, automatically add Layout and Render features to it, straightforwardly make any change to these features, and finally write the added/modified features to the SBML file. In this regard, instructions on how to effectively use each component of C++ API, including its  **Enumeration**, **Classes**, **Structs**, and **Functions**, are provided here:
 
 Enumerations
 ############
@@ -126,6 +126,8 @@ The functions related to :ref:`APIReference/classes/layout/NetworkElement:Networ
     functions/NetworkElement/ne_ne_getId.rst
     functions/NetworkElement/ne_ne_isSetName.rst
     functions/NetworkElement/ne_ne_getName.rst
+    functions/NetworkElement/ne_ne_isSetMetaId.rst
+    functions/NetworkElement/ne_ne_getMetaId.rst
 
 The functions related to :ref:`APIReference/classes/layout/Network:Network`:
 
@@ -156,9 +158,11 @@ The functions related to :ref:`APIReference/classes/layout/NGraphicalObject:NGra
     functions/NGraphicalObject/ne_go_isSetGlyphId.rst
     functions/NGraphicalObject/ne_go_getGlyphId.rst
     functions/NGraphicalObject/ne_go_setGlyphId.rst
-    functions/NGraphicalObject/ne_go_isSetText.rst
+    functions/NGraphicalObject/ne_go_getNumTexts.rst
     functions/NGraphicalObject/ne_go_getText.rst
-    functions/NGraphicalObject/ne_go_setText.rst
+    functions/NGraphicalObject/ne_go_getTexts.rst
+    functions/NGraphicalObject/ne_go_addText.rst
+    functions/NGraphicalObject/ne_go_removeText.rst
     functions/NGraphicalObject/ne_go_isSetBoundingBox.rst
     functions/NGraphicalObject/ne_go_getBoundingBox.rst
     functions/NGraphicalObject/ne_go_setBoundingBox.rst
@@ -191,6 +195,9 @@ The functions related to :ref:`APIReference/classes/layout/NReaction:NReaction`:
 
     functions/NReaction/ne_rxn_get.rst
     functions/NReaction/ne_rxn_set.rst
+    functions/NReaction/ne_rxn_isSetCompartment.rst
+    functions/NReaction/ne_rxn_getCompartment.rst
+    functions/NReaction/ne_rxn_findCompartment.rst
     functions/NReaction/ne_rxn_getNumSpeciesReferences.rst
     functions/NReaction/ne_rxn_getSpeciesReference.rst
     functions/NReaction/ne_rxn_getSpeciesReferences.rst
@@ -198,7 +205,6 @@ The functions related to :ref:`APIReference/classes/layout/NReaction:NReaction`:
     functions/NReaction/ne_rxn_getCurve.rst
     functions/NReaction/ne_rxn_setCurve.rst
     functions/NReaction/ne_rxn_unSetCurve.rst
-    functions/NReaction/ne_rxn_isSetExtentBox.rst
     functions/NReaction/ne_rxn_getExtentBox.rst
 
 The functions related to :ref:`APIReference/classes/layout/NSpeciesReference:NSpeciesReference`:
@@ -216,6 +222,8 @@ The functions related to :ref:`APIReference/classes/layout/NSpeciesReference:NSp
     functions/NSpeciesReference/ne_sr_getRoleAsString.rst
     functions/NSpeciesReference/ne_sr_isSetCurve.rst
     functions/NSpeciesReference/ne_sr_getCurve.rst
+    functions/NSpeciesReference/ne_sr_setCurve.rst
+    functions/NSpeciesReference/ne_sr_unSetCurve.rst
 
 The functions related to :ref:`APIReference/classes/layout/NText:NText`:
 
@@ -318,6 +326,9 @@ The functions related to :ref:`APIReference/classes/render/VeneerElement:VeneerE
     functions/VeneerElement/ne_ve_isSetName.rst
     functions/VeneerElement/ne_ve_getName.rst
     functions/VeneerElement/ne_ve_setName.rst
+    functions/VeneerElement/ne_ve_isSetMetaId.rst
+    functions/VeneerElement/ne_ve_getMetaId.rst
+    functions/VeneerElement/ne_ve_setMetaId.rst
 
 The functions related to :ref:`APIReference/classes/render/Veneer:Veneer`:
 

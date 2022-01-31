@@ -7,12 +7,13 @@ Using portable C++ library (C++ API)
 
 To use the portable C++ library, called libSBNE, you first need to:
 
-*  Either :ref:`Build <installation:Build from Source>` libSBML and libSBNE from source, or install SBNE (C++ API component) using its :ref:`precompiled binaries <installation:Download SBNE binaries>`.
+* Either :ref:`Build <installation:Build from Source>` libSBML and libSBNE from source,
+* Or Install SBNE (C++ API component) using its :ref:`precompiled binaries <installation:Download SBNE binaries>`.
+
+Then:
 
 *  Add SBNE include directory (``<SBNE install directory>/include``) to the "include directory" of your project.
-
 *  Add libSBNE library (in ``<SBNE install directory>/lib`` for Unix and in ``<SBNE install directory>/bin`` for Windows) to the "dependencies" of your project.
-
 * Include the following headers in your script:
 
     .. code-block:: C++
@@ -77,7 +78,7 @@ This example is a simple script which makes use of the API to read the SBML docu
 C++ example#2 (change layout and render features)
 =================================================
 
-This example shows how to use the ne_get() and ne_set() functions of the API to read the SBML document of an SBML (.xml) file, make a change to the Layout or Render features of it, and write back the document to the SBML file.
+This example shows how to use :ref:`APIReference/functions/ne_get:ne_get` and :ref:`APIReference/functions/ne_set:ne_set` functions of the API to read the SBML document of an SBML (.xml) file, make a change to the Layout or Render features of it, and write back the document to the SBML file.
 
 .. code-block:: C++
 
@@ -128,15 +129,22 @@ Using Python bindings
 #####################
 
 To use the language bindings of SBNE for Python, you first need to:
- 
-* Either :ref:`Build <installation:Build from Source>` libSBML and SBNE (with enabled ``WITH_PYTHON`` option) from source, or install SBNE (Python Bindings component) using its :ref:`precompiled binaries <installation:Download SBNE binaries>`.
+
+* Either :ref:`pip install the python package <installation:Install Python package>`,
+* :ref:`Build <installation:Build from Source>` libSBML and SBNE (with enabled ``WITH_PYTHON`` option) from source,
+* Or install SBNE (Python Bindings component) using its :ref:`precompiled binaries <installation:Download SBNE binaries>`.
+
+Then:
+
+* In case you pip installed the python package or enabled ``PYTHON_INSTALL_WITH_SETUP`` option while building SBNE from source,
+
+    * ``import libsbne`` in your script.
+    
 * In case you either enabled ``PYTHON_INSTALL_IN_PREFIX`` option while building SBNE from source or installed SBNE using its binaries,
 
     * Add the directory of the built Python library (``<SBNE install directory>/lib/pyhton[version]/site-packages/libsbne``) to your ``PYTHONPATH``.
     * ``import _libsbne`` in your script.
-* In case you enabled ``PYTHON_INSTALL_WITH_SETUP`` option while building SBNE from source,
 
-    * ``import libsbne`` in your script.
 
 Now, you can make use of the functions of the API in your Python script. Here we have provided two examples of it:
 
@@ -147,7 +155,7 @@ Here is a simple script which makes use of the Python bindings of the API to rea
 
 .. code-block:: Python
 
-    import _libsbne as sbne
+    import libsbne as sbne
 
     # set inputfile value to the absolute path of the input SBML (.xml) file.
     inputfile = "Absolute path to the input sbml (.xml) file"
@@ -186,11 +194,11 @@ Here is a simple script which makes use of the Python bindings of the API to rea
 Python example#2 (change layout and render features)
 ====================================================
 
-This example shows how to use the ne_get() and ne_set() functions of the Python bindings of the API to read the SBML document of an SBML (.xml) file, make a change to the Layout or Render features of it, and write back the document to the SBML file.
+This example shows how to use :ref:`APIReference/functions/ne_get:ne_get` and :ref:`APIReference/functions/ne_set:ne_set` functions of the Python bindings of the API to read the SBML document of an SBML (.xml) file, make a change to the Layout or Render features of it, and write back the document to the SBML file.
 
 .. code-block:: Python
 
-    import _libsbne as sbne
+    import libsbne as sbne
 
     # set filename value to the absolute path of the SBML (.xml) file.
     filename = "Absolute path to the sbml (.xml) file"
@@ -263,13 +271,15 @@ This example shows how to use the ne_get() and ne_set() functions of the Python 
 Using SBNE-GUI (Graphical User Interface)
 #########################################
 
-To use the graphical user interface of SBNE, you need to:
+To use the graphical user interface of SBNE, you first need to:
 
-* Either :ref:`Build <installation:Build from Source>` libSBML and libSBNE (with enabled ``WITH_GUI`` option) from source, or install SBNE (SBNE-GUI component) using its :ref:`precompiled binaries <installation:Download SBNE binaries>`.
-* Go to ``<SBNE install directory>/bin``:
+* Either :ref:`Build <installation:Build from Source>` libSBML and libSBNE (with enabled ``WITH_GUI`` option) from source,
+* Or install SBNE (SBNE-GUI component) using its :ref:`precompiled binaries <installation:Download SBNE binaries>`.
 
-    * On Microsoft Windows and macOS, double-click on SBNE-GUI executable.
-    * On Linux, run ``./SBNE-GUI`` command.
+Then, go to ``<SBNE install directory>/bin``:
+
+* On Microsoft Windows and macOS, double-click on SBNE-GUI executable.
+* On Linux, run ``./SBNE-GUI`` command.
 
 GUI example
 ===========
@@ -291,7 +301,7 @@ To do so, once we run SBNE-GUI, we need to load an SBML file. Here, we click on 
     
     Loading an SBML file into the GUI.
 
-Using the popped-up file dialog, we choose an SBML (*Example.xml*) file and open it. This action reads the SBML document in the file, (if not included) generates the Layout and Render information for the model, and renders the network of the model using this information.
+Using the popped-up file dialog, we choose an SBML (*example.xml*) file and open it. This action reads the SBML document in the file, (if not included) generates the Layout and Render information for the model, and renders the network of the model using this information.
 
 .. figure:: images/2.png
     :width: 800
@@ -300,45 +310,40 @@ Using the popped-up file dialog, we choose an SBML (*Example.xml*) file and open
 
     Rendered network of the SBML model.
 
-Now, to become able to modify the features of the rendered network, we need to **double-click on the graphical item whose features we want to change**. Once it is done, a feature menu enabling us to make changes to that graphical item pops up at the left side of the GUI screen (here, we have double-clicked on the Species named *S1*, so an "Item Features" menu for "Species" has appeared). To close this menu, we can simply double-click on an empty zone within the graphics scene of the GUI.
+Now, to become able to modify the features of the rendered network, we need to **double-click on the graphical item whose features we want to change**. Once it is done, a feature menu enabling us to make changes to that graphical item pops up at the left side of the GUI screen (here, we have double-clicked on the Species named *X*, so a features menu for "Species" has appeared).
+
+.. note::
+
+    To close this menu, we can simply double-click on an empty zone within the graphics scene of the GUI.
 
 .. figure:: images/3.png
     :width: 800
     :alt: Alternative text
     :align: center
 
-    Getting access to the "Item Features" menu for "Species".
+    Getting access to the featrues menu for "Species".
 
-As an example, here we want to change the *fill color* of the graphical item representing the *S1* species. So, from the "Item Features" menu, we first expand the **Render Features** submenu, and then, under the **Fill** section, click on the **Color** button. A "Change Fill Color" dialog box, which enables us to choose a new color, pops up.
+As an example, here we want to change the *fill color* of the graphical item representing the *X* species. So, from the tab menu, we first choose the **Render** tab, and then, under the **Fill** section of the "Style", we click on the **color picker button**, which enables us to choose a new color. Here, we can choose our desired color ("red"):
 
 .. figure:: images/4.png
-    :width: 800
+    :width: 650
     :alt: Alternative text
     :align: center
 
-    Getting access to the "Change Fill Color" dialog box.
+    Choosing a new fill color using **color picker button**.
 
-Then, we click on the "Fill Color" drop-down list and choose a color ("red") from the list of available colors.
+After we chose our desired color, the *fill color* of the graphical item representing the *X* species turns into the chosen color.
 
 .. figure:: images/5.png
     :width: 800
     :alt: Alternative text
     :align: center
-
-    Choosing a new color using "Change Fill Color" dialog box.
-
-After we choose our desired color, we click on the "Apply" button in the "Change Fill Color" dialog box, so the *fill color* of the graphical item representing the *S1* species turns into the chosen color.
-
-.. figure:: images/6.png
-    :width: 800
-    :alt: Alternative text
-    :align: center
  
-    Modified network of the SBML model (the *fill color* of the graphical item representing the *S1* species has turned into "red").
+    Modified network of the SBML model (the *fill color* of the graphical item representing the *X* species has turned into "red").
 
 To write the modified features to the existing SBML model file and save it, we click on "File" in the menu bar, and then click on the "Save" action. Using the popped-up file dialog, we can choose a name and directory for the SBML (.xml) file and save it. The GUI also allows us to export the drawing of the rendered network in PDF format by clicking on the "Export as PDF" action under the "File" menu bar.
 
-.. figure:: images/7.png
+.. figure:: images/6.png
     :width: 400
     :alt: Alternative text
     :align: center

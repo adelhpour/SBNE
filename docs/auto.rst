@@ -262,6 +262,22 @@ A series of colors are added to the :ref:`Veneer <APIReference/classes/render/Ve
               <div style="padding:10px;color:#fff;background:#800080;"></div>
             </embed>
     
+    * - Yellow
+      - #ffff00
+      - .. raw:: html
+         
+           <embed>
+             <div style="padding:10px;color:#fff;background:#ffff00;"></div>
+           </embed>
+               
+    * - DarkYellow
+      - #808000
+      - .. raw:: html
+         
+           <embed>
+             <div style="padding:10px;color:#fff;background:#808000;"></div>
+           </embed>
+    
     * - Gray
       - #a0a0a4
       - .. raw:: html
@@ -359,7 +375,7 @@ Styles
       - .. centered:: ANY
       
     * - **stroke**
-      - DarkGray
+      - DarkCyan
       - Black
       - Black
       - Black
@@ -369,7 +385,7 @@ Styles
       - Black
       
     * - **stroke-width**
-      - 8.0
+      - 2.0
       - 2.0
       - 2.0
       - 2.0
@@ -399,7 +415,7 @@ Styles
       - monospace
       
     * - **font-size**
-      - 24 %0
+      - 12 %0
       - 24 %0
       - 24 %0
       - 24 %0

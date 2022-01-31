@@ -1,7 +1,7 @@
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 ## find python packages
-find_package(Python COMPONENTS Interpreter Development)
+find_package(Python 3.8 COMPONENTS Interpreter Development)
 
 ## if swing version is less than 3.0
 if (${SWIG_FOUND} AND ${Python_VERSION} VERSION_LESS 3.0)
@@ -117,7 +117,9 @@ if (PYTHON_INSTALL_IN_PREFIX)
     install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libsbne.py  DESTINATION ${PYTHON_PACKAGE_INSTALL_DIR} COMPONENT sbne_python_bindings)
 
 	if (WIN32)
-    		install(FILES ${LIBSBML_DLLS} ${GRAPHVIZ_DLLS} DESTINATION ${PYTHON_PACKAGE_INSTALL_DIR}/libsbne COMPONENT sbne_python_bindings)
+		include(InstallRequiredSystemLibraries)
+		install(PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION ${PYTHON_PACKAGE_INSTALL_DIR}/libsbne COMPONENT sbne_python_bindings)
+    		install(FILES ${LIBSBML_DLLS} ${GRAPHVIZ_DLLS} ${GRAPHVIZ_API_CONFIG} DESTINATION ${PYTHON_PACKAGE_INSTALL_DIR}/libsbne COMPONENT sbne_python_bindings)
 	endif(WIN32)
 
 endif(PYTHON_INSTALL_IN_PREFIX)
@@ -144,5 +146,10 @@ if (PYTHON_INSTALL_WITH_SETUP)
 	install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libsbne/__init__.py  DESTINATION 		${PYTHON_PACKAGE_INSTALL_DIR}/libsbne COMPONENT sbne_python_bindings)
 
     	install(CODE "execute_process(COMMAND \"${CMAKE_COMMAND}\" -E chdir 			${CMAKE_INSTALL_PREFIX}/${PYTHON_PACKAGE_INSTALL_DIR} pip install .)" COMPONENT python_extra)
+
+	if (UNIX)
+		install(FILES ${SBML_LIBS} ${GRAPHVIZ_LIBS} DESTINATION ${PYTHON_PACKAGE_INSTALL_DIR}/libsbne/dependencies COMPONENT sbne_python_bindings)
+		install(FILES ${GRAPHVIZ_APIS} ${GRAPHVIZ_API_CONFIG} DESTINATION ${PYTHON_PACKAGE_INSTALL_DIR}/libsbne/dependencies/graphviz COMPONENT sbne_python_bindings)
+	endif ()
         
 endif(PYTHON_INSTALL_WITH_SETUP)

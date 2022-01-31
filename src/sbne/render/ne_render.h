@@ -93,6 +93,22 @@ _SBNEExport const std::string ne_ve_getName(VeneerElement* vE);
 /// @return integer value indicating success/failure of the function.
 _SBNEExport int ne_ve_setName(VeneerElement* vE, const std::string& name);
 
+/// @brief Predicates returning @c true if the "metaid" attribute of this VeneerElement is set.
+/// @param vE a pointer to the VeneerElement object.
+/// @return @c true if the "metaid" attribute of this VeneerElement object is set, @c false if either the "metaid" attribute is not set or the object is @c NULL .
+_SBNEExport bool ne_ve_isSetMetaId(VeneerElement* vE);
+
+/// @brief Returns the value of the "metaid" attribute of this VeneerElement object, if it has one
+/// @param vE a pointer to the VeneerElement object.
+/// @return the "metaid" attribute of this VeneerElement object, or an empty string if the "metaid" attribute is not set or the object is @c NULL .
+_SBNEExport const std::string ne_ve_getMetaId(VeneerElement* vE);
+
+/// @brief Sets the value of the "metaid" attribute of this VeneerElement object.
+/// @param vE a pointer to the VeneerElement object.
+/// @param name a string to use as the value of the "metaid" attribute of this VeneerElement object.
+/// @return integer value indicating success/failure of the function.
+_SBNEExport int ne_ve_setMetaId(VeneerElement* vE, const std::string& metaid);
+
 // Veneer
 
 /// @brief Get the value of a desired feature of a Veneer object.
@@ -907,6 +923,12 @@ _SBNEExport const size_t ne_grp_getNumGeometricShapes(VRenderGroup* g);
 /// @param index the index of the VTransformation2D object to return.
 /// @return a pointer to the indexth VTransformation2D object of this VRenderGroup object.
 _SBNEExport VTransformation2D* ne_grp_getGeometricShape(VRenderGroup* g, const unsigned int& index);
+
+/// @brief Removes the the indexth VTransformation2D object from this VRenderGroup object.
+/// @param g a pointer to the VRenderGroup object.
+/// @param index the index of the VTransformation2D object to remove.
+/// @return integer value indicating success/failure of the function.
+_SBNEExport int ne_grp_removeGeometricShape(VRenderGroup* g, const unsigned int& index);
 
 /// @brief Removes all VTransformation2D objects from this VRenderGroup object.
 /// @param g a pointer to the VRenderGroup object.

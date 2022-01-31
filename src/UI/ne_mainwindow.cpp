@@ -487,6 +487,7 @@ const size_t MainWindow::getNumGReactions() const {
 
 void MainWindow::clearInfo() {
     _scene->clear();
+    _scene->setBackgroundBrush(Qt::NoBrush);
     _SBMLDocument = NULL;
     _colorInfo.clear();
     _gradientInfo.clear();
@@ -608,34 +609,53 @@ int MyQGraphicsView::findGraphicalItem(QPointF position) {
     
     // search among the species
     for (MainWindow::constGSpeciesIt gSIt = _mw->gSpeciesBegin(); gSIt != _mw->gSpeciesEnd(); ++gSIt) {
-        if ((*gSIt)->isSetGraphicalItem()) {
-            boundingRect = ((QGraphicsRectItem *)((*gSIt)->getGraphicalItem()))->boundingRect();
+        // search among the graphical items of species
+        for (GraphicalObjectBase::constGItemIt gIIt = (*gSIt)->gItemsBegin(); gIIt != (*gSIt)->gItemsEnd(); ++gIIt) {
+            boundingRect = ((QGraphicsRectItem *)(*gIIt))->boundingRect();
             if ((position.x() >= boundingRect.x() && position.x() <=  boundingRect.x() + boundingRect.width()) && (position.y() >= boundingRect.y() && position.y() <=  boundingRect.y() + boundingRect.height())) {
                 _mw->getFeatureMenu()->showFeatureMenu(*gSIt);
                 return 0;
             }
         }
-        else if ((*gSIt)->isSetGText() && (*gSIt)->getGText()->isSetGTextItem()) {
-            boundingRect = (*gSIt)->getGText()->getGTextItem()->boundingRect();
-            if ((position.x() >= boundingRect.x() && position.x() <=  boundingRect.x() + boundingRect.width()) && (position.y() >= boundingRect.y() && position.y() <=  boundingRect.y() + boundingRect.height())) {
-                _mw->getFeatureMenu()->showFeatureMenu(*gSIt);
-                return 0;
+        
+        // search among the curves of species
+        for (GraphicalObjectBase::constGCurveIt gCIt = (*gSIt)->gCurvesBegin(); gCIt != (*gSIt)->gCurvesEnd(); ++gCIt) {
+            if ((*gCIt)->getNumGraphicalPaths()) {
+                if (isCloseEnoughToCurveSemgent((*gCIt)->getGraphicalPaths().at(0)->path(), position, qreal(1.0))) {
+                    _mw->getFeatureMenu()->showFeatureMenu(*gSIt);
+                    return 0;
+                }
+            }
+        }
+        
+        // search among the text of species
+        for (GraphicalObjectBase::constGTextIt gTIt = (*gSIt)->gTextsBegin(); gTIt != (*gSIt)->gTextsEnd(); ++gTIt) {
+            for (GraphicalText::constGItemIt gIIt = (*gTIt)->gItemsBegin(); gIIt != (*gTIt)->gItemsEnd(); ++gIIt) {
+                boundingRect = ((MyQGraphicsTextItem*)(*gIIt))->boundingRect();
+                if ((position.x() >= boundingRect.x() && position.x() <=  boundingRect.x() + boundingRect.width()) && (position.y() >= boundingRect.y() && position.y() <=  boundingRect.y() + boundingRect.height())) {
+                    _mw->getFeatureMenu()->showFeatureMenu(*gSIt);
+                    return 0;
+                }
             }
         }
     }
     
     // search among the reactions
     for (MainWindow::constGReactionIt gRIt = _mw->gReactionsBegin(); gRIt != _mw->gReactionsEnd(); ++gRIt) {
-        if ((*gRIt)->isSetGCurve() && (*gRIt)->getGCurve()->getNumGraphicalPaths()) {
-            if (isCloseEnoughToCurveSemgent((*gRIt)->getGCurve()->getGraphicalPaths().at(0)->path(), position, qreal(1.0))) {
-                _mw->getFeatureMenu()->showFeatureMenu(*gRIt);
-                return 0;
+        
+        // search among the curves of reaction
+        for (GraphicalObjectBase::constGCurveIt gCIt = (*gRIt)->gCurvesBegin(); gCIt != (*gRIt)->gCurvesEnd(); ++gCIt) {
+            if ((*gCIt)->getNumGraphicalPaths()) {
+                if (isCloseEnoughToCurveSemgent((*gCIt)->getGraphicalPaths().at(0)->path(), position, qreal(1.0))) {
+                    _mw->getFeatureMenu()->showFeatureMenu(*gRIt);
+                    return 0;
+                }
             }
         }
         
         // search for bounding box of reaction
-        if ((*gRIt)->isSetGraphicalItem()) {
-            boundingRect = ((QGraphicsRectItem *)((*gRIt)->getGraphicalItem()))->boundingRect();
+        for (GraphicalObjectBase::constGItemIt gIIt = (*gRIt)->gItemsBegin(); gIIt != (*gRIt)->gItemsEnd(); ++gIIt) {
+            boundingRect = ((QGraphicsRectItem *)(*gIIt))->boundingRect();
             if ((position.x() >= boundingRect.x() && position.x() <=  boundingRect.x() + boundingRect.width()) && (position.y() >= boundingRect.y() && position.y() <=  boundingRect.y() + boundingRect.height())) {
                 _mw->getFeatureMenu()->showFeatureMenu(*gRIt);
                 return 0;
@@ -644,36 +664,35 @@ int MyQGraphicsView::findGraphicalItem(QPointF position) {
         
         // search among the species references curves of the reaction
         for (GraphicalReaction::constGSReferenceIt gSRIt = (*gRIt)->gSReferencesBegin(); gSRIt != (*gRIt)->gSReferencesEnd(); ++gSRIt) {
-            if ((*gSRIt)->isSetGCurve()) {
-                
-                // check the start graphical item of the graphcial curve
-                if ((*gSRIt)->getGCurve()->isSetStartGraphicalItem()) {
-                    QPointF rotationCenter((*gSRIt)->getGCurve()->getStartGraphicalItem()->x(), (*gSRIt)->getGCurve()->getStartGraphicalItem()->y());
+            for (GraphicalObjectBase::constGCurveIt gCIt = (*gSRIt)->gCurvesBegin(); gCIt != (*gSRIt)->gCurvesEnd(); ++gCIt) {
+                // check the start graphical items of the graphcial curve
+                for (GraphicalSReference::constGItemIt gIIt = (*gCIt)->startGItemsBegin(); gIIt != (*gCIt)->startGItemsEnd(); ++gIIt) {
+                    QPointF rotationCenter((*gIIt)->x(), (*gIIt)->y());
                     qreal rotatedAngle = 0.0;
-                    if ((*gSRIt)->getGCurve()->isSetStartEnableRotation() && (*gSRIt)->getGCurve()->getStartEnableRotation() && (*gSRIt)->getGCurve()->isSetStartSlope())
-                        rotatedAngle = (*gSRIt)->getGCurve()->getStartSlope() * (pi / 180.0);
+                    if ((*gCIt)->isSetStartEnableRotation() && (*gCIt)->getStartEnableRotation() && (*gCIt)->isSetStartSlope())
+                        rotatedAngle = (*gCIt)->getStartSlope() * (pi / 180.0);
                     
-                    if (isInsideTheRotatedRectangle((*gSRIt)->getGCurve()->getStartGraphicalItem()->boundingRect(), rotationCenter, rotatedAngle, position)) {
-                        _mw->getFeatureMenu()->showFeatureMenu( _mw->findGLEndingById((*gSRIt)->getGCurve()->getStartLineEnding()), *gSRIt, "start");
+                    if (isInsideTheRotatedRectangle((*gIIt)->boundingRect(), rotationCenter, rotatedAngle, position)) {
+                        _mw->getFeatureMenu()->showFeatureMenu( _mw->findGLEndingById((*gCIt)->getStartLineEnding()), *gSRIt, "start");
                         return 0;
                     }
                 }
                 
-                // check the end graphical item of the graphcial curve
-                if ((*gSRIt)->getGCurve()->isSetEndGraphicalItem()) {
-                    QPointF rotationCenter((*gSRIt)->getGCurve()->getEndGraphicalItem()->x(), (*gSRIt)->getGCurve()->getEndGraphicalItem()->y());
+                // check the end graphical items of the graphcial curve
+                for (GraphicalSReference::constGItemIt gIIt = (*gCIt)->endGItemsBegin(); gIIt != (*gCIt)->endGItemsEnd(); ++gIIt) {
+                    QPointF rotationCenter((*gIIt)->x(), (*gIIt)->y());
                     qreal rotatedAngle = 0.0;
-                    if ((*gSRIt)->getGCurve()->isSetEndEnableRotation() && (*gSRIt)->getGCurve()->getEndEnableRotation() && (*gSRIt)->getGCurve()->isSetEndSlope())
-                        rotatedAngle = (*gSRIt)->getGCurve()->getEndSlope() * (pi / 180.0);
-
-                    if (isInsideTheRotatedRectangle((*gSRIt)->getGCurve()->getEndGraphicalItem()->boundingRect(), rotationCenter, rotatedAngle, position)) {
-                        _mw->getFeatureMenu()->showFeatureMenu( _mw->findGLEndingById((*gSRIt)->getGCurve()->getEndLineEnding()), *gSRIt, "end");
+                    if ((*gCIt)->isSetEndEnableRotation() && (*gCIt)->getEndEnableRotation() && (*gCIt)->isSetEndSlope())
+                        rotatedAngle = (*gCIt)->getEndSlope() * (pi / 180.0);
+                    
+                    if (isInsideTheRotatedRectangle((*gIIt)->boundingRect(), rotationCenter, rotatedAngle, position)) {
+                        _mw->getFeatureMenu()->showFeatureMenu( _mw->findGLEndingById((*gCIt)->getEndLineEnding()), *gSRIt, "end");
                         return 0;
                     }
                 }
                 
                 // search among the curve elements of the graphical curve
-                for (GraphicalCurve::constGPathIt gPIt = (*gSRIt)->getGCurve()->gPathsBegin(); gPIt != (*gSRIt)->getGCurve()->gPathsEnd(); ++gPIt) {
+                for (GraphicalCurve::constGPathIt gPIt = (*gCIt)->gPathsBegin(); gPIt != (*gCIt)->gPathsEnd(); ++gPIt) {
                     if (isCloseEnoughToCurveSemgent((*gPIt)->path(), position, qreal(1.0))) {
                         _mw->getFeatureMenu()->showFeatureMenu(*gSRIt);
                         return 0;
@@ -685,18 +704,33 @@ int MyQGraphicsView::findGraphicalItem(QPointF position) {
     
     // search among the compartments
     for (MainWindow::constGCompartmentIt gCIt = _mw->gCompartmentsBegin(); gCIt != _mw->gCompartmentsEnd(); ++gCIt) {
-        if ((*gCIt)->isSetGraphicalItem()) {
-            boundingRect = ((QGraphicsRectItem *)((*gCIt)->getGraphicalItem()))->boundingRect();
+        // search among the graphical items of compartment
+        for (int i = 0; i < (*gCIt)->getGraphicalItems().size(); ++i) {
+            boundingRect = ((QGraphicsRectItem *)((*gCIt)->getGraphicalItems().at(i)))->boundingRect();
             if ((position.x() >= boundingRect.x() && position.x() <=  boundingRect.x() + boundingRect.width()) && (position.y() >= boundingRect.y() && position.y() <=  boundingRect.y() + boundingRect.height())) {
                 _mw->getFeatureMenu()->showFeatureMenu(*gCIt);
                 return 0;
             }
         }
-        else if ((*gCIt)->isSetGText() && (*gCIt)->getGText()->isSetGTextItem()) {
-            boundingRect = (*gCIt)->getGText()->getGTextItem()->boundingRect();
-            if ((position.x() >= boundingRect.x() && position.x() <=  boundingRect.x() + boundingRect.width()) && (position.y() >= boundingRect.y() && position.y() <=  boundingRect.y() + boundingRect.height())) {
-                _mw->getFeatureMenu()->showFeatureMenu(*gCIt);
-                return 0;
+        
+        // search among the curves of compartment
+        for (GraphicalObjectBase::constGCurveIt gCrIt = (*gCIt)->gCurvesBegin(); gCrIt != (*gCIt)->gCurvesEnd(); ++gCrIt) {
+            if ((*gCrIt)->getNumGraphicalPaths()) {
+                if (isCloseEnoughToCurveSemgent((*gCrIt)->getGraphicalPaths().at(0)->path(), position, qreal(1.0))) {
+                    _mw->getFeatureMenu()->showFeatureMenu(*gCIt);
+                    return 0;
+                }
+            }
+        }
+        
+        // search for the text of compartments
+        for (GraphicalObjectBase::constGTextIt gTIt = (*gCIt)->gTextsBegin(); gTIt != (*gCIt)->gTextsEnd(); ++gTIt) {
+            for (GraphicalText::constGItemIt gIIt = (*gTIt)->gItemsBegin(); gIIt != (*gTIt)->gItemsEnd(); ++gIIt) {
+                boundingRect = ((MyQGraphicsTextItem*)(*gIIt))->boundingRect();
+                if ((position.x() >= boundingRect.x() && position.x() <=  boundingRect.x() + boundingRect.width()) && (position.y() >= boundingRect.y() && position.y() <=  boundingRect.y() + boundingRect.height())) {
+                    _mw->getFeatureMenu()->showFeatureMenu(*gCIt);
+                    return 0;
+                }
             }
         }
     }
@@ -712,7 +746,6 @@ bool MyQGraphicsView::isCloseEnoughToCurveSemgent(const QPainterPath& path, cons
     for (int i = 0; i <= 100; ++i) {
         distance = position - path.pointAtPercent(qreal(i / 100.0));
         distanceSize = std::sqrt(distance.x() * distance.x() + distance.y() * distance.y());
-        
         if (distanceSize < minRequiredDistance)
             return true;
         else if (oneDistanceAgoSize < twoDistanceAgoSize && distanceSize > oneDistanceAgoSize) {
@@ -750,925 +783,9 @@ bool MyQGraphicsView::isInsideTheRotatedRectangle(const QRectF& boundingRect, co
     else
         return false;
 }
- 
-// Graphical Color
-
-void GraphicalColor::setGraphicalColor(const QColor& c) {
-    _graphicalColor = c;
-    _isSetGraphicalColor = true;
-}
-
-const QColor& GraphicalColor::getGraphicalColor() const {
-    return _graphicalColor;
-}
-
-void GraphicalColor::setColor(sbne::VColorDefinition* c) {
-    _color = c;
-    _isSetColor = true;
-}
-
-sbne::VColorDefinition* GraphicalColor::getColor() {
-    return _color;
-}
-
-void GraphicalColor::setId(const std::string& id) {
-    _id = id;
-    _isSetId = true;
-}
-
-const std::string& GraphicalColor::getId() const {
-    return _id;
-}
-
-// Graphical Gradient
-
-void GraphicalGradient::setGraphicalGradient(const QGradient& g) {
-    _graphicalGradient = g;
-    _isSetGraphicalGradient = true;
-}
-
-const QGradient& GraphicalGradient::getGraphicalGradient() const {
-    return _graphicalGradient;
-}
-
-void GraphicalGradient::setGradient(sbne::VGradientBase* g) {
-    _gradient = g;
-    _isSetGradient = true;
-}
-
-sbne::VGradientBase* GraphicalGradient::getGradient() {
-    return _gradient;
-}
-
-void GraphicalGradient::setId(const std::string& id) {
-    _id = id;
-    _isSetId = true;
-}
-
-const std::string& GraphicalGradient::getId() const {
-    return _id;
-}
-
-// Graphical Line Ending
-
-void GraphicalLineEnding::setGraphicalItem(QGraphicsItem* g) {
-    _graphicalItem = g;
-    _isSetGraphicalItem = true;
-}
-
-void GraphicalLineEnding::unSetGraphicalItem() {
-    if (_graphicalItem)
-        delete _graphicalItem;
-    
-    _graphicalItem = NULL;
-    _isSetGraphicalItem = false;
-}
-
-QGraphicsItem* GraphicalLineEnding::getGraphicalItem() {
-    return _graphicalItem;
-}
-   
-void GraphicalLineEnding::setLEnding(sbne::VLineEnding* le) {
-    _lEnding = le;
-    _isSetLEnding = true;
-}
-
-void GraphicalLineEnding::unSetLEnding() {
-    _lEnding = NULL;
-    _isSetLEnding = false;
-}
-
-sbne::VLineEnding* GraphicalLineEnding::getLEnding() {
-    return _lEnding;
-}
-   
-void GraphicalLineEnding::setId(const std::string& id) {
-    _id = id;
-    _isSetId = true;
-}
-
-void GraphicalLineEnding::unSetId() {
-    _id.clear();
-    _isSetId = false;
-}
-
-const std::string& GraphicalLineEnding::getId() const {
-    return _id;
-}
-   
-void GraphicalLineEnding::setRotation(const bool& rotation) {
-    _enableRotation = rotation;
-    _isSetEnableRotation = true;
-}
-
-void GraphicalLineEnding::unSetRotation() {
-    _enableRotation = true;
-    _isSetEnableRotation = false;
-}
-
-const bool& GraphicalLineEnding::getRotation() const {
-    return _enableRotation;
-}
-
-// Graphical Compartment
-
-void GraphicalCompartment::setGraphicalItem(QGraphicsItem* g) {
-    _graphicalItem = g;
-    _isSetGraphicalItem = true;
-}
-
-void GraphicalCompartment::unSetGraphicalItem() {
-    _graphicalItem = NULL;
-    _isSetGraphicalItem = false;
-}
-
-QGraphicsItem* GraphicalCompartment::getGraphicalItem() {
-    return _graphicalItem;
-}
-
-void GraphicalCompartment::setCompartment(sbne::NCompartment* c) {
-    _compartment = c;
-    _isSetCompartment = true;
-}
-
-sbne::NCompartment* GraphicalCompartment::getCompartment() {
-    return _compartment;
-}
-
-void GraphicalCompartment::setStyle(sbne::VGlobalStyle* s) {
-    _style = s;
-    _isSetStyle = true;
-}
-
-void GraphicalCompartment::setStyle(MainWindow* mw, const bool& addNewStyle) {
-    if (mw && mw->isSetSBMLDocument()) {
-        sbne::VGlobalStyle* style = ne_ven_findStyle(mw->getSBMLDocument()->getVeneer(), getCompartment());
-        
-        if (!style && addNewStyle && isSetId()) {
-            style = ne_ven_addNewLocalStyle(mw->getSBMLDocument()->getVeneer());
-            ne_stl_setStyleValues(style);
-            ne_stl_addToIdList(style, getId());
-            mw->getSBMLDocument()->setRenderModified(true);
-        }
-        
-        if (style)
-            setStyle(style);
-        
-        if (isSetGText())
-            getGText()->setStyle(mw, addNewStyle);
-    }
-}
-
-void GraphicalCompartment::unSetStyle() {
-    _style = NULL;
-    _isSetStyle = false;
-    
-    if (isSetGText())
-        getGText()->unSetStyle();
-}
-
-sbne::VGlobalStyle* GraphicalCompartment::getStyle() {
-    return _style;
-}
-
-void GraphicalCompartment::setGText(GraphicalText* t) {
-    _graphicalText = t;
-    _isSetGraphicalText = true;
-}
-
-GraphicalText* GraphicalCompartment::getGText() {
-    return _graphicalText;
-}
-
-void GraphicalCompartment::updateValues(MainWindow* mw) {
-    // reset values
-    if (_graphicalItem) {
-        mw->getScene()->removeItem(_graphicalItem);
-        delete _graphicalItem;
-        _graphicalItem = NULL;
-        unSetGraphicalItem();
-    }
-    unSetId();
-    
-    if (isSetCompartment()) {
-        sbne::NCompartment* c = getCompartment();
-        // set id
-        if (ne_go_isSetGlyphId(c))
-            setId(ne_go_getGlyphId(c));
-        
-        // set graphical item
-        if (ne_go_isSetBoundingBox(c)) {
-            sbne::LBox* bbox = ne_go_getBoundingBox(c);
-            
-            // set scene extends
-            mw->setSceneRect(QRectF(qreal(ne_bb_getX(bbox)), qreal(ne_bb_getY(bbox)), qreal(ne_bb_getWidth(bbox)), qreal(ne_bb_getHeight(bbox))));
-            
-            // graphical item
-            if (mw->getNumGCompartments() > 1) {
-                _graphicalItem = new QGraphicsRectItem(qreal(ne_bb_getX(bbox)), qreal(ne_bb_getY(bbox)), qreal(ne_bb_getWidth(bbox)), qreal(ne_bb_getHeight(bbox)));
-                
-                if (isSetStyle())
-                    getInfoFromStyle(mw, getStyle(), _graphicalItem);
-                
-                _graphicalItem->setZValue(0);
-                
-                setGraphicalItem(_graphicalItem);
-                mw->getScene()->addItem(_graphicalItem);
-            }
-        }
-        
-        // graphical text
-        if (isSetGText())
-            getGText()->updateValues(mw);
-    }
-}
-
-void GraphicalCompartment::setId(const std::string& id) {
-    _id = id;
-    _isSetId = true;
-}
-
-void GraphicalCompartment::unSetId() {
-    _id.clear();
-    _isSetId = false;
-}
-
-const std::string& GraphicalCompartment::getId() const {
-    return _id;
-}
-
-// Graphical Species
-
-void GraphicalSpecies::setGraphicalItem(QGraphicsItem* g) {
-    _graphicalItem = g;
-    _isSetGraphicalItem = true;
-}
-
-void GraphicalSpecies::unSetGraphicalItem() {
-    _graphicalItem = NULL;
-    _isSetGraphicalItem = false;
-}
-
-QGraphicsItem* GraphicalSpecies::getGraphicalItem() {
-    return _graphicalItem;
-}
-      
-void GraphicalSpecies::setSpecies(sbne::NSpecies* s) {
-    _species = s;
-    _isSetSpecies = true;
-}
-
-sbne::NSpecies* GraphicalSpecies::getSpecies() {
-    return _species;
-}
-   
-void GraphicalSpecies::setStyle(sbne::VGlobalStyle* s) {
-    _style = s;
-    _isSetStyle = true;
-}
-
-void GraphicalSpecies::setStyle(MainWindow* mw, const bool& addNewStyle) {
-    if (mw && mw->isSetSBMLDocument()) {
-        sbne::VGlobalStyle* style = ne_ven_findStyle(mw->getSBMLDocument()->getVeneer(), getSpecies());
-        
-        if (!style && addNewStyle && isSetId()) {
-            style = ne_ven_addNewLocalStyle(mw->getSBMLDocument()->getVeneer());
-            ne_stl_setStyleValues(style);
-            ne_stl_addToIdList(style, getId());
-            mw->getSBMLDocument()->setRenderModified(true);
-        }
-        
-        if (style)
-            setStyle(style);
-        
-        if (isSetGText())
-            getGText()->setStyle(mw, addNewStyle);
-    }
-}
-
-void GraphicalSpecies::unSetStyle() {
-    _style = NULL;
-    _isSetStyle = false;
-    
-    if (isSetGText())
-        getGText()->unSetStyle();
-}
-
-sbne::VGlobalStyle* GraphicalSpecies::getStyle() {
-    return _style;
-}
-
-void GraphicalSpecies::fitConnectedItemsToBoundingBox(MainWindow* mw) {
-    if (isSetSpecies() && ne_go_isSetBoundingBox(getSpecies())) {
-        if (isSetGText() && getGText()->isSetGTextItem() && getGText()->isSetPlainText()) {
-            QFontMetrics fontMetrics(getGText()->getGTextItem()->textFont());
-            qreal textWidth = fontMetrics.width((QString(getGText()->getPlainText().c_str())));
-            qreal textHeight = fontMetrics.height();
-            sbne::LBox* bbox = ne_go_getBoundingBox(getSpecies());
-            bool isBoxModified = false;
-            
-            // for width
-            if (textWidth > 0.9 * ne_bb_getWidth(bbox)) {
-                textWidth *= 1.15;
-                textWidth = std::min(std::max(maxSpeciesBoxWidth, ne_bb_getWidth(bbox)), double(textWidth));
-                
-                ne_bb_setX(bbox, ne_bb_getX(bbox) - 0.5 * (textWidth - ne_bb_getWidth(bbox)));
-                ne_bb_setWidth(bbox, textWidth);
-                if (getGText()->isSetText() && ne_go_isSetBoundingBox(getGText()->getText())) {
-                    ne_bb_setX(ne_go_getBoundingBox(getGText()->getText()), ne_bb_getX(bbox));
-                    ne_bb_setWidth(ne_go_getBoundingBox(getGText()->getText()), ne_bb_getWidth(bbox));
-                }
-                
-                isBoxModified = true;
-            }
-            
-            // for height
-            if (textHeight > 0.9 * ne_bb_getHeight(bbox)) {
-                textHeight *= 1.15;
-                textHeight = std::min(std::max(maxSpeciesBoxHeight, ne_bb_getHeight(bbox)), double(textHeight));
-                
-                ne_bb_setY(bbox, ne_bb_getY(bbox) - 0.5 * (textHeight - ne_bb_getHeight(bbox)));
-                ne_bb_setHeight(bbox, textHeight);
-                if (getGText()->isSetText() && ne_go_isSetBoundingBox(getGText()->getText())) {
-                    ne_bb_setY(ne_go_getBoundingBox(getGText()->getText()), ne_bb_getY(bbox));
-                    ne_bb_setHeight(ne_go_getBoundingBox(getGText()->getText()), ne_bb_getHeight(bbox));
-                }
-                
-                isBoxModified = true;
-            }
-            
-            if (isBoxModified) {
-                // enable the flag of layout modification
-                mw->getSBMLDocument()->setLayoutModified(true);
-                
-                // update graphical species and graphical text
-                updateValues(mw, false);
-            }
-        }
-        
-        
-        // update the location of curves of graphical species references
-        if (mw->isSetSBMLDocument() && !mw->getSBMLDocument()->isLayoutAlreadyExisted()) {
-            for (MainWindow::constGReactionIt rIt = mw->gReactionsBegin(); rIt != mw->gReactionsEnd(); ++rIt) {
-                for (GraphicalReaction::constGSReferenceIt sRIt = (*rIt)->gSReferencesBegin(); sRIt != (*rIt)->gSReferencesEnd(); ++sRIt) {
-                    if ((*sRIt)->isSetSReference() && (*sRIt)->getSReference()->isSetSpecies() && (*sRIt)->getSReference()->getSpecies()->isSetId() && sbne::stringCompare((*sRIt)->getSReference()->getSpecies()->getId(), getSpecies()->getId())) {
-                        (*sRIt)->fitToSpeciesPosition(mw);
-                    }
-                }
-            }
-        }
-    }
-}
-
-void GraphicalSpecies::updateValues(MainWindow* mw, const bool& _fitConnectedItems) {
-    // reset values
-    if (_graphicalItem) {
-        mw->getScene()->removeItem(_graphicalItem);
-        delete _graphicalItem;
-        _graphicalItem = NULL;
-        unSetGraphicalItem();
-    }
-    
-    unSetId();
-    
-    if (isSetSpecies()) {
-        sbne::NSpecies* s = getSpecies();
-        
-        // set id
-        if (ne_go_isSetGlyphId(s))
-            setId(ne_go_getGlyphId(s));
-        
-        // set graphical item
-        if (ne_go_isSetBoundingBox(s)) {
-            sbne::LBox* bbox = ne_go_getBoundingBox(s);
-            
-            // graphical item
-            _graphicalItem = new QGraphicsRectItem(qreal(ne_bb_getX(bbox)), qreal(ne_bb_getY(bbox)), qreal(ne_bb_getWidth(bbox)), qreal(ne_bb_getHeight(bbox)));
-            
-            if (isSetStyle())
-                getInfoFromStyle(mw, getStyle(), _graphicalItem);
-            
-            _graphicalItem->setZValue(4);
-            
-            setGraphicalItem(_graphicalItem);
-            mw->getScene()->addItem(_graphicalItem);
-        }
-        
-        // graphical text
-        if (isSetGText())
-            getGText()->updateValues(mw);
-        
-#if !GRAPHVIZ_INCLUDED
-        // fit species connected items to the species bounding box
-        if (_fitConnectedItems)
-            fitConnectedItemsToBoundingBox(mw);
-#endif
-    }
-}
-
-void GraphicalSpecies::setGText(GraphicalText* t) {
-    _graphicalText = t;
-    _isSetGraphicalText = true;
-}
-
-GraphicalText* GraphicalSpecies::getGText() {
-    return _graphicalText;
-}
-
-void GraphicalSpecies::setId(const std::string& id) {
-    _id = id;
-    _isSetId = true;
-}
-
-void GraphicalSpecies::unSetId() {
-    _id.clear();
-    _isSetId = false;
-}
-
-const std::string& GraphicalSpecies::getId() const {
-    return _id;
-}
-
-// Graphical Reaction
-
-void GraphicalReaction::addGSReference(GraphicalSReference* sr) {
-    _sReferenceInfo.push_back(sr);
-}
-
-void GraphicalReaction::removeGSReference(unsigned int graphicalSReferenceIndex) {
-    if (graphicalSReferenceIndex >= _sReferenceInfo.size() || graphicalSReferenceIndex < 0)
-        std::cerr << "the entered graphical species reference index is not within the gSReferenceVec range\n";
-    else {
-        // set the iterator to the desired graphical species reference
-        constGSReferenceIt _it = gSReferencesBegin();
-        for (int i = 0; i < graphicalSReferenceIndex; ++i)
-            ++_it;
-        // remove the desired graphical species reference from the gSReferenceVec
-        _sReferenceInfo.erase(_it);
-    }
-}
-
-void GraphicalReaction::setGSReferences(const gSReferenceVec& srv) {
-    _sReferenceInfo = srv;
-}
-
-const GraphicalReaction::gSReferenceVec& GraphicalReaction::getGSReferences() const {
-    return _sReferenceInfo;
-}
-
-const size_t GraphicalReaction::getNumGSReference() const {
-    return _sReferenceInfo.size();
-}
-
-void GraphicalReaction::setGCurve(GraphicalCurve* c) {
-    _gCurve = c;
-    _isSetGCurve = true;
-}
-
-GraphicalCurve* GraphicalReaction::getGCurve() {
-    return _gCurve;
-}
-
-void GraphicalReaction::setGraphicalItem(QGraphicsItem* g) {
-    _graphicalItem = g;
-    _isSetGraphicalItem = true;
-}
-
-void GraphicalReaction::unSetGraphicalItem() {
-    _graphicalItem = NULL;
-    _isSetGraphicalItem = false;
-}
-
-QGraphicsItem* GraphicalReaction::getGraphicalItem() {
-    return _graphicalItem;
-}
-
-void GraphicalReaction::setReaction(sbne::NReaction* r) {
-    _reaction = r;
-    _isSetReaction = true;
-}
-
-sbne::NReaction* GraphicalReaction::getReaction() {
-    return _reaction;
-}
-
-void GraphicalReaction::setStyle(sbne::VGlobalStyle* s) {
-    _style = s;
-    _isSetStyle = true;
-}
-
-void GraphicalReaction::setStyle(MainWindow* mw, const bool& addNewStyle) {
-    if (mw && mw->isSetSBMLDocument()) {
-        sbne::VGlobalStyle* style = ne_ven_findStyle(mw->getSBMLDocument()->getVeneer(), getReaction());
-        
-        if (!style && addNewStyle && isSetId()) {
-            style = ne_ven_addNewLocalStyle(mw->getSBMLDocument()->getVeneer());
-            ne_stl_setStyleValues(style);
-            ne_stl_addToIdList(style, getId());
-            mw->getSBMLDocument()->setRenderModified(true);
-        }
-        
-        if (style)
-            setStyle(style);
-    }
-}
-
-void GraphicalReaction::unSetStyle() {
-    _style = NULL;
-    _isSetStyle = false;
-}
-
-sbne::VGlobalStyle* GraphicalReaction::getStyle() {
-    return _style;
-}
-
-void GraphicalReaction::updateValues(MainWindow* mw) {
-    // reset values
-    if (_graphicalItem) {
-        mw->getScene()->removeItem(_graphicalItem);
-        delete _graphicalItem;
-        _graphicalItem = NULL;
-        unSetGraphicalItem();
-    }
-    unSetId();
-    
-    if (isSetReaction()) {
-        sbne::NReaction* r = getReaction();
-        
-        // set id
-        if (ne_go_isSetGlyphId(r))
-            setId(ne_go_getGlyphId(r));
-            
-        // graphical curve
-        if (isSetGCurve()) {
-            getGCurve()->unSetLCurve();
-            getGCurve()->unSetRCurve();
-            getGCurve()->unSetBoundingBox();
-            
-            if (ne_rxn_isSetCurve(r))
-                getGCurve()->setLCurve(ne_rxn_getCurve(r));
-            else if (ne_go_isSetBoundingBox(r) && isSetStyle()) {
-                for (int i = 0; i < ne_grp_getNumGeometricShapes(ne_stl_getGroup(getStyle())); ++i) {
-                    if (ne_gs_getShape(ne_grp_getGeometricShape(ne_stl_getGroup(getStyle()), i)) == 1) {
-                        getGCurve()->setRCurve((sbne::RCurve*)(ne_grp_getGeometricShape(ne_stl_getGroup(getStyle()), i)));
-                        getGCurve()->setBoundingBox(ne_go_getBoundingBox(r));
-                    }
-                }
-            }
-            
-            getGCurve()->updateValues(mw, getStyle(), false);
-        }
-        
-        if ((!isSetGCurve() || (isSetGCurve() && !getGCurve()->getNumGraphicalPaths())) && ne_go_isSetBoundingBox(r)) {
-            // graphical item
-            _graphicalItem = new QGraphicsRectItem(qreal(ne_bb_getX(ne_go_getBoundingBox(r))), qreal(ne_bb_getY(ne_go_getBoundingBox(r))), qreal(ne_bb_getWidth(ne_go_getBoundingBox(r))), qreal(ne_bb_getHeight(ne_go_getBoundingBox(r))));
-            
-            if (isSetStyle())
-                getInfoFromStyle(mw, getStyle(), _graphicalItem);
-            
-            _graphicalItem->setZValue(2);
-            
-            setGraphicalItem(_graphicalItem);
-            mw->getScene()->addItem(_graphicalItem);
-        }
-    }
-}
-      
-void GraphicalReaction::setId(const std::string& id) {
-    _id = id;
-    _isSetId = true;
-}
-
-void GraphicalReaction::unSetId() {
-    _id.clear();
-    _isSetId = false;
-}
-
-const std::string& GraphicalReaction::getId() const {
-    return _id;
-}
-
-// Graphical SReference
-
-void GraphicalSReference::setGCurve(GraphicalCurve* c) {
-    _gCurve = c;
-    _isSetGCurve = true;
-}
-
-GraphicalCurve* GraphicalSReference::getGCurve() {
-    return _gCurve;
-}
-
-void GraphicalSReference::setSReference(sbne::NSpeciesReference* sr) {
-    _speciesReference = sr;
-    _isSetSReference = true;
-}
-
-sbne::NSpeciesReference* GraphicalSReference::getSReference() {
-    return _speciesReference;
-}
-
-void GraphicalSReference::setStyle(sbne::VGlobalStyle* s) {
-    _style = s;
-    _isSetStyle = true;
-}
-
-void GraphicalSReference::setStyle(MainWindow* mw, const bool& addNewStyle) {
-    if (mw && mw->isSetSBMLDocument()) {
-        sbne::VGlobalStyle* style = ne_ven_findStyle(mw->getSBMLDocument()->getVeneer(), getSReference());
-        
-        if (!style && addNewStyle && isSetId()) {
-            style = ne_ven_addNewLocalStyle(mw->getSBMLDocument()->getVeneer());
-            ne_stl_setStyleValues(style);
-            ne_stl_addToIdList(style, getId());
-            mw->getSBMLDocument()->setRenderModified(true);
-        }
-        
-        if (style)
-            setStyle(style);
-    }
-}
-
-void GraphicalSReference::unSetStyle() {
-    _style = NULL;
-    _isSetStyle = false;
-}
-
-sbne::VGlobalStyle* GraphicalSReference::getStyle() {
-    return _style;
-}
-
-void GraphicalSReference::setRole(const std::string& role) {
-    _role = role;
-    _isSetRole = true;
-}
-
-void GraphicalSReference::unSetRole() {
-    _role.clear();
-    _isSetRole = false;
-}
-
-const std::string& GraphicalSReference::getRole() const {
-    return _role;
-}
-
-void GraphicalSReference::fitToSpeciesPosition(MainWindow* mw) {
-    if (isSetSReference() && getSReference()->isSetSpecies() && isSetGCurve()) {
-        sbne::NSpeciesReference* sr = getSReference();
-        sbne::NSpecies* s = getSReference()->getSpecies();
-        GraphicalCurve* gCurve = getGCurve();
-        
-        if (gCurve->isSetLCurve()) {
-            sbne::LCurve* curve = gCurve->getLCurve();
-            sbne::LCurve::constElementIt eIt;
-            sbne::LPoint boxPoint;
-            sbne::SpcSide speciesSide;
-            
-            switch(sr->getQuadrant()) {
-                case sbne::Quad_I_1:
-                case sbne::Quad_IV_2:
-                    speciesSide = sbne::LEFT_SIDE;
-                    break;
-                
-                case sbne::Quad_I_2:
-                case sbne::Quad_II_1:
-                    speciesSide = sbne::BOTTOM_SIDE;
-                    break;
-                    
-                case sbne::Quad_II_2:
-                case sbne::Quad_III_1:
-                    speciesSide = sbne::RIGHT_SIDE;
-                    break;
-                    
-                case sbne::Quad_III_2:
-                case sbne::Quad_IV_1:
-                    speciesSide = sbne::TOP_SIDE;
-                    break;
-            }
-            
-            // get the species box point of species reference
-            boxPoint = getSReferenceSpeciesBoxPoint(s, sr, speciesSide);
-            
-            // for products
-            if (sr->getRole() == 1 || sr->getRole() == 3) {
-                // update the end point
-                eIt = curve->elementsEnd() - 1;
-                (*eIt)->setEnd(boxPoint);
-            }
-            // for substrates, modifiers, activators, and inhibitors
-            else {
-                // update the start point
-                eIt = curve->elementsBegin();
-                (*eIt)->setStart(boxPoint);
-            }
-            
-            // enable the flag of layout modification
-            mw->getSBMLDocument()->setLayoutModified(true);
-            
-            gCurve->updateValues(mw, getStyle(), true);
-        }
-    }
-}
-
-void GraphicalSReference::updateValues(MainWindow* mw) {
-    // reset values
-    unSetId();
-    unSetRole();
-    
-    if (isSetSReference()) {
-        sbne::NSpeciesReference* sr = getSReference();
-        
-        // set id
-        if (ne_go_isSetGlyphId(sr))
-            setId(ne_go_getGlyphId(sr));
-        
-        // set the role of graphical species reference
-        if (ne_sr_isSetRole(sr))
-            setRole(ne_sr_getRoleAsString(sr));
-            
-        // graphical curve
-        if (isSetGCurve()) {
-            getGCurve()->unSetLCurve();
-            
-            if (ne_sr_isSetCurve(sr))
-                getGCurve()->setLCurve(ne_sr_getCurve(sr));
-            
-            getGCurve()->updateValues(mw, getStyle(), true);
-        }
-    }
-}
-      
-void GraphicalSReference::setId(const std::string& id) {
-    _id = id;
-    _isSetId = true;
-}
-
-void GraphicalSReference::unSetId() {
-    _id.clear();
-    _isSetId = false;
-}
-
-const std::string& GraphicalSReference::getId() const {
-    return _id;
-}
-
-// Graphical Text
-void GraphicalText::setGTextItem(MyQGraphicsTextItem* t) {
-    _gTextItem = t;
-    _isSetGTextItem = true;
-}
-
-void GraphicalText::unSetGTextItem() {
-    _gTextItem = NULL;
-    _isSetGTextItem = false;
-}
-
-MyQGraphicsTextItem* GraphicalText::getGTextItem() {
-    return _gTextItem;
-}
-
-void GraphicalText::setText(sbne::NText* t) {
-    _text = t;
-    _isSetText = true;
-}
-
-sbne::NText* GraphicalText::getText() {
-    return _text;
-}
-
-void GraphicalText::setGObject(sbne::NGraphicalObject* gO) {
-    _gObject = gO;
-    _isSetGObject = true;
-}
-
-sbne::NGraphicalObject* GraphicalText::getGObject() {
-    return _gObject;
-}
-
-void GraphicalText::setStyle(sbne::VGlobalStyle* s) {
-    _style = s;
-    _isSetStyle = true;
-}
-
-void GraphicalText::setStyle(MainWindow* mw, const bool& addNewStyle) {
-    if (mw && mw->isSetSBMLDocument()) {
-        sbne::VGlobalStyle* style = ne_ven_findStyle(mw->getSBMLDocument()->getVeneer(), NULL, sbne::ST_TYPE_TXT);
-        
-        if (!style && addNewStyle && isSetGObject()) {
-            if (!isSetText()) {
-                sbne::NText* text = ne_net_getText(mw->getSBMLDocument()->getNetwork(), getGObject());
-                
-                if (text) {
-                    if (isSetPlainText())
-                        text->setText(getPlainText());
-                    setText(text);
-                    if (text->isSetGlyphId())
-                        setId(text->getGlyphId());
-                }
-            }
-            
-            if (isSetId()) {
-                style = ne_ven_addNewLocalStyle(mw->getSBMLDocument()->getVeneer());
-                ne_stl_setStyleValues(style);
-                ne_stl_addToIdList(style, getId());
-                mw->getSBMLDocument()->setRenderModified(true);
-            }
-        }
-        
-        if (style)
-            setStyle(style);
-    }
-}
-
-void GraphicalText::unSetStyle() {
-    _style = NULL;
-    _isSetStyle = false;
-}
-
-sbne::VGlobalStyle* GraphicalText::getStyle() {
-    return _style;
-}
-
-void GraphicalText::updateValues(MainWindow* mw) {
-    // reset values
-    if (_gTextItem) {
-        mw->getScene()->removeItem(_gTextItem);
-        delete _gTextItem;
-        _gTextItem = NULL;
-        unSetGTextItem();
-    }
-    unSetId();
-    sbne::NText* t = NULL;
-    
-    if (isSetText()) {
-        unSetPlainText();
-        t = getText();
-        
-        // set id
-        if (ne_go_isSetGlyphId(t))
-            setId(ne_go_getGlyphId(t));
-        
-        // set plain text
-        if (ne_gtxt_isSetPlainText(t))
-            setPlainText(ne_gtxt_getPlainText(t));
-    }
-    
-    if (isSetGObject()) {
-        
-        // set graphical item
-        if (((t && ne_go_isSetBoundingBox(t)) || ne_go_isSetBoundingBox(getGObject())) && isSetPlainText()) {
-            
-            sbne::LBox* bbox = ne_go_getBoundingBox(getText());
-            if (!bbox)
-                bbox = ne_go_getBoundingBox(getGObject());
-            
-            if (bbox) {
-                _gTextItem = new MyQGraphicsTextItem(QString(getPlainText().c_str()), QRectF(ne_bb_getX(bbox) + 0.05 * ne_bb_getWidth(bbox), ne_bb_getY(bbox) + 0.05 * ne_bb_getHeight(bbox), 0.9 * ne_bb_getWidth(bbox), 0.9 * ne_bb_getHeight(bbox)));
-                
-                if (isSetStyle())
-                    getInfoFromStyle(mw, getStyle(), _gTextItem);
-                
-                _gTextItem->setZValue(5);
-                
-                setGTextItem(_gTextItem);
-                mw->getScene()->addItem(_gTextItem);
-            }
-        }
-    }
-}
-
-void GraphicalText::setPlainText(const std::string& plainText) {
-    _plainText = plainText;
-    _isSetPlainText = true;
-    
-    if (isSetText())
-        getText()->setText(plainText);
-}
-
-void GraphicalText::unSetPlainText() {
-    _plainText.clear();
-    _isSetPlainText = false;
-}
-
-const std::string& GraphicalText::getPlainText() const {
-    return _plainText;
-}
-      
-void GraphicalText::setId(const std::string& id) {
-    _id = id;
-    _isSetId = true;
-}
-
-void GraphicalText::unSetId() {
-    _id.clear();
-    _isSetId = false;
-}
-
-const std::string& GraphicalText::getId() const {
-    return _id;
-}
 
 // MyQGraphicsTextItem
+
 QRectF MyQGraphicsTextItem::boundingRect() const {
     return _boundingRect;
 }
@@ -1749,6 +866,811 @@ const std::string& MyQGraphicsTextItem::horizontalAlignment() const {
     return _horizontalAlignment;
 }
 
+// Graphical Element
+
+void GraphicalElement::setId(const std::string& id) {
+    _id = id;
+    _isSetId = true;
+}
+
+const std::string& GraphicalElement::getId() const {
+    return _id;
+}
+
+void GraphicalElement::unSetId() {
+    _id.clear();
+    _isSetId = false;
+}
+
+// Graphical Object Base
+
+void GraphicalObjectBase::addGraphicalItem(QGraphicsItem* g) {
+    _graphicalItems.push_back(g);
+}
+
+void GraphicalObjectBase::removeGraphicalItem(unsigned int graphicalItemIndex) {
+    if (graphicalItemIndex >= _graphicalItems.size() || graphicalItemIndex < 0)
+        std::cerr << "the entered graphical item index is not within the gItemVec range\n";
+    else {
+        // set the iterator to the desired graphical item
+        constGItemIt _it = gItemsBegin();
+        for (int i = 0; i < graphicalItemIndex; ++i)
+            ++_it;
+        // remove the desired graphical species reference from the gItemVec
+        _graphicalItems.erase(_it);
+    }
+}
+
+void GraphicalObjectBase::setGraphicalItems(const gItemVec& giv) {
+    _graphicalItems = giv;
+}
+
+const GraphicalObjectBase::gItemVec& GraphicalObjectBase::getGraphicalItems() const {
+    return _graphicalItems;
+}
+
+void GraphicalObjectBase::resetGraphicalItems(MainWindow* mw, const bool& isLineEnding) {
+    for (constGItemIt gIIt = gItemsBegin(); gIIt != gItemsEnd(); ++gIIt) {
+        if (!isLineEnding)
+            mw->getScene()->removeItem((*gIIt));
+        delete *gIIt;
+    }
+    
+    _graphicalItems.clear();
+}
+
+void GraphicalObjectBase::setNGraphicalObject(sbne::NGraphicalObject* gO) {
+    _nGraphicalObject = gO;
+    _isSetNGraphicalObject = true;
+}
+
+sbne::NGraphicalObject* GraphicalObjectBase::getNGraphicalObject() {
+    return _nGraphicalObject;
+}
+
+void GraphicalObjectBase::setStyle(sbne::VGlobalStyle* s) {
+    _style = s;
+    _isSetStyle = true;
+}
+
+void GraphicalObjectBase::setStyle(MainWindow* mw, const bool& addNewStyle) {
+    if (mw && mw->isSetSBMLDocument()) {
+        sbne::VGlobalStyle* style = ne_ven_findStyle(mw->getSBMLDocument()->getVeneer(), getNGraphicalObject());
+        
+        if (!style && addNewStyle) {
+            if (isSetNGraphicalObject())
+                style = ne_ven_addNewGlobalStyle(mw->getSBMLDocument()->getVeneer(), styleTypeForGraphicalObjectType(getNGraphicalObject()->getType()), NUM_RxnRoleType);
+            else if (isSetId()) {
+                style = ne_ven_addNewLocalStyle(mw->getSBMLDocument()->getVeneer());
+                ne_stl_addToIdList(style, getId());
+            }
+            mw->getSBMLDocument()->setRenderModified(true);
+        }
+        
+        if (style)
+            setStyle(style);
+    }
+}
+
+void GraphicalObjectBase::unSetStyle() {
+    _style = NULL;
+    _isSetStyle = false;
+    
+    for (constGTextIt gTIt = gTextsBegin(); gTIt != gTextsEnd(); ++gTIt)
+        (*gTIt)->unSetStyle();
+}
+
+sbne::VGlobalStyle* GraphicalObjectBase::getStyle() {
+    return _style;
+}
+
+void GraphicalObjectBase::addGraphicalCurve(GraphicalCurve* c) {
+    _graphicalCurves.push_back(c);
+}
+
+void GraphicalObjectBase::removeGraphicalCurve(unsigned int graphicalCurveIndex) {
+    if (graphicalCurveIndex >= _graphicalCurves.size() || graphicalCurveIndex < 0)
+        std::cerr << "the entered graphical curve index is not within the gCurveVec range\n";
+    else {
+        // set the iterator to the desired graphical curve
+        constGCurveIt _it = gCurvesBegin();
+        for (int i = 0; i < graphicalCurveIndex; ++i)
+            ++_it;
+        // remove the desired graphical species reference from the gCurveVec
+        _graphicalCurves.erase(_it);
+    }
+}
+
+void GraphicalObjectBase::setGraphicalCurves(const gCurveVec& gcv) {
+    _graphicalCurves = gcv;
+}
+
+const GraphicalObjectBase::gCurveVec& GraphicalObjectBase::getGraphicalCurves() const {
+    return _graphicalCurves;
+}
+
+const size_t GraphicalObjectBase::getNumGraphicalCurves() const {
+    return _graphicalCurves.size();
+}
+
+void GraphicalObjectBase::resetGraphicalCurves(MainWindow* mw, const bool& isLineEnding) {
+    for (constGCurveIt gCIt = gCurvesBegin(); gCIt != gCurvesEnd(); ++gCIt) {
+        (*gCIt)->clearGraphicalPaths(mw, isLineEnding);
+        (*gCIt)->clearStartGraphicalItems(mw, isLineEnding);
+        (*gCIt)->clearEndGraphicalItems(mw, isLineEnding);
+        delete *gCIt;
+    }
+    
+    _graphicalCurves.clear();
+}
+
+void GraphicalObjectBase::addGraphicalText(GraphicalText* t) {
+    _graphicalTexts.push_back(t);
+}
+
+void GraphicalObjectBase::removeGraphicalText(unsigned int graphicalTextIndex) {
+    if (graphicalTextIndex >= _graphicalTexts.size() || graphicalTextIndex < 0)
+        std::cerr << "the entered graphical text index is not within the gTextVec range\n";
+    else {
+        // set the iterator to the desired graphical text
+        constGTextIt _it = gTextsBegin();
+        for (int i = 0; i < graphicalTextIndex; ++i)
+            ++_it;
+        // remove the desired graphical species reference from the gTextVec
+        _graphicalTexts.erase(_it);
+    }
+}
+
+void GraphicalObjectBase::setGraphicalTexts(const gTextVec& gtv) {
+    _graphicalTexts = gtv;
+}
+
+const GraphicalObjectBase::gTextVec& GraphicalObjectBase::getGraphicalTexts() const {
+    return _graphicalTexts;
+}
+
+const size_t GraphicalObjectBase::getNumGraphicalTexts() const {
+    return _graphicalTexts.size();
+}
+
+void GraphicalObjectBase::resetGraphicalTexts(MainWindow* mw) {
+    for (constGTextIt gTIt = gTextsBegin(); gTIt != gTextsEnd(); ++gTIt) {
+        (*gTIt)->resetGraphicalItems(mw);
+        delete *gTIt;
+    }
+    
+    _graphicalTexts.clear();
+}
+
+// Graphical Color
+
+void GraphicalColor::setGraphicalColor(const QColor& c) {
+    _graphicalColor = c;
+    _isSetGraphicalColor = true;
+}
+
+const QColor& GraphicalColor::getGraphicalColor() const {
+    return _graphicalColor;
+}
+
+void GraphicalColor::setColor(sbne::VColorDefinition* c) {
+    _color = c;
+    _isSetColor = true;
+}
+
+sbne::VColorDefinition* GraphicalColor::getColor() {
+    return _color;
+}
+
+// Graphical Gradient
+
+void GraphicalGradient::setGraphicalGradient(const QGradient& g) {
+    _graphicalGradient = g;
+    _isSetGraphicalGradient = true;
+}
+
+const QGradient& GraphicalGradient::getGraphicalGradient() const {
+    return _graphicalGradient;
+}
+
+void GraphicalGradient::setGradient(sbne::VGradientBase* g) {
+    _gradient = g;
+    _isSetGradient = true;
+}
+
+sbne::VGradientBase* GraphicalGradient::getGradient() {
+    return _gradient;
+}
+
+// Graphical Line Ending
+
+void GraphicalLineEnding::setLEnding(sbne::VLineEnding* le) {
+    _lEnding = le;
+    _isSetLEnding = true;
+}
+
+void GraphicalLineEnding::unSetLEnding() {
+    _lEnding = NULL;
+    _isSetLEnding = false;
+}
+
+sbne::VLineEnding* GraphicalLineEnding::getLEnding() {
+    return _lEnding;
+}
+   
+void GraphicalLineEnding::setRotation(const bool& rotation) {
+    _enableRotation = rotation;
+    _isSetEnableRotation = true;
+}
+
+void GraphicalLineEnding::unSetRotation() {
+    _enableRotation = true;
+    _isSetEnableRotation = false;
+}
+
+const bool& GraphicalLineEnding::getRotation() const {
+    return _enableRotation;
+}
+
+void GraphicalLineEnding::updateValues(MainWindow* mw) {
+    // reset values
+    resetGraphicalItems(mw, true);
+    resetGraphicalCurves(mw, true);
+    unSetId();
+    unSetRotation();
+    
+    if (isSetLEnding()) {
+        sbne::VLineEnding* lE = getLEnding();
+        
+        // set id
+        if (ne_ve_isSetId(lE))
+            setId(ne_ve_getId(lE));
+        
+        // set rotation
+        if (ne_le_isSetEnableRotation(lE))
+            setRotation(ne_le_getEnableRotation(lE));
+        
+        // graphical items
+        if (ne_le_isSetBoundingBox(lE)) {
+            LBox* box = ne_le_getBoundingBox(lE);
+            gItemVec gItems = getInfoFromRenderGroup(mw, ne_le_getGroup(lE), box);
+            for (int i = 0; i < gItems.size(); ++i)
+                addGraphicalItem(gItems.at(i));
+            
+            gCurveVec gCurves = getInfoFromRenderGroup(mw, ne_le_getGroup(lE), box,  NULL);
+            if (gCurves.size())
+                setGraphicalCurves(gCurves);
+        }
+    }
+}
+
+// Graphical Compartment
+
+void GraphicalCompartment::updateValues(MainWindow* mw) {
+    // reset values
+    resetGraphicalItems(mw);
+    resetGraphicalCurves(mw);
+    resetGraphicalTexts(mw);
+    unSetId();
+    
+    if (isSetNGraphicalObject()) {
+        sbne::NCompartment* c = (sbne::NCompartment*)getNGraphicalObject();
+        // set id
+        if (ne_go_isSetGlyphId(c))
+            setId(ne_go_getGlyphId(c));
+        
+        // graphical items
+        if (ne_go_isSetBoundingBox(c)) {
+            LBox* box = ne_go_getBoundingBox(c);
+            
+            // set scene extends
+            mw->setSceneRect(QRectF(qreal(ne_bb_getX(box)), qreal(ne_bb_getY(box)), qreal(ne_bb_getWidth(box)), qreal(ne_bb_getHeight(box))));
+            
+            gItemVec gItems = getInfoFromRenderGroup(mw, ne_stl_getGroup(getStyle()), box);
+            
+            for (int i = 0; i < gItems.size(); ++i) {
+                gItems.at(i)->setZValue(0);
+                addGraphicalItem(gItems.at(i));
+                mw->getScene()->addItem(gItems.at(i));
+            }
+            
+            gCurveVec gCurves = getInfoFromRenderGroup(mw, ne_stl_getGroup(getStyle()), box,  NULL);
+            for(int i = 0; i < gCurves.size(); ++i) {
+                addGraphicalCurve(gCurves.at(i));
+                for (GraphicalCurve::constGPathIt gPIt = gCurves.at(i)->gPathsBegin(); gPIt != gCurves.at(i)->gPathsEnd(); ++gPIt) {
+                    (*gPIt)->setZValue(0);
+                    mw->getScene()->addItem(*gPIt);
+                }
+                setLineEndings(mw, gCurves.at(i));
+            }
+        }
+        
+        // graphical text
+        GraphicalText* _graphicalText = NULL;
+        NText* text = NULL;
+        for (int j = 0; j < ne_go_getNumTexts(c); ++j) {
+            text = ne_go_getText(c, j);
+            
+            // create graphical text
+            _graphicalText =  new GraphicalText();
+            
+            // set the compartment as the graphical object of graphical text
+            _graphicalText->setAssociatedGObject(c);
+            
+            // set text glyph
+            _graphicalText->setNGraphicalObject(text);
+            
+            // set id
+            if (ne_go_isSetGlyphId(text))
+                _graphicalText->setId(ne_go_getGlyphId(text));
+            
+            // set style
+            _graphicalText->setStyle(mw, ST_TYPE_COMP);
+            
+            // update values
+            _graphicalText->updateValues(mw);
+            
+            // add to the graphical texts of graphical species
+            addGraphicalText(_graphicalText);
+        }
+    }
+}
+
+// Graphical Species
+
+void GraphicalSpecies::fitConnectedItemsToBoundingBox(MainWindow* mw) {
+    if (isSetNGraphicalObject() && ne_go_isSetBoundingBox(getNGraphicalObject())) {
+        for (constGTextIt gTIt = gTextsBegin(); gTIt != gTextsEnd(); ++gTIt) {
+            if ((*gTIt)->getGraphicalItems().at(0) && (*gTIt)->isSetPlainText()) {
+                QFontMetrics fontMetrics(((MyQGraphicsTextItem*)((*gTIt)->getGraphicalItems().at(0)))->textFont());
+                qreal textWidth = fontMetrics.width((QString((*gTIt)->getPlainText().c_str())));
+                qreal textHeight = fontMetrics.height();
+                sbne::LBox* bbox = ne_go_getBoundingBox(getNGraphicalObject());
+                bool isBoxModified = false;
+                
+                // for width
+                if (textWidth > 0.9 * ne_bb_getWidth(bbox)) {
+                    textWidth *= 1.15;
+                    textWidth = std::min(std::max(maxSpeciesBoxWidth, ne_bb_getWidth(bbox)), double(textWidth));
+                    
+                    ne_bb_setX(bbox, ne_bb_getX(bbox) - 0.5 * (textWidth - ne_bb_getWidth(bbox)));
+                    ne_bb_setWidth(bbox, textWidth);
+                    if ((*gTIt)->isSetNGraphicalObject() && ne_go_isSetBoundingBox((*gTIt)->getNGraphicalObject())) {
+                        ne_bb_setX(ne_go_getBoundingBox((*gTIt)->getNGraphicalObject()), ne_bb_getX(bbox));
+                        ne_bb_setWidth(ne_go_getBoundingBox((*gTIt)->getNGraphicalObject()), ne_bb_getWidth(bbox));
+                    }
+                    
+                    isBoxModified = true;
+                }
+                
+                // for height
+                if (textHeight > 0.9 * ne_bb_getHeight(bbox)) {
+                    textHeight *= 1.15;
+                    textHeight = std::min(std::max(maxSpeciesBoxHeight, ne_bb_getHeight(bbox)), double(textHeight));
+                    
+                    ne_bb_setY(bbox, ne_bb_getY(bbox) - 0.5 * (textHeight - ne_bb_getHeight(bbox)));
+                    ne_bb_setHeight(bbox, textHeight);
+                    if ((*gTIt)->isSetNGraphicalObject() && ne_go_isSetBoundingBox((*gTIt)->getNGraphicalObject())) {
+                        ne_bb_setY(ne_go_getBoundingBox((*gTIt)->getNGraphicalObject()), ne_bb_getY(bbox));
+                        ne_bb_setHeight(ne_go_getBoundingBox((*gTIt)->getNGraphicalObject()), ne_bb_getHeight(bbox));
+                    }
+                    
+                    isBoxModified = true;
+                }
+                
+                if (isBoxModified) {
+                    // enable the flag of layout modification
+                    mw->getSBMLDocument()->setLayoutModified(true);
+                    
+                    // update graphical species and graphical text
+                    updateValues(mw, false);
+                }
+            }
+        }
+        
+        // update the location of curves of graphical species references
+        if (mw->isSetSBMLDocument() && !mw->getSBMLDocument()->isLayoutAlreadyExisted()) {
+            for (MainWindow::constGReactionIt rIt = mw->gReactionsBegin(); rIt != mw->gReactionsEnd(); ++rIt) {
+                for (GraphicalReaction::constGSReferenceIt sRIt = (*rIt)->gSReferencesBegin(); sRIt != (*rIt)->gSReferencesEnd(); ++sRIt) {
+                    if ((*sRIt)->isSetNGraphicalObject() && ((NSpeciesReference*)((*sRIt)->getNGraphicalObject()))->isSetSpecies() && ((NSpeciesReference*)((*sRIt)->getNGraphicalObject()))->getSpecies()->isSetId() && sbne::stringCompare(((NSpeciesReference*)((*sRIt)->getNGraphicalObject()))->getSpecies()->getId(), getNGraphicalObject()->getId())) {
+                        (*sRIt)->fitToSpeciesPosition(mw);
+                    }
+                }
+            }
+        }
+    }
+}
+
+void GraphicalSpecies::updateValues(MainWindow* mw, const bool& _fitConnectedItems) {
+    // reset values
+    resetGraphicalItems(mw);
+    resetGraphicalCurves(mw);
+    resetGraphicalTexts(mw);
+    unSetId();
+    
+    if (isSetNGraphicalObject()) {
+        sbne::NSpecies* s = (sbne::NSpecies*)getNGraphicalObject();
+        
+        // set id
+        if (ne_go_isSetGlyphId(s))
+            setId(ne_go_getGlyphId(s));
+        
+        // graphical items
+        if (ne_go_isSetBoundingBox(s)) {
+            LBox* box = ne_go_getBoundingBox(s);
+            gItemVec gItems = getInfoFromRenderGroup(mw, ne_stl_getGroup(getStyle()), box);
+                
+            for (int i = 0; i < gItems.size(); ++i) {
+                gItems.at(i)->setZValue(4);
+                addGraphicalItem(gItems.at(i));
+                mw->getScene()->addItem(gItems.at(i));
+            }
+            
+            gCurveVec gCurves = getInfoFromRenderGroup(mw, ne_stl_getGroup(getStyle()), box,  NULL);
+            for (int i = 0; i < gCurves.size(); ++i) {
+                addGraphicalCurve(gCurves.at(i));
+                for (GraphicalCurve::constGPathIt gPIt = gCurves.at(i)->gPathsBegin(); gPIt != gCurves.at(i)->gPathsEnd(); ++gPIt) {
+                    (*gPIt)->setZValue(4);
+                    mw->getScene()->addItem(*gPIt);
+                }
+                setLineEndings(mw, gCurves.at(i));
+            }
+        }
+        
+        // graphical text
+        GraphicalText* _graphicalText = NULL;
+        NText* text = NULL;
+        for (int j = 0; j < ne_go_getNumTexts(s); ++j) {
+            text = ne_go_getText(s, j);
+            
+            // create graphical text
+            _graphicalText =  new GraphicalText();
+            
+            // set the species as the graphical object of graphical text
+            _graphicalText->setAssociatedGObject(s);
+            
+            // set text glyph
+            _graphicalText->setNGraphicalObject(text);
+            
+            // set id
+            if (ne_go_isSetGlyphId(text))
+                _graphicalText->setId(ne_go_getGlyphId(text));
+            
+            // set style
+            _graphicalText->setStyle(mw, ST_TYPE_TXT);
+            
+            // update values
+            _graphicalText->updateValues(mw);
+            
+            // add to the graphical texts of graphical species
+            addGraphicalText(_graphicalText);
+        }
+        
+#if !GRAPHVIZ_INCLUDED
+        // fit species connected items to the species bounding box
+        if (_fitConnectedItems)
+            fitConnectedItemsToBoundingBox(mw);
+#endif
+    }
+}
+
+// Graphical Reaction
+
+void GraphicalReaction::addGSReference(GraphicalSReference* sr) {
+    _sReferenceInfo.push_back(sr);
+}
+
+void GraphicalReaction::removeGSReference(unsigned int graphicalSReferenceIndex) {
+    if (graphicalSReferenceIndex >= _sReferenceInfo.size() || graphicalSReferenceIndex < 0)
+        std::cerr << "the entered graphical species reference index is not within the gSReferenceVec range\n";
+    else {
+        // set the iterator to the desired graphical species reference
+        constGSReferenceIt _it = gSReferencesBegin();
+        for (int i = 0; i < graphicalSReferenceIndex; ++i)
+            ++_it;
+        // remove the desired graphical species reference from the gSReferenceVec
+        _sReferenceInfo.erase(_it);
+    }
+}
+
+void GraphicalReaction::setGSReferences(const gSReferenceVec& srv) {
+    _sReferenceInfo = srv;
+}
+
+const GraphicalReaction::gSReferenceVec& GraphicalReaction::getGSReferences() const {
+    return _sReferenceInfo;
+}
+
+const size_t GraphicalReaction::getNumGSReference() const {
+    return _sReferenceInfo.size();
+}
+
+void GraphicalReaction::updateValues(MainWindow* mw) {
+    // reset values
+    resetGraphicalItems(mw);
+    resetGraphicalCurves(mw);
+    resetGraphicalTexts(mw);
+    unSetId();
+    
+    if (isSetNGraphicalObject()) {
+        sbne::NReaction* r = (sbne::NReaction*)getNGraphicalObject();
+        
+        // set id
+        if (ne_go_isSetGlyphId(r))
+            setId(ne_go_getGlyphId(r));
+        
+        // curve
+        if (ne_rxn_isSetCurve(r)) {
+            gCurveVec gCurves = getInfoFromRenderGroup(mw, ne_stl_getGroup(getStyle()), NULL,  ne_rxn_getCurve(r));
+            for (int i = 0; i < gCurves.size(); ++i) {
+                addGraphicalCurve(gCurves.at(i));
+                for (GraphicalCurve::constGPathIt gPIt = gCurves.at(i)->gPathsBegin(); gPIt != gCurves.at(i)->gPathsEnd(); ++gPIt) {
+                    (*gPIt)->setZValue(2);
+                    mw->getScene()->addItem(*gPIt);
+                }
+                setLineEndings(mw, gCurves.at(i));
+            }
+        }
+        // graphical items
+        else if (ne_go_isSetBoundingBox(r)) {
+            LBox* box = ne_go_getBoundingBox(r);
+            gItemVec gItems = getInfoFromRenderGroup(mw, ne_stl_getGroup(getStyle()), box);
+                
+            for(int i = 0; i < gItems.size(); ++i) {
+                gItems.at(i)->setZValue(2);
+                addGraphicalItem(gItems.at(i));
+                mw->getScene()->addItem(gItems.at(i));
+            }
+            
+            gCurveVec gCurves = getInfoFromRenderGroup(mw, ne_stl_getGroup(getStyle()), box,  NULL);
+            for (int i = 0; i < gCurves.size(); ++i) {
+                addGraphicalCurve(gCurves.at(i));
+                for (GraphicalCurve::constGPathIt gPIt = gCurves.at(i)->gPathsBegin(); gPIt != gCurves.at(i)->gPathsEnd(); ++gPIt) {
+                    (*gPIt)->setZValue(2);
+                    mw->getScene()->addItem(*gPIt);
+                }
+                setLineEndings(mw, gCurves.at(i));
+            }
+        }
+        
+        // graphical text
+        GraphicalText* _graphicalText = NULL;
+        NText* text = NULL;
+        for (int j = 0; j < ne_go_getNumTexts(r); ++j) {
+            text = ne_go_getText(r, j);
+            
+            // create graphical text
+            _graphicalText =  new GraphicalText();
+            
+            // set the species as the graphical object of graphical text
+            _graphicalText->setAssociatedGObject(r);
+            
+            // set text glyph
+            _graphicalText->setNGraphicalObject(text);
+            
+            // set id
+            if (ne_go_isSetGlyphId(text))
+                _graphicalText->setId(ne_go_getGlyphId(text));
+            
+            // set style
+            _graphicalText->setStyle(mw, ST_TYPE_TXT);
+            
+            // update values
+            _graphicalText->updateValues(mw);
+            
+            // add to the graphical texts of graphical species
+            addGraphicalText(_graphicalText);
+        }
+    }
+}
+
+// Graphical SReference
+
+void GraphicalSReference::setRole(const std::string& role) {
+    _role = role;
+    _isSetRole = true;
+}
+
+void GraphicalSReference::unSetRole() {
+    _role.clear();
+    _isSetRole = false;
+}
+
+const std::string& GraphicalSReference::getRole() const {
+    return _role;
+}
+
+void GraphicalSReference::fitToSpeciesPosition(MainWindow* mw) {
+    if (isSetNGraphicalObject() && ((NSpeciesReference*)getNGraphicalObject())->isSetSpecies()) {
+        NSpeciesReference* sr = (NSpeciesReference*)getNGraphicalObject();
+        NSpecies* s =((NSpeciesReference*)getNGraphicalObject())->getSpecies();
+        LCurve::constElementIt eIt;
+        LPoint boxPoint;
+        SpcSide speciesSide;
+        for (constGCurveIt gCIt = gCurvesBegin(); gCIt != gCurvesEnd(); ++gCIt) {
+            if ((*gCIt)->isSetLCurve()) {
+                switch(sr->getQuadrant()) {
+                    case sbne::Quad_I_1:
+                    case sbne::Quad_IV_2:
+                        speciesSide = sbne::LEFT_SIDE;
+                        break;
+                    
+                    case sbne::Quad_I_2:
+                    case sbne::Quad_II_1:
+                        speciesSide = sbne::BOTTOM_SIDE;
+                        break;
+                        
+                    case sbne::Quad_II_2:
+                    case sbne::Quad_III_1:
+                        speciesSide = sbne::RIGHT_SIDE;
+                        break;
+                        
+                    case sbne::Quad_III_2:
+                    case sbne::Quad_IV_1:
+                        speciesSide = sbne::TOP_SIDE;
+                        break;
+                }
+                
+                // get the species box point of species reference
+                boxPoint = getSReferenceSpeciesBoxPoint(s, sr, speciesSide);
+                
+                // for products
+                if (sr->getRole() == 1 || sr->getRole() == 3) {
+                    // update the end point
+                    eIt = (*gCIt)->getLCurve()->elementsEnd() - 1;
+                    (*eIt)->setEnd(boxPoint);
+                }
+                // for substrates, modifiers, activators, and inhibitors
+                else {
+                    // update the start point
+                    eIt = (*gCIt)->getLCurve()->elementsBegin();
+                    (*eIt)->setStart(boxPoint);
+                }
+                
+                // enable the flag of layout modification
+                mw->getSBMLDocument()->setLayoutModified(true);
+                
+                (*gCIt)->updateValues(mw, getStyle(), true);
+            }
+        }
+    }
+}
+
+void GraphicalSReference::updateValues(MainWindow* mw) {
+    // reset values
+    resetGraphicalItems(mw);
+    resetGraphicalCurves(mw);
+    unSetId();
+    unSetRole();
+    
+    if (isSetNGraphicalObject()) {
+        NSpeciesReference* sr = (NSpeciesReference*)getNGraphicalObject();
+        
+        // set id
+        if (ne_go_isSetGlyphId(sr))
+            setId(ne_go_getGlyphId(sr));
+        
+        // set the role of graphical species reference
+        if (ne_sr_isSetRole(sr))
+            setRole(ne_sr_getRoleAsString(sr));
+        
+        // curve
+        if (ne_sr_isSetCurve(sr)) {
+            gCurveVec gCurves = getInfoFromRenderGroup(mw, ne_stl_getGroup(getStyle()), NULL,  ne_sr_getCurve(sr));
+            for (int i = 0; i < gCurves.size(); ++i) {
+                addGraphicalCurve(gCurves.at(i));
+                for (GraphicalCurve::constGPathIt gPIt = gCurves.at(i)->gPathsBegin(); gPIt != gCurves.at(i)->gPathsEnd(); ++gPIt) {
+                    (*gPIt)->setZValue(1);
+                    mw->getScene()->addItem(*gPIt);
+                }
+                setLineEndings(mw, gCurves.at(i));
+            }
+        }
+    }
+}
+
+// Graphical Text
+
+void GraphicalText::setAssociatedGObject(sbne::NGraphicalObject* gO) {
+    _associatedGObject = gO;
+    _isSetAssociatedGObject = true;
+}
+
+sbne::NGraphicalObject* GraphicalText::getAssociatedGObject() {
+    return _associatedGObject;
+}
+
+void GraphicalText::setStyle(MainWindow* mw, const sbne::StyleType& styleType) {
+    if (mw && mw->isSetSBMLDocument()) {
+        sbne::VGlobalStyle* style = ne_ven_findStyle(mw->getSBMLDocument()->getVeneer(), getNGraphicalObject(), styleType);
+        if (style)
+            GraphicalObjectBase::setStyle(style);
+        else
+            GraphicalObjectBase::setStyle(mw, true);
+    }
+}
+
+void GraphicalText::updateValues(MainWindow* mw) {
+    // reset values
+    resetGraphicalItems(mw);
+    unSetId();
+    
+    sbne::NText* t = NULL;
+    if (isSetNGraphicalObject()) {
+        unSetPlainText();
+        t = (NText*)getNGraphicalObject();
+        
+        // set id
+        if (ne_go_isSetGlyphId(t))
+            setId(ne_go_getGlyphId(t));
+        
+        // set plain text
+        if (ne_gtxt_isSetPlainText(t))
+            setPlainText(ne_gtxt_getPlainText(t));
+        else if (mw && mw->isSetSBMLDocument() && mw->getSBMLDocument()->getLayoutInfo()) {
+            NGraphicalObject* gO = NULL;
+            // origin of text id is set
+            if (ne_gtxt_isSetOriginOfTextId(t))
+                gO = ne_net_getNetworkElement(mw->getSBMLDocument()->getLayoutInfo()->net, ne_gtxt_getOriginOfTextId(t));
+            // graphical object id is set
+            else if (ne_gtxt_isSetGraphicalObjectId(t))
+                gO = ne_net_getNetworkElement(mw->getSBMLDocument()->getLayoutInfo()->net, ne_gtxt_getGraphicalObjectId(t));
+            
+            if (gO) {
+                // get name
+                if (gO->isSetName())
+                    setPlainText(gO->getName());
+                // get id
+                else if (gO->isSetId())
+                    setPlainText(gO->getId());
+                // get glyph id
+                else if (gO->isSetGlyphId())
+                    setPlainText(gO->getGlyphId());
+            }
+        }
+    }
+    
+    if (isSetAssociatedGObject()) {
+        
+        // set graphical item
+        if (((t && ne_go_isSetBoundingBox(t)) || ne_go_isSetBoundingBox(getAssociatedGObject())) && isSetPlainText()) {
+            
+            sbne::LBox* bbox = ne_go_getBoundingBox(getNGraphicalObject());
+            if (!bbox)
+                bbox = ne_go_getBoundingBox(getAssociatedGObject());
+            
+            if (bbox) {
+                // graphical item
+                gItemVec _gItems(0);
+                _gItems.push_back(new MyQGraphicsTextItem(QString(getPlainText().c_str()), QRectF(ne_bb_getX(bbox) + 0.05 * ne_bb_getWidth(bbox), ne_bb_getY(bbox) + 0.05 * ne_bb_getHeight(bbox), 0.9 * ne_bb_getWidth(bbox), 0.9 * ne_bb_getHeight(bbox))));
+                
+                if (isSetStyle())
+                    _gItems = getInfoFromRenderGroup(mw, ne_stl_getGroup(getStyle()), (MyQGraphicsTextItem*)_gItems.at(0));
+                
+                for(int i = 0; i < _gItems.size(); ++i) {
+                    _gItems.at(i)->setZValue(5);
+                    addGraphicalItem(_gItems.at(i));
+                    mw->getScene()->addItem(_gItems.at(i));
+                }
+            }
+        }
+    }
+}
+
+void GraphicalText::setPlainText(const std::string& plainText) {
+    _plainText = plainText;
+    _isSetPlainText = true;
+}
+
+void GraphicalText::unSetPlainText() {
+    _plainText.clear();
+    _isSetPlainText = false;
+}
+
+const std::string& GraphicalText::getPlainText() const {
+    return _plainText;
+}
+
 // Graphical Curve
 
 void GraphicalCurve::setLCurve(sbne::LCurve* lc) {
@@ -1806,10 +1728,11 @@ void GraphicalCurve::removeGraphicalPath(unsigned int graphicalPathIndex) {
     }
 }
 
-void GraphicalCurve::clearGraphicalPaths(MainWindow* mw) {
+void GraphicalCurve::clearGraphicalPaths(MainWindow* mw, const bool& isLineEnding) {
     gPathIt pIt = _graphicalPaths.begin();
     while (pIt != _graphicalPaths.end()) {
-        mw->getScene()->removeItem(*pIt);
+        if (!isLineEnding)
+            mw->getScene()->removeItem(*pIt);
         delete *pIt;
         _graphicalPaths.erase(pIt);
         pIt = _graphicalPaths.begin();
@@ -1832,42 +1755,76 @@ void GraphicalCurve::addGraphicalPath(QGraphicsPathItem* p) {
     _graphicalPaths.push_back(p);
 }
 
-void GraphicalCurve::setStartGraphicalItem(QGraphicsItem* startGraphicalItem) {
-    _startGraphicalItem = startGraphicalItem;
-    _isSetStartGraphicalItem = true;
+void GraphicalCurve::addStartGraphicalItem(QGraphicsItem* g) {
+    _startGraphicalItems.push_back(g);
 }
 
-void GraphicalCurve::unSetStartGraphicalItem(MainWindow* mw) {
-    if (_startGraphicalItem) {
-        mw->getScene()->removeItem(_startGraphicalItem);
-        delete _startGraphicalItem;
+void GraphicalCurve::removeStartGraphicalItem(unsigned int graphicalItemIndex) {
+    if (graphicalItemIndex >= _startGraphicalItems.size() || graphicalItemIndex < 0)
+        std::cerr << "the entered graphical item index is not within the startGItemVec range\n";
+    else {
+        // set the iterator to the desired graphical item
+        constGItemIt _it = startGItemsBegin();
+        for (int i = 0; i < graphicalItemIndex; ++i)
+            ++_it;
+        // remove the desired graphical species reference from the gItemVec
+        _startGraphicalItems.erase(_it);
     }
-    
-    _startGraphicalItem = NULL;
-    _isSetStartGraphicalItem = false;
 }
 
-QGraphicsItem* GraphicalCurve::getStartGraphicalItem() {
-    return _startGraphicalItem;
+void GraphicalCurve::setStartGraphicalItems(const gItemVec& giv) {
+    _startGraphicalItems = giv;
 }
 
-void GraphicalCurve::setEndGraphicalItem(QGraphicsItem* endGraphicalItem) {
-    _endGraphicalItem = endGraphicalItem;
-    _isSetEndGraphicalItem = true;
+const GraphicalCurve::gItemVec& GraphicalCurve::getStartGraphicalItems() const {
+    return _startGraphicalItems;
 }
 
-void GraphicalCurve::unSetEndGraphicalItem(MainWindow* mw) {
-    if (_endGraphicalItem) {
-        mw->getScene()->removeItem(_endGraphicalItem);
-        delete _endGraphicalItem;
+void GraphicalCurve::clearStartGraphicalItems(MainWindow* mw, const bool& isLineEnding) {
+    gItemIt iIt = _startGraphicalItems.begin();
+    while (iIt != _startGraphicalItems.end()) {
+        if (!isLineEnding)
+            mw->getScene()->removeItem(*iIt);
+        delete *iIt;
+        _startGraphicalItems.erase(iIt);
+        iIt = _startGraphicalItems.begin();
     }
-    
-    _endGraphicalItem = NULL;
-    _isSetEndGraphicalItem = false;
 }
 
-QGraphicsItem* GraphicalCurve::getEndGraphicalItem() {
-    return _endGraphicalItem;
+void GraphicalCurve::addEndGraphicalItem(QGraphicsItem* g) {
+    _endGraphicalItems.push_back(g);
+}
+
+void GraphicalCurve::removeEndGraphicalItem(unsigned int graphicalItemIndex) {
+    if (graphicalItemIndex >= _endGraphicalItems.size() || graphicalItemIndex < 0)
+        std::cerr << "the entered graphical item index is not within the endGItemVec range\n";
+    else {
+        // set the iterator to the desired graphical item
+        constGItemIt _it = endGItemsBegin();
+        for (int i = 0; i < graphicalItemIndex; ++i)
+            ++_it;
+        // remove the desired graphical species reference from the gItemVec
+        _endGraphicalItems.erase(_it);
+    }
+}
+
+void GraphicalCurve::setEndGraphicalItems(const gItemVec& giv) {
+    _endGraphicalItems = giv;
+}
+
+const GraphicalCurve::gItemVec& GraphicalCurve::getEndGraphicalItems() const {
+    return _endGraphicalItems;
+}
+
+void GraphicalCurve::clearEndGraphicalItems(MainWindow* mw, const bool& isLineEnding) {
+    gItemIt iIt = _endGraphicalItems.begin();
+    while (iIt != _endGraphicalItems.end()) {
+        if (!isLineEnding)
+            mw->getScene()->removeItem(*iIt);
+        delete *iIt;
+        _endGraphicalItems.erase(iIt);
+        iIt = _endGraphicalItems.begin();
+    }
 }
       
 void GraphicalCurve::setStartPoint(const QPointF& sPoint) {
@@ -1983,11 +1940,9 @@ const std::string& GraphicalCurve::getEndLineEnding() const {
 }
 
 void GraphicalCurve::updateValues(MainWindow* mw, sbne::VGlobalStyle* style, const bool& _setLineEndings) {
-    
-    // rest graphical curve values
-    clearGraphicalPaths(mw);
-    unSetStartGraphicalItem(mw);
-    unSetEndGraphicalItem(mw);
+    // reset values
+    clearStartGraphicalItems(mw);
+    clearEndGraphicalItems(mw);
     unSetStartPoint();
     unSetEndPoint();
     unSetStartSlope();
@@ -1997,223 +1952,4 @@ void GraphicalCurve::updateValues(MainWindow* mw, sbne::VGlobalStyle* style, con
     unSetStartLineEnding();
     unSetEndLineEnding();
     unSetId();
-    
-    // set graphical item using layout curve
-    if (isSetLCurve()) {
-        sbne::LCurve* lcurve = getLCurve();
-        QGraphicsPathItem* _graphicalPath;
-        QPainterPath* _cubicbezier;
-        
-        // set id
-        if (ne_ne_isSetId(lcurve))
-            setId(ne_ne_getId(lcurve));
-        
-        for (int i = 0; i < ne_crv_getNumElements(lcurve); ++i) {
-            sbne::LLineSegment* l = ne_crv_getElement(lcurve, i);
-            
-            // get start point
-            QPointF sPoint(qreal(ne_point_getX(ne_ls_getStart(l))), qreal(ne_point_getY(ne_ls_getStart(l))));
-            
-            // get end point
-            QPointF ePoint(qreal(ne_point_getX(ne_ls_getEnd(l))), qreal(ne_point_getY(ne_ls_getEnd(l))));
-            setEndPoint(ePoint);
-            
-            // get base points
-            QPointF basePoint1, basePoint2;
-            if (ne_ls_isCubicBezier(l)) {
-                basePoint1 = QPointF(qreal(ne_point_getX(ne_cb_getBasePoint1(l))), qreal(ne_point_getY(ne_cb_getBasePoint1(l))));
-                
-                basePoint2 = QPointF(qreal(ne_point_getX(ne_cb_getBasePoint2(l))), qreal(ne_point_getY(ne_cb_getBasePoint2(l))));
-            }
-            else {
-                basePoint1 = sPoint;
-                basePoint2 = ePoint;
-            }
-            
-            // create the graphical path
-            _cubicbezier = new QPainterPath(sPoint);
-            _cubicbezier->cubicTo(basePoint1, basePoint2, ePoint);
-            _graphicalPath = new QGraphicsPathItem(*_cubicbezier);
-            _graphicalPath->setZValue(1);
-            addGraphicalPath(_graphicalPath);
-            
-            // set start point and slope
-            if (i == 0) {
-                
-                // start point
-                setStartPoint(sPoint);
-                
-                // start slope
-                double numerator, denominator;
-                if (sPoint == basePoint1) {
-                    numerator = sPoint.y() - ePoint.y();
-                    denominator = sPoint.x() - ePoint.x();
-                }
-                else {
-                    numerator = sPoint.y() - basePoint1.y();
-                    denominator = sPoint.x() - basePoint1.x();
-                }
-                
-                // set the start slope of graphical curve
-                setStartSlope((180.0 / pi) * std::atan2( numerator, denominator));
-            }
-            
-            // set end point and slope
-            if (i == ne_crv_getNumElements(lcurve) - 1) {
-                
-                // end point
-                setEndPoint(ePoint);
-                
-                // end slope
-                double numerator, denominator;
-                if (ePoint == basePoint2) {
-                    numerator = ePoint.y() - sPoint.y();
-                    denominator = ePoint.x() - sPoint.x();
-                }
-                else {
-                    numerator = ePoint.y() - basePoint2.y();
-                    denominator = ePoint.x() - basePoint2.x();
-                }
-                
-                // set the start slope of graphical curve
-                setEndSlope((180.0 / pi) * std::atan2( numerator, denominator));
-            }
-        }
-        
-        if (style)
-            getInfoFromStyle(mw, style, this);
-        
-        // display the reaction graphical curve
-        for (constGPathIt gPIt = gPathsBegin(); gPIt != gPathsEnd(); ++gPIt)
-            mw->getScene()->addItem(*gPIt);
-        
-        // set line endings
-        if (_setLineEndings)
-            setLineEndings(mw, this);
-    }
-    
-    // set graphical item using rendre curve
-    else if (isSetRCurve() && ne_rc_getNumVertices(getRCurve()) > 1) {
-        sbne::RCurve* rcurve = getRCurve();
-        QGraphicsPathItem* _graphicalPath;
-        QPainterPath* _cubicbezier;
-        
-        // set id
-        if (ne_ve_isSetId(rcurve))
-            setId(ne_ve_getId(rcurve));
-        
-        QRectF boundingRect(0.0, 0.0, 0.0, 0.0);
-        if (isSetBoundingBox())
-            boundingRect = QRectF(ne_bb_getX(getBoundingBox()), ne_bb_getY(getBoundingBox()), ne_bb_getWidth(getBoundingBox()), ne_bb_getHeight(getBoundingBox()));
-        
-        QPointF sPoint, ePoint;
-        for (int i = 0; i < ne_rc_getNumVertices(rcurve); ++i) {
-            sbne::RenPoint* rp = ne_rc_getVertex(rcurve, i);
-            sbne::RAVector* rPointX,* rPointY;
-            QPointF basePoint1, basePoint2;
-            
-            // render point
-            rPointX = ne_rp_getX(ne_vrx_getRenderPoint(rp));
-            rPointY = ne_rp_getX(ne_vrx_getRenderPoint(rp));
-            
-            if (i == 0)
-                sPoint = QPointF(qreal(boundingRect.x() + ne_rav_getAbsoluteValue(rPointX) + boundingRect.width() * (0.01 * ne_rav_getRelativeValue(rPointX))), qreal(boundingRect.y() + ne_rav_getAbsoluteValue(rPointY) + boundingRect.height() * (0.01 * ne_rav_getRelativeValue(rPointY))));
-            else {
-                ePoint = QPointF(qreal(boundingRect.x() + ne_rav_getAbsoluteValue(rPointX) + boundingRect.width() * (0.01 * ne_rav_getRelativeValue(rPointX))), qreal(boundingRect.y() + ne_rav_getAbsoluteValue(rPointY) + boundingRect.height() * (0.01 * ne_rav_getRelativeValue(rPointY))));
-                
-                // get base points
-                if (ne_vrx_isRenderCubicBezier(rp)) {
-                    rPointX = ne_rp_getX(ne_vrx_getBasePoint1(rp));
-                    rPointY = ne_rp_getY(ne_vrx_getBasePoint1(rp));
-                    basePoint1 = QPointF(qreal(boundingRect.x() + ne_rav_getAbsoluteValue(rPointX) + boundingRect.width() * (0.01 * ne_rav_getRelativeValue(rPointX))), qreal(boundingRect.y() + ne_rav_getAbsoluteValue(rPointY) + boundingRect.height() * (0.01 * ne_rav_getRelativeValue(rPointY))));
-                    
-                    rPointX = ne_rp_getX(ne_vrx_getBasePoint2(rp));
-                    rPointY = ne_rp_getY(ne_vrx_getBasePoint2(rp));
-                    basePoint2 = QPointF(qreal(boundingRect.x() + ne_rav_getAbsoluteValue(rPointX) + boundingRect.width() * (0.01 * ne_rav_getRelativeValue(rPointX))), qreal(boundingRect.y() + ne_rav_getAbsoluteValue(rPointY) + boundingRect.height() * (0.01 * ne_rav_getRelativeValue(rPointY))));
-                }
-                else {
-                    basePoint1 = sPoint;
-                    basePoint2 = ePoint;
-                }
-                
-                // create the graphical path
-                _cubicbezier = new QPainterPath(sPoint);
-                if (i > 0)
-                    _cubicbezier->cubicTo(basePoint1, basePoint2, ePoint);
-                _graphicalPath = new QGraphicsPathItem(*_cubicbezier);
-                _graphicalPath->setZValue(1);
-                addGraphicalPath(_graphicalPath);
-                
-                // set end point and slope
-                if (i == 1) {
-                    
-                    // start point
-                    setStartPoint(sPoint);
-                    
-                    // start slope
-                    double numerator, denominator;
-                    if (sPoint == basePoint1) {
-                        numerator = sPoint.y() - ePoint.y();
-                        denominator = sPoint.x() - ePoint.x();
-                    }
-                    else {
-                        numerator = sPoint.y() - basePoint1.y();
-                        denominator = sPoint.x() - basePoint1.x();
-                    }
-                    
-                    // set the start slope of graphical curve
-                    setStartSlope((180.0 / pi) * std::atan2( numerator, denominator));
-                }
-                
-                // set end point and slope
-                if (i == ne_rc_getNumVertices(rcurve) - 1) {
-                    
-                    // end point
-                    setEndPoint(ePoint);
-                    
-                    // end slope
-                    double numerator, denominator;
-                    if (ePoint == basePoint2) {
-                        numerator = ePoint.y() - sPoint.y();
-                        denominator = ePoint.x() - sPoint.x();
-                    }
-                    else {
-                        numerator = ePoint.y() - basePoint2.y();
-                        denominator = ePoint.x() - basePoint2.x();
-                    }
-                    
-                    // set the start slope of graphical curve
-                    setEndSlope((180.0 / pi) * std::atan2( numerator, denominator));
-                }
-                
-                sPoint = ePoint;
-            }
-        }
-        
-        if (style)
-            getInfoFromStyle(mw, style, this);
-        
-        // display the reaction graphical curve
-        for (constGPathIt gPIt = gPathsBegin(); gPIt != gPathsEnd(); ++gPIt)
-            mw->getScene()->addItem(*gPIt);
-        
-        // set line endings
-        if (_setLineEndings)
-            setLineEndings(mw, this);
-    }
 }
-
-void GraphicalCurve::setId(const std::string& id) {
-    _id = id;
-    _isSetId = true;
-}
-
-void GraphicalCurve::unSetId() {
-    _id.clear();
-    _isSetId = false;
-}
-
-const std::string& GraphicalCurve::getId() const {
-    return _id;
-}
-

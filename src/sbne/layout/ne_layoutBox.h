@@ -20,8 +20,28 @@ public:
         _depth = 0.0;
     }
     
-    LBox(const LBox& box)
-    : _x(box.x()), _y(box.y()), _z(box.z()), _width(box.width()), _height(box.height()), _depth(box.depth()) {
+    LBox(const LBox& box) {
+        // id
+        if (box.isSetId())
+            setId(box.getId());
+        
+        // x
+        setX(box.x());
+        
+        // y
+        setY(box.y());
+        
+        // z
+        setZ(box.z());
+        
+        // width
+        setWidth(box.width());
+        
+        // height
+        setHeight(box.height());
+        
+        // depth
+        setDepth(box.depth());
     }
 
     LBox(const LPoint& min, const LPoint& max)

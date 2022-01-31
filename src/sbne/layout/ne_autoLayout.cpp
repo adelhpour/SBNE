@@ -18,6 +18,7 @@ void locateNetworkItems(Network* net) {
     double minYCompartment;
     double maxXCompartment;
     double maxYCompartment;
+    int stringLength;
     
     Agraph_t *g = NULL;
     Agraph_t *subg = NULL;
@@ -41,60 +42,59 @@ void locateNetworkItems(Network* net) {
         // add species to the sub graph
         for (constSpeciesIt sIt = c->speciesBegin(); sIt != c->speciesEnd(); ++sIt) {
             s = *sIt;
-            
-            if (!s->isUsed()) {
-                value = s->getId();
-                node1 = agnode(subg, &value[0], true);
-                attribute = "width";
-                value = std::to_string(minSpeciesBoxWidth / 72.0);
-                agsafeset(node1, &attribute[0], &value[0], &value[0]);
-                attribute = "height";
-                value = std::to_string(minSpeciesBoxHeight / 72.0);
-                agsafeset(node1, &attribute[0], &value[0], &value[0]);
-                attribute = "fixedsize";
-                value = "false";
-                agsafeset(node1, &attribute[0], &value[0], &value[0]);
-                attribute = "shape";
-                value = "rectangle";
-                agsafeset(node1, &attribute[0], &value[0], &value[0]);
-            }
+            if (s->isSetName())
+                stringLength = s->getName().length();
+            else
+                stringLength = s->getId().length();
+            value = s->getId();
+            node1 = agnode(subg, &value[0], true);
+            attribute = "width";
+            value = std::to_string((std::max(std::min(14.5 * (stringLength + 2), maxSpeciesBoxWidth), minSpeciesBoxHeight)) / 72.0);
+            agsafeset(node1, &attribute[0], &value[0], &value[0]);
+            attribute = "height";
+            value = std::to_string(minSpeciesBoxHeight / 72.0);
+            agsafeset(node1, &attribute[0], &value[0], &value[0]);
+            attribute = "fixedsize";
+            value = "false";
+            agsafeset(node1, &attribute[0], &value[0], &value[0]);
+            attribute = "shape";
+            value = "rectangle";
+            agsafeset(node1, &attribute[0], &value[0], &value[0]);
         }
     }
     
     // add reactions to the graph
     for (constReactionIt rIt = net->reactionsBegin(); rIt != net->reactionsEnd(); ++rIt) {
         r = *rIt;
-        if (!r->isUsed()) {
-            value = r->getId();
-            node2 = agnode(g, &value[0], true);
-            attribute = "width";
-            value = std::to_string(0.8 * minSpeciesBoxHeight / 72.0);
-            agsafeset(node2, &attribute[0], &value[0], &value[0]);
-            attribute = "height";
-            value = std::to_string(0.8 * minSpeciesBoxHeight / 72.0);
-            agsafeset(node2, &attribute[0], &value[0], &value[0]);
-            attribute = "fixedsize";
-            value = "true";
-            agsafeset(node2, &attribute[0], &value[0], &value[0]);
-            attribute = "shape";
-            value = "ellipse";
-            agsafeset(node2, &attribute[0], &value[0], &value[0]);
-            
-            // add species references to the graph
-            sr = NULL;
-            for (constSReferenceIt sRIt = r->sReferencesBegin(); sRIt != r->sReferencesEnd(); ++sRIt) {
-                sr = *sRIt;
-                if (!sr->isUsed() && sr->isSetSpecies()) {
-                    value = sr->getSpecies()->getId();
-                    node1 = agnode(g, &value[0], true);
-                    value = sr->getId();
-                    
-                    // set the species reference according to its role
-                    if (sr->getRole() == 1 || sr->getRole() == 3)
-                        e = agedge(g, node2, node1, &value[0], true);
-                    else
-                        e = agedge(g, node1, node2, &value[0], true);
-                }
+        value = r->getId();
+        node2 = agnode(g, &value[0], true);
+        attribute = "width";
+        value = std::to_string(0.8 * minSpeciesBoxHeight / 72.0);
+        agsafeset(node2, &attribute[0], &value[0], &value[0]);
+        attribute = "height";
+        value = std::to_string(0.8 * minSpeciesBoxHeight / 72.0);
+        agsafeset(node2, &attribute[0], &value[0], &value[0]);
+        attribute = "fixedsize";
+        value = "true";
+        agsafeset(node2, &attribute[0], &value[0], &value[0]);
+        attribute = "shape";
+        value = "ellipse";
+        agsafeset(node2, &attribute[0], &value[0], &value[0]);
+        
+        // add species references to the graph
+        sr = NULL;
+        for (constSReferenceIt sRIt = r->sReferencesBegin(); sRIt != r->sReferencesEnd(); ++sRIt) {
+            sr = *sRIt;
+            if (!sr->isUsed() && sr->isSetSpecies()) {
+                value = sr->getSpecies()->getId();
+                node1 = agnode(g, &value[0], true);
+                value = sr->getId();
+                
+                // set the species reference according to its role
+                if (sr->getRole() == 1 || sr->getRole() == 3)
+                    e = agedge(g, node2, node1, &value[0], true);
+                else
+                    e = agedge(g, node1, node2, &value[0], true);
             }
         }
     }
@@ -157,12 +157,12 @@ void locateNetworkItems(Network* net) {
             bBox = new LBox();
             
             // set the position
-            bBox->setX(minXCompartment - 0.05 * (maxXCompartment - minXCompartment));
-            bBox->setY(minYCompartment - 0.05 * (maxYCompartment - minYCompartment));
+            bBox->setX(minXCompartment - 0.1 * (maxXCompartment - minXCompartment));
+            bBox->setY(minYCompartment - 0.1 * (maxYCompartment - minYCompartment));
             
             // set dimensions
-            bBox->setWidth(1.1 * (maxXCompartment - minXCompartment));
-            bBox->setHeight(1.1 * (maxYCompartment - minYCompartment));
+            bBox->setWidth(1.2 * (maxXCompartment - minXCompartment));
+            bBox->setHeight(1.2 * (maxYCompartment - minYCompartment));
             
             // set species box;
             c->setBox(bBox);
@@ -1201,7 +1201,7 @@ void packReactionsIntoCompartment(NCompartment* c) {
    LBox compartmentBox, * reactionBox;
    for (constReactionIt rIt = c->reactionsBegin(); rIt != c->reactionsEnd(); ++rIt) {
        if ((*rIt)->getNumConnectedReactions() == 0 && (*rIt)->isMatchWithGlyph()) {
-           reactionBox = new LBox((*rIt)->getExtentBox());
+           reactionBox = new LBox(*(*rIt)->getExtentBox());
            mainReactionBoxes.push_back(reactionBox);
        }
    }
@@ -1219,7 +1219,7 @@ void packReactionsIntoCompartment(NCompartment* c) {
    LPoint shiftDistance(0.0, 0.0);
    for (constReactionIt rIt = c->reactionsBegin(); rIt != c->reactionsEnd(); ++rIt) {
        if ((*rIt)->getNumConnectedReactions() == 0 && (*rIt)->isMatchWithGlyph()) {
-           shiftDistance = mainReactionBoxes.at(boxIndex)->upperLeftCorner() - (*rIt)->getExtentBox().upperLeftCorner();
+           shiftDistance = mainReactionBoxes.at(boxIndex)->upperLeftCorner() - (*rIt)->getExtentBox()->upperLeftCorner();
            if (shiftDistance.mag() > 0.0000001)
                (*rIt)->shiftItems(shiftDistance.x(), shiftDistance.y());
            ++boxIndex;

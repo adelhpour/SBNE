@@ -69,6 +69,15 @@ The steps to build SBNE from its source code are as follows:
     *  On Windows, you can either click on "Open Project" button on CMake-gui or open the generated ``.sln`` file in ``<root directory>/build`` in Visual Studio. Once Visual Studio is launched, change the configuration to "Release", and build ``ALL-BUILD`` and ``INSTALL``.
     
     *  On macOS and Linux, simply go to ``<root directory>/build`` and run ``make`` and then ``make install`` on terminal.
+    
+Install Python package
+######################
+
+The Python bindings of SBNE API can be installed using a "pip install" as a collection of pip packages (*currently on TestPyPI*):
+
+.. code-block:: bash
+
+    $ pip install -i https://test.pypi.org/simple/ libsbne
 
 Download SBNE binaries
 ######################

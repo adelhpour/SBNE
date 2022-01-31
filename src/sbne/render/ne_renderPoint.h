@@ -23,6 +23,21 @@ public:
         _z = z;
     }
     
+    RPoint(const RPoint& rp) {
+        // id
+        if (rp.isSetId())
+            setId(rp.getId());
+        
+        // x
+        _x = rp.x();
+        
+        // y
+        _y = rp.y();
+        
+        // z
+        _z = rp.z();
+    }
+    
     /// Functions
     // set id
     void setId(const std::string& id);

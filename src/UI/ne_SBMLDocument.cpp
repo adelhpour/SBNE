@@ -36,7 +36,6 @@ void NESBMLDocument::loadLayoutInfo(MainWindow *mw){
             // compartments
             NCompartment* c = NULL;
             GraphicalCompartment* _compInfo = NULL;
-            GraphicalText* _graphicalText = NULL;
             for (int i = 0; i < ne_net_getNumCompartments(getNetwork()); ++i) {
                 c = ne_net_getCompartment(getNetwork(), i);
                 
@@ -45,27 +44,10 @@ void NESBMLDocument::loadLayoutInfo(MainWindow *mw){
                     _compInfo = new GraphicalCompartment();
                     
                     // set the compartment of graphical compartment
-                    _compInfo->setCompartment(c);
+                    _compInfo->setNGraphicalObject(c);
                     
                     // set the id of graphical compartment
                     _compInfo->setId(ne_go_getGlyphId(c));
-                    
-                    // set the graphical text of graphical compartment
-                    _graphicalText =  new GraphicalText();
-                    
-                    // set the compartment as the graphical object of graphical text
-                    _graphicalText->setGObject(c);
-                    
-                    // set text glyph
-                    if (ne_go_isSetText(c)) {
-                        _graphicalText->setText(ne_go_getText(c));
-                        
-                        if (ne_go_isSetGlyphId(ne_go_getText(c)))
-                            _graphicalText->setId(ne_go_getGlyphId(ne_go_getText(c)));
-                    }
-                    
-                    // set the graphical text of graphical compartment
-                    _compInfo->setGText(_graphicalText);
                     
                     // add the graphical compartment to the list of graphical compartments
                     mw->addGCompartment(_compInfo);
@@ -75,7 +57,6 @@ void NESBMLDocument::loadLayoutInfo(MainWindow *mw){
             // species and texts
             NSpecies* s = NULL;
             GraphicalSpecies* _speciesInfo = NULL;
-            _graphicalText = NULL;
             for (int i = 0; i < ne_net_getNumSpecies(getNetwork()); ++i) {
                 s = ne_net_getSpecies(getNetwork(), i);
                 
@@ -84,7 +65,7 @@ void NESBMLDocument::loadLayoutInfo(MainWindow *mw){
                     _speciesInfo = new GraphicalSpecies();
                     
                     // set the species of graphical speceis
-                    _speciesInfo->setSpecies(s);
+                    _speciesInfo->setNGraphicalObject(s);
                     
                     // set the id of graphical species
                     _speciesInfo->setId(ne_go_getGlyphId(s));
@@ -92,30 +73,6 @@ void NESBMLDocument::loadLayoutInfo(MainWindow *mw){
                     // set the role of graphical species
                     //if (s->isSetObjectRole())
                         //_speciesInfo->setRole(s->getObjectRole());
-                    
-                    // set the graphical text of graphical species
-                    GraphicalText* _graphicalText =  new GraphicalText();
-                    
-                    // set the species as the graphical object of graphical text
-                    _graphicalText->setGObject(s);
-                    
-                    // set text glyph
-                    if (ne_go_isSetText(s)) {
-                        _graphicalText->setText(ne_go_getText(s));
-                        
-                        if (ne_go_isSetGlyphId(ne_go_getText(s)))
-                            _graphicalText->setId(ne_go_getGlyphId(ne_go_getText(s)));
-                    }
-                    else {
-                        // set plain text
-                        if (ne_ne_isSetName(s))
-                            _graphicalText->setPlainText(ne_ne_getName(s));
-                        else
-                            _graphicalText->setPlainText(ne_ne_getId(s));
-                    }
-                    
-                    // set the graphical text of graphical species
-                    _speciesInfo->setGText(_graphicalText);
 
                     // add the graphical species to the list of graphical species
                     mw->addGSpecies(_speciesInfo);
@@ -125,6 +82,8 @@ void NESBMLDocument::loadLayoutInfo(MainWindow *mw){
             // reactions
             NReaction* r = NULL;
             GraphicalReaction* _reactionInfo = NULL;
+            NSpeciesReference* sr = NULL;
+            GraphicalSReference* _sReferenceInfo = NULL;
             for (int i = 0; i < ne_net_getNumReactions(getNetwork()); ++i) {
                 r = ne_net_getReaction(getNetwork(), i);
                 
@@ -133,20 +92,12 @@ void NESBMLDocument::loadLayoutInfo(MainWindow *mw){
                     _reactionInfo = new GraphicalReaction();
                     
                     // set the reaction of graphical reaction
-                    _reactionInfo->setReaction(r);
+                    _reactionInfo->setNGraphicalObject(r);
                     
                     // set the id of graphical reaction
                     _reactionInfo->setId(ne_go_getGlyphId(r));
-                    
-                    // set the graphical curve of graphical reaction
-                    GraphicalCurve* _graphicalCurve1 = new GraphicalCurve();
-                    
-                    // set the graphical curve of graphical reaction
-                    _reactionInfo->setGCurve(_graphicalCurve1);
                         
                     // get species references
-                    NSpeciesReference* sr = NULL;
-                    GraphicalSReference* _sReferenceInfo = NULL;
                     for (int j = 0; j < ne_rxn_getNumSpeciesReferences(r); ++j) {
                         sr = ne_rxn_getSpeciesReference(r, j);
                         
@@ -155,7 +106,7 @@ void NESBMLDocument::loadLayoutInfo(MainWindow *mw){
                             _sReferenceInfo = new GraphicalSReference();
                             
                             // set the species reference of graphical species reference
-                            _sReferenceInfo->setSReference(sr);
+                            _sReferenceInfo->setNGraphicalObject(sr);
                             
                             // set the id of graphical species reference
                             _sReferenceInfo->setId(ne_go_getGlyphId(sr));
@@ -163,20 +114,6 @@ void NESBMLDocument::loadLayoutInfo(MainWindow *mw){
                             // set the role of graphical species reference
                             if (ne_sr_isSetRole(sr))
                                 _sReferenceInfo->setRole(ne_sr_getRoleAsString(sr));
-                            
-                            // set the graphical curve of graphical species reference
-                            GraphicalCurve* _graphicalCurve2 = new GraphicalCurve();
-                            
-                            // set curve
-                            if (ne_sr_isSetCurve(sr)) {
-                                _graphicalCurve2->setLCurve(ne_sr_getCurve(sr));
-                                
-                                if (ne_ne_isSetId(ne_sr_getCurve(sr)))
-                                    _graphicalCurve2->setId(ne_ne_getId(ne_sr_getCurve(sr)));
-                            }
-                            
-                            // set the graphical curve of graphical species reference
-                            _sReferenceInfo->setGCurve(_graphicalCurve2);
                             
                             // add the graphical species reference to the list of graphical species references
                             _reactionInfo->addGSReference(_sReferenceInfo);
@@ -274,22 +211,33 @@ void NESBMLDocument::loadRenderInfo(MainWindow *mw){
 
             // get line endings from vneeer
             GraphicalLineEnding *_gLEnding = NULL;
+            VLineEnding* lE = NULL;
             for (int i = 0; i < ne_ven_getNumLineEndings(getVeneer()); ++i) {
-                // create a new graphical line ending
-                _gLEnding = new GraphicalLineEnding();
+                lE = ne_ven_getLineEnding(getVeneer(), i);
                 
-                // get info from vneeer line ending
-                getInfoFromLineEnding(mw, ne_ven_getLineEnding(getVeneer(), i), _gLEnding);
-                
-                // store the graphical line ending
-                mw->addGLEnding(_gLEnding);
+                if (ne_ve_isSetId(lE)) {
+                    // create a new graphical line ending
+                    _gLEnding = new GraphicalLineEnding();
+                    
+                    // set the line endding of graphical line ending
+                    _gLEnding->setLEnding(lE);
+                    
+                    // set the id of graphical line ending
+                    _gLEnding->setId(ne_ve_getId(lE));
+                    
+                    // store the graphical line ending
+                    mw->addGLEnding(_gLEnding);
+                    
+                    // get graphical line ending values
+                    _gLEnding->updateValues(mw);
+                }
             }
             
             // get compartments info from veneer
             for (MainWindow::constGCompartmentIt cIt = mw->gCompartmentsBegin(); cIt != mw->gCompartmentsEnd(); ++cIt){
                 
                 // find the style in veneer
-                (*cIt)->setStyle(mw, false);
+                (*cIt)->setStyle(mw);
                 
                 // get graphical compartment values
                 (*cIt)->updateValues(mw);
@@ -298,7 +246,7 @@ void NESBMLDocument::loadRenderInfo(MainWindow *mw){
             // get species info from veneer
             for (MainWindow::constGSpeciesIt sIt = mw->gSpeciesBegin(); sIt != mw->gSpeciesEnd(); ++sIt) {
                 // find the style in veneer
-                (*sIt)->setStyle(mw, false);
+                (*sIt)->setStyle(mw);
                 
                 // get graphical species values
                 if (isLayoutAlreadyExisted())
@@ -311,7 +259,7 @@ void NESBMLDocument::loadRenderInfo(MainWindow *mw){
             for (MainWindow::constGReactionIt rIt = mw->gReactionsBegin(); rIt != mw->gReactionsEnd(); ++rIt) {
                 
                 // find the style in veneer
-                (*rIt)->setStyle(mw, false);
+                (*rIt)->setStyle(mw);
                 
                 // get graphical reaction values
                 (*rIt)->updateValues(mw);
@@ -319,7 +267,7 @@ void NESBMLDocument::loadRenderInfo(MainWindow *mw){
                 // get species references
                 for (GraphicalReaction::constGSReferenceIt sRIt = (*rIt)->gSReferencesBegin(); sRIt != (*rIt)->gSReferencesEnd(); ++sRIt) {
                     // find the style in veneer
-                    (*sRIt)->setStyle(mw, false);
+                    (*sRIt)->setStyle(mw);
                     
                     // get graphical species reference values
                     (*sRIt)->updateValues(mw);
@@ -412,91 +360,104 @@ GraphicalGradient* findGraphicalGradient(MainWindow *mw, const std::string& grad
     return NULL;
 }
 
-QGraphicsItem* findLineEnding(MainWindow *mw, const std::string& lineEndingId, const QPen& curvePen, bool& enableRotation){
+std::vector<QGraphicsItem*> findLineEnding(MainWindow *mw, const std::string& lineEndingId, const QPen& curvePen, bool& enableRotation) {
+    std::vector<QGraphicsItem*> gItems(0);
+    QGraphicsItem* gItem;
     
     // search among all the line endings to find the one with the same id
-    for (int i = 0; i < mw->getNumGLEndings(); ++i) {
-        
+    for (MainWindow::constGLEndingIt gLEIt = mw->gLEndingsBegin(); gLEIt != mw->gLEndingsEnd(); ++gLEIt) {
         // if the the line ending with the same id is found
-        if (stringCompare(mw->getLEndingInfo().at(i)->getId(), lineEndingId)) {
-            
+        if (stringCompare((*gLEIt)->getId(), lineEndingId)) {
             // get enable rotation status of the line ending
-            enableRotation = mw->getLEndingInfo().at(i)->getRotation();
+            enableRotation = (*gLEIt)->getRotation();
             
-            // make a copy of the graphical line ending
-            QGraphicsItem* gItem;
+            // make a copy of the graphical item of the line ending
+            for (GraphicalObjectBase::constGItemIt gItemIt = (*gLEIt)->gItemsBegin(); gItemIt != (*gLEIt)->gItemsEnd(); ++gItemIt) {
+                switch ((*gItemIt)->type()) {
+                    case 2:
+                        // create a new qpainter path item
+                        gItem = new QGraphicsPathItem(((QGraphicsPathItem *)(*gItemIt))->path());
+                        
+                        // set the pen of graphical path item using the pen of the curve it is assigned to
+                        ((QGraphicsPathItem *)gItem)->setPen(curvePen);
+                        
+                        // set the brush of graphical path item
+                        ((QGraphicsPathItem *)gItem)->setBrush(((QGraphicsPathItem *)(*gItemIt))->brush());
+                        break;
+                        
+                    case 3:
+                        // create a new graphics rect item
+                        gItem = new QGraphicsRectItem();
+                        
+                        // set the pen of graphics rect item using the pen of the curve it is assigned to
+                        ((QGraphicsRectItem *)gItem)->setPen(curvePen);
+                        
+                        // set the brush of graphics rect item
+                        ((QGraphicsRectItem *)gItem)->setBrush(((QGraphicsRectItem *)(*gItemIt))->brush());
+                        
+                        // set the bounding rect of graphics rect item
+                        ((QGraphicsRectItem *)gItem)->setRect(((QGraphicsRectItem *)(*gItemIt))->rect());
+                        break;
+                        
+                    case 4:
+                        // create a new graphics ellipse item
+                        gItem = new QGraphicsEllipseItem();
+                        
+                        // set the pen of graphics ellipse item using the pen of the curve it is assigned to
+                        ((QGraphicsEllipseItem *)gItem)->setPen(curvePen);
+                        
+                        // set the brush of graphics ellipse item
+                        ((QGraphicsEllipseItem *)gItem)->setBrush(((QGraphicsEllipseItem *)(*gItemIt))->brush());
+                        
+                        // set the bounding rect of graphics ellipse item
+                        ((QGraphicsEllipseItem *)gItem)->setRect(((QGraphicsEllipseItem *)(*gItemIt))->rect());
+                        break;
+                        
+                    case 5:
+                        // create a new graphics polygon item
+                        gItem = new QGraphicsPolygonItem();
+                        
+                        // set the pen of graphics polygon item using the pen of the curve it is assigned to
+                        ((QGraphicsPolygonItem *)gItem)->setPen(curvePen);
+                        
+                        // set the brush of graphics polygon item
+                        ((QGraphicsPolygonItem *)gItem)->setBrush(((QGraphicsPolygonItem *)(*gItemIt))->brush());
+                        
+                        // set the fill rule of graphics polygon item
+                        ((QGraphicsPolygonItem *)gItem)->setFillRule(((QGraphicsPolygonItem *)(*gItemIt))->fillRule());
+                        
+                        // set the polygon of graphics polygon item
+                        ((QGraphicsPolygonItem *)gItem)->setPolygon(((QGraphicsPolygonItem *)(*gItemIt))->polygon());
+                        break;
+                        
+                    case 7:
+                        gItem = new QGraphicsPixmapItem(((QGraphicsPixmapItem *)(*gItemIt))->pixmap());
+                        ((QGraphicsPixmapItem*)(gItem))->setPos(((QGraphicsPixmapItem *)(*gItemIt))->x(), ((QGraphicsPixmapItem *)(*gItemIt))->y());
+                        
+                        break;
+                }
+                
+                if (gItem)
+                    gItems.push_back(gItem);
+            }
             
-            switch (mw->getLEndingInfo().at(i)->getGraphicalItem()->type()) {
-                case 2:
+            // make a copy of the graphical curve of the line ending
+            for (GraphicalObjectBase::constGCurveIt gCurveIt = (*gLEIt)->gCurvesBegin(); gCurveIt != (*gLEIt)->gCurvesEnd(); ++gCurveIt) {
+                
+                for (GraphicalCurve::constGPathIt gPIt = (*gCurveIt)->gPathsBegin(); gPIt != (*gCurveIt)->gPathsEnd(); ++gPIt) {
                     // create a new qpainter path item
-                    gItem = new QGraphicsPathItem(((QGraphicsPathItem *)(mw->getLEndingInfo().at(i)->getGraphicalItem()))->path());
+                    gItem = new QGraphicsPathItem((*gPIt)->path());
                     
                     // set the pen of graphical path item using the pen of the curve it is assigned to
                     ((QGraphicsPathItem *)gItem)->setPen(curvePen);
                     
-                    // set the brush of graphical path item
-                    ((QGraphicsPathItem *)gItem)->setBrush(((QGraphicsPathItem *)(mw->getLEndingInfo().at(i)->getGraphicalItem()))->brush());
-                    
-                    return gItem;
-                    
-                case 3:
-                    // create a new graphics rect item
-                    gItem = new QGraphicsRectItem();
-                    
-                    // set the pen of graphics rect item using the pen of the curve it is assigned to
-                    ((QGraphicsRectItem *)gItem)->setPen(curvePen);
-                    
-                    // set the brush of graphics rect item
-                    ((QGraphicsRectItem *)gItem)->setBrush(((QGraphicsRectItem *)(mw->getLEndingInfo().at(i)->getGraphicalItem()))->brush());
-                    
-                    // set the bounding rect of graphics rect item
-                    ((QGraphicsRectItem *)gItem)->setRect(((QGraphicsRectItem *)(mw->getLEndingInfo().at(i)->getGraphicalItem()))->rect());
-                    
-                    return gItem;
-                    
-                case 4:
-                    // create a new graphics ellipse item
-                    gItem = new QGraphicsEllipseItem();
-                    
-                    // set the pen of graphics ellipse item using the pen of the curve it is assigned to
-                    ((QGraphicsEllipseItem *)gItem)->setPen(curvePen);
-                    
-                    // set the brush of graphics ellipse item
-                    ((QGraphicsEllipseItem *)gItem)->setBrush(((QGraphicsEllipseItem *)(mw->getLEndingInfo().at(i)->getGraphicalItem()))->brush());
-                    
-                    // set the bounding rect of graphics ellipse item
-                    ((QGraphicsEllipseItem *)gItem)->setRect(((QGraphicsEllipseItem *)(mw->getLEndingInfo().at(i)->getGraphicalItem()))->rect());
-                    
-                    return gItem;
-                    
-                case 5:
-                    // create a new graphics polygon item
-                    gItem = new QGraphicsPolygonItem();
-                    
-                    // set the pen of graphics polygon item using the pen of the curve it is assigned to
-                    ((QGraphicsPolygonItem *)gItem)->setPen(curvePen);
-                    
-                    // set the brush of graphics polygon item
-                    ((QGraphicsPolygonItem *)gItem)->setBrush(((QGraphicsPolygonItem *)(mw->getLEndingInfo().at(i)->getGraphicalItem()))->brush());
-                    
-                    // set the fill rule of graphics polygon item
-                    ((QGraphicsPolygonItem *)gItem)->setFillRule(((QGraphicsPolygonItem *)(mw->getLEndingInfo().at(i)->getGraphicalItem()))->fillRule());
-                    
-                    // set the polygon of graphics polygon item
-                    ((QGraphicsPolygonItem *)gItem)->setPolygon(((QGraphicsPolygonItem *)(mw->getLEndingInfo().at(i)->getGraphicalItem()))->polygon());
-                    
-                    return gItem;
-                    
-                case 7:
-                    gItem = new QGraphicsPixmapItem(((QGraphicsPixmapItem *)(mw->getLEndingInfo().at(i)->getGraphicalItem()))->pixmap());
-                    ((QGraphicsPixmapItem*)(gItem))->setPos(((QGraphicsPixmapItem *)(mw->getLEndingInfo().at(i)->getGraphicalItem()))->x(), ((QGraphicsPixmapItem *)(mw->getLEndingInfo().at(i)->getGraphicalItem()))->y());
-                    
-                    return gItem;
+                    gItems.push_back(gItem);
+                }
             }
         }
     }
     
-    return NULL;
+    return gItems;
 }
 
 void getInfoFromColor(GraphicalColor* gColor, VColorDefinition* color, const ColorString colorString) {
@@ -624,440 +585,70 @@ void getInfoFromGradient(MainWindow* mw, VGradientBase* gradient, GraphicalGradi
     gGradient->setId(gradient->getId());
 }
 
-void getInfoFromLineEnding(MainWindow *mw, VLineEnding* lE, GraphicalLineEnding* gLEnding){
-    if (gLEnding) {
-        gLEnding->unSetGraphicalItem();
-        gLEnding->unSetLEnding();
-        gLEnding->unSetRotation();
-        gLEnding->unSetId();
-        
-        // get bounding box of line ending
-        LBox* b = ne_le_getBoundingBox(lE);
-        
-        // get the position of bounding box
-        double x = ne_bb_getX(b);
-        double y = ne_bb_getY(b);
-        
-        // get the dimensions of bounding box
-        double width = ne_bb_getWidth(b);
-        double height = ne_bb_getHeight(b);
-        
-        // set the positon of dimension of bounding rectangle
-        QRectF boundingBox(x, y, width, height);
-        
-        // create the graphical item (the default one is a rectangle) using the bounding rectangle
-        QGraphicsItem* _graphicalItem = new QGraphicsRectItem(boundingBox);
-        
-        // get the group of line ending
-        VRenderGroup* group = ne_le_getGroup(lE);
-        
-        // get info of the graphical item from group of veneer
-        std::string fillRule;
-        getGraphicalItemInfoFromVeneer(mw, group, _graphicalItem, fillRule);
-            
-        // get info of the graphical item from geometric shape of veneer
-        getInfoFromGeometricShape(mw, group, _graphicalItem, fillRule);
-        
-        // set the graphical item of graphical line ending
-        gLEnding->setGraphicalItem(_graphicalItem);
-        
-        // set the rotation of graphical line ending
-        gLEnding->setRotation(ne_le_getEnableRotation(lE));
-        
-        // set the line ending of graphical line ending
-        gLEnding->setLEnding(lE);
-        
-        // set the id of graphical line ending
-        gLEnding->setId(ne_ve_getId(lE));
-    }
-}
-
-void getInfoFromStyle(MainWindow* mw, VGlobalStyle* style, QGraphicsItem* graphicalItem){
-    VRenderGroup* group = ne_stl_getGroup(style);
-    std::string fillRule;
-    
-    // get info of graphical item from group of veneer
-    getGraphicalItemInfoFromVeneer(mw, group, graphicalItem, fillRule);
-    
-    // get info of the geometric shape of veneer
-    getInfoFromGeometricShape(mw, group, graphicalItem, fillRule);
-}
-
-void getInfoFromStyle(MainWindow* mw, VGlobalStyle* style, MyQGraphicsTextItem* graphicalText){
-    VRenderGroup* group = ne_stl_getGroup(style);
-    
-    // get info of graphical text from group of veneer
-    getGraphicalItemInfoFromVeneer(mw, group, graphicalText);
-    
-    // get info of the geometric shape of veneer
-    getInfoFromGeometricShape(mw, group, graphicalText);
-}
-
-void getInfoFromStyle(MainWindow* mw, VGlobalStyle* style, GraphicalCurve* graphicalCurve){
-    VRenderGroup* group = ne_stl_getGroup(style);
-    
-    // get info of graphical curve from group of veneer
-    getGraphicalItemInfoFromVeneer(mw, group, graphicalCurve);
-}
-
-void getInfoFromGeometricShape(MainWindow* mw, VRenderGroup* group, QGraphicsItem* graphicalItem, std::string& fillRule){
-    
-    VTransformation2D* gS = NULL;
-    for (int i = 0; i <  ne_grp_getNumGeometricShapes(group); ++i) {
-        // get geometric shape associated with group
-        gS = ne_grp_getGeometricShape(group, i);
-        
-        if (gS) {
-            switch (ne_gs_getShape(gS)) {
-                // if the geometric shape is an image
-                case 0:
-                    getInfoFromImageShape(gS, graphicalItem);
-                    break;
-                   
-                // if the geometric shape is a rectangle
-                case 3:
-                    getGraphicalItemInfoFromVeneer(mw, gS, graphicalItem, fillRule);
-                    getInfoFromRectangleShape(gS, graphicalItem);
-                    break;
-                   
-                // if the geometric shape is an ellipse
-                case 4:
-                    getGraphicalItemInfoFromVeneer(mw, gS, graphicalItem, fillRule);
-                    getInfoFromEllipseShape(gS, graphicalItem);
-                    break;
-                    
-                // if the geometric shape is a polygon
-                case 5:
-                    getGraphicalItemInfoFromVeneer(mw, gS, graphicalItem, fillRule);
-                    getInfoFromPolygonShape(gS, graphicalItem, fillRule);
-                    break;
-                    
-                default:
-                    break;
-            }
-        }
-    }
-}
-
-void getInfoFromGeometricShape(MainWindow* mw, VRenderGroup* group, MyQGraphicsTextItem* graphicalText){
-    
-    VTransformation2D* gS = NULL;
-    for (int i = 0; i <  ne_grp_getNumGeometricShapes(group); ++i) {
-        // get geometric shape associated with group
-        VTransformation2D* gS = ne_grp_getGeometricShape(group, i);
-        
-        if (gS){
-            // if the graphical shape is a text
-            if (ne_gs_getShape(gS) == 2) {
-                getGraphicalItemInfoFromVeneer(mw, gS, graphicalText);
-                getInfoFromTextShape(gS, graphicalText);
-            }
-        }
-    }
-}
-
-void getInfoFromRectangleShape(VTransformation2D* gS, QGraphicsItem *graphicalItem) {
-    
-    // get the exisitng pen of rectangle
-    QPen pen = ((QGraphicsRectItem *)graphicalItem)->pen();
-    
-    // get the exisitng brush of rectangle
-    QBrush brush = ((QGraphicsRectItem *)graphicalItem)->brush();
-    
-    // get the exisitng bounding rect of rectangle
-    QRectF layoutRect = ((QGraphicsRectItem *)graphicalItem)->rect();
-    
-    // create the new bounding rect and initalize it with the existing one
-    QRectF renderRect = layoutRect;
-    
-    RAVector* rAV = NULL;
-    // if the x value of rectangle shape is set, reset the x value of new bounding rect using its value
-    if (ne_rec_isSetPositionX(gS)) {
-        rAV = ne_rec_getPositionX(gS);
-        renderRect.setX(layoutRect.x()+ qreal(ne_rav_getAbsoluteValue(rAV) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(rAV))));
-    }
-    
-    // if the y value of rectangle shape is set, reset the y value of new bounding rect using its value
-    if (ne_rec_isSetPositionY(gS)) {
-        rAV = ne_rec_getPositionY(gS);
-        renderRect.setY(layoutRect.y()+ qreal(ne_rav_getAbsoluteValue(rAV) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(rAV))));
-    }
-    
-    // if the width value of rectangle shape is set, reset the width value of new bounding rect using its value
-    if (ne_rec_isSetDimensionWidth(gS)) {
-        rAV = ne_rec_getDimensionWidth(gS);
-        renderRect.setWidth(qreal(ne_rav_getAbsoluteValue(rAV) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(rAV))));
-    }
-    
-    // if the height value of rectangle shape is set, reset the height value of new bounding rect using its value
-    if (ne_rec_isSetDimensionHeight(gS)) {
-        rAV = ne_rec_getDimensionHeight(gS);
-        renderRect.setHeight(qreal(ne_rav_getAbsoluteValue(rAV) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(rAV))));
-    }
-    
-    // the ratio of rectangle shape
-    if (ne_rec_isSetRatio(gS)) {
-        // reset the values of new bounding rect using the ratio of rectangle shape
-        double ratio = ne_rec_getRatio(gS);
-        if ((layoutRect.width() / layoutRect.height()) <= ratio) {
-            renderRect.setWidth(layoutRect.width());
-            renderRect.setHeight(layoutRect.width() / ratio);
-            renderRect.moveTo(renderRect.x(), renderRect.y() + 0.5 * (layoutRect.height() - renderRect.height()));
-        }
-        else {
-            renderRect.setWidth(ratio * layoutRect.height());
-            renderRect.setHeight(layoutRect.height());
-            renderRect.moveTo(renderRect.x() + 0.5 * (layoutRect.width() - renderRect.width()), renderRect.y());
-        }
-    }
-    
-    // set the bounding rect of graphical item using new bounding rect
-    ((QGraphicsRectItem *)graphicalItem)->setRect(renderRect);
-    
-    // get the radii of cornver curvatures
-    RAVector* rx = NULL;
-    RAVector* ry = NULL;
-    if (ne_rec_isSetCornerCurvatureRX(gS))
-        rx = ne_rec_getCornerCurvatureRX(gS);
-    if (ne_rec_isSetCornerCurvatureRY(gS))
-        ry = ne_rec_getCornerCurvatureRY(gS);
-    
-    if (rx && !ry)
-        ry = rx;
-    else if (!rx && ry)
-        rx = ry;
-    
-    if (rx && ry) {
-        // create a painter path to draw the rectangle with corner curvatures
-        QPainterPath painterPath;
-        painterPath.addRoundedRect(renderRect, qreal(ne_rav_getAbsoluteValue(rx) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(rx))), qreal(ne_rav_getAbsoluteValue(ry) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(ry))));
-                
-        // cast the graphical item into a graphical path item
-        graphicalItem = new (graphicalItem) QGraphicsPathItem(painterPath);
-        
-        // set the pen of graphical path item
-        ((QGraphicsPathItem *)graphicalItem)->setPen(pen);
-               
-        // set the brush of graphical path item
-        ((QGraphicsPathItem *)graphicalItem)->setBrush(brush);
-    }
-}
-
-void getInfoFromEllipseShape(VTransformation2D* gS, QGraphicsItem *graphicalItem) {
-    
-    // get the exisitng pen of ellipse
-    QPen pen = ((QGraphicsRectItem *)graphicalItem)->pen();
-    
-    // get the exisitng brush of ellipse
-    QBrush brush = ((QGraphicsRectItem *)graphicalItem)->brush();
-    
-    // get the exisitng bounding rect of ellipse
-    QRectF layoutRect = ((QGraphicsRectItem *)graphicalItem)->rect();
-    
-    // create the new bounding rect and initalize it with the existing one
-    QRectF renderRect = layoutRect;
-    
-    RAVector* rAV1 = NULL;
-    RAVector* rAV2 = NULL;
-    if (ne_elp_isSetDimensionRX(gS)) {
-        rAV1 = ne_elp_getDimensionRX(gS);
-        renderRect.setWidth(2 * qreal(ne_rav_getAbsoluteValue(rAV1) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(rAV1))));
-        
-        if (ne_elp_isSetPositionCX(gS)) {
-            rAV2 = ne_elp_getPositionCX(gS);
-            renderRect.setX(layoutRect.x()+ qreal((ne_rav_getAbsoluteValue(rAV2) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(rAV2))) - (ne_rav_getAbsoluteValue(rAV1) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(rAV1)))));
-        }
-    }
-    
-    if (ne_elp_isSetDimensionRY(gS)) {
-        rAV1 = ne_elp_getDimensionRY(gS);
-        renderRect.setHeight(2 * qreal(ne_rav_getAbsoluteValue(rAV1) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(rAV1))));
-        
-        if (ne_elp_isSetPositionCY(gS)) {
-            rAV2 = ne_elp_getPositionCY(gS);
-            renderRect.setY(layoutRect.y()+ qreal((ne_rav_getAbsoluteValue(rAV2) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(rAV2))) - (ne_rav_getAbsoluteValue(rAV1) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(rAV1)))));
-        }
-    }
-    
-    // the ratio of ellipse shape
-    if (ne_elp_isSetRatio(gS)) {
-        // reset the values of new bounding rect using the ratio of ellipse shape
-        double ratio = ne_elp_getRatio(gS);
-        if ((layoutRect.width() / layoutRect.height()) <= ratio) {
-            renderRect.setWidth(layoutRect.width());
-            renderRect.setHeight(layoutRect.width() / ratio);
-            renderRect.moveTo(renderRect.x(), renderRect.y() + 0.5 * (layoutRect.height() - renderRect.height()));
-        }
-        else {
-            renderRect.setWidth(ratio * layoutRect.height());
-            renderRect.setHeight(layoutRect.height());
-            renderRect.moveTo(renderRect.x() + 0.5 * (layoutRect.width() - renderRect.width()), renderRect.y());
-        }
-    }
-    
-    // cast the graphical item into an graphical ellipse item
-    graphicalItem = new (graphicalItem) QGraphicsEllipseItem(renderRect);
-
-    // set the pen of graphical ellipse item
-    ((QGraphicsEllipseItem *)graphicalItem)->setPen(pen);
-    
-    // set the brush of graphical ellipse item
-    ((QGraphicsEllipseItem *)graphicalItem)->setBrush(brush);
-}
-
-void getInfoFromPolygonShape(VTransformation2D* gS, QGraphicsItem* graphicalItem, std::string& fillRule) {
-    
-    // get the exisitng pen of polygon
-    QPen pen = ((QGraphicsRectItem *)graphicalItem)->pen();
-    
-    // get the exisitng brush of polygon
-    QBrush brush = ((QGraphicsRectItem *)graphicalItem)->brush();
-    
-    // get the exisitng bounding rect of polygon
-    QRectF layoutRect = ((QGraphicsRectItem *)graphicalItem)->rect();
-    
-    // create a polygonpath
-    QPainterPath polygonPath;
-    
-    // get the vertices (elments) of polygon shape
-    RenPoint* rp = NULL;
-    RPoint* point = NULL;
-    RAVector* x = NULL;
-    RAVector* y = NULL;
-    RAVector* c1x = NULL;
-    RAVector* c1y = NULL;
-    RAVector* c2x = NULL;
-    RAVector* c2y = NULL;
-    for (int i = 0; i < ne_plg_getNumVertices(gS); ++i) {
-        // get the vertex of polygon
-        rp = ne_plg_getVertex(gS, i);
-        point = ne_vrx_getRenderPoint(rp);
-        x = ne_rp_getX(point);
-        y = ne_rp_getY(point);
-        
-        if (x && y) {
-            if (i == 0)
-                polygonPath.moveTo(QPointF(layoutRect.x() + ne_rav_getAbsoluteValue(x) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(x)), layoutRect.y() + ne_rav_getAbsoluteValue(y) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(y))));
-            else {
-                if (ne_vrx_isRenderCubicBezier(rp)) {
-                    point = ne_vrx_getBasePoint1(rp);
-                    c1x = ne_rp_getX(point);
-                    c1y = ne_rp_getY(point);
-                    point = ne_vrx_getBasePoint2(rp);
-                    c2x = ne_rp_getX(point);
-                    c2y = ne_rp_getY(point);
-                    
-                    polygonPath.cubicTo(QPointF(layoutRect.x() + ne_rav_getAbsoluteValue(c1x) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(c1x)), layoutRect.y() + ne_rav_getAbsoluteValue(c1y) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(c1y))), QPointF(layoutRect.x() + ne_rav_getAbsoluteValue(c2x) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(c2x)), layoutRect.y() + ne_rav_getAbsoluteValue(c2y) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(c2y))), QPointF(layoutRect.x() + ne_rav_getAbsoluteValue(x) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(x)), layoutRect.y() + ne_rav_getAbsoluteValue(y) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(y))));
-                }
-                else
-                    polygonPath.lineTo(QPointF(layoutRect.x() + ne_rav_getAbsoluteValue(x) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(x)), layoutRect.y() + ne_rav_getAbsoluteValue(y) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(y))));
-            }
-        }
-    }
-    polygonPath.closeSubpath();
-    
-    // cast the graphical item into an graphical polygon item and set its polygon using the created polygon
-    graphicalItem = new (graphicalItem) QGraphicsPolygonItem(polygonPath.toFillPolygon());
-    
-    // set the pen of graphical polygon item
-    ((QGraphicsPolygonItem *)graphicalItem)->setPen(pen);
-    
-    // set the brush of graphical polygon item
-    ((QGraphicsPolygonItem *)graphicalItem)->setBrush(brush);
-    
-    // get the vlaue of fill rule of graphical shape
-    if (ne_gs_isSetFillRule(gS))
-        fillRule = ne_gs_getFillRule(gS);
-    
-    // if the value of the fill rule is non zero, set the fill rule of graphical polygon item
-    if (fillRule == "nonzero")
-        ((QGraphicsPolygonItem *)graphicalItem)->setFillRule(Qt::WindingFill);
-}
-
-void getInfoFromImageShape(VTransformation2D* gS, QGraphicsItem* graphicalItem) {
-    
-    // get the exisitng bounding rect of image
-    QRectF layoutRect = ((QGraphicsRectItem *)graphicalItem)->rect();
-    
-    // create the new bounding rect and initalize it with the existing one
-    QRectF renderRect = layoutRect;
-    
-    RAVector* rAV = NULL;
-    // if the x value of image shape is set, reset the x value of new bounding rect using its value
-    if (ne_img_isSetPositionX(gS)) {
-        rAV = ne_img_getPositionX(gS);
-        renderRect.setX(layoutRect.x()+ qreal(ne_rav_getAbsoluteValue(rAV) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(rAV))));
-    }
-    
-    // if the y value of image shape is set, reset the y value of new bounding rect using its value
-    if (ne_img_isSetPositionY(gS)) {
-        rAV = ne_img_getPositionY(gS);
-        renderRect.setY(layoutRect.y()+ qreal(ne_rav_getAbsoluteValue(rAV) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(rAV))));
-    }
-    
-    // if the width value of image shape is set, reset the width value of new bounding rect using its value
-    if (ne_img_isSetDimensionWidth(gS)) {
-        rAV = ne_img_getDimensionWidth(gS);
-        renderRect.setWidth(qreal(ne_rav_getAbsoluteValue(rAV) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(rAV))));
-    }
-    
-    // if the height value of image shape is set, reset the height value of new bounding rect using its value
-    if (ne_img_isSetDimensionHeight(gS)) {
-        rAV = ne_img_getDimensionHeight(gS);
-        renderRect.setHeight(qreal(ne_rav_getAbsoluteValue(rAV) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(rAV))));
-    }
-    
-    // set the bounding rect of graphical image using new bounding rect
-    ((QGraphicsRectItem *)graphicalItem)->setRect(renderRect);
-    
-    // get the href of the image
-    QPixmap* image = NULL;
-    if (ne_img_isSetHref(gS)) {
-        std::string href = ne_img_getHref(gS);
-        image = new QPixmap(href.c_str());
-        
-        if (!image->isNull()) {
-            graphicalItem = new (graphicalItem) QGraphicsPixmapItem(image->scaled(renderRect.width(), renderRect.height()));
-            ((QGraphicsPixmapItem*)(graphicalItem))->setPos(renderRect.x(), renderRect.y());
-        }
-    }
-    
-    if (!image || image->isNull()) {
-        QBrush brush = ((QGraphicsRectItem *)graphicalItem)->brush();
-        QPen pen = ((QGraphicsRectItem *)graphicalItem)->pen();
-        brush.setColor(Qt::black);
-        pen.setColor(Qt::black);
-        ((QGraphicsRectItem *)graphicalItem)->setBrush(brush);
-        ((QGraphicsRectItem *)graphicalItem)->setPen(pen);
-    }
-}
-
-void getInfoFromTextShape(VTransformation2D* gS, MyQGraphicsTextItem* graphicalText) {
-    // get the existing postion and dimension of text
-    qreal x = graphicalText->x();
-    qreal y = graphicalText->y();
-    qreal width = graphicalText->textWidth();
-    
-    RAVector* rAV = NULL;
-    // if the x value of text shape is set, reset the x value of graphical text
-    if (ne_txt_isSetPositionX(gS)) {
-        rAV = ne_txt_getPositionX(gS);
-        graphicalText->setX(x + ne_rav_getAbsoluteValue(rAV) + width * (0.01 * ne_rav_getRelativeValue(rAV)));
-    }
-    
-    // if the y value of text shape is set, reset the y value of graphical text
-    if (ne_txt_isSetPositionY(gS)) {
-        rAV = ne_txt_getPositionY(gS);
-        graphicalText->setX(y + ne_rav_getAbsoluteValue(rAV) + (width / 3.0) * (0.01 * ne_rav_getRelativeValue(rAV)));
-    }
-}
-
-void getGraphicalItemInfoFromVeneer(MainWindow* mw, VRenderGroup* group, QGraphicsItem* graphicalItem, std::string& fillRule) {
+std::vector<QGraphicsItem*> getInfoFromRenderGroup(MainWindow* mw, VRenderGroup* group, LBox* box) {
     std::string strokeColor;
     double strokeWidth = 0.00000001;
     std::vector<unsigned int>* dashes = NULL;
     std::string fillColor;
+    std::string fillRule;
+    std::string fontFamily;
+    RAVector* fontSize = NULL;
+    std::string fontWeight;
+    std::string fontStyle;
+    std::string hTextAnchor;
+    std::string vTextAnchor;
+    std::string startHead;
+    std::string endHead;
     
+    // get info of graphical item from group of veneer
+    getGraphicalItemInfoFromRenderGroup(mw, group, strokeColor, strokeWidth, dashes, fillColor, fillRule, fontFamily, fontSize, fontWeight, fontStyle, hTextAnchor, vTextAnchor, startHead, endHead);
+    
+    // get info of the geometric shape of veneer
+    return getGeometricShapes(mw, group, box, strokeColor, strokeWidth, dashes, fillColor, fillRule);
+}
+
+std::vector<GraphicalCurve*> getInfoFromRenderGroup(MainWindow* mw, VRenderGroup* group, LBox* box, LCurve* curve){
+    std::vector<GraphicalCurve*> cItems(0);
+    GraphicalCurve* cItem = NULL;
+    std::string strokeColor;
+    double strokeWidth = 0.00000001;
+    std::vector<unsigned int>* dashes = NULL;
+    std::string fillColor;
+    std::string fillRule;
+    std::string fontFamily;
+    RAVector* fontSize = NULL;
+    std::string fontWeight;
+    std::string fontStyle;
+    std::string hTextAnchor;
+    std::string vTextAnchor;
+    std::string startHead;
+    std::string endHead;
+    
+    // get info of graphical item from group of veneer
+    getGraphicalItemInfoFromRenderGroup(mw, group, strokeColor, strokeWidth, dashes, fillColor, fillRule, fontFamily, fontSize, fontWeight, fontStyle, hTextAnchor, vTextAnchor, startHead, endHead);
+        
+    // get info from the geometric shape of veneer
+    if (box && group) {
+        for (int i = 0; i <  ne_grp_getNumGeometricShapes(group); ++i) {
+            if (ne_gs_getShape(ne_grp_getGeometricShape(group, i)) == 1) {
+                cItem = getGraphicalCurve(mw, ne_grp_getGeometricShape(group, i), box, strokeColor, strokeWidth, dashes, startHead, endHead);
+                if (cItem)
+                    cItems.push_back(cItem);
+            }
+        }
+    }
+    
+    // get info from curve
+    if (curve) {
+        cItem = getGraphicalCurve(mw, group, curve, strokeColor, strokeWidth, dashes, startHead, endHead);
+        if (cItem)
+            cItems.push_back(cItem);
+    }
+    
+    return cItems;
+}
+
+void getGraphicalItemInfoFromRenderGroup(MainWindow* mw, VRenderGroup* group, std::string& strokeColor, double& strokeWidth, std::vector<unsigned int>*& dashes, std::string& fillColor, std::string& fillRule, std::string& fontFamily, RAVector* fontSize, std::string& fontWeight , std::string& fontStyle, std::string& hTextAnchor, std::string& vTextAnchor, std::string& startHead, std::string& endHead) {
     // get stroke color of group
     if (ne_grp_isSetStrokeColor(group))
         strokeColor = ne_grp_getStrokeColor(group);
@@ -1077,37 +668,808 @@ void getGraphicalItemInfoFromVeneer(MainWindow* mw, VRenderGroup* group, QGraphi
     // get fill rule of group
     if (ne_grp_isSetFillRule(group))
         fillRule = ne_grp_getFillRule(group);
-       
-    setGraphicalItemInfo(mw, graphicalItem, strokeColor, strokeWidth, dashes, fillColor, fillRule);
+    
+    // get font family of group
+    if (ne_grp_isSetFontFamily(group))
+        fontFamily = ne_grp_getFontFamily(group);
+    
+    // get font size of group
+    if (ne_grp_isSetFontSize(group))
+        fontSize = ne_grp_getFontSize(group);
+    
+    // get font weight of group
+    if (ne_grp_isSetFontWeight(group))
+        fontWeight = ne_grp_getFontWeight(group);
+    
+    // get font style of group
+    if (ne_grp_isSetFontStyle(group))
+        fontStyle = ne_grp_getFontStyle(group);
+    
+    // get vertical text anchor of group
+    if (ne_grp_isSetHTextAnchor(group))
+        hTextAnchor = ne_grp_getHTextAnchor(group);
+    
+    // get horizontal text anchor of group
+    if (ne_grp_isSetVTextAnchor(group))
+        vTextAnchor = ne_grp_getVTextAnchor(group);
+    
+    // get start head of group
+    if (ne_grp_isSetStartHead(group))
+        startHead = ne_grp_getStartHead(group);
+    
+    // get end head of group
+    if (ne_grp_isSetEndHead(group))
+        endHead = ne_grp_getEndHead(group);
 }
 
-void getGraphicalItemInfoFromVeneer(MainWindow* mw, VTransformation2D* gS, QGraphicsItem* graphicalItem, std::string& fillRule){
-    std::string strokeColor;
-    double strokeWidth = 0.00000001;
-    std::vector<unsigned int>* dashes = NULL;
-    std::string fillColor;
+std::vector<QGraphicsItem*> getGeometricShapes(MainWindow* mw, VRenderGroup* group, LBox* box, std::string strokeColor, double strokeWidth, std::vector<unsigned int>* dashes, const std::string fillColor, const std::string fillRule) {
+    std::vector<QGraphicsItem*> gItems(0);
+    VTransformation2D* gS = NULL;
+    QGraphicsItem* gItem = NULL;
     
-    // get stroke color of geometric shape
-    if (ne_gs_isSetStrokeColor(gS))
-        strokeColor = ne_gs_getStrokeColor(gS);
+    if (group) {
+        for (int i = 0; i <  ne_grp_getNumGeometricShapes(group); ++i) {
+            // get geometric shape associated with group
+            gS = ne_grp_getGeometricShape(group, i);
+            gItem = NULL;
+            
+            if (gS) {
+                switch (ne_gs_getShape(gS)) {
+                    // image
+                    case 0:
+                        gItem = getImageShape(mw, gS, box);
+                        break;
+                    // rectangle
+                    case 3:
+                        gItem = getRectangleShape(mw, gS, box, strokeColor, strokeWidth, dashes, fillColor);
+                        break;
+                    // ellipse
+                    case 4:
+                        gItem = getEllipseShape(mw, gS, box, strokeColor, strokeWidth, dashes, fillColor);
+                        break;
+                    // polygon
+                    case 5:
+                        gItem = getPolygonShape(mw, gS, box, strokeColor, strokeWidth, dashes, fillColor, fillRule);
+                        break;
+                        
+                    default:
+                        break;
+                }
+            }
+            
+            if (gItem)
+                gItems.push_back(gItem);
+        }
+    }
+    else
+        gItems.push_back(new QGraphicsRectItem(qreal(ne_bb_getX(box)), qreal(ne_bb_getY(box)), qreal(ne_bb_getWidth(box)), qreal(ne_bb_getHeight(box))));
+        
+    return gItems;
+}
+
+QGraphicsItem* getImageShape(MainWindow* mw, VTransformation2D* gS, LBox* box) {
+    QGraphicsItem* imageItem = NULL;
+    QPixmap* image = NULL;
+    RAVector* rAV = NULL;
     
-    // get stroke width of geometric shape
-    if (ne_gs_isSetStrokeWidth(gS))
-        strokeWidth = ne_gs_getStrokeWidth(gS);
+    if (gS && box) {
+        // get the exisitng bounding rect of rectangle
+        QRectF layoutRect(qreal(ne_bb_getX(box)), qreal(ne_bb_getY(box)), qreal(ne_bb_getWidth(box)), qreal(ne_bb_getHeight(box)));
+        
+        // create the new bounding rect and initalize it with the existing one
+        QRectF renderRect = layoutRect;
+        
+        // if the x value of image shape is set, reset the x value of new bounding rect using its value
+        if (ne_img_isSetPositionX(gS)) {
+            rAV = ne_img_getPositionX(gS);
+            renderRect.setX(layoutRect.x()+ qreal(ne_rav_getAbsoluteValue(rAV) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(rAV))));
+        }
+        
+        // if the y value of image shape is set, reset the y value of new bounding rect using its value
+        if (ne_img_isSetPositionY(gS)) {
+            rAV = ne_img_getPositionY(gS);
+            renderRect.setY(layoutRect.y()+ qreal(ne_rav_getAbsoluteValue(rAV) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(rAV))));
+        }
+        
+        // if the width value of image shape is set, reset the width value of new bounding rect using its value
+        if (ne_img_isSetDimensionWidth(gS)) {
+            rAV = ne_img_getDimensionWidth(gS);
+            renderRect.setWidth(qreal(ne_rav_getAbsoluteValue(rAV) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(rAV))));
+        }
+        
+        // if the height value of image shape is set, reset the height value of new bounding rect using its value
+        if (ne_img_isSetDimensionHeight(gS)) {
+            rAV = ne_img_getDimensionHeight(gS);
+            renderRect.setHeight(qreal(ne_rav_getAbsoluteValue(rAV) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(rAV))));
+        }
+        
+        // get the href of the image
+        if (ne_img_isSetHref(gS)) {
+            std::string href = ne_img_getHref(gS);
+            image = new QPixmap(href.c_str());
+            
+            if (!image->isNull()) {
+                imageItem = new QGraphicsPixmapItem(image->scaled(renderRect.width(), renderRect.height()));
+                ((QGraphicsPixmapItem*)(imageItem))->setPos(renderRect.x(), renderRect.y());
+            }
+        }
+        
+        if (!image || image->isNull()) {
+            imageItem = new QGraphicsRectItem(renderRect);
+            ((QGraphicsRectItem *)imageItem)->setPen(getPenFeatures(mw, "Black", 2.0, NULL));
+            ((QGraphicsRectItem *)imageItem)->setBrush(getBrushFeatures(mw, "Black"));
+            
+        }
+    }
     
-    // get stroke dash array of geometric shape
-    if (ne_gs_isSetStrokeDashArray(gS))
-        dashes = ne_gs_getStrokeDashArray(gS);
+    return imageItem;
+}
+
+QGraphicsItem* getTextShape(MainWindow* mw, VTransformation2D* gS, LBox* box, std::string fontFamily, RAVector* fontSize, std::string fontWeight, std::string fontStyle, std::string hTextAnchor, std::string vTextAnchor) {
+    QGraphicsItem* textItem = NULL;
+    RAVector* rAV = NULL;
+    
+    if (gS && box) {
+        // get the font family of group
+        if (ne_txt_isSetFontFamily(gS))
+            fontFamily = ne_txt_getFontFamily(gS);
+        
+        // get the font size of group
+        if (ne_txt_isSetFontSize(gS))
+            fontSize = ne_txt_getFontSize(gS);
+        
+        // get the font wieght of group
+        if (ne_txt_isSetFontWeight(gS))
+            fontWeight = ne_txt_getFontWeight(gS);
+        
+        // get the font style of group
+        if (ne_txt_isSetFontStyle(gS))
+            fontStyle = ne_txt_getFontStyle(gS);
+        
+        // get the horizontal text anchor of group
+        if (ne_txt_isSetHTextAnchor(gS))
+            hTextAnchor = ne_txt_getHTextAnchor(gS);
+        
+        // get the vertical text anchor of group
+        if (ne_txt_isSetVTextAnchor(gS))
+            vTextAnchor = ne_txt_getVTextAnchor(gS);
+        
+        // get the exisitng bounding rect of rectangle
+        QRectF layoutRect(qreal(ne_bb_getX(box)), qreal(ne_bb_getY(box)), qreal(ne_bb_getWidth(box)), qreal(ne_bb_getHeight(box)));
+        
+        // create the new bounding rect and initalize it with the existing one
+        QRectF renderRect = layoutRect;
+        
+        // if the x value of text shape is set, reset the x value of graphical text
+        if (ne_txt_isSetPositionX(gS)) {
+            rAV = ne_txt_getPositionX(gS);
+            renderRect.setX(layoutRect.x() + ne_rav_getAbsoluteValue(rAV) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(rAV)));
+        }
+        
+        // if the y value of text shape is set, reset the y value of graphical text
+        if (ne_txt_isSetPositionY(gS)) {
+            rAV = ne_txt_getPositionY(gS);
+            renderRect.setY(layoutRect.y() + ne_rav_getAbsoluteValue(rAV) + (layoutRect.width() / 3.0) * (0.01 * ne_rav_getRelativeValue(rAV)));
+        }
+        
+        // to be done in future (other aspects)
+        
+        
+        
+        textItem = new MyQGraphicsTextItem("", renderRect);
+    }
+    
+    return textItem;
+}
+
+QGraphicsItem* getRectangleShape(MainWindow* mw, VTransformation2D* gS, LBox* box, std::string strokeColor, double strokeWidth, std::vector<unsigned int>* dashes, std::string fillColor) {
+    QGraphicsItem* rectangleItem = NULL;
+    RAVector* rAV = NULL;
+    RAVector* rx = NULL;
+    RAVector* ry = NULL;
+    
+    if (gS && box) {
+        // get stroke color of geometric shape
+        if (ne_gs_isSetStrokeColor(gS))
+            strokeColor = ne_gs_getStrokeColor(gS);
+        
+        // get stroke width of geometric shape
+        if (ne_gs_isSetStrokeWidth(gS))
+            strokeWidth = ne_gs_getStrokeWidth(gS);
+        
+        // get stroke dash array of geometric shape
+        if (ne_gs_isSetStrokeDashArray(gS))
+            dashes = ne_gs_getStrokeDashArray(gS);
+     
+        // get the fill color of geometric shape
+        if (ne_gs_isSetFillColor(gS))
+            fillColor = ne_gs_getFillColor(gS);
+        
+        // get the exisitng bounding rect of rectangle
+        QRectF layoutRect(qreal(ne_bb_getX(box)), qreal(ne_bb_getY(box)), qreal(ne_bb_getWidth(box)), qreal(ne_bb_getHeight(box)));
+        
+        // create the new bounding rect and initalize it with the existing one
+        QRectF renderRect = layoutRect;
+        
+        // if the x value of rectangle shape is set, reset the x value of new bounding rect using its value
+        if (ne_rec_isSetPositionX(gS)) {
+            rAV = ne_rec_getPositionX(gS);
+            renderRect.setX(layoutRect.x()+ qreal(ne_rav_getAbsoluteValue(rAV) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(rAV))));
+        }
+        // if the y value of rectangle shape is set, reset the y value of new bounding rect using its value
+        if (ne_rec_isSetPositionY(gS)) {
+            rAV = ne_rec_getPositionY(gS);
+            renderRect.setY(layoutRect.y()+ qreal(ne_rav_getAbsoluteValue(rAV) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(rAV))));
+        }
+        // if the width value of rectangle shape is set, reset the width value of new bounding rect using its value
+        if (ne_rec_isSetDimensionWidth(gS)) {
+            rAV = ne_rec_getDimensionWidth(gS);
+            renderRect.setWidth(qreal(ne_rav_getAbsoluteValue(rAV) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(rAV))));
+        }
+        // if the height value of rectangle shape is set, reset the height value of new bounding rect using its value
+        if (ne_rec_isSetDimensionHeight(gS)) {
+            rAV = ne_rec_getDimensionHeight(gS);
+            renderRect.setHeight(qreal(ne_rav_getAbsoluteValue(rAV) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(rAV))));
+        }
+        // the ratio of rectangle shape
+        if (ne_rec_isSetRatio(gS)) {
+            // reset the values of new bounding rect using the ratio of rectangle shape
+            double ratio = ne_rec_getRatio(gS);
+            if ((layoutRect.width() / layoutRect.height()) <= ratio) {
+                renderRect.setWidth(layoutRect.width());
+                renderRect.setHeight(layoutRect.width() / ratio);
+                renderRect.moveTo(renderRect.x(), renderRect.y() + 0.5 * (layoutRect.height() - renderRect.height()));
+            }
+            else {
+                renderRect.setWidth(ratio * layoutRect.height());
+                renderRect.setHeight(layoutRect.height());
+                renderRect.moveTo(renderRect.x() + 0.5 * (layoutRect.width() - renderRect.width()), renderRect.y());
+            }
+        }
+        
+        // get the radii of cornver curvatures
+        if (ne_rec_isSetCornerCurvatureRX(gS)) {
+            rx = ne_rec_getCornerCurvatureRX(gS);
+            if(!ne_rec_isSetCornerCurvatureRY(gS))
+                ry = rx;
+        }
+        if (ne_rec_isSetCornerCurvatureRY(gS)) {
+            ry = ne_rec_getCornerCurvatureRY(gS);
+            if(!ne_rec_isSetCornerCurvatureRX(gS))
+                rx = ry;
+        }
+        
+        if (rx && ry) {
+            // create a painter path to draw the rectangle with corner curvatures
+            QPainterPath painterPath;
+            painterPath.addRoundedRect(renderRect, qreal(ne_rav_getAbsoluteValue(rx) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(rx))), qreal(ne_rav_getAbsoluteValue(ry) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(ry))));
+                    
+            // generate a new graphical path item
+            rectangleItem = new QGraphicsPathItem(painterPath);
+            
+            // set the pen of graphical path item
+            ((QGraphicsPathItem *)rectangleItem)->setPen(getPenFeatures(mw, strokeColor, strokeWidth, dashes));
+                   
+            // set the brush of graphical path item
+            ((QGraphicsPathItem *)rectangleItem)->setBrush(getBrushFeatures(mw, fillColor));
+        }
+        else {
+            // set the bounding rect of graphical item using new bounding rect
+            rectangleItem = new QGraphicsRectItem(renderRect);
+            
+            // set the pen of graphical path item
+            ((QGraphicsRectItem *)rectangleItem)->setPen(getPenFeatures(mw, strokeColor, strokeWidth, dashes));
+                   
+            // set the brush of graphical path item
+            ((QGraphicsRectItem *)rectangleItem)->setBrush(getBrushFeatures(mw, fillColor));
+        }
+    }
+    
+    return rectangleItem;
+}
+
+QGraphicsItem* getEllipseShape(MainWindow* mw, VTransformation2D* gS, LBox* box, std::string strokeColor, double strokeWidth, std::vector<unsigned int>* dashes, std::string fillColor) {
+    QGraphicsItem* ellipseItem = NULL;
+    RAVector* rAV1 = NULL;
+    RAVector* rAV2 = NULL;
+    
+    if (gS && box) {
+        // get stroke color of geometric shape
+        if (ne_gs_isSetStrokeColor(gS))
+            strokeColor = ne_gs_getStrokeColor(gS);
+        
+        // get stroke width of geometric shape
+        if (ne_gs_isSetStrokeWidth(gS))
+            strokeWidth = ne_gs_getStrokeWidth(gS);
+        
+        // get stroke dash array of geometric shape
+        if (ne_gs_isSetStrokeDashArray(gS))
+            dashes = ne_gs_getStrokeDashArray(gS);
+     
+        // get the fill color of geometric shape
+        if (ne_gs_isSetFillColor(gS))
+            fillColor = ne_gs_getFillColor(gS);
+        
+        // get the exisitng bounding rect of rectangle
+        QRectF layoutRect(qreal(ne_bb_getX(box)), qreal(ne_bb_getY(box)), qreal(ne_bb_getWidth(box)), qreal(ne_bb_getHeight(box)));
+        
+        // create the new bounding rect and initalize it with the existing one
+        QRectF renderRect = layoutRect;
+        
+        if (ne_elp_isSetDimensionRX(gS)) {
+            rAV1 = ne_elp_getDimensionRX(gS);
+            renderRect.setWidth(2 * qreal(ne_rav_getAbsoluteValue(rAV1) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(rAV1))));
+            
+            if (ne_elp_isSetPositionCX(gS)) {
+                rAV2 = ne_elp_getPositionCX(gS);
+                renderRect.setX(layoutRect.x()+ qreal((ne_rav_getAbsoluteValue(rAV2) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(rAV2))) - (ne_rav_getAbsoluteValue(rAV1) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(rAV1)))));
+            }
+        }
+        
+        if (ne_elp_isSetDimensionRY(gS)) {
+            rAV1 = ne_elp_getDimensionRY(gS);
+            renderRect.setHeight(2 * qreal(ne_rav_getAbsoluteValue(rAV1) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(rAV1))));
+            
+            if (ne_elp_isSetPositionCY(gS)) {
+                rAV2 = ne_elp_getPositionCY(gS);
+                renderRect.setY(layoutRect.y()+ qreal((ne_rav_getAbsoluteValue(rAV2) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(rAV2))) - (ne_rav_getAbsoluteValue(rAV1) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(rAV1)))));
+            }
+        }
+        
+        // the ratio of ellipse shape
+        if (ne_elp_isSetRatio(gS)) {
+            // reset the values of new bounding rect using the ratio of ellipse shape
+            double ratio = ne_elp_getRatio(gS);
+            if ((layoutRect.width() / layoutRect.height()) <= ratio) {
+                renderRect.setWidth(layoutRect.width());
+                renderRect.setHeight(layoutRect.width() / ratio);
+                renderRect.moveTo(renderRect.x(), renderRect.y() + 0.5 * (layoutRect.height() - renderRect.height()));
+            }
+            else {
+                renderRect.setWidth(ratio * layoutRect.height());
+                renderRect.setHeight(layoutRect.height());
+                renderRect.moveTo(renderRect.x() + 0.5 * (layoutRect.width() - renderRect.width()), renderRect.y());
+            }
+        }
+        
+        // cast the graphical item into an graphical ellipse item
+        ellipseItem = new QGraphicsEllipseItem(renderRect);
+
+        // set the pen of graphical ellipse item
+        ((QGraphicsEllipseItem *)ellipseItem)->setPen(getPenFeatures(mw, strokeColor, strokeWidth, dashes));
+        
+        // set the brush of graphical ellipse item
+        ((QGraphicsEllipseItem *)ellipseItem)->setBrush(getBrushFeatures(mw, fillColor));
+    }
+    
+    return ellipseItem;
+}
+
+QGraphicsItem* getPolygonShape(MainWindow* mw, VTransformation2D* gS, LBox* box, std::string strokeColor, double strokeWidth, std::vector<unsigned int>* dashes, std::string fillColor, std::string fillRule) {
+    QGraphicsItem* polygonItem = NULL;
+    RenPoint* rp = NULL;
+    RPoint* point = NULL;
+    RAVector* x = NULL;
+    RAVector* y = NULL;
+    RAVector* c1x = NULL;
+    RAVector* c1y = NULL;
+    RAVector* c2x = NULL;
+    RAVector* c2y = NULL;
+    
+    if (gS && box) {
+        // get stroke color of geometric shape
+        if (ne_gs_isSetStrokeColor(gS))
+            strokeColor = ne_gs_getStrokeColor(gS);
+        
+        // get stroke width of geometric shape
+        if (ne_gs_isSetStrokeWidth(gS))
+            strokeWidth = ne_gs_getStrokeWidth(gS);
+        
+        // get stroke dash array of geometric shape
+        if (ne_gs_isSetStrokeDashArray(gS))
+            dashes = ne_gs_getStrokeDashArray(gS);
+     
+        // get the fill color of geometric shape
+        if (ne_gs_isSetFillColor(gS))
+            fillColor = ne_gs_getFillColor(gS);
+        
+        // get the value of fill rule of geometric shape
+        if (ne_gs_isSetFillRule(gS))
+            fillRule = ne_gs_getFillRule(gS);
+        
+        // get the exisitng bounding rect of rectangle
+        QRectF layoutRect(qreal(ne_bb_getX(box)), qreal(ne_bb_getY(box)), qreal(ne_bb_getWidth(box)), qreal(ne_bb_getHeight(box)));
+        
+        // create the new bounding rect and initalize it with the existing one
+        QRectF renderRect = layoutRect;
+        
+        // create a polygonpath
+        QPainterPath polygonPath;
+        for (int i = 0; i < ne_plg_getNumVertices(gS); ++i) {
+            // get the vertex of polygon
+            rp = ne_plg_getVertex(gS, i);
+            point = ne_vrx_getRenderPoint(rp);
+            x = ne_rp_getX(point);
+            y = ne_rp_getY(point);
+            
+            if (x && y) {
+                if (i == 0)
+                    polygonPath.moveTo(QPointF(layoutRect.x() + ne_rav_getAbsoluteValue(x) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(x)), layoutRect.y() + ne_rav_getAbsoluteValue(y) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(y))));
+                else {
+                    if (ne_vrx_isRenderCubicBezier(rp)) {
+                        point = ne_vrx_getBasePoint1(rp);
+                        c1x = ne_rp_getX(point);
+                        c1y = ne_rp_getY(point);
+                        point = ne_vrx_getBasePoint2(rp);
+                        c2x = ne_rp_getX(point);
+                        c2y = ne_rp_getY(point);
+                        
+                        polygonPath.cubicTo(QPointF(layoutRect.x() + ne_rav_getAbsoluteValue(c1x) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(c1x)), layoutRect.y() + ne_rav_getAbsoluteValue(c1y) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(c1y))), QPointF(layoutRect.x() + ne_rav_getAbsoluteValue(c2x) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(c2x)), layoutRect.y() + ne_rav_getAbsoluteValue(c2y) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(c2y))), QPointF(layoutRect.x() + ne_rav_getAbsoluteValue(x) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(x)), layoutRect.y() + ne_rav_getAbsoluteValue(y) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(y))));
+                    }
+                    else
+                        polygonPath.lineTo(QPointF(layoutRect.x() + ne_rav_getAbsoluteValue(x) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(x)), layoutRect.y() + ne_rav_getAbsoluteValue(y) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(y))));
+                }
+            }
+        }
+        polygonPath.closeSubpath();
+        
+        // cast the graphical item into an graphical polygon item and set its polygon using the created polygon
+        polygonItem = new QGraphicsPolygonItem(polygonPath.toFillPolygon());
+        
+        // set the pen of graphical ellipse item
+        ((QGraphicsPolygonItem *)polygonItem)->setPen(getPenFeatures(mw, strokeColor, strokeWidth, dashes));
+        
+        // set the brush of graphical ellipse item
+        ((QGraphicsPolygonItem *)polygonItem)->setBrush(getBrushFeatures(mw, fillColor));
+        
+        // if the value of the fill rule is non zero, set the fill rule of graphical polygon item
+        if (fillRule == "nonzero")
+            ((QGraphicsPolygonItem *)polygonItem)->setFillRule(Qt::WindingFill);
+    }
+    
+    return polygonItem;
+}
+
+GraphicalCurve* getGraphicalCurve(MainWindow* mw, VTransformation2D* gS, LBox* box, std::string strokeColor, double strokeWidth, std::vector<unsigned int>* dashes, std::string startHead, std::string endHead) {
+    GraphicalCurve* graphicalCurve = NULL;
+    QGraphicsPathItem* gPath;
+    QPainterPath* cubicbezier;
+    
+    if (gS && box) {
+        graphicalCurve = new GraphicalCurve();
+        
+        // get stroke color of geometric shape
+        if (ne_gs_isSetStrokeColor(gS))
+            strokeColor = ne_gs_getStrokeColor(gS);
+        
+        // get stroke width of geometric shape
+        if (ne_gs_isSetStrokeWidth(gS))
+            strokeWidth = ne_gs_getStrokeWidth(gS);
+        
+        // get stroke dash array of geometric shape
+        if (ne_gs_isSetStrokeDashArray(gS))
+            dashes = ne_gs_getStrokeDashArray(gS);
+        
+        // get start head of geometric shape
+        if (ne_rc_isSetStartHead(gS))
+            startHead = ne_rc_getStartHead(gS);
+        
+        // get end head of geometric shape
+        if (ne_rc_isSetEndHead(gS))
+            endHead = ne_rc_getEndHead(gS);
+        
+        // get the exisitng bounding rect of rectangle
+        QRectF layoutRect(qreal(ne_bb_getX(box)), qreal(ne_bb_getY(box)), qreal(ne_bb_getWidth(box)), qreal(ne_bb_getHeight(box)));
+        
+        QPointF sPoint, ePoint;
+        QPointF basePoint1, basePoint2;
+        RenPoint* rp = NULL;
+        RAVector* rPointX = NULL;
+        RAVector* rPointY =NULL;
+        for (int i = 0; i < ne_rc_getNumVertices(gS); ++i) {
+            cubicbezier = NULL;
+            rp = ne_rc_getVertex(gS, i);
+            
+            // render point
+            rPointX = ne_rp_getX(ne_vrx_getRenderPoint(rp));
+            rPointY = ne_rp_getX(ne_vrx_getRenderPoint(rp));
+            
+            if (i == 0)
+                sPoint = QPointF(qreal(layoutRect.x() + ne_rav_getAbsoluteValue(rPointX) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(rPointX))), qreal(layoutRect.y() + ne_rav_getAbsoluteValue(rPointY) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(rPointY))));
+            else {
+                ePoint = QPointF(qreal(layoutRect.x() + ne_rav_getAbsoluteValue(rPointX) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(rPointX))), qreal(layoutRect.y() + ne_rav_getAbsoluteValue(rPointY) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(rPointY))));
+                
+                // get base points
+                if (ne_vrx_isRenderCubicBezier(rp)) {
+                    rPointX = ne_rp_getX(ne_vrx_getBasePoint1(rp));
+                    rPointY = ne_rp_getY(ne_vrx_getBasePoint1(rp));
+                    basePoint1 = QPointF(qreal(layoutRect.x() + ne_rav_getAbsoluteValue(rPointX) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(rPointX))), qreal(layoutRect.y() + ne_rav_getAbsoluteValue(rPointY) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(rPointY))));
+                    
+                    rPointX = ne_rp_getX(ne_vrx_getBasePoint2(rp));
+                    rPointY = ne_rp_getY(ne_vrx_getBasePoint2(rp));
+                    basePoint2 = QPointF(qreal(layoutRect.x() + ne_rav_getAbsoluteValue(rPointX) + layoutRect.width() * (0.01 * ne_rav_getRelativeValue(rPointX))), qreal(layoutRect.y() + ne_rav_getAbsoluteValue(rPointY) + layoutRect.height() * (0.01 * ne_rav_getRelativeValue(rPointY))));
+                }
+                else {
+                    basePoint1 = sPoint;
+                    basePoint2 = ePoint;
+                }
+                
+                // create the graphical path
+                cubicbezier = new QPainterPath(sPoint);
+                if (i > 0)
+                    cubicbezier->cubicTo(basePoint1, basePoint2, ePoint);
+                gPath = new QGraphicsPathItem(*cubicbezier);
+                gPath->setPen(getPenFeatures(mw, strokeColor, strokeWidth, dashes));
+                graphicalCurve->addGraphicalPath(gPath);
+                
+                // set end point and slope
+                if (i == 1) {
+                    
+                    // start point
+                    graphicalCurve->setStartPoint(sPoint);
+                    
+                    // start slope
+                    double numerator, denominator;
+                    if (sPoint == basePoint1) {
+                        numerator = sPoint.y() - ePoint.y();
+                        denominator = sPoint.x() - ePoint.x();
+                    }
+                    else {
+                        numerator = sPoint.y() - basePoint1.y();
+                        denominator = sPoint.x() - basePoint1.x();
+                    }
+                    
+                    // set the start slope of graphical curve
+                    graphicalCurve->setStartSlope((180.0 / pi) * std::atan2( numerator, denominator));
+                }
+                
+                // set end point and slope
+                if (i == ne_rc_getNumVertices(gS) - 1) {
+                    
+                    // end point
+                    graphicalCurve->setEndPoint(ePoint);
+                    
+                    // end slope
+                    double numerator, denominator;
+                    if (ePoint == basePoint2) {
+                        numerator = ePoint.y() - sPoint.y();
+                        denominator = ePoint.x() - sPoint.x();
+                    }
+                    else {
+                        numerator = ePoint.y() - basePoint2.y();
+                        denominator = ePoint.x() - basePoint2.x();
+                    }
+                    
+                    // set the start slope of graphical curve
+                    graphicalCurve->setEndSlope((180.0 / pi) * std::atan2( numerator, denominator));
+                }
+                
+                sPoint = ePoint;
+            }
+        }
+        
+        // start head
+        if (!startHead.empty())
+            graphicalCurve->setStartLineEnding(startHead);
+        
+        // end head
+        if (!endHead.empty())
+            graphicalCurve->setEndLineEnding(endHead);
+    }
+    
+    return graphicalCurve;
+}
+
+GraphicalCurve* getGraphicalCurve(MainWindow* mw, VRenderGroup* group, LCurve* curve, std::string strokeColor, double strokeWidth, std::vector<unsigned int>* dashes, std::string startHead, std::string endHead) {
+    GraphicalCurve* graphicalCurve = NULL;
+    QGraphicsPathItem* gPath = NULL;
+    QPainterPath* cubicbezier = NULL;
+    
+    if (curve) {
+        graphicalCurve = new GraphicalCurve();
+        
+        LLineSegment* l = NULL;
+        QPointF sPoint, ePoint;
+        QPointF basePoint1, basePoint2;
+        
+        for (int i = 0; i < ne_crv_getNumElements(curve); ++i) {
+            l = ne_crv_getElement(curve, i);
+            
+            // get start point
+            sPoint = QPointF(qreal(ne_point_getX(ne_ls_getStart(l))), qreal(ne_point_getY(ne_ls_getStart(l))));
+            
+            // get end point
+            ePoint = QPointF(qreal(ne_point_getX(ne_ls_getEnd(l))), qreal(ne_point_getY(ne_ls_getEnd(l))));
+            
+            // get base points
+            if (ne_ls_isCubicBezier(l)) {
+                basePoint1 = QPointF(qreal(ne_point_getX(ne_cb_getBasePoint1(l))), qreal(ne_point_getY(ne_cb_getBasePoint1(l))));
+                
+                basePoint2 = QPointF(qreal(ne_point_getX(ne_cb_getBasePoint2(l))), qreal(ne_point_getY(ne_cb_getBasePoint2(l))));
+            }
+            else {
+                basePoint1 = sPoint;
+                basePoint2 = ePoint;
+            }
+            
+            // create the graphical path
+            cubicbezier = new QPainterPath(sPoint);
+            cubicbezier->cubicTo(basePoint1, basePoint2, ePoint);
+            gPath = new QGraphicsPathItem(*cubicbezier);
+            gPath->setPen(getPenFeatures(mw, strokeColor, strokeWidth, dashes));
+            graphicalCurve->addGraphicalPath(gPath);
+            
+            // set start point and slope
+            if (i == 0) {
+                
+                // start point
+                graphicalCurve->setStartPoint(sPoint);
+                
+                // start slope
+                double numerator, denominator;
+                if (sPoint == basePoint1) {
+                    numerator = sPoint.y() - ePoint.y();
+                    denominator = sPoint.x() - ePoint.x();
+                }
+                else {
+                    numerator = sPoint.y() - basePoint1.y();
+                    denominator = sPoint.x() - basePoint1.x();
+                }
+                
+                // set the start slope of graphical curve
+                graphicalCurve->setStartSlope((180.0 / pi) * std::atan2( numerator, denominator));
+            }
+            
+            // set end point and slope
+            if (i == ne_crv_getNumElements(curve) - 1) {
+                
+                // end point
+                graphicalCurve->setEndPoint(ePoint);
+                
+                // end slope
+                double numerator, denominator;
+                if (ePoint == basePoint2) {
+                    numerator = ePoint.y() - sPoint.y();
+                    denominator = ePoint.x() - sPoint.x();
+                }
+                else {
+                    numerator = ePoint.y() - basePoint2.y();
+                    denominator = ePoint.x() - basePoint2.x();
+                }
+                
+                // set the start slope of graphical curve
+                graphicalCurve->setEndSlope((180.0 / pi) * std::atan2( numerator, denominator));
+            }
+        }
+        
+        // start head
+        if (!startHead.empty())
+            graphicalCurve->setStartLineEnding(startHead);
+        
+        // end head
+        if (!endHead.empty())
+            graphicalCurve->setEndLineEnding(endHead);
+    }
+    
+    return graphicalCurve;
+}
  
-    // get the fill color of geometric shape
-    if (ne_gs_isSetFillColor(gS))
-        fillColor = ne_gs_getFillColor(gS);
+QPen getPenFeatures(MainWindow* mw, std::string strokeColor, double strokeWidth, std::vector<unsigned int>* dashes) {
+    QPen pen;
+    // set stroke color of the pen
+    if (!strokeColor.empty())
+        pen.setColor(getQColor(mw, strokeColor));
+    
+    // if stroke width is set, set the width of pen
+    if (strokeWidth > 0.000001)
+        pen.setWidth(strokeWidth);
+           
+    // if stroke dash array is set
+    if (dashes) {
+        // get elements from stroke dash array
+        QVector<qreal> _dashes;
+        for (int i = 0; i < dashes->size(); ++i)
+            _dashes.push_back(qreal(dashes->at(i)));
+        
+        // set the dash pattern of pen
+        pen.setDashPattern(_dashes);
+    }
  
-    // get fill rule of graphical shape
-    if (ne_gs_isSetFillRule(gS))
-        fillRule = ne_gs_getFillRule(gS);
- 
-    setGraphicalItemInfo(mw, graphicalItem, strokeColor, strokeWidth, dashes, fillColor, fillRule);
+    return pen;
+}
+
+QBrush getBrushFeatures(MainWindow* mw, std::string fillColor) {
+    QBrush brush;
+    if (!fillColor.empty()) {
+        // set the brush of graphical item using fill color
+        
+        // if it is a gradient
+        GraphicalGradient* gGradient = findGraphicalGradient(mw, fillColor);
+        if (gGradient && gGradient->isSetGraphicalGradient())
+            brush = QBrush(gGradient->getGraphicalGradient());
+        // if it is a color
+        else
+            brush = QBrush(getQColor(mw, fillColor));
+    }
+    
+    return brush;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+std::vector<QGraphicsItem*> getInfoFromRenderGroup(MainWindow* mw, VRenderGroup* group, MyQGraphicsTextItem* graphicalText){
+    // get info of graphical text from group of veneer
+    getGraphicalItemInfoFromVeneer(mw, group, graphicalText);
+    
+    // get info of the geometric shape of veneer
+    return getInfoFromGeometricShape(mw, group, graphicalText);
+}
+
+std::vector<QGraphicsItem*> getInfoFromGeometricShape(MainWindow* mw, VRenderGroup* group, MyQGraphicsTextItem* graphicalText){
+    std::vector<QGraphicsItem*> gItems(0);
+    VTransformation2D* gS = NULL;
+    QGraphicsItem* gItem = NULL;
+    for (int i = 0; i <  ne_grp_getNumGeometricShapes(group); ++i) {
+        // get geometric shape associated with group
+        gS = ne_grp_getGeometricShape(group, i);
+        
+        gItem = NULL;
+        if (ne_gs_getShape(gS) == 2) {
+            getGraphicalItemInfoFromVeneer(mw, gS, graphicalText);
+            gItem = getInfoFromTextShape(gS, graphicalText);
+            gItems.push_back(gItem);
+        }
+    }
+    
+    if (!gItems.size())
+        gItems.push_back(graphicalText);
+    
+    return gItems;
+}
+
+QGraphicsItem* getInfoFromTextShape(VTransformation2D* gS, MyQGraphicsTextItem* graphicalText) {
+    if (graphicalText) {
+        QGraphicsItem* textItem = new MyQGraphicsTextItem(graphicalText->toPlainText(), graphicalText->boundingRect());
+        
+        // get the existing postion and dimension of text
+        qreal x = graphicalText->x();
+        qreal y = graphicalText->y();
+        qreal width = graphicalText->textWidth();
+        
+        RAVector* rAV = NULL;
+        // if the x value of text shape is set, reset the x value of graphical text
+        if (ne_txt_isSetPositionX(gS)) {
+            rAV = ne_txt_getPositionX(gS);
+            textItem->setX(x + ne_rav_getAbsoluteValue(rAV) + width * (0.01 * ne_rav_getRelativeValue(rAV)));
+        }
+        
+        // if the y value of text shape is set, reset the y value of graphical text
+        if (ne_txt_isSetPositionY(gS)) {
+            rAV = ne_txt_getPositionY(gS);
+            textItem->setY(y + ne_rav_getAbsoluteValue(rAV) + (width / 3.0) * (0.01 * ne_rav_getRelativeValue(rAV)));
+        }
+        
+        // to be done in future (other aspects)
+        return textItem;
+    }
+    
+    return NULL;
 }
 
 void getGraphicalItemInfoFromVeneer(MainWindow* mw, VRenderGroup* group, MyQGraphicsTextItem* graphicalText) {
@@ -1190,105 +1552,6 @@ void getGraphicalItemInfoFromVeneer(MainWindow* mw, VTransformation2D* gS, MyQGr
     setGraphicalItemInfo(mw, graphicalText, strokeColor, fontFamily, fontSize, fontWeight, fontStyle, hTextAnchor, vTextAnchor);
 }
 
-void getGraphicalItemInfoFromVeneer(MainWindow* mw, VRenderGroup* group, GraphicalCurve* graphicalCurve) {
-    std::string strokeColor;
-    double strokeWidth = 0.0000001;
-    std::vector<unsigned int>* dashes = NULL;
-    std::string startHead;
-    std::string endHead;
-    
-    // get stroke color of group
-    if (ne_grp_isSetStrokeColor(group))
-        strokeColor = ne_grp_getStrokeColor(group);
-       
-    // get stroke width of group
-    if (ne_grp_isSetStrokeWidth(group))
-        strokeWidth = ne_grp_getStrokeWidth(group);
-       
-    // get stroke dash array of group
-    if (ne_grp_isSetStrokeDashArray(group))
-        dashes = ne_grp_getStrokeDashArray(group);
-    
-    // get start head of group
-    if (ne_grp_isSetStartHead(group))
-        startHead = ne_grp_getStartHead(group);
-    
-    // get end head of group
-    if (ne_grp_isSetEndHead(group))
-        endHead = ne_grp_getEndHead(group);
-    
-    setGraphicalItemInfo(mw, graphicalCurve, strokeColor, strokeWidth, dashes, startHead, endHead);
-}
-
-void getGraphicalItemInfoFromVeneer(MainWindow* mw, VTransformation2D* gS, GraphicalCurve* graphicalCurve) {
-    std::string strokeColor;
-    double strokeWidth;
-    std::vector<unsigned int>* dashes = NULL;
-    std::string startHead;
-    std::string endHead;
-    
-    // get stroke color of geometric shape
-    if (ne_gs_isSetStrokeColor(gS))
-        strokeColor = ne_gs_getStrokeColor(gS);
-       
-    // get stroke width of geometric shape
-    if (ne_gs_isSetStrokeWidth(gS))
-        strokeWidth = ne_gs_getStrokeWidth(gS);
-       
-    // get stroke dash array of geometric shape
-    if (ne_gs_isSetStrokeDashArray(gS))
-        dashes = ne_gs_getStrokeDashArray(gS);
-    
-    // get start head of geometric shape
-    if (ne_rc_isSetStartHead(gS))
-        startHead = ne_rc_getStartHead(gS);
-    
-    // get end head of geometric shape
-    if (ne_rc_isSetEndHead(gS))
-        endHead = ne_rc_getEndHead(gS);
-    
-    setGraphicalItemInfo(mw, graphicalCurve, strokeColor, strokeWidth, dashes, startHead, endHead);
-}
-
-void setGraphicalItemInfo(MainWindow* mw, QGraphicsItem* graphicalItem, std::string& strokeColor, double& strokeWidth, std::vector<unsigned int>* dashes, std::string& fillColor, std::string& fillRule){
-    
-    // get the exisitng pen of graphical item
-    QPen pen = ((QGraphicsRectItem *)graphicalItem)->pen();
-    
-    // set stroke color of the pen
-    if (!strokeColor.empty())
-        pen.setColor(getQColor(mw, strokeColor));
-    
-    // if stroke width is set, set the width of pen
-    if (strokeWidth > 0.000001)
-        pen.setWidth(strokeWidth);
-           
-    // if stroke dash array is set
-    if (dashes) {
-        // get elements from stroke dash array
-        QVector<qreal> _dashes;
-        for (int i = 0; i < dashes->size(); ++i)
-            _dashes.push_back(qreal(dashes->at(i)));
-        
-        // set the dash pattern of pen
-        pen.setDashPattern(_dashes);
-    }
-    
-    // set the pen of graphical item
-    ((QGraphicsRectItem *)graphicalItem)->setPen(pen);
- 
-    // if fill color is set, set the brush of graphical item using fill color
-    if (!fillColor.empty()) {
-        
-        // if it is a gradient
-        GraphicalGradient* gGradient = findGraphicalGradient(mw, fillColor);
-        if (gGradient && gGradient->isSetGraphicalGradient())
-            ((QGraphicsRectItem *)graphicalItem)->setBrush(QBrush(gGradient->getGraphicalGradient()));
-        else
-            ((QGraphicsRectItem *)graphicalItem)->setBrush(QBrush(getQColor(mw, fillColor)));
-    }
-}
-
 void setGraphicalItemInfo(MainWindow* mw, MyQGraphicsTextItem* graphicalText, std::string& strokeColor, std::string& fontFamily, RAVector* fontSize, std::string& fontWeight, std::string& fontStyle, std::string& hTextAnchor, std::string& vTextAnchor) {
     QPainter* painter = new QPainter();
     QFont font;
@@ -1349,42 +1612,6 @@ void setGraphicalItemInfo(MainWindow* mw, MyQGraphicsTextItem* graphicalText, st
     graphicalText->paint(painter, new QStyleOptionGraphicsItem(), mw);
 }
 
-void setGraphicalItemInfo(MainWindow* mw, GraphicalCurve* graphicalCurve, std::string& strokeColor, double& strokeWidth, std::vector<unsigned int>* dashes, std::string& startHead, std::string& endHead) {
-    // get the exisitng pen of graphical path
-    QPen pen = graphicalCurve->getGraphicalPaths().at(0)->pen();
-    
-    // set stroke color of the pen
-    if (!strokeColor.empty())
-        pen.setColor(getQColor(mw, strokeColor));
-    
-    // if stroke width is set, set the width of pen
-    if (strokeWidth > 0.000001)
-        pen.setWidth(strokeWidth);
-    
-    // if stroke dash array is set
-    if (dashes) {
-        // get elements from stroke dash array
-        QVector<qreal> _dashes;
-        for (int i = 0; i < dashes->size(); ++i)
-            _dashes.push_back(qreal(dashes->at(i)));
-        
-        // set the dash pattern of pen
-        pen.setDashPattern(_dashes);
-    }
-    
-    // set the pen of graphical paths
-    for (GraphicalCurve::constGPathIt gPIt = graphicalCurve->gPathsBegin(); gPIt != graphicalCurve->gPathsEnd(); ++gPIt)
-        (*gPIt)->setPen(pen);
-    
-    // set the start line ending of graphical path
-    if (!startHead.empty())
-        graphicalCurve->setStartLineEnding(startHead);
-    
-    // set the end line ending of graphical path
-    if (!endHead.empty())
-        graphicalCurve->setEndLineEnding(endHead);
-}
-
 void setLineEndings(MainWindow* mw, GraphicalCurve* gCurve) {
     if (gCurve) {
         QPen curvePen = gCurve->getGraphicalPaths().at(0)->pen();
@@ -1395,33 +1622,31 @@ void setLineEndings(MainWindow* mw, GraphicalCurve* gCurve) {
         if (gCurve->isSetStartLineEnding()) {
             
             // find the line ending among the graphical line endings using its id and create a copy of it if it exists
-            QGraphicsItem* startGraphicalItem = findLineEnding(mw, gCurve->getStartLineEnding(), curvePen, enableRotation);
+            std::vector<QGraphicsItem*> startGraphicalItems = findLineEnding(mw, gCurve->getStartLineEnding(), curvePen, enableRotation);
             
-            // if line ending is found
-            if (startGraphicalItem) {
-                
+            // set the graphical items as the start graphical items of graphical curve
+            gCurve->setStartGraphicalItems(startGraphicalItems);
+            
+            // set start enable rotation
+            gCurve->setStartEnableRotation(enableRotation);
+            
+            for (int i = 0; i < startGraphicalItems.size(); ++i) {
                 // if enable rotation is true, rotate the line ending to make it in accordance to the start slope of graphical curve
                 if (enableRotation) {
-                    startGraphicalItem->setRotation(gCurve->getStartSlope());
+                    startGraphicalItems.at(i)->setRotation(gCurve->getStartSlope());
                     
-                    if (startGraphicalItem->type() == 7) {
-                        ((QGraphicsPixmapItem*)(startGraphicalItem))->setPos(((QGraphicsPixmapItem *)(startGraphicalItem))->x() * std::cos(gCurve->getStartSlope() * (pi / 180.0)) - ((QGraphicsPixmapItem *)(startGraphicalItem))->y() * std::sin(gCurve->getStartSlope() * (pi / 180.0)), -((QGraphicsPixmapItem *)(startGraphicalItem))->x() * std::sin(gCurve->getStartSlope() * (pi / 180.0)) - ((QGraphicsPixmapItem *)(startGraphicalItem))->y() * std::cos(gCurve->getStartSlope() * (pi / 180.0)));
+                    if (startGraphicalItems.at(i)->type() == 7) {
+                        ((QGraphicsPixmapItem*)(startGraphicalItems.at(i)))->setPos(((QGraphicsPixmapItem *)(startGraphicalItems.at(i)))->x() * std::cos(gCurve->getStartSlope() * (pi / 180.0)) - ((QGraphicsPixmapItem *)(startGraphicalItems.at(i)))->y() * std::sin(gCurve->getStartSlope() * (pi / 180.0)), -((QGraphicsPixmapItem *)(startGraphicalItems.at(i)))->x() * std::sin(gCurve->getStartSlope() * (pi / 180.0)) - ((QGraphicsPixmapItem *)(startGraphicalItems.at(i)))->y() * std::cos(gCurve->getStartSlope() * (pi / 180.0)));
                     }
                 }
                 
                 // set the position of the line ending using the start position of the graphical curve
-                startGraphicalItem->moveBy(gCurve->getStartPoint().x(), gCurve->getStartPoint().y());
+                startGraphicalItems.at(i)->moveBy(gCurve->getStartPoint().x(), gCurve->getStartPoint().y());
                 
-                startGraphicalItem->setZValue(3);
+                startGraphicalItems.at(i)->setZValue(3);
                 
                 // display the start line ending
-                mw->getScene()->addItem(startGraphicalItem);
-                
-                // set the graphical item as the start graphical item of graphical curve
-                gCurve->setStartGraphicalItem(startGraphicalItem);
-                
-                // set start enable rotation
-                gCurve->setStartEnableRotation(enableRotation);
+                mw->getScene()->addItem(startGraphicalItems.at(i));
             }
         }
         
@@ -1431,32 +1656,30 @@ void setLineEndings(MainWindow* mw, GraphicalCurve* gCurve) {
         if (gCurve->isSetEndLineEnding()) {
             
             // find the line ending among the graphical line endings using its id and create a copy of it if it exists
-            QGraphicsItem* endGraphicalItem = findLineEnding(mw, gCurve->getEndLineEnding(), curvePen, enableRotation);
+            std::vector<QGraphicsItem*> endGraphicalItems = findLineEnding(mw, gCurve->getEndLineEnding(), curvePen, enableRotation);
             
-            // if line ending is found
-            if (endGraphicalItem) {
-                
+            // set the graphical item as the end graphical item of graphical curve
+            gCurve->setEndGraphicalItems(endGraphicalItems);
+            
+            // set end enable rotation
+            gCurve->setEndEnableRotation(enableRotation);
+            
+            for (int i = 0; i < endGraphicalItems.size(); ++i) {
                 if (enableRotation) {
-                    endGraphicalItem->setRotation(gCurve->getEndSlope());
+                    endGraphicalItems.at(i)->setRotation(gCurve->getEndSlope());
                     
-                    if (endGraphicalItem->type() == 7) {
-                        ((QGraphicsPixmapItem*)(endGraphicalItem))->setPos(((QGraphicsPixmapItem *)(endGraphicalItem))->x() * std::cos(gCurve->getEndSlope() * (pi / 180.0)) - ((QGraphicsPixmapItem *)(endGraphicalItem))->y() * std::sin(gCurve->getEndSlope() * (pi / 180.0)), -((QGraphicsPixmapItem *)(endGraphicalItem))->x() * std::sin(gCurve->getEndSlope() * (pi / 180.0)) - ((QGraphicsPixmapItem *)(endGraphicalItem))->y() * std::cos(gCurve->getEndSlope() * (pi / 180.0)));
+                    if (endGraphicalItems.at(i)->type() == 7) {
+                        ((QGraphicsPixmapItem*)(endGraphicalItems.at(i)))->setPos(((QGraphicsPixmapItem *)(endGraphicalItems.at(i)))->x() * std::cos(gCurve->getEndSlope() * (pi / 180.0)) - ((QGraphicsPixmapItem *)(endGraphicalItems.at(i)))->y() * std::sin(gCurve->getEndSlope() * (pi / 180.0)), -((QGraphicsPixmapItem *)(endGraphicalItems.at(i)))->x() * std::sin(gCurve->getEndSlope() * (pi / 180.0)) - ((QGraphicsPixmapItem *)(endGraphicalItems.at(i)))->y() * std::cos(gCurve->getEndSlope() * (pi / 180.0)));
                     }
                 }
                 
                 // set the position of the line ending using the end position of the graphical curve
-                endGraphicalItem->moveBy(gCurve->getEndPoint().x(), gCurve->getEndPoint().y());
+                endGraphicalItems.at(i)->moveBy(gCurve->getEndPoint().x(), gCurve->getEndPoint().y());
                 
-                endGraphicalItem->setZValue(3);
+                endGraphicalItems.at(i)->setZValue(3);
                 
                 // display the end line ending
-                mw->getScene()->addItem(endGraphicalItem);
-                
-                // set the graphical item as the end graphical item of graphical curve
-                gCurve->setEndGraphicalItem(endGraphicalItem);
-                
-                // set end enable rotation
-                gCurve->setEndEnableRotation(enableRotation);
+                mw->getScene()->addItem(endGraphicalItems.at(i));
             }
         }
     }

@@ -75,6 +75,16 @@ _SBNEExport bool ne_ne_isSetName(NetworkElement* nE);
 /// @return the "name" attribute of this NetworkElement object, or an empty string if the "name" attribute is not set or the object is @c NULL .
 _SBNEExport const std::string ne_ne_getName(NetworkElement* nE);
 
+/// @brief Predicate returning @c true if the "metaid" attribute of this NetworkElement is set.
+/// @param nE a pointer to the NetworkElement object.
+/// @return @c true if the "metaid" attribute of this NetworkElement object is set, @c false if either the "metaid" attribute is not set or the object is @c NULL .
+_SBNEExport bool ne_ne_isSetMetaId(NetworkElement* nE);
+
+/// @brief Returns the value of the "metaid" attribute of this NetworkElement object, if it has one
+/// @param nE a pointer to the NetworkElement object.
+/// @return the "metaid" attribute of this NetworkElement object, or an empty string if the "metaid" attribute is not set or the object is @c NULL .
+_SBNEExport const std::string ne_ne_getMetaId(NetworkElement* nE);
+
 // Network
 
 /// @brief Get the value of a desired feature of a Network object.
@@ -142,12 +152,18 @@ _SBNEExport NReaction* ne_net_getReaction(Network* net, const unsigned int& inde
 /// @return a vector of pointers to NReaction objects of this Network object.
 _SBNEExport reactionVec ne_net_getReactions(Network* net);
 
+/// @brief Gets the NGraphicalObject object with this "id" or "glyphid" of this Network object.
+/// @param net a pointer to the Network object.
+/// @param id either the "id" or "glyphid" attribute of the NGraphicalObject object to return.
+/// @return a pointer to the NGraphicalObject object with this "id" or "glyphid" of this Network object.
+_SBNEExport NGraphicalObject* ne_net_getNetworkElement(Network* net, const std::string& id);
+
 /// @brief Gets the NText object assigned to this NGraphicalObject object, if its NText ojbect is @c NULL ,  first creates an
 /// NText object and assign it to this NGraphicalObject object.
 /// @param net a pointer to the Network object.
 /// @param gO a pointer to the NGraphicalObject object.
 /// @return a pointer to the NText object of this NGraphicalObject object.
-_SBNEExport NText* ne_net_getText(Network* net, NGraphicalObject* gO);
+//_SBNEExport NText* ne_net_getText(Network* net, NGraphicalObject* gO);
 
 // NGraphcialObject
 
@@ -180,21 +196,37 @@ _SBNEExport const std::string ne_go_getGlyphId(NGraphicalObject* gO);
 /// @return integer value indicating success/failure of the function.
 _SBNEExport int ne_go_setGlyphId(Network* net, NGraphicalObject* gO, const std::string& gOId);
 
-/// @brief Predicate returning @c true if this NGraphicalObject object's NText object is set.
+/// @brief Gets the number of NText objects in this NGraphicalObject object.
 /// @param gO a pointer to the NGraphicalObject object.
-/// @return @c true if the NText object of this NGraphicalObject object is set, @c false if either the NText object is not set or the object is @c NULL .
-_SBNEExport bool ne_go_isSetText(NGraphicalObject* gO);
+/// @return the number of NText of this NGraphicalObject object.
+_SBNEExport const size_t ne_go_getNumTexts(NGraphicalObject* gO);
 
-/// @brief Gets the NText object of this NGraphicalObject object.
+/// @brief Gets the indexth NText object of this NGraphicalObject object.
 /// @param gO a pointer to the NGraphicalObject object.
-/// @return a pointer to the NText object of this NGraphicalObject object.
-_SBNEExport NText* ne_go_getText(NGraphicalObject* gO);
+/// @param index the index of the NText object to return.
+/// @param glyphId a string containing the glyph id of the NText object to return, used if the @c index is not given.
+/// @return a pointer to either the indexth NText object or the one with provided id of this NGraphicalObject object.
+_SBNEExport NText* ne_go_getText(NGraphicalObject* gO, const unsigned int& index = -1, const std::string& textglyphId = "");
 
-/// @brief Sets the NText object of this NGraphicalObject object.
+/// @brief Gets all the NText objects of this NGraphicalObject object.
 /// @param gO a pointer to the NGraphicalObject object.
-/// @param t a pointer to the NText object.
+/// @return a vector of pointers to NText objects of this NGraphicalObject object.
+_SBNEExport NGraphicalObject::textVec ne_go_getTexts(NGraphicalObject* gO);
+
+/// @brief Creates a NText object, sets the its bounding box and plain text, and adds it to the Netwrok and NGraphicalObject object.
+/// @param net a pointer to the Network object.
+/// @param gO a pointer to the NGraphicalObject object.
+/// @param plaintext a string to use as the value of the "text" attribute of the NText object.
+/// @param box a LBox object to use as the bounding box attribute of the NText object.
+/// @return a pointer to the added NText object.
+_SBNEExport NText* ne_go_addText(Network* net, NGraphicalObject* gO, LBox* box = NULL, std::string plaintext = "");
+
+/// @brief Removes the indexth NText object from this NGraphicalObject object
+/// @param net a pointer to the Network object.
+/// @param gO a pointer to the NGraphicalObject object.
+/// @param index the index of the NText object to remove.
 /// @return integer value indicating success/failure of the function.
-_SBNEExport int ne_go_setText(NGraphicalObject* gO, NText* t);
+_SBNEExport int ne_go_removeText(Network* net, NGraphicalObject* gO, const int& index);
 
 /// @brief Predicate returning @c true if this NGraphicalObject object's LBox object is set.
 /// @param gO a pointer to the NGraphicalObject object.
@@ -285,6 +317,21 @@ _SBNEExport const std::string ne_rxn_get(NReaction* r, std::unordered_map<std::s
 /// @return integer value indicating success/failure of the function.
 _SBNEExport int ne_rxn_set(NReaction* r, std::unordered_map<std::string, std::string> infoList);
 
+/// @brief Predicate returning @c true if the "compartment" attribute of this NReaction is set.
+/// @param r a pointer to the NReaction object.
+/// @return @c true if the "compartment" attribute of this NReaction object is set, @c false if either the "compartment" attribute is not set or the object is @c NULL .
+_SBNEExport bool ne_rxn_isSetCompartment(NReaction* r);
+
+/// @brief Returns the value of the "compartment" attribute of this NReaction object, if it has one
+/// @param r a pointer to the NReaction object.
+/// @return the "compartment" attribute of this NReaction object, or an empty string if the "compartment" attribute is not set or the object is @c NULL .
+_SBNEExport const std::string ne_rxn_getCompartment(NReaction* r);
+
+/// @brief Returns the value of the "compartment" containg this NReaction object, if it all the participants of this reaction belong to one single compartment
+/// @param r a pointer to the NReaction object.
+/// @return the "compartment" containg  this NReaction object, or an empty string if the participants of this reaction belong to more than one  compartment, or the object is @c NULL .
+_SBNEExport const std::string ne_rxn_findCompartment(NReaction* r);
+
 /// @brief Gets the number of NSpeciesReference objects in this NReaction object.
 /// @param r a pointer to the NReaction object.
 /// @return the number of NSpeciesReferences of this NReaction object.
@@ -322,11 +369,6 @@ _SBNEExport int ne_rxn_setCurve(NReaction* r, LCurve* c);
 /// @param remove a bool value to determine whether to keep or remove the LCurve object assigned to this NReaction object.
 /// @return integer value indicating success/failure of the function.
 _SBNEExport int ne_rxn_unSetCurve(NReaction* r, const bool& remove);
-
-/// @brief Predicate returning @c true if this NReaction object's "extentbox" attribute is set.
-/// @param r a pointer to the NReaction object.
-/// @return @c true if the "extentbox" attribute of this NReaction object is set, @c false if either the "extentbox" attribute is not set or the object is @c NULL .
-_SBNEExport bool ne_rxn_isSetExtentBox(NReaction* r);
 
 /// @brief Gets the "extentbox" attribute of this NReaction object.
 /// @param r a pointer to the NReaction object.
@@ -385,6 +427,18 @@ _SBNEExport bool ne_sr_isSetCurve(NSpeciesReference* sR);
 /// @return a pointer to the LCurve object of this NSpeciesReference object.
 _SBNEExport LCurve* ne_sr_getCurve(NSpeciesReference* sR);
 
+/// @brief Sets the LCurve object of this NSpeciesReference object.
+/// @param sR a pointer to the NSpeciesReference object.
+/// @param c a pointer to the LCurve object.
+/// @return integer value indicating success/failure of the function.
+_SBNEExport int ne_sr_setCurve(NSpeciesReference* sR, LCurve* c);
+
+/// @brief Unset the LCurve object of this NSpeciesReference object.
+/// @param sR a pointer to the NSpeciesReference object.
+/// @param remove a bool value to determine whether to keep or remove the LCurve object assigned to this NSpeciesReference object.
+/// @return integer value indicating success/failure of the function.
+_SBNEExport int ne_sr_unSetCurve(NSpeciesReference* sR, const bool& remove);
+
 // NText
 
 /// @brief Get the value of a desired feature of a NText object.
@@ -398,6 +452,22 @@ _SBNEExport const std::string ne_gtxt_get(NText* t, std::unordered_map<std::stri
 /// @param infoList a list containg the info about the desired feature and its value.
 /// @return integer value indicating success/failure of the function.
 _SBNEExport int ne_gtxt_set(NText* t, std::unordered_map<std::string, std::string> infoList);
+
+/// @brief Predicate returning @c true if the "graphicalObjectId" attribute of this NText is set.
+/// @param t a pointer to the NText object.
+/// @return @c true if the "graphicalObjectId" attribute of this NText object is set, @c false if either the "graphicalObjectId" attribute is not set or the object is @c NULL .
+_SBNEExport bool ne_gtxt_isSetGraphicalObjectId(NText* t);
+
+/// @brief Returns the value of the "graphicalObjectId" attribute of this NText object as a string, if it has one
+/// @param t a pointer to the NText object.
+/// @return the "graphicalObjectId" attribute of this NText object, or an empty string if either the "graphicalObjectId" attribute is not set or the object is @c NULL .
+_SBNEExport const std::string ne_gtxt_getGraphicalObjectId(NText* t);
+
+/// @brief Sets the value of the "graphicalObjectId" attribute of this NText object.
+/// @param t a pointer to the NText object.
+/// @param plainText a string to use as the value of the "graphicalObjectId" attribute of this NText object.
+/// @return integer value indicating success/failure of the function.
+_SBNEExport int ne_gtxt_setGraphicalObjectId(NText* t, const std::string& id);
 
 /// @brief Predicate returning @c true if the "text" attribute of this NText is set.
 /// @param t a pointer to the NText object.
@@ -419,6 +489,22 @@ _SBNEExport int ne_gtxt_setPlainText(NText* t, const std::string& plainText);
 /// @param t a pointer to the NText object.
 /// @return integer value indicating success/failure of the function.
 _SBNEExport int ne_gtxt_unSetPlainText(NText* t);
+
+/// @brief Predicate returning @c true if the "originOfTextId" attribute of this NText is set.
+/// @param t a pointer to the NText object.
+/// @return @c true if the "originOfTextId" attribute of this NText object is set, @c false if either the "originOfTextId" attribute is not set or the object is @c NULL .
+_SBNEExport bool ne_gtxt_isSetOriginOfTextId(NText* t);
+
+/// @brief Returns the value of the "originOfTextId" attribute of this NText object as a string, if it has one
+/// @param t a pointer to the NText object.
+/// @return the "originOfTextId" attribute of this NText object, or an empty string if either the "originOfTextId" attribute is not set or the object is @c NULL .
+_SBNEExport const std::string ne_gtxt_getOriginOfTextId(NText* t);
+
+/// @brief Sets the value of the "originOfTextId" attribute of this NText object.
+/// @param t a pointer to the NText object.
+/// @param plainText a string to use as the value of the "originOfTextId" attribute of this NText object.
+/// @return integer value indicating success/failure of the function.
+_SBNEExport int ne_gtxt_setOriginOfTextId(NText* t, const std::string& id);
 
 // LCurve
 

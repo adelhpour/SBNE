@@ -13,6 +13,10 @@ RenderGroup* ne_grp_populateRenderGroup(VRenderGroup* g) {
     // set name
     if (g->isSetName())
         rg->setName(g->getName());
+    
+    // set metaid
+    if (g->isSetMetaId())
+        rg->setMetaId(g->getMetaId());
 
     // set stroke
     if (g->isSetStroke())
@@ -96,6 +100,10 @@ RenderGroup* ne_grp_populateRenderGroup(VRenderGroup* g) {
             if (_t2d->isSetName())
                 image->setName(_t2d->getName());
             
+            // set metaid
+            if (_t2d->isSetMetaId())
+                image->setMetaId(_t2d->getMetaId());
+            
             // set transform
             if (_t2d->isSetTransform()) {
                 double* m;
@@ -148,9 +156,8 @@ RenderGroup* ne_grp_populateRenderGroup(VRenderGroup* g) {
                 image->setHref(((VImage *)_t2d)->getHref());
             }
         }
-
         // if it is a render curve
-        if (_t2d->getShapeAsString() == "rendercurve") {
+        else if (_t2d->getShapeAsString() == "rendercurve") {
 
             // create curve
             RenderCurve* curve = rg->createCurve();
@@ -158,10 +165,14 @@ RenderGroup* ne_grp_populateRenderGroup(VRenderGroup* g) {
             // set id
             if (_t2d->isSetId())
                 curve->setId(_t2d->getId());
-
+            
             // set name
             if (_t2d->isSetName())
                 curve->setName(_t2d->getName());
+            
+            // set metaid
+            if (_t2d->isSetMetaId())
+                curve->setMetaId(_t2d->getMetaId());
             
             // set transform
             if (_t2d->isSetTransform()) {
@@ -187,9 +198,8 @@ RenderGroup* ne_grp_populateRenderGroup(VRenderGroup* g) {
                 curve->setStartHead(((RCurve *)_t2d)->getStartHead());
 
             // set end head
-            if (((RCurve *)_t2d)->isSetEndHead()) {
+            if (((RCurve *)_t2d)->isSetEndHead())
                 curve->setEndHead(((RCurve *)_t2d)->getEndHead());
-            }
 
             // set elements
             for (RCurve::constElementIt k = ((RCurve *)_t2d)->elementsBegin(); k != ((RCurve *)_t2d)->elementsEnd(); ++k) {
@@ -249,9 +259,8 @@ RenderGroup* ne_grp_populateRenderGroup(VRenderGroup* g) {
                 }
             }
         }
-
         // if it is a text
-        if (_t2d->getShapeAsString() == "text") {
+        else if (_t2d->getShapeAsString() == "text") {
 
             // create text
             Text* text = rg->createText();
@@ -263,6 +272,10 @@ RenderGroup* ne_grp_populateRenderGroup(VRenderGroup* g) {
             // set name
             if (_t2d->isSetName())
                 text->setName(_t2d->getName());
+            
+            // set metaid
+            if (_t2d->isSetMetaId())
+                text->setMetaId(_t2d->getMetaId());
             
             // set transform
             if (_t2d->isSetTransform()) {
@@ -335,9 +348,8 @@ RenderGroup* ne_grp_populateRenderGroup(VRenderGroup* g) {
             if (((VText *)_t2d)->isSetVTextAnchor())
                 text->setVTextAnchor(((VText *)_t2d)->getVTextAnchor());
         }
-
         // if it is a rectangle
-        if (_t2d->getShapeAsString() == "rectangle") {
+        else if (_t2d->getShapeAsString() == "rectangle") {
 
             // create rectangle
             Rectangle* rectangle = rg->createRectangle();
@@ -349,6 +361,10 @@ RenderGroup* ne_grp_populateRenderGroup(VRenderGroup* g) {
             // set name
             if (_t2d->isSetName())
                 rectangle->setName(_t2d->getName());
+            
+            // set metaid
+            if (_t2d->isSetMetaId())
+                rectangle->setMetaId(_t2d->getMetaId());
             
             // set transform
             if (_t2d->isSetTransform()) {
@@ -434,9 +450,8 @@ RenderGroup* ne_grp_populateRenderGroup(VRenderGroup* g) {
             if (((VRectangle *)_t2d)->isSetRatio())
                 rectangle->setRatio(((VRectangle *)_t2d)->getRatio());
         }
-
         // if it is an ellipse
-        if (_t2d->getShapeAsString() == "ellipse") {
+        else if (_t2d->getShapeAsString() == "ellipse") {
 
             // create ellipse
             Ellipse* ellipse = rg->createEllipse();
@@ -448,6 +463,10 @@ RenderGroup* ne_grp_populateRenderGroup(VRenderGroup* g) {
             // set name
             if (_t2d->isSetName())
                 ellipse->setName(_t2d->getName());
+            
+            // set metaid
+            if (_t2d->isSetMetaId())
+                ellipse->setMetaId(_t2d->getMetaId());
             
             // set transform
             if (_t2d->isSetTransform()) {
@@ -516,9 +535,8 @@ RenderGroup* ne_grp_populateRenderGroup(VRenderGroup* g) {
             if (((VEllipse *)_t2d)->isSetRatio())
                 ellipse->setRatio(((VEllipse *)_t2d)->getRatio());
         }
-
         // if it is a polygon
-        if (_t2d->getShapeAsString() == "polygon") {
+        else if (_t2d->getShapeAsString() == "polygon") {
 
             // create polygon
             Polygon* polygon = rg->createPolygon();
@@ -530,6 +548,10 @@ RenderGroup* ne_grp_populateRenderGroup(VRenderGroup* g) {
             // set name
             if (_t2d->isSetName())
                 polygon->setName(_t2d->getName());
+            
+            // set metaid
+            if (_t2d->isSetMetaId())
+                polygon->setMetaId(_t2d->getMetaId());
             
             // set transform
             if (_t2d->isSetTransform()) {
@@ -756,6 +778,7 @@ SBMLDocument* ne_doc_populateSBMLdocWithRenderInfo(SBMLDocument* doc, RenderInfo
                     doc->enablePackage(RenderExtension::getXmlnsL2(), "render",  true);
                 else if (doc->getLevel() == 3)
                     doc->enablePackage(RenderExtension::getXmlnsL3V1V1(), "render", true);
+                doc->setPackageRequired("render", false);
                 gRenderBase = lOfLayouts->getPlugin("render");
             }
             RenderListOfLayoutsPlugin* gRenderPlugin = NULL;
@@ -824,6 +847,9 @@ SBMLDocument* ne_doc_populateSBMLdocWithRenderInfo(SBMLDocument* doc, RenderInfo
                     
                     // set the local render id
                     lri->setId("SBNE_LocalRender");
+                    
+                    // set referenceRenderInformation
+                    lri->setReferenceRenderInformation("SBNE_GlobalRender");
                 }
             }
         }
@@ -853,6 +879,10 @@ SBMLDocument* ne_doc_populateSBMLdocWithRenderInfo(SBMLDocument* doc, RenderInfo
                 // set name
                 if (c->isSetName())
                     cd->setName(c->getName());
+                
+                // set metaid
+                if (c->isSetMetaId())
+                    cd->setMetaId(c->getMetaId());
 
                 // set color value
                 if (c->isSetValue() && c->getValue() != colorStringToHexStr(CLR_STR_NONE))
@@ -879,6 +909,10 @@ SBMLDocument* ne_doc_populateSBMLdocWithRenderInfo(SBMLDocument* doc, RenderInfo
                 // set name
                 if (g->isSetName())
                     gb->setName(g->getName());
+                
+                // set metaid
+                if (g->isSetMetaId())
+                    gb->setMetaId(g->getMetaId());
 
                 // set spread method
                 if (g->isSetSpreadMethod())
@@ -899,6 +933,10 @@ SBMLDocument* ne_doc_populateSBMLdocWithRenderInfo(SBMLDocument* doc, RenderInfo
                     // set name
                     if (s->isSetName())
                         gs->setName(s->getName());
+                    
+                    // set metaid
+                    if (s->isSetMetaId())
+                        gs->setMetaId(s->getMetaId());
 
                     // set stop color
                     if (s->isSetStopColor())
@@ -1053,6 +1091,10 @@ SBMLDocument* ne_doc_populateSBMLdocWithRenderInfo(SBMLDocument* doc, RenderInfo
                 // set name
                 if (s->isSetName())
                     sb->setName(s->getName());
+                
+                // set metaid
+                if (s->isSetMetaId())
+                    sb->setMetaId(s->getMetaId());
 
                 // set role list
                 if (s->isSetRoleList())
@@ -1095,6 +1137,10 @@ SBMLDocument* ne_doc_populateSBMLdocWithRenderInfo(SBMLDocument* doc, RenderInfo
                 // set name
                 if (l->isSetName())
                     le->setName(l->getName());
+                
+                // set metaid
+                if (l->isSetMetaId())
+                    le->setMetaId(l->getMetaId());
 
                 // set enable rotation mapping
                 if (l->isSetEnableRotationMapping())
@@ -1232,6 +1278,29 @@ const std::string ne_ve_getName(VeneerElement* vE) {
 int ne_ve_setName(VeneerElement* vE, const std::string& name) {
     if (vE) {
         vE->setName(name);
+        return 0;
+    }
+    
+    return -1;
+}
+
+bool ne_ve_isSetMetaId(VeneerElement* vE) {
+    if (vE)
+        return vE->isSetMetaId();
+       
+    return false;
+}
+
+const std::string ne_ve_getMetaId(VeneerElement* vE) {
+    if (vE)
+        return vE->getMetaId();
+       
+    return std::string();
+}
+
+int ne_ve_setMetaId(VeneerElement* vE, const std::string& metaid) {
+    if (vE) {
+        vE->setMetaId(metaid);
         return 0;
     }
     
@@ -1486,7 +1555,7 @@ VLineEnding* ne_ven_getLocalLineEndingFromGlobalLineEnding(Veneer* ven, VLineEnd
     if (ven && gLE) {
         if (gLE->isLocalLineEnding())
             return gLE;
-        else if (gLE->isSetGroup() && gLE->isSetBox()) {
+        else {
             // create a local line ending
             VLineEnding* lLE = new VLineEnding();
             
@@ -1497,15 +1566,12 @@ VLineEnding* ne_ven_getLocalLineEndingFromGlobalLineEnding(Veneer* ven, VLineEnd
                 lLE->setId(ven->getLineEndingUniqueId());
             
             // set the group of the line ending
-            VRenderGroup* group = new VRenderGroup();
-            *group = *(gLE->getGroup());
-            lLE->setGroup(group);
+            if (gLE->isSetGroup())
+                lLE->setGroup(new VRenderGroup(*(gLE->getGroup())));
             
             // set the box of the line ending
-            LBox* box = new LBox(gLE->getBox()->x(), gLE->getBox()->y(), gLE->getBox()->width(), gLE->getBox()->height());
-            if (gLE->getBox()->isSetId())
-                box->setId(gLE->getBox()->getId());
-            lLE->setBox(box);
+            if (gLE->isSetBox())
+                lLE->setBox(new LBox(*(gLE->getBox())));
             
             // set the rotation of the line ending
             if (gLE->isSetEnableRotationMapping())
@@ -1617,21 +1683,29 @@ VGlobalStyle* ne_ven_findStyle(Veneer* ven, NGraphicalObject* gO, StyleType type
                 if (style)
                     return style;
             }
-                
-            
-            // get style using the type of the graphical object by searching in the style's typelist
-            style = ven->findStyleByTypeListMember(styleTypeToStr(styleTypeForGraphicalObjectType(gO->getType())));
         }
-        else if (type < NUM_StyleType)
+        
+        // get style using styletype by searching in the style's typelist
+        if (type < NUM_StyleType) {
             style = ven->findStyleByTypeListMember(styleTypeToStr(type));
+            if (style)
+                return style;
+        }
+        
+        // get style using the type of the graphical object by searching in the style's typelist
+        if (gO) {
+            style = ven->findStyleByTypeListMember(styleTypeToStr(styleTypeForGraphicalObjectType(gO->getType())));
+            if (style)
+                return style;
+        }
     }
     
-    return style;
+    return NULL;
 }
 
 VLocalStyle* ne_ven_getLocalStyleFromGlobalStyle(Veneer* ven, NGraphicalObject* gO, VGlobalStyle* gStyle) {
     if (ven && gO && gStyle && gStyle->isSetGroup()) {
-        if (gStyle->isLocalStyle())
+        if (gStyle->isLocalStyle() && ((VLocalStyle*)gStyle)->getIdList().size() == 1)
             return (VLocalStyle*)gStyle;
         else if (gO->isSetGlyphId()) {
             // create a new local style
@@ -1640,13 +1714,15 @@ VLocalStyle* ne_ven_getLocalStyleFromGlobalStyle(Veneer* ven, NGraphicalObject* 
             // set the id of local style
             lStyle->setId(ven->getStyleUniqueId());
             
+            // remove graphical object id from local style id list
+            if (gStyle->isLocalStyle())
+                ((VLocalStyle*)gStyle)->removeFromIdList(gO->getGlyphId());
+            
             // add the graphical object id to the idlist of the style
             lStyle->addToIdList(gO->getGlyphId());
             
             // set the group of the style
-            VRenderGroup* group = new VRenderGroup();
-            *group = *(gStyle->getGroup());
-            lStyle->setGroup(group);
+            lStyle->setGroup(new VRenderGroup(*(gStyle->getGroup())));
             
             // add the local style to veneer
             ven->addStyle(lStyle);
@@ -2444,11 +2520,15 @@ int ne_stl_setStyleValues(VGlobalStyle* s, StyleType type, RxnRoleType role) {
                 // set stroke color
                 ne_grp_setStrokeColor(group, colorStringToStr(CLR_STR_DARK_CYAN));
                 
-                // set stroke width
-                ne_grp_setStrokeWidth(group, 6.0);
-                
                 // set fill color
-                ne_grp_setFillColor(group, colorStringToStr(CLR_STR_GRAY));
+                ne_grp_setFillColor(group, colorStringToStr(CLR_STR_LIGHT_GRAY));
+                
+                // set font size
+                rAV->setA(12.);
+                ne_grp_setFontSize(group, rAV);
+                
+                // set vertical text anchor
+                ne_grp_setVTextAnchor(group, vTextAnchorToStr(VTXT_ANCH_BTM));
                 
                 // add a rectangle as a graphical shape to group
                 VTransformation2D* gS = ne_grp_addGeometricShape(group, GRP_ELT_SHPE_REC, false);
@@ -3028,6 +3108,17 @@ VTransformation2D* ne_grp_getGeometricShape(VRenderGroup* g, const unsigned int&
     }
     
     return NULL;
+}
+
+int ne_grp_removeGeometricShape(VRenderGroup* g, const unsigned int& index) {
+    if (g) {
+        if (index >= 0 && index < int(g->getNumElements())) {
+            g->removeFromListOfElements(index);
+            return 0;
+        }
+    }
+    
+    return -1;
 }
 
 int ne_grp_removeGeometricShapes(VRenderGroup* g) {

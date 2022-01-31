@@ -48,7 +48,8 @@ if (APPLE)
         COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt5::PrintSupport>
             $<TARGET_FILE_DIR:SBNE-GUI>/../Frameworks/QtPrintSupport.framework/Versions/5/QtPrintSupport
         COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt5::QCocoaIntegrationPlugin>						$<TARGET_FILE_DIR:SBNE-GUI>/../PlugIns/platforms/libqcocoa.dylib
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt5::QMacStylePlugin>							$<TARGET_FILE_DIR:SBNE-GUI>/../PlugIns/styles/libqmacstyle.dylib)
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt5::QMacStylePlugin>							$<TARGET_FILE_DIR:SBNE-GUI>/../PlugIns/styles/libqmacstyle.dylib
+	COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_BINARY_DIR}/src/dependencies							$<TARGET_FILE_DIR:SBNE-GUI>/../Frameworks/dependencies)
 
 	if (${USE_GRAPHVIZ})
 		add_custom_command(TARGET SBNE-GUI POST_BUILD
@@ -70,6 +71,7 @@ elseif (UNIX)
 	$<TARGET_FILE:Qt5::Gui> "$<TARGET_FILE_DIR:Qt5::Gui>/libQt5Gui.so.5"
 	$<TARGET_FILE:Qt5::Widgets> "$<TARGET_FILE_DIR:Qt5::Widgets>/libQt5Widgets.so.5"
 	$<TARGET_FILE:Qt5::PrintSupport> "$<TARGET_FILE_DIR:Qt5::PrintSupport>/libQt5PrintSupport.so.5"
+	${Qt_EXTRA}
 	DESTINATION lib/dependencies COMPONENT sbne_gui)
 	install(TARGETS SBNE-GUI DESTINATION bin COMPONENT sbne_gui)
 elseif (WIN32)

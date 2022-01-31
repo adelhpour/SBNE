@@ -256,7 +256,10 @@ public:
     VeneerElement() {
         _isSetId = false;
         _isSetName = false;
+        _isSetMetaId = false;
     }
+    
+    VeneerElement(const VeneerElement& vE);
 
     /// Functions
     // set the id of veneer element
@@ -277,12 +280,23 @@ public:
     // show whether the name of veneer element is set
     const bool isSetName() const { return _isSetName; }
     
+    // set the metaid of veneer element
+    void setMetaId(const std::string& metaid);
+
+    // get the metaid of veneer element
+    const std::string& getMetaId() const;
+
+    // show whether the metaid of veneer element is set
+    const bool isSetMetaId() const { return _isSetMetaId; }
+    
 protected:
     // model info:
     std::string _id;
     std::string _name;
+    std::string _metaid;
     bool _isSetId;
     bool _isSetName;
+    bool _isSetMetaId;
 };
 
 /// @class Veneer
@@ -298,6 +312,8 @@ public:
         _isSetBackgroundColor = false;
         _isRenderSpecified = false;
     }
+    
+    Veneer(const Veneer& v);
 
     /// Containers
     // color
@@ -502,6 +518,8 @@ public:
         _value = colorStringToHexStr(CLR_STR_NONE);
         _isSetValue = false;
     }
+    
+    VColorDefinition(const VColorDefinition& c);
 
     /// Functions
     // set the value of color
@@ -529,6 +547,8 @@ public:
         _spreadMethod = gSMethodToStr(GRD_SPR_MTH_PAD);
         _isSetSpreadMethod = false;
     }
+    
+    VGradientBase(const VGradientBase& g);
 
     /// Containers
     // gradient stop
@@ -621,6 +641,8 @@ public:
         _isSetY2 = false;
         _isSetZ2 = false;
     }
+    
+    VLinearGradient(const VLinearGradient& lG);
 
     /// Functions
     // set the x1 value of linear gradient
@@ -722,6 +744,8 @@ public:
         _isSetFz = false;
         _isSetR = false;
     }
+    
+    VRadialGradient(const VRadialGradient& rG);
 
     /// Functions
     // set the cx value of radial gradient
@@ -821,6 +845,8 @@ public:
         setTransform(1.0, 0.0, 0.0, 0.0, 1.0, 0.0);
         _isSetTransform = false;
     }
+    
+    VTransformation2D(const VTransformation2D& t2d);
 
     /// Functions
     // get the shape type of render gorup element as render group element shape
@@ -895,6 +921,8 @@ public:
         _isSetStrokeWidth = false;
         _isSetDashArray = false;
     }
+    
+    VGraphicalPrimitive1D(const VGraphicalPrimitive1D& g1d);
 
     /// Containers
     // dasharray
@@ -976,6 +1004,8 @@ public:
         _isSetFill = false;
         _isSetFillRule = false;
     }
+    
+    VGraphicalPrimitive2D(const VGraphicalPrimitive2D& g2d);
 
     /// Functions
     // set the fill value of gprimitive2d
@@ -1011,11 +1041,6 @@ public:
     /// Constructors
     VImage() {
         _shape = GRP_ELT_SHPE_IMG;
-        _x = RAVector(0.0, 0.0);
-        _y = RAVector(0.0, 0.0);
-        _z = RAVector(0.0, 0.0);
-        _width = RAVector(0.0, 0.0);
-        _height = RAVector(0.0, 0.0);
         _isSetX = false;
         _isSetY = false;
         _isSetZ = false;
@@ -1023,6 +1048,8 @@ public:
         _isSetHeight = false;
         _isSetHref = false;
     }
+    
+    VImage(const VImage& image);
 
     /// Functions
     // set the x value of image
@@ -1103,9 +1130,11 @@ public:
     RCurve() {
         _shape = GRP_ELT_SHPE_CRV;
         _listOfElements.clear();
-        _isSetStartHead = true;
-        _isSetEndHead = true;
+        _isSetStartHead = false;
+        _isSetEndHead = false;
     }
+    
+    RCurve(const RCurve& rCurve);
 
     /// Containers
     // element
@@ -1184,10 +1213,6 @@ public:
     /// Constructors
     VText() {
         _shape = GRP_ELT_SHPE_TXT;
-        _x = RAVector(0.0, 0.0);
-        _y = RAVector(0.0, 0.0);
-        _z = RAVector(0.0, 0.0);
-        _fontSize = RAVector(0.0, 0.0);
         _fontFamily = fontFamilyToStr(FNT_FMLY_SNS_SRF);
         _fontWeight = fontWeightToStr(FNT_WGHT_NRM);
         _fontStyle = fontStyleToStr(FNT_STL_NRM);
@@ -1203,6 +1228,8 @@ public:
         _isSetHTextAnchor = false;
         _isSetVTextAnchor = false;
     }
+    
+    VText(const VText& text);
 
     /// Functions
     // set the x value of text
@@ -1315,13 +1342,6 @@ public:
     /// Constructors
     VRectangle() {
         _shape = GRP_ELT_SHPE_REC;
-        _x = RAVector(0.0, 0.0);
-        _y = RAVector(0.0, 0.0);
-        _z = RAVector(0.0, 0.0);
-        _width = RAVector(0.0, 0.0);
-        _height = RAVector(0.0, 0.0);
-        _rx = RAVector(0.0, 0.0);
-        _ry = RAVector(0.0, 0.0);
         _ratio = 0.0;
         _isSetX = false;
         _isSetY = false;
@@ -1332,6 +1352,8 @@ public:
         _isSetRY = false;
         _isSetRatio = false;
     }
+    
+    VRectangle(const VRectangle& rectangle);
 
     /// Functions
     // set the x value of rectangle
@@ -1437,11 +1459,6 @@ public:
     /// Constructors
     VEllipse() {
         _shape = GRP_ELT_SHPE_ELP;
-        _cx = RAVector(0.0, 0.0);
-        _cy = RAVector(0.0, 0.0);
-        _cz = RAVector(0.0, 0.0);
-        _rx = RAVector(0.0, 0.0);
-        _ry = RAVector(0.0, 0.0);
         _ratio = 0.0;
         _isSetCX = false;
         _isSetCY = false;
@@ -1450,6 +1467,8 @@ public:
         _isSetRY = false;
         _isSetRatio = false;
     }
+    
+    VEllipse(const VEllipse& ellipse);
 
     /// Functions
     // set the cx value of ellipse
@@ -1531,9 +1550,11 @@ class VPolygon : public VGraphicalPrimitive2D {
 public:
     /// Constructors
     VPolygon() {
-        _listOfElements.clear();
         _shape = GRP_ELT_SHPE_PLG;
+        _listOfElements.clear();
     }
+    
+    VPolygon(const VPolygon& polygon);
 
     /// Containers
     // element
@@ -1588,7 +1609,6 @@ class VRenderGroup : public VGraphicalPrimitive2D {
 public:
     /// Constructors
     VRenderGroup() {
-        _fontSize = RAVector(0.0, 0.0);
         _fontFamily = fontFamilyToStr(FNT_FMLY_SNS_SRF);
         _fontWeight = fontWeightToStr(FNT_WGHT_NRM);
         _fontStyle = fontStyleToStr(FNT_STL_NRM);
@@ -1605,6 +1625,8 @@ public:
         _isSetVTextAnchor = false;
         _isSetListOfElements = false;
     }
+    
+    VRenderGroup(const VRenderGroup& g);
 
     /// Containers
     // group element
@@ -1732,12 +1754,6 @@ public:
     // generate unique Id for a new geometric shape
     std::string getElementUniqueId();
     
-    // set text features of a vrendergroup using another vrendergroup
-    void extractTextFeatures(const VRenderGroup& g);
-    
-    // equal to another group
-    VRenderGroup operator = (const VRenderGroup& g);
-    
 protected:
     // model info:
     std::string _startHead;
@@ -1769,10 +1785,12 @@ public:
         _roleList.clear();
         _typeList.clear();
         _g = NULL;
-        _isSetGroup = false;
         _isSetRoleList = false;
         _isSetTypeList = false;
+        _isSetGroup = false;
     }
+    
+    VGlobalStyle(VGlobalStyle& gS);
 
     /// Containers
     // role list
@@ -1868,6 +1886,8 @@ public:
         _idList.clear();
         _isSetIdList = false;
     }
+    
+    VLocalStyle(VLocalStyle& lS);
 
     /// Containers
     // id list
@@ -1926,6 +1946,8 @@ public:
         _isSetEnableRotationMapping = false;
         _isLocalLineEnding = false;
     }
+    
+    VLineEnding(VLineEnding& lE);
 
     /// Functions
     // set the bounding box of line ending
@@ -1978,10 +2000,11 @@ class VGradientStop : public VeneerElement {
 public:
     /// Constructors
     VGradientStop() {
-        _offset = RAVector(0.0, 0.0);
         _isSetOffset = false;
         _isSetStopColor = false;
     }
+    
+    VGradientStop(const VGradientStop& s);
 
     /// Functions
     // set the offset value of gradient stop
@@ -2016,9 +2039,10 @@ class RenPoint : public VeneerElement {
 public:
     /// Constructors
     RenPoint() {
-        _r = RPoint();
         _isSetRPoint = false;
     }
+    
+    RenPoint(const RenPoint& rp);
 
     /// Functions
     // set the rpoint value of render point
@@ -2045,11 +2069,11 @@ class RCubicBezier : public RenPoint {
 public:
     /// Constructors
     RCubicBezier() {
-        _basePoint1 = RPoint();
-        _basePoint2 = RPoint();
         _isSetBasePoint1 = false;
         _isSetBasePoint2 = false;
     }
+    
+    RCubicBezier(const RCubicBezier& rcb);
 
     /// Functions
     // set the base point 1 value of render cubic bezier

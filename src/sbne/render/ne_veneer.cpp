@@ -261,6 +261,10 @@ Veneer* veneerFromRender(RenderInformationBase& ren, Veneer* ven) {
         // get name
         if (cd->isSetName())
             c->setName(cd->getName());
+        
+        // get metaid
+        if (cd->isSetMetaId())
+            c->setMetaId(cd->getMetaId());
 
         // get value
         if (cd->isSetValue())
@@ -291,6 +295,10 @@ Veneer* veneerFromRender(RenderInformationBase& ren, Veneer* ven) {
         // get name
         if (gb->isSetName())
             g->setName(gb->getName());
+        
+        // get metaid
+        if (gb->isSetMetaId())
+            g->setMetaId(gb->getMetaId());
 
         // get gradient spread method
         if (gb->isSetSpreadMethod())
@@ -310,6 +318,10 @@ Veneer* veneerFromRender(RenderInformationBase& ren, Veneer* ven) {
             // get name
             if (gs->isSetName())
                 s->setName(gs->getName());
+            
+            // get metaid
+            if (gs->isSetMetaId())
+                s->setMetaId(gs->getMetaId());
 
             // get stop color
             if (gs->isSetStopColor()) {
@@ -503,6 +515,10 @@ Veneer* veneerFromRender(RenderInformationBase& ren, Veneer* ven) {
         // get name
         if (le->isSetName())
             l->setName(le->getName());
+        
+        // get metaid
+        if (le->isSetMetaId())
+            l->setMetaId(le->getMetaId());
 
         // get enable rotation mapping
         if (le->isSetEnableRotationalMapping())
@@ -528,7 +544,6 @@ Veneer* veneerFromRender(RenderInformationBase& ren, Veneer* ven) {
         ven->addLineEnding(l);
     }
     
-    
     if (ren.isGlobalRenderInformation()) {
         // get background color
         if (ren.isSetBackgroundColor())
@@ -546,6 +561,10 @@ Veneer* veneerFromRender(RenderInformationBase& ren, Veneer* ven) {
             // get name
             if (sb->isSetName())
                 s->setName(sb->getName());
+            
+            // get metaid
+            if (sb->isSetMetaId())
+                s->setMetaId(sb->getMetaId());
 
             // get role list
             s->setRoleList(sb->getRoleList());
@@ -577,6 +596,10 @@ Veneer* veneerFromRender(RenderInformationBase& ren, Veneer* ven) {
             // get name
             if (sb->isSetName())
                 s->setName(sb->getName());
+            
+            // get metaid
+            if (sb->isSetMetaId())
+                s->setMetaId(sb->getMetaId());
 
             // get role list
             s->setRoleList(sb->getRoleList());
@@ -615,6 +638,10 @@ VRenderGroup* getRenderGroup(const RenderGroup* rg) {
     // get name
     if (rg->isSetName())
         g->setName(rg->getName());
+    
+    // get metaid
+    if (rg->isSetMetaId())
+        g->setMetaId(rg->getMetaId());
 
     // get stroke
     if (rg->isSetStroke())
@@ -692,6 +719,10 @@ VRenderGroup* getRenderGroup(const RenderGroup* rg) {
             if (t2d->isSetName())
                 iShape->setName(t2d->getName());
             
+            // get metaid
+            if (t2d->isSetMetaId())
+                iShape->setMetaId(t2d->getMetaId());
+            
             // get transform
             if (t2d->isSetTransform())
                 iShape->setTransform(t2d->getMatrix2D());
@@ -754,6 +785,10 @@ VRenderGroup* getRenderGroup(const RenderGroup* rg) {
             if (t2d->isSetName())
                 rCurve->setName(t2d->getName());
             
+            // get metaid
+            if (t2d->isSetMetaId())
+                rCurve->setMetaId(t2d->getMetaId());
+            
             // get transform
             if (t2d->isSetTransform())
                 rCurve->setTransform(t2d->getMatrix2D());
@@ -806,6 +841,10 @@ VRenderGroup* getRenderGroup(const RenderGroup* rg) {
             // get name
             if (t2d->isSetName())
                 tShape->setName(t2d->getName());
+            
+            // get metaid
+            if (t2d->isSetMetaId())
+                tShape->setMetaId(t2d->getMetaId());
             
             // get transform
             if (t2d->isSetTransform())
@@ -888,6 +927,10 @@ VRenderGroup* getRenderGroup(const RenderGroup* rg) {
             // get name
             if (t2d->isSetName())
                 rShape->setName(t2d->getName());
+            
+            // get metaid
+            if (t2d->isSetMetaId())
+                rShape->setMetaId(t2d->getMetaId());
             
             // get transform
             if (t2d->isSetTransform())
@@ -983,6 +1026,10 @@ VRenderGroup* getRenderGroup(const RenderGroup* rg) {
             if (t2d->isSetName())
                 eShape->setName(t2d->getName());
             
+            // get metaid
+            if (t2d->isSetMetaId())
+                eShape->setMetaId(t2d->getMetaId());
+            
             // get transform
             if (t2d->isSetTransform())
                 eShape->setTransform(t2d->getMatrix2D());
@@ -1068,6 +1115,10 @@ VRenderGroup* getRenderGroup(const RenderGroup* rg) {
             // get name
             if (t2d->isSetName())
                 pShape->setName(t2d->getName());
+            
+            // get metaid
+            if (t2d->isSetMetaId())
+                pShape->setMetaId(t2d->getMetaId());
             
             // get transform
             if (t2d->isSetTransform())
@@ -1178,6 +1229,24 @@ RCubicBezier* getRenderCubicBezier(const RenderCubicBezier* rcb) {
 
 //--CLASS VeneerElement--
 
+VeneerElement::VeneerElement(const VeneerElement& vE) {
+    _isSetId = false;
+    _isSetName = false;
+    _isSetMetaId = false;
+    
+    // id
+    if (vE.isSetId())
+        setId(vE.getId());
+    
+    // name
+    if (vE.isSetName())
+        setName(vE.getName());
+    
+    // metaid
+    if (vE.isSetMetaId())
+        setMetaId(vE.getMetaId());
+}
+
 void VeneerElement::setId(const std::string& id) {
     _id = id;
     _isSetId = true;
@@ -1196,7 +1265,49 @@ const std::string& VeneerElement::getName() const {
     return _name;
 }
 
+void VeneerElement::setMetaId(const std::string& metaid) {
+    _metaid = metaid;
+    _isSetMetaId = true;
+}
+
+const std::string& VeneerElement::getMetaId() const {
+    return _metaid;
+}
+
 //--CLASS Veneer--
+
+Veneer::Veneer(const Veneer& v) : VeneerElement(v) {
+    _colors.clear();
+    _gradients.clear();
+    _styles.clear();
+    _lineEndings.clear();
+    _isSetBackgroundColor = false;
+    _isRenderSpecified = false;
+    
+    // colors
+    if (v.getNumColors())
+        setColors(v.getColors());
+    
+    // gradients
+    if (v.getNumGradients())
+        setGradients(v.getGradients());
+    
+    // styles
+    if (v.getNumStyles())
+        setStyles(v.getStyles());
+    
+    // lineendings
+    if (v.getNumLineEndings())
+        setLineEndings(v.getLineEndings());
+    
+    // backgroundcolor
+    if (v.isSetBackgroundColor())
+        setBackgroundColor(v.getBackgroundColor());
+    
+    // isrenderspecified
+    if (v.isRenderSpecified())
+        setRenderSpecified(true);
+}
 
 void Veneer::addColor(VColorDefinition* c) {
     if(c)
@@ -1632,6 +1743,15 @@ void Veneer::setRenderSpecified(bool value) {
 
 //--CLASS VColorDefention--
 
+VColorDefinition::VColorDefinition(const VColorDefinition& c) : VeneerElement(c) {
+    _value = colorStringToHexStr(CLR_STR_NONE);
+    _isSetValue = false;
+    
+    // value
+    if (c.isSetValue())
+        setValue(c.getValue());
+}
+
 void VColorDefinition::setValue(const std::string& value) {
     _value = value;
     _isSetValue = true;
@@ -1642,6 +1762,20 @@ const std::string& VColorDefinition::getValue() const {
 }
 
 //--CLASS VGradientBase--
+
+VGradientBase::VGradientBase(const VGradientBase& g) : VeneerElement(g) {
+    _stops.clear();
+    _spreadMethod = gSMethodToStr(GRD_SPR_MTH_PAD);
+    _isSetSpreadMethod = false;
+    
+    // stops
+    if (g.getNumStops())
+        setStops(g.getStops());
+    
+    // spreadmethod
+    if (g.isSetSpreadMethod())
+        setSpreadMehtod(g.getSpreadMethod());
+}
 
 void VGradientBase::setSpreadMehtod(const std::string& spreadMethod) {
     _spreadMethod = spreadMethod;
@@ -1758,6 +1892,45 @@ void VGradientBase::sortStops() {
 
 //--CLASS VLinearGradient--
 
+VLinearGradient::VLinearGradient(const VLinearGradient& lG) : VGradientBase(lG) {
+    _x1 = RAVector(0.0, 0.0);
+    _y1 = RAVector(0.0, 0.0);
+    _z1 = RAVector(0.0, 0.0);
+    _x2 = RAVector(0.0, 100.0);
+    _y2 = RAVector(0.0, 100.0);
+    _z2 = RAVector(0.0, 100.0);
+    _isSetX1 = false;
+    _isSetY1 = false;
+    _isSetZ1 = false;
+    _isSetX2 = false;
+    _isSetY2 = false;
+    _isSetZ2 = false;
+    
+    // x1
+    if (lG.isSetX1())
+        setX1(lG.getX1());
+    
+    // y1
+    if (lG.isSetY1())
+        setY1(lG.getY1());
+    
+    // z1
+    if (lG.isSetZ1())
+        setZ1(lG.getZ1());
+    
+    // x2
+    if (lG.isSetX2())
+        setX2(lG.getX2());
+    
+    // y2
+    if (lG.isSetY2())
+        setY2(lG.getY2());
+    
+    // z2
+    if (lG.isSetZ2())
+        setZ2(lG.getZ2());
+}
+
 void VLinearGradient::setX1(const RAVector& r) {
     _x1 = r;
     _isSetX1 = true;
@@ -1813,6 +1986,51 @@ const RAVector& VLinearGradient::getZ2() const {
 }
 
 //--CLASS VRadialGradient--
+
+VRadialGradient::VRadialGradient(const VRadialGradient& rG) : VGradientBase(rG) {
+    _cx = RAVector(0.0, 50.0);
+    _cy = RAVector(0.0, 50.0);
+    _cz = RAVector(0.0, 50.0);
+    _fx = RAVector(0.0, 50.0);
+    _fy = RAVector(0.0, 50.0);
+    _fz = RAVector(0.0, 50.0);
+    _r = RAVector(0.0, 50.0);
+    _isSetCx = false;
+    _isSetCy = false;
+    _isSetCz = false;
+    _isSetFx = false;
+    _isSetFy = false;
+    _isSetFz = false;
+    _isSetR = false;
+    
+    // cx
+    if (rG.isSetCx())
+        setCx(rG.getCx());
+    
+    // cy
+    if (rG.isSetCy())
+        setCy(rG.getCy());
+    
+    // cz
+    if (rG.isSetCz())
+        setCz(rG.getCz());
+    
+    // fx
+    if (rG.isSetFx())
+        setFx(rG.getFx());
+    
+    // fy
+    if (rG.isSetFy())
+        setFy(rG.getFy());
+    
+    // fz
+    if (rG.isSetFz())
+        setFz(rG.getFz());
+    
+    // cx
+    if (rG.isSetR())
+        setR(rG.getR());
+}
 
 void VRadialGradient::setCx(const RAVector& r) {
     _cx = r;
@@ -1878,6 +2096,18 @@ const RAVector& VRadialGradient::getR() const {
 }
 
 //--CLASS VTransformation2D--
+
+VTransformation2D::VTransformation2D(const VTransformation2D& t2d) : VeneerElement(t2d) {
+    setTransform(1.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+    _isSetTransform = false;
+    
+    // transform
+    if (t2d.isSetTransform()) {
+        double* m;
+        t2d.getTransform(m);
+        setTransform(m);
+    }
+}
 
 RenderGroupElementShape VTransformation2D::getShape() {
     return _shape;
@@ -1979,6 +2209,27 @@ void VTransformation2D::skewY(const double& beta) {
 
 //--CLASS VGraphicalPrimitive1D--
 
+VGraphicalPrimitive1D::VGraphicalPrimitive1D(const VGraphicalPrimitive1D& g1d) : VTransformation2D(g1d) {
+    _stroke = colorStringToStr(CLR_STR_NONE);
+    _strokeWidth = 0.0;
+    _dashArray.clear();
+    _isSetStroke = false;
+    _isSetStrokeWidth = false;
+    _isSetDashArray = false;
+    
+    // stroke
+    if (g1d.isSetStroke())
+        setStroke(g1d.getStroke());
+    
+    // strokewidth
+    if (g1d.isSetStrokeWidth())
+        setStrokeWidth(g1d.getStrokeWidth());
+    
+    // dasharray
+    if (g1d.isSetDashArray())
+        setDashArray(g1d.getDashArray());
+}
+
 void VGraphicalPrimitive1D::setStroke(const std::string& stroke) {
     _stroke = stroke;
     _isSetStroke = true;
@@ -2069,6 +2320,21 @@ const std::string VGraphicalPrimitive1D::dashArrayToString(dashArrayVec* dav) {
 
 //--CLASS VGraphicalPrimitive2D--
 
+VGraphicalPrimitive2D::VGraphicalPrimitive2D(const VGraphicalPrimitive2D& g2d) : VGraphicalPrimitive1D(g2d) {
+    _fill = colorStringToStr(CLR_STR_NONE);
+    _fillRule = fillRuleToStr(FIL_RUL_NON_ZER);
+    _isSetFill = false;
+    _isSetFillRule = false;
+    
+    // fill
+    if (g2d.isSetFill())
+        setFill(g2d.getFill());
+    
+    // fiilrule
+    if (g2d.isSetFillRule())
+        setFillRule(g2d.getFillRule());
+}
+
 void VGraphicalPrimitive2D::setFill(const std::string& fill) {
     _fill = fill;
     _isSetFill = true;
@@ -2088,6 +2354,40 @@ const std::string& VGraphicalPrimitive2D::getFillRule() const {
 }
 
 //--CLASS VImage--
+
+VImage::VImage(const VImage& image) : VTransformation2D(image) {
+    _shape = GRP_ELT_SHPE_IMG;
+    _isSetX = false;
+    _isSetY = false;
+    _isSetZ = false;
+    _isSetWidth = false;
+    _isSetHeight = false;
+    _isSetHref = false;
+    
+    // x
+    if (image.isSetX())
+        setX(image.getX());
+    
+    // y
+    if (image.isSetY())
+        setY(image.getY());
+    
+    // z
+    if (image.isSetZ())
+        setZ(image.getZ());
+    
+    // width
+    if (image.isSetWidth())
+        setWidth(image.getWidth());
+    
+    // height
+    if (image.isSetHeight())
+        setHeight(image.getHeight());
+    
+    // href
+    if (image.isSetHref())
+        setHref(image.getHref());
+}
 
 void VImage::setX(const RAVector& x) {
     _x = x;
@@ -2144,6 +2444,31 @@ const std::string& VImage::getHref() const {
 }
 
 //--CLASS RCurve--
+
+RCurve::RCurve(const RCurve& rCurve) : VGraphicalPrimitive1D(rCurve) {
+    _shape = GRP_ELT_SHPE_CRV;
+    _listOfElements.clear();
+    _isSetStartHead = false;
+    _isSetEndHead = false;
+    
+    // elements
+    RenPoint* rp = NULL;
+    for (constElementIt eIt = rCurve.elementsBegin(); eIt != rCurve.elementsEnd(); ++eIt) {
+        if (!(*eIt)->isRenderCubicBezier())
+            rp = new RenPoint(*(*eIt));
+        else
+            rp = new RCubicBezier(*((RCubicBezier*)(*eIt)));
+        addToListOfElementsEnd(rp);
+    }
+    
+    // starthead
+    if (rCurve.isSetStartHead())
+        setStartHead(rCurve.getStartHead());
+    
+    // endhead
+    if (rCurve.isSetEndHead())
+        setEndHead(rCurve.getEndHead());
+}
 
 void RCurve::setStartHead(const std::string& startHead) {
     _startHead = startHead;
@@ -2254,6 +2579,61 @@ std::string RCurve::getElementUniqueId() {
 }
 
 //--CLASS VText--
+
+VText::VText(const VText& text) : VGraphicalPrimitive1D(text) {
+    _shape = GRP_ELT_SHPE_TXT;
+    _fontFamily = fontFamilyToStr(FNT_FMLY_SNS_SRF);
+    _fontWeight = fontWeightToStr(FNT_WGHT_NRM);
+    _fontStyle = fontStyleToStr(FNT_STL_NRM);
+    _hTextAnchor = hTextAnchorToStr(HTXT_ANCH_STRT);
+    _vTextAnchor = vTextAnchorToStr(VTXT_ANCH_TOP);
+    _isSetX = false;
+    _isSetY = false;
+    _isSetZ = false;
+    _isSetFontSize = false;
+    _isSetFontFamily = false;
+    _isSetFontWeight = false;
+    _isSetFontStyle = false;
+    _isSetHTextAnchor = false;
+    _isSetVTextAnchor = false;
+    
+    // x
+    if (text.isSetX())
+        setX(text.getX());
+    
+    // y
+    if (text.isSetY())
+        setY(text.getY());
+    
+    // z
+    if (text.isSetZ())
+        setZ(text.getZ());
+    
+    // fontsize
+    if (text.isSetFontSize())
+        setFontSize(text.getFontSize());
+    
+    // fontfamily
+    if (text.isSetFontFamily())
+        setFontFamily(text.getFontFamily());
+    
+    // fontweight
+    if (text.isSetFontWeight())
+        setFontWeight(text.getFontWeight());
+    
+    // fontstyle
+    if (text.isSetFontStyle())
+        setFontStyle(text.getFontStyle());
+    
+    // textanchor
+    if (text.isSetHTextAnchor())
+        setHTextAnchor(text.getHTextAnchor());
+    
+    // vtextanchor
+    if (text.isSetVTextAnchor())
+        setVTextAnchor(text.getVTextAnchor());
+}
+
 void VText::setX(const RAVector& x) {
     _x = x;
     _isSetX = true;
@@ -2286,6 +2666,7 @@ void VText::setFontSize(const RAVector& fSize) {
         _fontSize.setA(fSize.a());
     else
         _fontSize.setR(fSize.r());
+    
     _isSetFontSize = true;
 }
 
@@ -2339,6 +2720,52 @@ const std::string& VText::getVTextAnchor() const {
 }
 
 //--CLASS VRectangle--
+
+VRectangle::VRectangle(const VRectangle& rectangle) : VGraphicalPrimitive2D(rectangle) {
+    _shape = GRP_ELT_SHPE_REC;
+    _ratio = 0.0;
+    _isSetX = false;
+    _isSetY = false;
+    _isSetZ = false;
+    _isSetWidth = false;
+    _isSetHeight = false;
+    _isSetRX = false;
+    _isSetRY = false;
+    _isSetRatio = false;
+    
+    // x
+    if (rectangle.isSetX())
+        setX(rectangle.getX());
+    
+    // y
+    if (rectangle.isSetY())
+        setY(rectangle.getY());
+    
+    // z
+    if (rectangle.isSetZ())
+        setZ(rectangle.getZ());
+    
+    // width
+    if (rectangle.isSetWidth())
+        setWidth(rectangle.getWidth());
+    
+    // height
+    if (rectangle.isSetHeight())
+        setHeight(rectangle.getHeight());
+    
+    // rx
+    if (rectangle.isSetRX())
+        setRX(rectangle.getRX());
+    
+    // ry
+    if (rectangle.isSetRY())
+        setRY(rectangle.getRY());
+    
+    // ratio
+    if (rectangle.isSetRatio())
+        setRatio(rectangle.getRatio());
+}
+
 void VRectangle::setX(const RAVector& x) {
     _x = x;
     _isSetX = true;
@@ -2403,8 +2830,12 @@ const RAVector& VRectangle::getRY() const {
 }
 
 void VRectangle::setRatio(const double& ratio) {
-    _ratio = ratio;
-    _isSetRatio = true;
+    if (ratio > 0.00001) {
+        _ratio = ratio;
+        _isSetRatio = true;
+    }
+    else
+        unSetRatio();
 }
 
 void VRectangle::unSetRatio() {
@@ -2417,6 +2848,42 @@ const double& VRectangle::getRatio() const {
 }
 
 //--CLASS VEllipse--
+
+VEllipse::VEllipse(const VEllipse& ellipse) : VGraphicalPrimitive2D(ellipse) {
+    _shape = GRP_ELT_SHPE_ELP;
+    _ratio = 0.0;
+    _isSetCX = false;
+    _isSetCY = false;
+    _isSetCZ = false;
+    _isSetRX = false;
+    _isSetRY = false;
+    _isSetRatio = false;
+    
+    // cx
+    if (ellipse.isSetCX())
+        setCX(ellipse.getCX());
+    
+    // cy
+    if (ellipse.isSetCY())
+        setCY(ellipse.getCY());
+    
+    // cz
+    if (ellipse.isSetCZ())
+        setCZ(ellipse.getCZ());
+    
+    // rx
+    if (ellipse.isSetRX())
+        setRX(ellipse.getRX());
+    
+    // cy
+    if (ellipse.isSetRY())
+        setRY(ellipse.getRY());
+    
+    // ratio
+    if (ellipse.isSetRatio())
+        setRatio(ellipse.getRatio());
+}
+
 void VEllipse::setCX(const RAVector& cx) {
     _cx = cx;
     _isSetCX = true;
@@ -2463,8 +2930,12 @@ const RAVector& VEllipse::getRY() const {
 }
 
 void VEllipse::setRatio(const double& ratio) {
-    _ratio = ratio;
-    _isSetRatio = true;
+    if (ratio > 0.00001) {
+        _ratio = ratio;
+        _isSetRatio = true;
+    }
+    else
+        unSetRatio();
 }
 
 void VEllipse::unSetRatio() {
@@ -2477,6 +2948,21 @@ const double& VEllipse::getRatio() const {
 }
 
 //--CLASS VPolygon--
+
+VPolygon::VPolygon(const VPolygon& polygon) : VGraphicalPrimitive2D(polygon) {
+    _shape = GRP_ELT_SHPE_PLG;
+    _listOfElements.clear();
+    
+    RenPoint* rp = NULL;
+    for (constElementIt eIt = polygon.elementsBegin(); eIt != polygon.elementsEnd(); ++eIt) {
+        if (!(*eIt)->isRenderCubicBezier())
+            rp = new RenPoint(*(*eIt));
+        else
+            rp = new RCubicBezier(*((RCubicBezier*)(*eIt)));
+        addToListOfElementsEnd(rp);
+    }
+}
+
 void VPolygon::addToListOfElementsEnd(RenPoint* rp) {
     if (rp)
         _listOfElements.push_back(rp);
@@ -2550,9 +3036,93 @@ std::string VPolygon::getElementUniqueId() {
 }
 
 //--CLASS VRenderGroup--
+
+VRenderGroup::VRenderGroup(const VRenderGroup& g) : VGraphicalPrimitive2D(g) {
+    _fontFamily = fontFamilyToStr(FNT_FMLY_SNS_SRF);
+    _fontWeight = fontWeightToStr(FNT_WGHT_NRM);
+    _fontStyle = fontStyleToStr(FNT_STL_NRM);
+    _hTextAnchor = hTextAnchorToStr(HTXT_ANCH_STRT);
+    _vTextAnchor = vTextAnchorToStr(VTXT_ANCH_TOP);
+    _listOfElements.clear();
+    _isSetStartHead = false;
+    _isSetEndHead = false;
+    _isSetFontSize = false;
+    _isSetFontFamily = false;
+    _isSetFontWeight = false;
+    _isSetFontStyle = false;
+    _isSetHTextAnchor = false;
+    _isSetVTextAnchor = false;
+    _isSetListOfElements = false;
+    
+    // starthead
+    if (g.isSetStartHead())
+        setStartHead(g.getStartHead());
+    
+    // endhead
+    if (g.isSetEndHead())
+        setEndHead(g.getEndHead());
+    
+    // fontsize
+    if (g.isSetFontSize())
+        setFontSize(g.getFontSize());
+    
+    // fontfamily
+    if (g.isSetFontFamily())
+        setFontFamily(g.getFontFamily());
+    
+    // fontweight
+    if (g.isSetFontWeight())
+        setFontWeight(g.getFontWeight());
+    
+    // fontstyle
+    if (g.isSetFontStyle())
+        setFontStyle(g.getFontStyle());
+    
+    // htextanchor
+    if (g.isSetHTextAnchor())
+        setHTextAnchor(g.getHTextAnchor());
+    
+    // vtextanchor
+    if (g.isSetVTextAnchor())
+        setVTextAnchor(g.getVTextAnchor());
+
+    // geometric shapes
+    VTransformation2D* t2d;
+    for (constElementIt eIt = g.elementsBegin(); eIt != g.elementsEnd(); ++eIt) {
+        t2d = NULL;
+        
+        // image
+        if ((*eIt)->getShapeAsString() == "image")
+            t2d = new VImage(*((VImage*)(*eIt)));
+        // rendercurve
+        else if ((*eIt)->getShapeAsString() == "rendercurve")
+            t2d = new RCurve(*((RCurve*)(*eIt)));
+        // text
+        else if ((*eIt)->getShapeAsString() == "text")
+            t2d = new VText(*((VText*)(*eIt)));
+        // rectangle
+        else if ((*eIt)->getShapeAsString() == "rectangle")
+            t2d = new VRectangle(*((VRectangle*)(*eIt)));
+        // ellipse
+        else if ((*eIt)->getShapeAsString() == "ellipse")
+            t2d = new VEllipse(*((VEllipse*)(*eIt)));
+        // polygon
+        else if ((*eIt)->getShapeAsString() == "polygon")
+            t2d = new VPolygon(*((VPolygon*)(*eIt)));
+        
+        // add to list of elements
+        if (t2d)
+            addToListOfElements(t2d);
+    }
+}
+
 void VRenderGroup::setStartHead(const std::string& startHead) {
-    _startHead = startHead;
-    _isSetStartHead = true;
+    if (!startHead.empty()) {
+        _startHead = startHead;
+        _isSetStartHead = true;
+    }
+    else
+        unSetStartHead();
 }
 
 void VRenderGroup::unSetStartHead() {
@@ -2565,8 +3135,12 @@ const std::string& VRenderGroup::getStartHead() const {
 }
 
 void VRenderGroup::setEndHead(const std::string& endHead) {
-    _endHead = endHead;
-    _isSetEndHead = true;
+    if (!endHead.empty()) {
+        _endHead = endHead;
+        _isSetEndHead = true;
+    }
+    else
+        unSetEndHead();
 }
 
 void VRenderGroup::unSetEndHead() {
@@ -2580,8 +3154,8 @@ const std::string& VRenderGroup::getEndHead() const {
 
 void VRenderGroup::setFontSize(const RAVector& fSize) {
     if (fSize.a() > 0.000001) {
-        _fontSize.setR(0.);
         _fontSize.setA(fSize.a());
+        _fontSize.setR(0.);
     }
     else {
         _fontSize.setA(0.);
@@ -2726,108 +3300,29 @@ std::string VRenderGroup::getElementUniqueId() {
     }
 }
 
-void VRenderGroup::extractTextFeatures(const VRenderGroup& g) {
-    // set font size
-    if (g.isSetFontSize())
-        setFontSize(g.getFontSize());
-    
-    // set font size
-    if (g.isSetFontFamily())
-        setFontFamily(g.getFontFamily());
-    
-    // set font weight
-    if (g.isSetFontWeight())
-        setFontWeight(g.getFontWeight());
-    
-    // set font style
-    if (g.isSetFontStyle())
-        setFontStyle(g.getFontStyle());
-    
-    // set htext anchor
-    if (g.isSetHTextAnchor())
-        setHTextAnchor(g.getHTextAnchor());
-    
-    // set vtext anchor
-    if (g.isSetVTextAnchor())
-        setVTextAnchor(g.getVTextAnchor());
-}
-
-VRenderGroup VRenderGroup::operator = (const VRenderGroup& g) {
-    // set id
-    if (g.isSetId())
-        setId(g.getId());
-    
-    // set name
-    if (g.isSetName())
-        setName(g.getName());
-    
-    // set transform
-    if (g.isSetTransform()) {
-        double* m;
-        g.getTransform(m);
-        setTransform(m);
-    }
-    
-    // set stroke color
-    if (g.isSetStroke())
-        setStroke(g.getStroke());
-    
-    // set stroke width
-    if (g.isSetStrokeWidth())
-        setStrokeWidth(g.getStrokeWidth());
-    
-    // set dash array
-    if (g.isSetDashArray())
-        setDashArray(g.getDashArray());
-    
-    // set fill color
-    if (g.isSetFill())
-        setFill(g.getFill());
-    
-    // set fill rule
-    if (g.isSetFillRule())
-        setFillRule(g.getFillRule());
-    
-    // set start head
-    if (g.isSetStartHead())
-        setStartHead(g.getStartHead());
-    
-    // set end head
-    if (g.isSetEndHead())
-        setEndHead(g.getEndHead());
-    
-    // set font size
-    if (g.isSetFontSize())
-        setFontSize(g.getFontSize());
-    
-    // set font size
-    if (g.isSetFontFamily())
-        setFontFamily(g.getFontFamily());
-    
-    // set font weight
-    if (g.isSetFontWeight())
-        setFontWeight(g.getFontWeight());
-    
-    // set font style
-    if (g.isSetFontStyle())
-        setFontStyle(g.getFontStyle());
-    
-    // set htext anchor
-    if (g.isSetHTextAnchor())
-        setHTextAnchor(g.getHTextAnchor());
-    
-    // set vtext anchor
-    if (g.isSetVTextAnchor())
-        setVTextAnchor(g.getVTextAnchor());
-    
-    // set elements
-    if (g.getNumElements())
-        setListOfElements(g.getListOfElements());
-
-    return* this;
-}
-
 //--CLASS VGlobalStyle--
+
+VGlobalStyle::VGlobalStyle(VGlobalStyle& gS) : VeneerElement(gS) {
+    _roleList.clear();
+    _typeList.clear();
+    _g = NULL;
+    _isSetRoleList = false;
+    _isSetTypeList = false;
+    _isSetGroup = false;
+    
+    // rolelist
+    if (gS.isSetRoleList())
+        setRoleList(gS.getRoleList());
+    
+    // typelist
+    if (gS.isSetTypeList())
+        setTypeList(gS.getTypeList());
+    
+    // group
+    if (gS.isSetGroup())
+        setGroup(new VRenderGroup(*(gS.getGroup())));
+}
+
 void VGlobalStyle::setRoleList(const roleListSet& roleList) {
     _roleList = roleList;
     _isSetRoleList = true;
@@ -2841,8 +3336,10 @@ void VGlobalStyle::addToRoleList(const std::string& role) {
 void VGlobalStyle::removeFromRoleList(const std::string& role) {
     // search in role list to find the desired one
     for (constRoleListIt i = roleListBegin(); i != roleListEnd(); ++i) {
-        if (stringCompare(*i, role))
+        if (stringCompare(*i, role)) {
             _roleList.erase(i);
+            break;
+        }
     }
     if (_roleList.size() == 0)
         _isSetRoleList = false;
@@ -2870,8 +3367,10 @@ void VGlobalStyle::addToTypeList(const std::string& type) {
 void VGlobalStyle::removeFromTypeList(const std::string& type) {
     // search in type list to find the desired one
     for (constTypeListIt i = typeListBegin(); i != typeListEnd(); ++i) {
-        if (stringCompare(*i, type))
+        if (stringCompare(*i, type)) {
             _typeList.erase(i);
+            break;
+        }
     }
     if (_typeList.size() == 0)
         _isSetTypeList = false;
@@ -2896,6 +3395,16 @@ VRenderGroup* VGlobalStyle::getGroup() {
 }
 
 //--CLASS VLocalStyle--
+
+VLocalStyle::VLocalStyle(VLocalStyle& lS) : VGlobalStyle(lS) {
+    _idList.clear();
+    _isSetIdList = false;
+    
+    // idlist
+    if (lS.isSetIdList())
+        setIdList(lS.getIdList());
+}
+
 void VLocalStyle::setIdList(const idListSet& idList) {
     _idList = idList;
     _isSetIdList = true;
@@ -2909,8 +3418,10 @@ void VLocalStyle::addToIdList(const std::string& id) {
 void VLocalStyle::removeFromIdList(const std::string& id) {
     // search in id list to find the desired one
     for (constIdListIt i = idListBegin(); i != idListEnd(); ++i) {
-        if (stringCompare(*i, id))
+        if (stringCompare(*i, id)) {
             _idList.erase(i);
+            break;
+        }
     }
     if (_idList.size() == 0)
         _isSetIdList = false;
@@ -2926,6 +3437,29 @@ const VLocalStyle::idListSet& VLocalStyle::getIdList() const {
 }
 
 //--CLASS VLineEnding--
+
+VLineEnding::VLineEnding(VLineEnding& lE) : VGraphicalPrimitive2D(lE) {
+    _box = NULL;
+    _g = NULL;
+    _enableRotationMapping = true;
+    _isSetBox = false;
+    _isSetGroup = false;
+    _isSetEnableRotationMapping = false;
+    _isLocalLineEnding = false;
+    
+    // enablerotatingmapping
+    if (lE.isSetEnableRotationMapping())
+        setEnableRotationMapping(lE.getEnableRotationMapping());
+    
+    // boundingbox
+    if (lE.isSetBox())
+        setBox(new LBox(*(lE.getBox())));
+    
+    // group
+    if (lE.isSetGroup())
+        setGroup(new VRenderGroup(*(lE.getGroup())));
+}
+
 void VLineEnding::setBox(LBox* b) {
     _box = b;
     _isSetBox = true;
@@ -2959,6 +3493,20 @@ void VLineEnding::setAsLocalLineEnding(const bool& isLocal) {
 }
 
 //--CLASS VGradientStop--
+
+VGradientStop::VGradientStop(const VGradientStop& s) : VeneerElement(s) {
+    _isSetOffset = false;
+    _isSetStopColor = false;
+    
+    // offset
+    if (s.isSetOffset())
+        setOffset(s.getOffset());
+    
+    // stopcolor
+    if (s.isSetStopColor())
+        setStopColor(s.getStopColor());
+}
+
 void VGradientStop::setOffset(const RAVector& offset) {
     _offset = offset;
     _isSetOffset = true;
@@ -2978,6 +3526,14 @@ const std::string& VGradientStop::getStopColor() const {
 }
 
 // --Class RenPoint
+
+RenPoint::RenPoint(const RenPoint& rp) : VeneerElement(rp) {
+    _isSetRPoint = false;
+    
+    // rpoint
+    setRPoint(rp.getRPoint());
+}
+
 void RenPoint::setRPoint(const RPoint& rp) {
     _r = rp;
     _isSetRPoint = true;
@@ -2988,6 +3544,20 @@ const RPoint& RenPoint::getRPoint() const {
 }
 
 //--CLASS RCubicBezier--
+
+RCubicBezier::RCubicBezier(const RCubicBezier& rcb) : RenPoint(rcb) {
+    _isSetBasePoint1 = false;
+    _isSetBasePoint2 = false;
+    
+    // basepoint1
+    if (rcb.isSetBasePoint1())
+        setBasePoint1(rcb.getBasePoint1());
+    
+    // basepoint2
+    if (rcb.isSetBasePoint2())
+        setBasePoint2(rcb.getBasePoint2());
+}
+
 void RCubicBezier::setBasePoint1(const RPoint& rp) {
     _basePoint1 = rp;
     _isSetBasePoint1 = true;

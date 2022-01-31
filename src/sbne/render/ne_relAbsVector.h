@@ -20,6 +20,14 @@ public:
         _r = r;
     }
     
+    RAVector(const RAVector& rav) {
+        // absolute
+        _a = rav.a();
+        
+        // relative
+        _r = rav.r();
+    }
+    
     /// Functions
     // set abs
     void setA(const double& a);

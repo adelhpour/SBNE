@@ -22,6 +22,21 @@ public:
         _z = z;
     }
     
+    LPoint(const LPoint& point) {
+        // id
+        if (point.isSetId())
+            setId(point.getId());
+        
+        // x
+        setX(point.x());
+        
+        // y
+        setY(point.y());
+        
+        // z
+        setZ(point.z());
+    }
+    
     /// Functions
     // set id
     void setId(const std::string& id);

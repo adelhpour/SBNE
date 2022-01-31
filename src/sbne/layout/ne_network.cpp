@@ -124,14 +124,16 @@ Network* networkFromLayout(const Layout& layout, Network* net) {
             c->setOrder(cg->getOrder());
         
         // get the compartment bounding box
-        LBox* b = new LBox();
-        b->setX(cg->getBoundingBox()->x());
-        b->setY(cg->getBoundingBox()->y());
-        b->setWidth(cg->getBoundingBox()->width());
-        b->setHeight(cg->getBoundingBox()->height());
-        if (cg->getBoundingBox()->isSetId())
-            b->setId(cg->getBoundingBox()->getId());
-        c->setBox(b);
+        if (cg->getBoundingBox()) {
+            LBox* b = new LBox();
+            b->setX(cg->getBoundingBox()->x());
+            b->setY(cg->getBoundingBox()->y());
+            b->setWidth(cg->getBoundingBox()->width());
+            b->setHeight(cg->getBoundingBox()->height());
+            if (cg->getBoundingBox()->isSetId())
+                b->setId(cg->getBoundingBox()->getId());
+            c->setBox(b);
+        }
         
         // get object role
         RenderGraphicalObjectPlugin* rgoPlugin = (RenderGraphicalObjectPlugin*) cg->getPlugin("render");
@@ -200,14 +202,16 @@ Network* networkFromLayout(const Layout& layout, Network* net) {
             s->setGlyphId(net->getSpeciesUniqueGlyphId(s->getId()));
         
         // get the species bounding box
-        LBox* b = new LBox();
-        b->setX(sg->getBoundingBox()->x());
-        b->setY(sg->getBoundingBox()->y());
-        b->setWidth(sg->getBoundingBox()->width());
-        b->setHeight(sg->getBoundingBox()->height());
-        if (sg->getBoundingBox()->isSetId())
-            b->setId(sg->getBoundingBox()->getId());
-        s->setBox(b);
+        if (sg->getBoundingBox()) {
+            LBox* b = new LBox();
+            b->setX(sg->getBoundingBox()->x());
+            b->setY(sg->getBoundingBox()->y());
+            b->setWidth(sg->getBoundingBox()->width());
+            b->setHeight(sg->getBoundingBox()->height());
+            if (sg->getBoundingBox()->isSetId())
+                b->setId(sg->getBoundingBox()->getId());
+            s->setBox(b);
+        }
         
         // get object role
         RenderGraphicalObjectPlugin* rgoPlugin = (RenderGraphicalObjectPlugin*) sg->getPlugin("render");
@@ -238,14 +242,16 @@ Network* networkFromLayout(const Layout& layout, Network* net) {
             r->setGlyphId(r->getId() + "_Glyph");
         
         // get the reaction bounding box
-        LBox* b = new LBox();
-        b->setX(rg->getBoundingBox()->x());
-        b->setY(rg->getBoundingBox()->y());
-        b->setWidth(rg->getBoundingBox()->width());
-        b->setHeight(rg->getBoundingBox()->height());
-        if (rg->getBoundingBox()->isSetId())
-            b->setId(rg->getBoundingBox()->getId());
-        r->setBox(b);
+        if (rg->getBoundingBox()) {
+            LBox* b = new LBox();
+            b->setX(rg->getBoundingBox()->x());
+            b->setY(rg->getBoundingBox()->y());
+            b->setWidth(rg->getBoundingBox()->width());
+            b->setHeight(rg->getBoundingBox()->height());
+            if (rg->getBoundingBox()->isSetId())
+                b->setId(rg->getBoundingBox()->getId());
+            r->setBox(b);
+        }
         
         // get curve
         if (rg->isSetCurve()) {
@@ -313,14 +319,16 @@ Network* networkFromLayout(const Layout& layout, Network* net) {
                 sr->setRole(SBMLRoleToRxnRole(srg->getRole()));
             
             // get the species reference bounding box
-            LBox* b = new LBox();
-            b->setX(srg->getBoundingBox()->x());
-            b->setY(srg->getBoundingBox()->y());
-            b->setWidth(srg->getBoundingBox()->width());
-            b->setHeight(srg->getBoundingBox()->height());
-            if (srg->getBoundingBox()->isSetId())
-                b->setId(srg->getBoundingBox()->getId());
-            sr->setBox(b);
+            if (srg->getBoundingBox()) {
+                LBox* b = new LBox();
+                b->setX(srg->getBoundingBox()->x());
+                b->setY(srg->getBoundingBox()->y());
+                b->setWidth(srg->getBoundingBox()->width());
+                b->setHeight(srg->getBoundingBox()->height());
+                if (srg->getBoundingBox()->isSetId())
+                    b->setId(srg->getBoundingBox()->getId());
+                sr->setBox(b);
+            }
             
             // get species referneces curve
             if (srg->isSetCurve()) {
@@ -358,14 +366,16 @@ Network* networkFromLayout(const Layout& layout, Network* net) {
             o->setGlyphId(net->getGObjectUniqueGlyphId());
         
         // get the graphical object bounding box
-        LBox* b = new LBox();
-        b->setX(gO->getBoundingBox()->x());
-        b->setY(gO->getBoundingBox()->y());
-        b->setWidth(gO->getBoundingBox()->width());
-        b->setHeight(gO->getBoundingBox()->height());
-        if (gO->getBoundingBox()->isSetId())
-            b->setId(gO->getBoundingBox()->getId());
-        o->setBox(b);
+        if (gO->getBoundingBox()) {
+            LBox* b = new LBox();
+            b->setX(gO->getBoundingBox()->x());
+            b->setY(gO->getBoundingBox()->y());
+            b->setWidth(gO->getBoundingBox()->width());
+            b->setHeight(gO->getBoundingBox()->height());
+            if (gO->getBoundingBox()->isSetId())
+                b->setId(gO->getBoundingBox()->getId());
+            o->setBox(b);
+        }
     }
     
     // texts
@@ -383,35 +393,35 @@ Network* networkFromLayout(const Layout& layout, Network* net) {
             t->setGlyphId(net->getTextUniqueGlyphId());
         
         // get the text bounding box
-        LBox* b = new LBox();
-        b->setX(tg->getBoundingBox()->x());
-        b->setY(tg->getBoundingBox()->y());
-        b->setWidth(tg->getBoundingBox()->width());
-        b->setHeight(tg->getBoundingBox()->height());
-        if (tg->getBoundingBox()->isSetId())
-            b->setId(tg->getBoundingBox()->getId());
-        t->setBox(b);
+        if (tg->getBoundingBox()) {
+            LBox* b = new LBox();
+            b->setX(tg->getBoundingBox()->x());
+            b->setY(tg->getBoundingBox()->y());
+            b->setWidth(tg->getBoundingBox()->width());
+            b->setHeight(tg->getBoundingBox()->height());
+            if (tg->getBoundingBox()->isSetId())
+                b->setId(tg->getBoundingBox()->getId());
+            t->setBox(b);
+        }
         
         // get graphical object
         if (tg->isSetGraphicalObjectId()) {
             t->setGraphicalObjectId(tg->getGraphicalObjectId());
-            if (net->findCompartmentByGlyphId(tg->getGraphicalObjectId()))
-                net->findCompartmentByGlyphId(tg->getGraphicalObjectId())->setText(t);
-            else if (net->findSpeciesByGlyphId(tg->getGraphicalObjectId()))
-                net->findSpeciesByGlyphId(tg->getGraphicalObjectId())->setText(t);
-            else if (net->findReactionByGlyphId(tg->getGraphicalObjectId()))
-                net->findReactionByGlyphId(tg->getGraphicalObjectId())->setText(t);
+            NGraphicalObject* o = net->findNetworkElement(tg->getGraphicalObjectId());
+            if (o && o->getType() != 4)
+                o->addText(t);
         }
         
         // get origin of text
         if (tg->isSetOriginOfTextId()) {
             t->setOriginOfTextId(tg->getOriginOfTextId());
-            if (net->findCompartmentById(tg->getOriginOfTextId()) && net->findCompartmentById(tg->getOriginOfTextId())->isSetName())
-                t->setText(net->findCompartmentById(tg->getOriginOfTextId())->getName());
-            else if (net->findSpeciesById(tg->getOriginOfTextId()) && net->findSpeciesById(tg->getOriginOfTextId())->isSetName())
-                t->setText(net->findSpeciesById(tg->getOriginOfTextId())->getName());
-            else if (net->findReactionById(tg->getOriginOfTextId()) && net->findReactionById(tg->getOriginOfTextId())->isSetName())
-                t->setText(net->findReactionById(tg->getOriginOfTextId())->getName());
+            NGraphicalObject* o = net->findNetworkElement(tg->getOriginOfTextId());
+            if (o && o->getType() != 4) {
+                if (o->isSetName())
+                    t->setText(o->getName());
+                else if (o->isSetName())
+                    t->setText(o->getId());
+            }
         }
         
         // get text
@@ -442,6 +452,10 @@ Network* networkFromModel(const Model& model, Network* net) {
         if (comp->isSetName())
             c->setName(comp->getName());
         
+        // get metaid
+        if (comp->isSetMetaId())
+            c->setMetaId(comp->getMetaId());
+        
         net->addCompartment(c);
     }
     
@@ -459,6 +473,10 @@ Network* networkFromModel(const Model& model, Network* net) {
         // get name
         if (spc->isSetName())
             s->setName(spc->getName());
+        
+        // get metaid
+        if (spc->isSetMetaId())
+            s->setMetaId(spc->getMetaId());
         
         // get compartment
         if (spc->isSetCompartment()) {
@@ -485,6 +503,10 @@ Network* networkFromModel(const Model& model, Network* net) {
         if (rxn->isSetName())
             r->setName(rxn->getName());
         
+        // get metaid
+        if (rxn->isSetMetaId())
+            r->setMetaId(rxn->getMetaId());
+        
         // get compartment
         if (rxn->isSetCompartment()) {
             r->setCompartment(rxn->getCompartment());
@@ -495,27 +517,35 @@ Network* networkFromModel(const Model& model, Network* net) {
         // add reactans
         NSpecies* s;
         for(int j = 0; j < rxn->getNumReactants(); ++j) {
-            const SpeciesReference* spc = rxn->getReactant(j);
+            const SpeciesReference* spc_r = rxn->getReactant(j);
             NSpeciesReference* sr = new NSpeciesReference();
             
-            // get the species reference id
-            if (spc->isSetId())
-                sr->setId(spc->getId());
+            // get id
+            if (spc_r->isSetId())
+                sr->setId(spc_r->getId());
             else
                 sr->setId(r->getSpeciesReferenceUniqueId());
+            
+            // get name
+            if (spc_r->isSetName())
+                sr->setName(spc_r->getName());
+            
+            // get metaid
+            if (spc_r->isSetMetaId())
+                sr->setMetaId(spc_r->getMetaId());
             
             // get the species reference role
             sr->setRole(RXN_ROLE_SUBSTRATE);
             
             // get the species reference species
-            if (spc->isSetSpecies() && net->findSpeciesById(spc->getSpecies())) {
-                s = net->findSpeciesById(spc->getSpecies());
+            if (spc_r->isSetSpecies() && net->findSpeciesById(spc_r->getSpecies())) {
+                s = net->findSpeciesById(spc_r->getSpecies());
                 
                 // set the species of species reference
                 sr->setSpecies(r, s);
                 
                 // if the reaction does not contain the species
-                if (!r->findSpeciesById(spc->getSpecies()))
+                if (!r->findSpeciesById(spc_r->getSpecies()))
                     r->addSpecies(s);
                 
                 // if the species is not already a participant in this reaction
@@ -528,27 +558,35 @@ Network* networkFromModel(const Model& model, Network* net) {
         
         // add products
         for(int j = 0; j < rxn->getNumProducts(); ++j) {
-            const SpeciesReference* spc = rxn->getProduct(j);
+            const SpeciesReference* spc_r = rxn->getProduct(j);
             NSpeciesReference* sr = new NSpeciesReference();
             
-            // get the species reference id
-            if (spc->isSetId())
-                sr->setId(spc->getId());
+            // get id
+            if (spc_r->isSetId())
+                sr->setId(spc_r->getId());
             else
                 sr->setId(r->getSpeciesReferenceUniqueId());
+            
+            // get name
+            if (spc_r->isSetName())
+                sr->setName(spc_r->getName());
+            
+            // get metaid
+            if (spc_r->isSetMetaId())
+                sr->setMetaId(spc_r->getMetaId());
             
             // set the species reference role
             sr->setRole(RXN_ROLE_PRODUCT);
             
             // get the species reference species
-            if (spc->isSetSpecies() && net->findSpeciesById(spc->getSpecies())) {
-                s = net->findSpeciesById(spc->getSpecies());
+            if (spc_r->isSetSpecies() && net->findSpeciesById(spc_r->getSpecies())) {
+                s = net->findSpeciesById(spc_r->getSpecies());
                 
                 // set the species of species reference
                 sr->setSpecies(r, s);
                 
                 // if the reaction does not contain the species
-                if (!r->findSpeciesById(spc->getSpecies()))
+                if (!r->findSpeciesById(spc_r->getSpecies()))
                     r->addSpecies(s);
                 
                 // if the species is not already a participant in this reaction
@@ -561,27 +599,35 @@ Network* networkFromModel(const Model& model, Network* net) {
         
         // add modifiers
         for(int j = 0; j < rxn->getNumModifiers(); ++j) {
-            const ModifierSpeciesReference* spc = rxn->getModifier(j);
+            const ModifierSpeciesReference* spc_r = rxn->getModifier(j);
             NSpeciesReference* sr = new NSpeciesReference();
             
-            // get the species reference id
-            if (spc->isSetId())
-                sr->setId(spc->getId());
+            // get id
+            if (spc_r->isSetId())
+                sr->setId(spc_r->getId());
             else
                 sr->setId(r->getSpeciesReferenceUniqueId());
+            
+            // get name
+            if (spc_r->isSetName())
+                sr->setName(spc_r->getName());
+            
+            // get metaid
+            if (spc_r->isSetMetaId())
+                sr->setMetaId(spc_r->getMetaId());
             
             // set the species reference role
             sr->setRole(RXN_ROLE_MODIFIER);
             
             // get the species reference species
-            if (spc->isSetSpecies() && net->findSpeciesById(spc->getSpecies())) {
-                s = net->findSpeciesById(spc->getSpecies());
+            if (spc_r->isSetSpecies() && net->findSpeciesById(spc_r->getSpecies())) {
+                s = net->findSpeciesById(spc_r->getSpecies());
                 
                 // set the species of species reference
                 sr->setSpecies(r, s);
                 
                 // if the reaction does not contain the species
-                if (!r->findSpeciesById(spc->getSpecies()))
+                if (!r->findSpeciesById(spc_r->getSpecies()))
                     r->addSpecies(s);
                 
                 // if the species is not already a participant in this reaction
@@ -642,6 +688,24 @@ void getLineInfo(LCurve* c, const LineSegment* line) {
 
 //--CLASS NetworkElement--
 
+NetworkElement::NetworkElement(const NetworkElement& nE) {
+    _isSetId = false;
+    _isSetName = false;
+    _isSetMetaId = false;
+    
+    // id
+    if (nE.isSetId())
+        setId(getId());
+    
+    // name
+    if (nE.isSetName())
+        setName(nE.getName());
+    
+    // metaid
+    if (nE.isSetMetaId())
+        setMetaId(nE.getMetaId());
+}
+
 void NetworkElement::setId(const std::string& id) {
     _id = id;
     _isSetId = true;
@@ -660,7 +724,46 @@ const std::string& NetworkElement::getName() const {
     return _name;
 }
 
+void NetworkElement::setMetaId(const std::string& metaid) {
+    _metaid = metaid;
+    _isSetMetaId = true;
+}
+
+const std::string& NetworkElement::getMetaId() const {
+    return _metaid;
+}
+
 //--CLASS Network--
+
+Network::Network(const Network& n) : NetworkElement(n) {
+    _compartments.clear();
+    _species.clear();
+    _reactions.clear();
+    _texts.clear();
+    _gObjects.clear();
+    _isSetBox = false;
+    _isLayoutSpecified = false;
+    
+    // compartments
+    if (n.getNumCompartments())
+        setCompartments(n.getCompartments());
+    
+    // species
+    if (n.getNumSpecies())
+        setSpecies(n.getSpecies());
+    
+    // reactions
+    if (n.getNumReactions())
+        setReactions(n.getReactions());
+    
+    // texts
+    if (n.getNumTexts())
+        setTexts(n.getTexts());
+    
+    // graphcialobjects
+    if (n.getNumGObjects())
+        setGObjects(n.getGObjects());
+}
 
 void Network::addCompartment(NCompartment* c) {
     if (c)
@@ -1018,29 +1121,6 @@ const size_t Network::getNumTexts() const {
     return _texts.size();
 }
 
-NText* Network::findTextById(const std::string& id) {
-    // search in texts to find the desired one
-    for (constTextIt i = textsBegin(); i != textsEnd(); ++i) {
-        if (stringCompare((*i)->getId(), id))
-            return *i;
-    }
-    // not found
-    return NULL;
-}
-
-int Network::findTextIndexById(const std::string& id) {
-    int _textIndex = 0;
-
-    // search in texts to find the desired one
-    for (constTextIt i = textsBegin(); i != textsEnd(); ++i) {
-        if (stringCompare((*i)->getId(), id))
-            return _textIndex;
-        ++_textIndex;
-    }
-    // not found
-    return -1;
-}
-
 NText* Network::findTextByGlyphId(const std::string& glyphId) {
     // search in texts to find the desired one using its glyph id
     for (constTextIt i = textsBegin(); i != textsEnd(); ++i) {
@@ -1080,6 +1160,29 @@ int Network::findTextIndexByGraphicalObjectId(const std::string& gOId) {
     // search in texts to find the desired one using its graphical object id
     for (constTextIt i = textsBegin(); i != textsEnd(); ++i) {
         if ((*i)->isSetGraphicalObjectId() && stringCompare((*i)->getGraphicalObjectId(), gOId))
+            return _textIndex;
+        ++_textIndex;
+    }
+    // not found
+    return -1;
+}
+
+NText* Network::findTextByOriginOfTextId(const std::string& id) {
+    // search in texts to find the desired one using its origin of text id
+    for (constTextIt i = textsBegin(); i != textsEnd(); ++i) {
+        if ((*i)->isSetOriginOfTextId() && stringCompare((*i)->getOriginOfTextId(), id))
+            return *i;
+    }
+    // not found
+    return NULL;
+}
+
+int Network::findTextIndexByOriginOfTextId(const std::string& id) {
+    int _textIndex = 0;
+
+    // search in texts to find the desired one using its origin of text id
+    for (constTextIt i = textsBegin(); i != textsEnd(); ++i) {
+        if ((*i)->isSetOriginOfTextId() && stringCompare((*i)->getOriginOfTextId(), id))
             return _textIndex;
         ++_textIndex;
     }
@@ -1221,7 +1324,7 @@ NGraphicalObject* Network::findNetworkElement(const std::string& id) {
     
     // search in texts to find the desired one
     for (constTextIt tIt = textsBegin(); tIt != textsEnd(); ++tIt) {
-       if (stringCompare((*tIt)->getId(), id) || stringCompare((*tIt)->getGlyphId(), id))
+       if (stringCompare((*tIt)->getGlyphId(), id))
            return *tIt;
     }
     
@@ -1252,6 +1355,34 @@ void Network::setLayoutSpecified (bool value) {
 }
 
 //--CLASS NGraphicalObject--
+
+NGraphicalObject::NGraphicalObject(Network* net, NGraphicalObject& gO) : NetworkElement(gO) {
+    _box = NULL;
+    _texts.clear();
+    _isSetGlyphId = false;
+    _isMatchWithGlyph = false;
+    _isSetObjectRole = false;
+    _isSetBox = false;
+    _isUsed = false;
+    _isLockedPosition = false;
+    
+    // boundingbox
+    if (gO.isSetBox())
+        setBox(new LBox(*(gO.getBox())));
+    
+    // text
+    NText* text = NULL;
+    for (constTextIt tIt = gO.textsBegin(); tIt != gO.textsEnd(); ++tIt) {
+        text = new NText(*(*tIt));
+        text->setGlyphId(net->getTextUniqueGlyphId());
+        net->addText(text);
+        addText(text);
+    }
+    
+    // obejectrole
+    if (gO.isSetObjectRole())
+        setObjectRole(gO.getObjectRole());
+}
 
 GrphObjType NGraphicalObject::getType() {
     return _type;
@@ -1300,13 +1431,59 @@ LBox* NGraphicalObject::getBox() {
     return _box;
 }
 
-void NGraphicalObject::setText(NText* text) {
-    _text = text;
-    _isSetText = true;
+void NGraphicalObject::addText(NText* t) {
+    if (t)
+        _texts.push_back(t);
+    else
+        std::cout << "No text to add\n";
 }
 
-NText* NGraphicalObject::getText() {
-    return _text;
+void NGraphicalObject::removeText(int textIndex) {
+    if (textIndex >= _texts.size() || textIndex < 0)
+        std::cerr << "the entered text index is not within the textVec range\n";
+    else {
+        // set the iterator to the desired text
+        constTextIt _it = textsBegin();
+        for (int i = 0; i < textIndex; ++i)
+            ++_it;
+        // remove the desired text from the textVec
+        _texts.erase(_it);
+    }
+}
+
+void NGraphicalObject::setTexts(const textVec& tv) {
+    _texts = tv;
+}
+
+const NGraphicalObject::textVec& NGraphicalObject::getTexts() const {
+    return _texts;
+}
+
+const size_t NGraphicalObject::getNumTexts() const {
+    return _texts.size();
+}
+
+NText* NGraphicalObject::findTextByGlyphId(const std::string& glyphId) {
+    // search in texts to find the desired one using its glyph id
+    for (constTextIt i = textsBegin(); i != textsEnd(); ++i) {
+        if (stringCompare((*i)->getGlyphId(), glyphId))
+            return *i;
+    }
+    // not found
+    return NULL;
+}
+
+int NGraphicalObject::findTextIndexByGlyphId(const std::string& glyphId) {
+    int _textIndex = 0;
+
+    // search in texts to find the desired one using its glyph id
+    for (constTextIt i = textsBegin(); i != textsEnd(); ++i) {
+        if (stringCompare((*i)->getGlyphId(), glyphId))
+            return _textIndex;
+        ++_textIndex;
+    }
+    // not found
+    return -1;
 }
 
 void NGraphicalObject::setUsed(bool value) {
@@ -1318,6 +1495,25 @@ void NGraphicalObject::setLockedPosition(bool value) {
 }
 
 //--CLASS NCompartment--
+
+NCompartment::NCompartment(NCompartment& c) : NGraphicalObject(c) {
+    _type = GRP_OBJ_CMP;
+    _species.clear();
+    _reactions.clear();
+    _isSetOrder = false;
+    
+    // species
+    if (c.getNumSpecies())
+        setSpecies(c.getSpecies());
+    
+    // reactions
+    if (c.getNumReactions())
+        setReactions(c.getReactions());
+    
+    // order
+    if (c.isSetOrder())
+        setOrder(c.getOrder());
+}
 
 void NCompartment::addSpecies(NSpecies* s) {
     if (s)
@@ -1493,6 +1689,18 @@ void NCompartment::shiftItems(const double& dx, const double& dy) {
 
 //--CLASS NSpecies--
 
+NSpecies::NSpecies(NSpecies& s) : NGraphicalObject(s) {
+    _type = GRP_OBJ_SPC;
+    _reactionMembers.clear();
+    _rSides.clear();
+    _isSetCompartment = false;
+    _isPseudoSpecies = false;
+    
+    // compartment
+    if (s.isSetCompartment())
+        setCompartment(s.getCompartment());
+}
+
 void NSpecies::setCompartment(const std::string& compartmentId) {
     _compartment = compartmentId;
     _isSetCompartment = true;
@@ -1519,8 +1727,10 @@ void NSpecies::addReactionMember(NReaction* r, const double& angle, const bool& 
 
 void NSpecies::removeReactionMember(const std::string& reactionId) {
     for (constRMemberIt rMIt = rMembersBegin(); rMIt != rMembersEnd(); ++rMIt) {
-        if (stringCompare((*rMIt)->reaction->getId(), reactionId))
+        if (stringCompare((*rMIt)->reaction->getId(), reactionId)) {
             _reactionMembers.erase(rMIt);
+            break;
+        }
     }
 }
 
@@ -1593,8 +1803,10 @@ void NSpecies::addToReferencedSide(NSpeciesReference* sr, const SpcSide& side) {
 void NSpecies::removeReferencedSide(const SpcSide& side) {
     // search in referenced sides to find the one with the same side
     for (constRSideIt rSIt = rSideBegin(); rSIt != rSideEnd(); ++rSIt) {
-        if ((*rSIt)->side == side)
+        if ((*rSIt)->side == side) {
             _rSides.erase(rSIt);
+            break;
+        }
     }
 }
 
@@ -1642,6 +1854,42 @@ void NSpecies::setPseudoSpecies(bool value) {
 
 //--CLASS NReaction--
 
+NReaction::NReaction(NReaction& r) : NGraphicalObject(r) {
+    _type = GRP_OBJ_RXN;
+    _speciesReferences.clear();
+    _subSpeciesReferences.clear();
+    _species.clear();
+    _subSpecies.clear();
+    _pseudoSpecies.clear();
+    _curve = NULL;
+    _extentBox = new LBox();
+    _rSides.clear();
+    _rEnds.clear();
+    _connectedReactions.clear();
+    _subReactions.clear();
+    _reactionLayers.clear();
+    _directionAngle = 0.0;
+    _speciesStartAngle = 0.0;
+    _isSetCompartment = false;
+    _isSetCurve = false;
+    _isSetCenterP = false;
+    _isSetRadius = false;
+    _isSetDirectionAngle = false;
+    _isSetSpeciesStartAngle = false;
+    
+    // compartment
+    if (r.isSetCompartment())
+        setCompartment(r.getCompartment());
+    
+    // speciesreferences
+    if (r.getNumSpeciesReferences())
+        setSpeciesReferences(r.getSpeciesReferences());
+    
+    // curve
+    if (r.isSetCurve())
+        setCurve(new LCurve(*(r.getCurve())));
+}
+
 void NReaction::setCompartment(const std::string& compartmentId) {
     _compartment = compartmentId;
     _isSetCompartment = true;
@@ -1649,6 +1897,25 @@ void NReaction::setCompartment(const std::string& compartmentId) {
 
 const std::string& NReaction::getCompartment() const {
     return _compartment;
+}
+
+const std::string NReaction::findCompartment() const {
+    if (isSetCompartment())
+        return getCompartment();
+    
+    std::string compartment;
+    for (constSReferenceIt sRIt = sReferencesBegin(); sRIt != sReferencesEnd(); ++sRIt) {
+        if ((*sRIt)->isSetSpecies() && (*sRIt)->getSpecies()->isSetCompartment()) {
+            if (sRIt - sReferencesBegin() == 0)
+                compartment = (*sRIt)->getSpecies()->getCompartment();
+            else if (!stringCompare(compartment, (*sRIt)->getSpecies()->getCompartment())) {
+                compartment.clear();
+                break;
+            }
+        }
+    }
+    
+    return compartment;
 }
 
 void NReaction::addSpeciesReference(NSpeciesReference* sr) {
@@ -2226,8 +2493,10 @@ void NReaction::setPseudoSpeciesOfConnectedReaction(NReaction* r, NSpecies* pseu
 
 void NReaction::removeConnectedReaction(NReaction* r) {
     for (constConnectedRIt cRIt = connectedRBegin(); cRIt != connectedREnd(); ++cRIt) {
-        if (stringCompare(r->getId(), (*cRIt)->reaction->getId()))
+        if (stringCompare(r->getId(), (*cRIt)->reaction->getId())) {
             _connectedReactions.erase(cRIt);
+            break;
+        }
     }
 }
 
@@ -2239,6 +2508,7 @@ void NReaction::removeSpeciesFromConnectedReaction(NReaction* r, NSpecies* s) {
                     (*cRIt)->species.erase(sIt);
                     if ((*cRIt)->species.size() == 0)
                         _connectedReactions.erase(cRIt);
+                    break;
                 }
             }
         }
@@ -2604,7 +2874,6 @@ std::vector<std::pair<int , int>> NReaction::getManhatanPathOfSpeciesReference(N
     while (!reachedImpasse) {
         while ((remainedATSteps || remainedRTSteps) && !reachedImpasse) {
             address = addressesInReaction.back();
-            //std::cout << " mPSize " << manhatanPath.size() << " addressLayer " << addressesInReaction.back().first << " addressVacancy " << addressesInReaction.back().second << " remainedATSteps " << remainedATSteps << " remainedRTSteps " << remainedRTSteps << " isPathAdded " << isPathAdded << std::endl;
             if (isPathAdded) {
                 isPathAdded = false;
                 switch (manhatanPath.size() % 2) {
@@ -2616,8 +2885,6 @@ std::vector<std::pair<int , int>> NReaction::getManhatanPathOfSpeciesReference(N
                                 address.second -= (*(rLayersBegin() + address.first))->getNumVacancies();
                             while (address.second < 0)
                                 address.second += (*(rLayersBegin() + address.first))->getNumVacancies();
-                            
-                            //std::cout << " case00 " << " addressLayer " << address.first << " addressVacancy " << address.second << std::endl;
                             
                             addressesInReaction.push_back(address);
                             pathStep.first = aTStep;
@@ -2634,11 +2901,8 @@ std::vector<std::pair<int , int>> NReaction::getManhatanPathOfSpeciesReference(N
                         break;
                         
                     case 1:
-                        //std::cout << " case 01 " << " vacnacy " << address.first - 1 << std::endl;
                         if (remainedRTSteps && (*(rLayersBegin() + address.first - 1))->checkRadialVacancy(address.second) != -1) {
                             address.first -= 1;
-                            
-                            //std::cout << " case01 " << " addressLayer " << address.first << " addressVacancy " << address.second << std::endl;
                             
                             addressesInReaction.push_back(address);
                             pathStep.first = 1;
@@ -2654,8 +2918,6 @@ std::vector<std::pair<int , int>> NReaction::getManhatanPathOfSpeciesReference(N
                     case 0:
                         if (remainedRTSteps && (*(rLayersBegin() + address.first - 1))->checkRadialVacancy(address.second) != -1) {
                             address.first -= 1;
-                            
-                            //std::cout << " case10 " << " addressLayer " << address.first << " addressVacancy " << address.second << std::endl;
                             
                             addressesInReaction.push_back(address);
                             ++manhatanPath.back().first;
@@ -2673,8 +2935,6 @@ std::vector<std::pair<int , int>> NReaction::getManhatanPathOfSpeciesReference(N
                             while (address.second < 0)
                                 address.second += (*(rLayersBegin() + address.first))->getNumVacancies();
                             
-                            //std::cout << " case11 " << " addressLayer " << address.first << " addressVacancy " << address.second << std::endl;
-                            
                             addressesInReaction.push_back(address);
                             manhatanPath.back().first += aTStep;
                             isPathAdded = true;
@@ -2684,8 +2944,6 @@ std::vector<std::pair<int , int>> NReaction::getManhatanPathOfSpeciesReference(N
                 }
             }
         }
-        
-        //std::cout << " reachedImpasse " << reachedImpasse << " remainedATSteps " << remainedATSteps << " remainedRTSteps " << remainedRTSteps << " size " << manhatanPath.size() << std::endl;
         
         if (!remainedATSteps && !remainedRTSteps)
             break;
@@ -2713,8 +2971,6 @@ std::vector<std::pair<int , int>> NReaction::getManhatanPathOfSpeciesReference(N
             
             reachedImpasse = false;
         }
-        
-        //std::cout << " reachedImpasse " << reachedImpasse << " remainedATSteps " << remainedATSteps << " remainedRTSteps " << remainedRTSteps << " size " << manhatanPath.size() << std::endl;
     }
     
     if (reachedImpasse) {
@@ -2742,12 +2998,6 @@ std::vector<std::pair<int , int>> NReaction::getManhatanPathOfSpeciesReference(N
                 address.second += (*(rLayersBegin() + address.first))->getNumVacancies();
         }
     }
-    
-    //for (int i = 0; i < manhatanPath.size(); ++i)
-        //std::cout << " index " << i << " numSteps " << manhatanPath.at(i).first << " vacantIndex " << manhatanPath.at(i).second << std::endl;
-    
-    //std::cout << std::endl << std::endl;
-    
     
     return manhatanPath;
 }
@@ -2857,7 +3107,7 @@ void NReaction::shiftItems(const double& dx, const double& dy) {
 void NReaction::calculateExtents() {
     LPoint minP(INT_MAX, INT_MAX);
     LPoint maxP(INT_MIN, INT_MIN);
-    LBox curveBox;
+    LBox* curveBox;
     
     // for reaction
     // center
@@ -2868,8 +3118,8 @@ void NReaction::calculateExtents() {
     // curve
     if (isSetCurve()) {
         curveBox = getCurve()->getExtentBox();
-        minP = pointMin(curveBox.upperLeftCorner(), minP);
-        maxP = pointMax(curveBox.bottomRightCorner(), maxP);
+        minP = pointMin(curveBox->upperLeftCorner(), minP);
+        maxP = pointMax(curveBox->bottomRightCorner(), maxP);
     }
     
     // for subReactions
@@ -2882,8 +3132,8 @@ void NReaction::calculateExtents() {
         // curve
         if ((*sRIt)->isSetCurve()) {
             curveBox = (*sRIt)->getCurve()->getExtentBox();
-            minP = pointMin(curveBox.upperLeftCorner(), minP);
-            maxP = pointMax(curveBox.bottomRightCorner(), maxP);
+            minP = pointMin(curveBox->upperLeftCorner(), minP);
+            maxP = pointMax(curveBox->bottomRightCorner(), maxP);
         }
     }
     
@@ -2915,8 +3165,8 @@ void NReaction::calculateExtents() {
     for (constSReferenceIt sRIt = sReferencesBegin(); sRIt != sReferencesEnd(); ++sRIt) {
         if ((*sRIt)->isSetCurve()) {
             curveBox = (*sRIt)->getCurve()->getExtentBox();
-            minP = pointMin(curveBox.upperLeftCorner(), minP);
-            maxP = pointMax(curveBox.bottomRightCorner(), maxP);
+            minP = pointMin(curveBox->upperLeftCorner(), minP);
+            maxP = pointMax(curveBox->bottomRightCorner(), maxP);
         }
     }
     
@@ -2924,37 +3174,59 @@ void NReaction::calculateExtents() {
     for (constSReferenceIt sRIt = subSReferencesBegin(); sRIt != subSReferencesEnd(); ++sRIt) {
         if ((*sRIt)->isSetCurve()) {
             curveBox = (*sRIt)->getCurve()->getExtentBox();
-            minP = pointMin(curveBox.upperLeftCorner(), minP);
-            maxP = pointMax(curveBox.bottomRightCorner(), maxP);
+            minP = pointMin(curveBox->upperLeftCorner(), minP);
+            maxP = pointMax(curveBox->bottomRightCorner(), maxP);
         }
     }
     
-    _extentBox.setX(minP.x() - 0.1 * (maxP.x() - minP.x()));
-    _extentBox.setY(minP.y() - 0.1 * (maxP.y() - minP.y()));
+    _extentBox->setX(minP.x() - 0.1 * (maxP.x() - minP.x()));
+    _extentBox->setY(minP.y() - 0.1 * (maxP.y() - minP.y()));
     if (1.2 * (maxP.x() - minP.x()) > 150.0)
-        _extentBox.setWidth(1.2 * (maxP.x() - minP.x()));
+        _extentBox->setWidth(1.2 * (maxP.x() - minP.x()));
     else {
         shiftItems(60.0, 0.0);
-        _extentBox.setWidth(150.0);
+        _extentBox->setWidth(150.0);
     }
         
     
     if (1.2 * (maxP.y() - minP.y()) > 150.0)
-        _extentBox.setHeight(1.2 * (maxP.y() - minP.y()));
+        _extentBox->setHeight(1.2 * (maxP.y() - minP.y()));
     else {
         shiftItems(0.0, 60.0);
-        _extentBox.setHeight(150.0);
+        _extentBox->setHeight(150.0);
     }
-        
 }
 
-LBox NReaction::getExtentBox() {
-    if (!isSetExtentBox())
-        calculateExtents();
+LBox* NReaction::getExtentBox() {
+    calculateExtents();
     return _extentBox;
 }
 
 //--CLASS NSpeciesReference--
+
+NSpeciesReference::NSpeciesReference(NSpeciesReference& sR) : NGraphicalObject(sR) {
+    _type = GRP_OBJ_SPC_RFC;
+    _species = NULL;
+    _reaction = NULL;
+    _curve = NULL;
+    _startPoint = LPoint(0.0, 0.0);
+    _endPoint = LPoint(0.0, 0.0);
+    _isSetSpecies = false;
+    _isSetReaction = false;
+    _isSetCurve = false;
+    _isSetRole = false;
+    _isSetQuadrant = false;
+    _isSetStartPoint = false;
+    _isSetEndPoint = false;
+    
+    // curve
+    if (sR.isSetCurve())
+        setCurve(new LCurve(*(sR.getCurve())));
+    
+    // role
+    if (sR.isSetRole())
+        setRole(sR.getRole());
+}
 
 void NSpeciesReference::setSpecies(NReaction* r, NSpecies* s) {
     if (r && s) {
@@ -3037,6 +3309,25 @@ const LPoint& NSpeciesReference::getEndPoint() const {
 
 //--CLASS NText--
 
+NText::NText(NText& t) : NGraphicalObject(t) {
+    _type = GRP_OBJ_TXT;
+    _isSetGraphicalObjectId = false;
+    _isSetText = false;
+    _isSetOriginOfTextId = false;
+    
+    // graphical object id
+    if (t.isSetGraphicalObjectId())
+        setGraphicalObjectId(t.getGraphicalObjectId());
+    
+    // text
+    if (t.isSetText())
+        setText(t.getText());
+    
+    // origin of text
+    if (t.isSetOriginOfTextId())
+        setOriginOfTextId(t.getOriginOfTextId());
+}
+
 void NText::setGraphicalObjectId(const std::string& graphicalObjectId) {
     _graphicalObjectId = graphicalObjectId;
     _isSetGraphicalObjectId = true;
@@ -3070,6 +3361,21 @@ const std::string& NText::getOriginOfTextId() const {
 }
 
 //--CLASS LCurve--
+
+LCurve::LCurve(const LCurve& c) : NetworkElement(c) {
+    _listOfElements.clear();
+    _extentBox = new LBox();
+    
+    // elements
+    LLineSegment* line = NULL;
+    for (constElementIt eIt = c.elementsBegin(); eIt != c.elementsEnd(); ++eIt) {
+        if (!(*eIt)->isCubicBezier())
+            line = new LLineSegment(*(*eIt));
+        else
+            line = new LCubicBezier(*((LCubicBezier*)(*eIt)));
+        addToListOfElementsEnd(line);
+    }
+}
 
 void LCurve::addToListOfElementsEnd(LLineSegment* l) {
     if (l)
@@ -3143,21 +3449,19 @@ std::string LCurve::getElementUniqueId() {
 }
 
 void LCurve::shiftPosition(const double& dx, const double& dy) {
-    LPoint point;
+    LPoint* point = NULL;
     
     for (constElementIt eIt = elementsBegin(); eIt != elementsEnd(); ++eIt) {
         // for start point
         if ((*eIt)->isSetStart()) {
             point = (*eIt)->getStart();
-            point.shift(dx, dy);
-            (*eIt)->setStart(point);
+            point->shift(dx, dy);
         }
         
         // for end point
         if ((*eIt)->isSetEnd()) {
             point = (*eIt)->getEnd();
-            point.shift(dx, dy);
-            (*eIt)->setEnd(point);
+            point->shift(dx, dy);
         }
         
         // if it is a cubic bezier
@@ -3165,35 +3469,33 @@ void LCurve::shiftPosition(const double& dx, const double& dy) {
             // for basepoint1
             if (((LCubicBezier*)(*eIt))->isSetBasePoint1()) {
                 point = ((LCubicBezier*)(*eIt))->getBasePoint1();
-                point.shift(dx, dy);
-                ((LCubicBezier*)(*eIt))->setBasePoint1(point);
+                point->shift(dx, dy);
             }
             
             // for basepoint2
             if (((LCubicBezier*)(*eIt))->isSetBasePoint2()) {
                 point = ((LCubicBezier*)(*eIt))->getBasePoint2();
-                point.shift(dx, dy);
-                ((LCubicBezier*)(*eIt))->setBasePoint2(point);
+                point->shift(dx, dy);
             }
         }
     }
 }
 
-LBox LCurve::getExtentBox() {
+LBox* LCurve::getExtentBox() {
     LPoint minP(INT_MAX, INT_MAX);
     LPoint maxP(INT_MIN, INT_MIN);
     
     for (constElementIt eIt = elementsBegin(); eIt != elementsEnd(); ++eIt) {
         // for start point
         if ((*eIt)->isSetStart()) {
-            minP = pointMin((*eIt)->getStart(), minP);
-            maxP = pointMax((*eIt)->getStart(), maxP);
+            minP = pointMin(*(*eIt)->getStart(), minP);
+            maxP = pointMax(*(*eIt)->getStart(), maxP);
         }
         
         // for end point
         if ((*eIt)->isSetEnd()) {
-            minP = pointMin((*eIt)->getEnd(), minP);
-            maxP = pointMax((*eIt)->getEnd(), maxP);
+            minP = pointMin(*(*eIt)->getEnd(), minP);
+            maxP = pointMax(*(*eIt)->getEnd(), maxP);
         }
         
         // if it is a cubic bezier
@@ -3202,7 +3504,7 @@ LBox LCurve::getExtentBox() {
             if (((LCubicBezier*)(*eIt))->isArcLike()) {
                 // for the zenith of the arc
                 if (((LCubicBezier*)(*eIt))->isSetBasePoint1() && ((LCubicBezier*)(*eIt))->isSetBasePoint2()) {
-                    LPoint arcCenter = 0.125 * (*eIt)->getStart() + 0.375 * ((LCubicBezier*)(*eIt))->getBasePoint1() + 0.375 * ((LCubicBezier*)(*eIt))->getBasePoint2() + 0.125 * (*eIt)->getEnd();
+                    LPoint arcCenter = 0.125 * *(*eIt)->getStart() + 0.375 * *((LCubicBezier*)(*eIt))->getBasePoint1() + 0.375 * *((LCubicBezier*)(*eIt))->getBasePoint2() + 0.125 * *(*eIt)->getEnd();
                     minP = pointMin(arcCenter, minP);
                     maxP = pointMax(arcCenter, maxP);
                 }
@@ -3210,60 +3512,99 @@ LBox LCurve::getExtentBox() {
             else {
                 // for basepoint1
                 if (((LCubicBezier*)(*eIt))->isSetBasePoint1()) {
-                    minP = pointMin(((LCubicBezier*)(*eIt))->getBasePoint1(), minP);
-                    maxP = pointMax(((LCubicBezier*)(*eIt))->getBasePoint1(), maxP);
+                    minP = pointMin(*((LCubicBezier*)(*eIt))->getBasePoint1(), minP);
+                    maxP = pointMax(*((LCubicBezier*)(*eIt))->getBasePoint1(), maxP);
                 }
                 
                 // for basepoint2
                 if (((LCubicBezier*)(*eIt))->isSetBasePoint2()) {
-                    minP = pointMin(((LCubicBezier*)(*eIt))->getBasePoint2(), minP);
-                    maxP = pointMax(((LCubicBezier*)(*eIt))->getBasePoint2(), maxP);
+                    minP = pointMin(*((LCubicBezier*)(*eIt))->getBasePoint2(), minP);
+                    maxP = pointMax(*((LCubicBezier*)(*eIt))->getBasePoint2(), maxP);
                 }
             }
         }
     }
     
-    return LBox(minP, maxP);
+    *_extentBox = LBox(minP, maxP);
+    return _extentBox;
 }
 
 //--CLASS LLineSegment--
 
+LLineSegment::LLineSegment(LLineSegment& line) : NetworkElement(line) {
+    // start
+    if (line.isSetStart())
+        setStart(*line.getStart());
+    else {
+        _start = new LPoint(0.0, 0.0);
+        _isSetStart = false;
+    }
+    
+    // end
+    if (line.isSetEnd())
+        setEnd(*line.getEnd());
+    else {
+        _end = new LPoint(0.0, 0.0);
+        _isSetEnd = false;
+    }
+}
+
 void LLineSegment::setStart(const LPoint& p) {
-    _start = p;
+    *_start = p;
     _isSetStart = true;
 }
 
-const LPoint& LLineSegment::getStart() const {
+LPoint* LLineSegment::getStart() {
     return _start;
 }
 
 void LLineSegment::setEnd(const LPoint& p) {
-    _end = p;
+    *_end = p;
     _isSetEnd = true;
 }
 
-const LPoint& LLineSegment::getEnd() const {
+LPoint* LLineSegment::getEnd() {
     return _end;
 }
 
 //--CLASS LCubicBezier--
 
+LCubicBezier::LCubicBezier(LCubicBezier& cb) : LLineSegment(cb) {
+    _isArcLike = false;
+    
+    // basepoint1
+    if (cb.isSetBasePoint1())
+        setBasePoint1(*cb.getBasePoint1());
+    else {
+        _basePoint1 = new LPoint(0.0, 0.0);
+        _isSetBasePoint1 = false;
+    }
+    
+    // basepoint2
+    if (cb.isSetBasePoint2())
+        setBasePoint2(*cb.getBasePoint2());
+    else {
+        _basePoint2 = new LPoint(0.0, 0.0);
+        _isSetBasePoint2 = false;
+    }
+}
+
 void LCubicBezier::setBasePoint1(const LPoint& p) {
-    _basePoint1 = p;
+    *_basePoint1 = p;
     _isSetBasePoint1 = true;
 }
 
 
-const LPoint& LCubicBezier::getBasePoint1() const {
+LPoint* LCubicBezier::getBasePoint1() {
     return _basePoint1;
 }
 
 void LCubicBezier::setBasePoint2(const LPoint& p) {
-    _basePoint2 = p;
+    *_basePoint2 = p;
     _isSetBasePoint2 = true;
 }
 
-const LPoint& LCubicBezier::getBasePoint2() const {
+LPoint* LCubicBezier::getBasePoint2() {
     return _basePoint2;
 }
 
@@ -3770,6 +4111,7 @@ int ReactionLayer::removeFromCircumferenceVacancy(NSpeciesReference* sr) {
             if ((stringCompare((*cVIt)->sReferences.at(i).first->getId(), sr->getId())) && (stringCompare((*cVIt)->sReferences.at(i).first->getReaction()->getId(), sr->getReaction()->getId()))) {
                 (*cVIt)->sReferences.erase((*cVIt)->sReferences.begin() + i);
                 isRemoved = true;
+                break;
             }
         }
     }

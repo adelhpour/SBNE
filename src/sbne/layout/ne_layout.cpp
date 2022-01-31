@@ -8,14 +8,18 @@ void populateLineInfo(LLineSegment* lLineSegment, LineSegment* lineSegment) {
         lineSegment->setId(lLineSegment->getId());
     
     // set start and end point
-    lineSegment->setStart(lLineSegment->getStart().x(), lLineSegment->getStart().y(), lLineSegment->getStart().z());
+    if (lLineSegment->isSetStart())
+        lineSegment->setStart(lLineSegment->getStart()->x(), lLineSegment->getStart()->y(), lLineSegment->getStart()->z());
     
-    lineSegment->setEnd(lLineSegment->getEnd().x(), lLineSegment->getEnd().y(), lLineSegment->getEnd().z());
+    if (lLineSegment->isSetEnd())
+        lineSegment->setEnd(lLineSegment->getEnd()->x(), lLineSegment->getEnd()->y(), lLineSegment->getEnd()->z());
     
     // set basepoint 1 and basepoint 2
     if (lLineSegment->isCubicBezier()) {
-        ((CubicBezier*)lineSegment)->setBasePoint1(((LCubicBezier*)lLineSegment)->getBasePoint1().x(), ((LCubicBezier*)lLineSegment)->getBasePoint1().y(), ((LCubicBezier*)lLineSegment)->getBasePoint1().z());
-        ((CubicBezier*)lineSegment)->setBasePoint2(((LCubicBezier*)lLineSegment)->getBasePoint2().x(), ((LCubicBezier*)lLineSegment)->getBasePoint2().y(), ((LCubicBezier*)lLineSegment)->getBasePoint2().z());
+        if (((LCubicBezier*)lLineSegment)->isSetBasePoint1())
+            ((CubicBezier*)lineSegment)->setBasePoint1(((LCubicBezier*)lLineSegment)->getBasePoint1()->x(), ((LCubicBezier*)lLineSegment)->getBasePoint1()->y(), ((LCubicBezier*)lLineSegment)->getBasePoint1()->z());
+        if (((LCubicBezier*)lLineSegment)->isSetBasePoint1())
+            ((CubicBezier*)lineSegment)->setBasePoint2(((LCubicBezier*)lLineSegment)->getBasePoint2()->x(), ((LCubicBezier*)lLineSegment)->getBasePoint2()->y(), ((LCubicBezier*)lLineSegment)->getBasePoint2()->z());
     }
 }
 
@@ -88,6 +92,7 @@ SBMLDocument* ne_doc_populateSBMLdocWithLayoutInfo(SBMLDocument* doc ,LayoutInfo
                 doc->enablePackage(LayoutExtension::getXmlnsL2(), "layout",  true);
             else if (doc->getLevel() == 3)
                 doc->enablePackage(LayoutExtension::getXmlnsL3V1V1(), "layout",  true);
+            doc->setPackageRequired("layout", false);
             layoutBase = model->getPlugin("layout");
         }
         
@@ -326,17 +331,17 @@ SBMLDocument* ne_doc_populateSBMLdocWithLayoutInfo(SBMLDocument* doc ,LayoutInfo
                     if (t->isSetGraphicalObjectId())
                         tg->setGraphicalObjectId(t->getGraphicalObjectId());
                     
-                    // set text
-                    if (t->isSetText())
-                        tg->setText(t->getText());
-                    
                     // set origin of text
                     if (t->isSetOriginOfTextId())
                         tg->setOriginOfTextId(t->getOriginOfTextId());
+                    
+                    // set text
+                    if (t->isSetText())
+                        tg->setText(t->getText());
                 }
             }
             
-            // add text glyphs
+            // add graphical object glyphs
             GraphicalObject* gO = NULL;
             for(Network::constGObjectIt i = net->gObjectsBegin(); i != net->gObjectsEnd(); ++i) {
                 NGraphicalObject* o = *i;
@@ -444,6 +449,48 @@ Network* ne_li_addLayoutFeaturesToNetowrk(LayoutInfo* l) {
         packCompartmentsIntoNetwork(net);
 #endif
         
+        // add textglyphs
+        NText* text = NULL;
+        for (constCompartmentIt it = net->compartmentsBegin(); it != net->compartmentsEnd(); ++it) {
+            if ((*it)->isSetBox()) {
+                text = new NText();
+                
+                // set glyphid
+                text->setGlyphId(net->getTextUniqueGlyphId());
+                
+                text->setBox(new LBox((*it)->getBox()->x(), (*it)->getBox()->y() + (*it)->getBox()->height(), 120, 18));
+                
+                // set graphical object
+                text->setGraphicalObjectId((*it)->getGlyphId());
+                
+                // set text of graphical object
+                (*it)->addText(text);
+                
+                // add the text to veneer
+                net->addText(text);
+            }
+        }
+        
+        for (constSpeciesIt it = net->speciesBegin(); it != net->speciesEnd(); ++it) {
+            if ((*it)->isSetBox()) {
+                text = new NText();
+                
+                // set glyphid
+                text->setGlyphId(net->getTextUniqueGlyphId());
+                
+                text->setBox(new LBox((*it)->getBox()->x(), (*it)->getBox()->y(), (*it)->getBox()->width(), (*it)->getBox()->height()));
+                
+                // set graphical object
+                text->setGraphicalObjectId((*it)->getGlyphId());
+                
+                // set text of graphical object
+                (*it)->addText(text);
+                
+                // add the text to veneer
+                net->addText(text);
+            }
+        }
+        
         // set layout specified
         net->setLayoutSpecified(true);
     }
@@ -483,6 +530,20 @@ const std::string ne_ne_getName(NetworkElement* nE) {
     return std::string();
 }
 
+bool ne_ne_isSetMetaId(NetworkElement* nE) {
+    if (nE)
+        return nE->isSetMetaId();
+    
+    return false;
+}
+
+const std::string ne_ne_getMetaId(NetworkElement* nE) {
+    if (nE)
+        return nE->getMetaId();
+    
+    return std::string();
+}
+
 // Network
 
 const std::string ne_net_get(Network* net, std::unordered_map<std::string, std::string> infoList) {
@@ -503,8 +564,8 @@ const std::string ne_net_get(Network* net, std::unordered_map<std::string, std::
         else if (net->findReactionByGlyphId((getKeyValue(infoList, "id"))))
             return ne_rxn_get(net->findReactionByGlyphId((getKeyValue(infoList, "id"))), infoList);
         // Texts
-        else if (net->findTextById((getKeyValue(infoList, "id"))))
-            return ne_gtxt_get(net->findTextById((getKeyValue(infoList, "id"))), infoList);
+        else if (net->findTextByGlyphId((getKeyValue(infoList, "id"))))
+            return ne_gtxt_get(net->findTextByGlyphId((getKeyValue(infoList, "id"))), infoList);
         // Graphical Objects
         else if (net->findGObjectById((getKeyValue(infoList, "id"))))
             return ne_go_get(net->findGObjectById((getKeyValue(infoList, "id"))), infoList);
@@ -531,8 +592,8 @@ int ne_net_set(Network* net, std::unordered_map<std::string, std::string> infoLi
         else if (net->findReactionByGlyphId((getKeyValue(infoList, "id"))))
             return ne_rxn_set(net->findReactionByGlyphId((getKeyValue(infoList, "id"))), infoList);
         // Texts
-        else if (net->findTextById((getKeyValue(infoList, "id"))))
-            return ne_gtxt_set(net->findTextById((getKeyValue(infoList, "id"))), infoList);
+        else if (net->findTextByGlyphId((getKeyValue(infoList, "id"))))
+            return ne_gtxt_set(net->findTextByGlyphId((getKeyValue(infoList, "id"))), infoList);
         // Graphical Objects
         else if (net->findGObjectById((getKeyValue(infoList, "id"))))
             return ne_go_set(net->findGObjectById((getKeyValue(infoList, "id"))), infoList);
@@ -617,35 +678,12 @@ reactionVec ne_net_getReactions(Network* net) {
     return reactionVec(0);
 }
 
-NText* ne_net_getText(Network* net, NGraphicalObject* gO) {
-    NText* text = NULL;
-    if (net && gO) {
-        text = net->findTextByGraphicalObjectId(gO->getGlyphId());
-        if (!text) {
-            // create a text
-            text = new NText();
-            
-            // set glyphid
-            text->setGlyphId(net->getTextUniqueGlyphId());
-            
-            // set bounding box
-            if (gO->isSetBox()) {
-                LBox* bbx = new LBox(gO->getBox()->x(), gO->getBox()->y(), gO->getBox()->width(), gO->getBox()->height());
-                text->setBox(bbx);
-            }
-            
-            // set graphical object
-            text->setGraphicalObjectId(gO->getGlyphId());
-            
-            // set text of graphical object
-            gO->setText(text);
-            
-            // add the text to veneer
-            net->addText(text);
-        }
+NGraphicalObject* ne_net_getNetworkElement(Network* net, const std::string& id) {
+    if (net) {
+        return net->findNetworkElement(id);
     }
     
-    return text;
+    return NULL;
 }
 
 // NGraphicalObject
@@ -786,24 +824,71 @@ int ne_go_setGlyphId(Network* net, NGraphicalObject* gO, const std::string& gOId
     return -1;
 }
 
-bool ne_go_isSetText(NGraphicalObject* gO) {
+const size_t ne_go_getNumTexts(NGraphicalObject* gO) {
     if (gO)
-        return gO->isSetText();
-    
-    return false;
+        return gO->getNumTexts();
+        
+    return 0;
 }
 
-NText* ne_go_getText(NGraphicalObject* gO) {
-    if (gO)
-        return gO->getText();
+NText* ne_go_getText(NGraphicalObject* gO, const unsigned int& index, const std::string& textglyphId) {
+    if (gO) {
+        if (index >= 0 && index < int(gO->getNumTexts()))
+            return gO->getTexts().at(index);
+        
+        if (!textglyphId.empty())
+            return gO->findTextByGlyphId(textglyphId);
+    }
     
     return NULL;
 }
 
-int ne_go_setText(NGraphicalObject* gO, NText* t) {
-    if (gO && t) {
-        gO->setText(t);
-        return 0;
+NGraphicalObject::textVec ne_go_getTexts(NGraphicalObject* gO) {
+    if (gO)
+        return gO->getTexts();
+    
+    return NGraphicalObject::textVec(0);
+}
+
+NText* ne_go_addText(Network* net, NGraphicalObject* gO, LBox* box, std::string plaintext) {
+    if (gO && (box || gO->isSetBox())) {
+        NText* text = new NText();
+        
+        // set glyphid
+        text->setGlyphId(net->getTextUniqueGlyphId());
+        
+        // set bounding box
+        LBox* bbx = NULL;
+        if (box)
+            bbx = new LBox(box->x(), box->y(), box->width(), box->height());
+        else
+            bbx = new LBox(gO->getBox()->x(), gO->getBox()->y(), gO->getBox()->width(), gO->getBox()->height());
+        text->setBox(bbx);
+        
+        // set graphical object
+        text->setGraphicalObjectId(gO->getGlyphId());
+        
+        // set text of graphical object
+        if (!plaintext.empty())
+            text->setText(plaintext);
+        
+        net->addText(text);
+        gO->addText(text);
+        
+        return text;
+    }
+    
+    return NULL;
+}
+
+int ne_go_removeText(Network* net, NGraphicalObject* gO, const int& index) {
+    if (net && gO) {
+        if (0 <= index && index < int(gO->getNumTexts())) {
+            net->removeText(net->findTextIndexByGlyphId(gO->getTexts().at(index)->getGlyphId()));
+            gO->removeText(index);
+            
+            return 0;
+        }
     }
     
     return -1;
@@ -906,7 +991,7 @@ int ne_spc_updateBoundingBox(NSpecies* s, const double& positionX, const double&
                             LCurve* curve = (*sRIt)->getCurve();
                             LCurve::constElementIt eIt;
                             LPoint boxPoint;
-                            SpcSide speciesSide;
+                            SpcSide speciesSide(LEFT_SIDE);
                             
                             switch((*sRIt)->getQuadrant()) {
                                 case Quad_I_1:
@@ -1023,6 +1108,27 @@ int ne_rxn_set(NReaction* r, std::unordered_map<std::string, std::string> infoLi
     return -1;
 }
 
+bool ne_rxn_isSetCompartment(NReaction* r) {
+    if (r)
+        return r->isSetCompartment();
+    
+    return false;
+}
+
+const std::string ne_rxn_getCompartment(NReaction* r) {
+    if (r)
+        return r->getCompartment();
+    
+    return std::string();
+}
+
+const std::string ne_rxn_findCompartment(NReaction* r) {
+    if (r)
+        return r->findCompartment();
+    
+    return std::string();
+}
+
 const size_t ne_rxn_getNumSpeciesReferences(NReaction* r) {
     if (r)
         return r->getNumSpeciesReferences();
@@ -1078,18 +1184,9 @@ int ne_rxn_unSetCurve(NReaction* r, const bool& remove) {
     return -1;
 }
 
-bool ne_rxn_isSetExtentBox(NReaction* r) {
-    if (r)
-        return r->isSetExtentBox();
-    
-    return false;
-}
-
 LBox* ne_rxn_getExtentBox(NReaction* r) {
-    if (r) {
-        LBox* b = new LBox(r->getExtentBox());
-        return b;
-    }
+    if (r)
+        return r->getExtentBox();
     
     return NULL;
 }
@@ -1170,6 +1267,24 @@ LCurve* ne_sr_getCurve(NSpeciesReference* sR) {
     return NULL;
 }
 
+int ne_sr_setCurve(NSpeciesReference* sR, LCurve* c) {
+    if (sR && c) {
+        sR->setCurve(c);
+        return 0;
+    }
+    
+    return -1;
+}
+
+int ne_sr_unSetCurve(NSpeciesReference* sR, const bool& remove) {
+    if (sR) {
+        sR->unSetCurve(remove);
+        return 0;
+    }
+    
+    return -1;
+}
+
 // NText
 
 const std::string ne_gtxt_get(NText* t, std::unordered_map<std::string, std::string> infoList) {
@@ -1187,6 +1302,29 @@ int ne_gtxt_set(NText* t, std::unordered_map<std::string, std::string> infoList)
         // text
         if (!getKeyValue(infoList, "text").empty())
             return ne_gtxt_setPlainText(t, getKeyValue(infoList, "text"));
+    }
+    
+    return -1;
+}
+
+bool ne_gtxt_isSetGraphicalObjectId(NText* t) {
+    if (t)
+        return t->isSetGraphicalObjectId();
+    
+    return false;
+}
+
+const std::string ne_gtxt_getGraphicalObjectId(NText* t) {
+    if (t)
+        return t->getGraphicalObjectId();
+    
+    return std::string();
+}
+
+int ne_gtxt_setGraphicalObjectId(NText* t, const std::string& id) {
+    if (t) {
+        t->setGraphicalObjectId(id);
+        return 0;
     }
     
     return -1;
@@ -1218,6 +1356,29 @@ int ne_gtxt_setPlainText(NText* t, const std::string& plainText) {
 int ne_gtxt_unSetPlainText(NText* t) {
     if (t) {
         t->unSetText();
+        return 0;
+    }
+    
+    return -1;
+}
+
+bool ne_gtxt_isSetOriginOfTextId(NText* t) {
+    if (t)
+        return t->isSetOriginOfTextId();
+    
+    return false;
+}
+
+const std::string ne_gtxt_getOriginOfTextId(NText* t) {
+    if (t)
+        return t->getOriginOfTextId();
+    
+    return std::string();
+}
+
+int ne_gtxt_setOriginOfTextId(NText* t, const std::string& id) {
+    if (t) {
+        t->setOriginOfTextId(id);
         return 0;
     }
     
@@ -1301,10 +1462,8 @@ int ne_crv_removeElement(LCurve* c, const  int& index) {
 }
 
 LBox* ne_crv_getExtentBox(LCurve* c) {
-    if (c) {
-        LBox* b = new LBox(c->getExtentBox());
-        return b;
-    }
+    if (c)
+        c->getExtentBox();
     
     return NULL;
 }
@@ -1335,19 +1494,17 @@ int ne_ls_set(LLineSegment* l, std::unordered_map<std::string, std::string> info
         LPoint* point = NULL;
         // start
         if (stringCompare(getKeyValue(infoList, "point"), "start")) {
-            point = new LPoint(l->getStart());
+            point = l->getStart();
             if (!ne_point_set(point, infoList)) {
                 l->setStart(LPoint(point->x(), point->y()));
-                delete point;
                 return 0;
             }
         }
         // end
         else if (stringCompare(getKeyValue(infoList, "point"), "end")) {
-            point = new LPoint(l->getEnd());
+            point = l->getEnd();
             if (!ne_point_set(point, infoList)) {
                 l->setEnd(LPoint(point->x(), point->y()));
-                delete point;
                 return 0;
             }
         }
@@ -1355,19 +1512,17 @@ int ne_ls_set(LLineSegment* l, std::unordered_map<std::string, std::string> info
         else if (ne_ls_isCubicBezier(l)) {
             // basepoint1
             if (stringCompare(getKeyValue(infoList, "point"), "basepoint1")) {
-                point = new LPoint(((LCubicBezier*)(l))->getBasePoint1());
+                point = ((LCubicBezier*)(l))->getBasePoint1();
                 if (!ne_point_set(point, infoList)) {
                     ((LCubicBezier*)(l))->setBasePoint1(LPoint(point->x(), point->y()));
-                    delete point;
                     return 0;
                 }
             }
             // basepoint2
             else if (stringCompare(getKeyValue(infoList, "point"), "basepoint2")) {
-                point = new LPoint(((LCubicBezier*)(l))->getBasePoint2());
+                point = ((LCubicBezier*)(l))->getBasePoint2();
                 if (!ne_point_set(point, infoList)) {
                     ((LCubicBezier*)(l))->setBasePoint2(LPoint(point->x(), point->y()));
-                    delete point;
                     return 0;
                 }
             }
@@ -1385,11 +1540,10 @@ bool ne_ls_isSetStart(LLineSegment* l) {
 }
 
 LPoint* ne_ls_getStart(LLineSegment* l) {
-    LPoint* point = NULL;
     if (l)
-        point = new LPoint(l->getStart());
+        return l->getStart();
     
-    return point;
+    return NULL;
 }
 
 int ne_ls_setStart(LLineSegment* l, LPoint* p) {
@@ -1409,11 +1563,10 @@ bool ne_ls_isSetEnd(LLineSegment* l) {
 }
 
 LPoint* ne_ls_getEnd(LLineSegment* l) {
-    LPoint* point = NULL;
     if (l)
-        point = new LPoint(l->getEnd());
+        return l->getEnd();
     
-    return point;
+    return NULL;
 }
 
 int ne_ls_setEnd(LLineSegment* l, LPoint* p) {
@@ -1442,11 +1595,10 @@ bool ne_cb_isSetBasePoint1(LLineSegment* l) {
 }
 
 LPoint* ne_cb_getBasePoint1(LLineSegment* l) {
-    LPoint* point = NULL;
     if (l && l->isCubicBezier())
-        point = new LPoint(((LCubicBezier*)(l))->getBasePoint1());
+        return ((LCubicBezier*)(l))->getBasePoint1();
     
-    return point;
+    return NULL;
 }
 
 int ne_cb_setBasePoint1(LLineSegment* l, LPoint* p) {
@@ -1466,11 +1618,10 @@ bool ne_cb_isSetBasePoint2(LLineSegment* l) {
 }
 
 LPoint* ne_cb_getBasePoint2(LLineSegment* l) {
-    LPoint* point = NULL;
     if (l && l->isCubicBezier())
-        point = new LPoint(((LCubicBezier*)(l))->getBasePoint2());
+        return ((LCubicBezier*)(l))->getBasePoint2();
     
-    return point;
+    return NULL;
 }
 
 int ne_cb_setBasePoint2(LLineSegment* l, LPoint* p) {

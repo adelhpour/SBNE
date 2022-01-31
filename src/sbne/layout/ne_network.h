@@ -149,7 +149,10 @@ public:
     NetworkElement() {
         _isSetId = false;
         _isSetName = false;
+        _isSetMetaId = false;
     }
+    
+    NetworkElement(const NetworkElement& nE);
     
     /// Functions
     // set the id of network element
@@ -170,12 +173,23 @@ public:
     // show whether the name of network element is set
     const bool isSetName() const { return _isSetName; }
     
+    // set the metaid of network element
+    void setMetaId(const std::string& metaid);
+    
+    // get the metaid of network element
+    const std::string& getMetaId() const;
+    
+    // show whether the metaid of network element is set
+    const bool isSetMetaId() const { return _isSetMetaId; }
+    
 protected:
     // model info:
     std::string _id;
     std::string _name;
+    std::string _metaid;
     bool _isSetId;
     bool _isSetName;
+    bool _isSetMetaId;
 };
 
 /// @class Network
@@ -192,6 +206,8 @@ public:
         _isSetBox = false;
         _isLayoutSpecified = false;
     }
+    
+    Network(const Network& n);
     
     /// Containers
     // texts
@@ -345,12 +361,6 @@ public:
     // get total number of texts
     const size_t getNumTexts() const;
     
-    // find a text by its specified Id. Returns NULL if no such text exists
-    NText* findTextById(const std::string& id);
-    
-    // find the index of a text by its specified Id. Returns -1 if no such text exists
-    int findTextIndexById(const std::string& id);
-    
     // find a text by its specified glyph Id. Returns NULL if no such text exists
     NText* findTextByGlyphId(const std::string& glyphId);
     
@@ -362,6 +372,12 @@ public:
     
     // find the index of a text by the id of its specified graphical object. Returns -1 if no such text exists
     int findTextIndexByGraphicalObjectId(const std::string& gOId);
+    
+    // find a text by the id of its origin of text. Returns NULL if no such text exists
+    NText* findTextByOriginOfTextId(const std::string& gOId);
+    
+    // find the index of a text by the id of its sorigin of text. Returns -1 if no such text exists
+    int findTextIndexByOriginOfTextId(const std::string& gOId);
     
     // generate unique glyph id for for a new text
     std::string getTextUniqueGlyphId();
@@ -433,15 +449,30 @@ public:
     /// Constructors
     NGraphicalObject() {
         _box = NULL;
-        _text = NULL;
+        _texts.clear();
         _isSetGlyphId = false;
         _isMatchWithGlyph = false;
         _isSetObjectRole = false;
         _isSetBox = false;
-        _isSetText = false;
         _isUsed = false;
         _isLockedPosition = false;
     }
+    
+    NGraphicalObject(Network* net, NGraphicalObject& gO);
+    
+    /// Containers
+    // texts
+    typedef std::vector<NText*> textVec;
+    
+    /// Iterators
+    // text
+    typedef textVec::iterator textIt;
+    typedef textVec::const_iterator constTextIt;
+    
+    /// Functions related to beginning and end of containers
+    // text
+    const constTextIt textsBegin() const { return _texts.begin(); }
+    const constTextIt textsEnd() const { return _texts.end(); }
         
     /// Functions
     // get the type of graphical object as GrphObjType
@@ -483,14 +514,26 @@ public:
     // show whether the bounding box of graphical object is set
     const bool isSetBox() const { return _isSetBox; }
     
-    // set the text glyph of graphical object
-    void setText(NText* text);
+    // add a new text to graphical object
+    void addText(NText* t);
     
-    // get the text glyph of graphical object
-    NText* getText();
+    // remove a text from graphical object using its index
+    void removeText(int textIndex);
     
-    // show whether the text glyph of graphical object is set
-    const bool isSetText() const { return _isSetText; }
+    // set textVec
+    void setTexts(const textVec& tv);
+    
+    // get textVec
+    const textVec& getTexts() const;
+    
+    // get total number of texts
+    const size_t getNumTexts() const;
+    
+    // find a text by its specified glyph Id. Returns NULL if no such text exists
+    NText* findTextByGlyphId(const std::string& glyphId);
+    
+    // find the index of a text by its specified glyph Id. Returns -1 if no such text exists
+    int findTextIndexByGlyphId(const std::string& glyphId);
     
     // set whether the graphical object is already used for a glyph
     void setUsed(bool value);
@@ -510,12 +553,11 @@ protected:
     std::string _glyphId;
     std::string _objectRole;
     LBox* _box;
-    NText* _text;
+    textVec _texts;
     bool _isSetGlyphId;
     bool _isMatchWithGlyph;
     bool _isSetObjectRole;
     bool _isSetBox;
-    bool _isSetText;
     bool _isUsed;
     bool _isLockedPosition;
 };
@@ -531,6 +573,8 @@ public:
         _reactions.clear();
         _isSetOrder = false;
     }
+    
+    NCompartment(NCompartment& c);
     
     /// Functions related to beginning and end of containers
     // species
@@ -627,6 +671,8 @@ public:
         _isSetCompartment = false;
         _isPseudoSpecies = false;
     }
+    
+    NSpecies(NSpecies& s);
     
     /// Containers
     // reaction members
@@ -736,6 +782,7 @@ public:
         _subSpecies.clear();
         _pseudoSpecies.clear();
         _curve = NULL;
+        _extentBox = new LBox();
         _rSides.clear();
         _rEnds.clear();
         _connectedReactions.clear();
@@ -749,8 +796,9 @@ public:
         _isSetRadius = false;
         _isSetDirectionAngle = false;
         _isSetSpeciesStartAngle = false;
-        _isSetExtentBox = false;
     }
+    
+    NReaction(NReaction& r);
     
     /// Containers
     // referenced sides
@@ -832,6 +880,9 @@ public:
     
     // show whether the compartment of reaction is assgiend
     const bool isSetCompartment() const { return _isSetCompartment; }
+    
+    // return the id of the assigned compartment or the compartment which contains all the species associated with the species references of this reaction. Returns an empty string if the species references of this reaction are assoicated with species from multiple compartments
+    const std::string findCompartment() const;
     
     // add a new species reference to reaction
     void addSpeciesReference(NSpeciesReference* sr);
@@ -1178,10 +1229,8 @@ public:
     void calculateExtents();
     
     // get the extent box
-    LBox getExtentBox() ;
+    LBox* getExtentBox() ;
     
-    // show whether extent box of the reaction is set
-    const bool isSetExtentBox() const { return _isSetExtentBox; }
 protected:
     // model info:
     std::string _compartment;
@@ -1191,6 +1240,7 @@ protected:
     speciesVec _subSpecies;
     speciesVec _pseudoSpecies;
     LCurve* _curve;
+    LBox* _extentBox;
     rSideVec _rSides;
     rEndVec _rEnds;
     connectedRVec _connectedReactions;
@@ -1200,14 +1250,12 @@ protected:
     double _radius;
     double _directionAngle;
     double _speciesStartAngle;
-    LBox _extentBox;
     bool _isSetCompartment;
     bool _isSetCurve;
     bool _isSetCenterP;
     bool _isSetRadius;
     bool _isSetDirectionAngle;
     bool _isSetSpeciesStartAngle;
-    bool _isSetExtentBox;
 };
 
 /// @class NSpeciesReference
@@ -1230,6 +1278,8 @@ public:
         _isSetStartPoint = false;
         _isSetEndPoint = false;
     }
+    
+    NSpeciesReference(NSpeciesReference& sR);
     
     /// Functions
     // set the species of species reference
@@ -1324,6 +1374,8 @@ public:
         _isSetText = false;
         _isSetOriginOfTextId = false;
     }
+    
+    NText(NText& t);
         
     /// Functions
     // set the graphical object of text
@@ -1371,7 +1423,10 @@ public:
     /// Constructors
     LCurve() {
         _listOfElements.clear();
+        _extentBox = new LBox();
     }
+    
+    LCurve(const LCurve& c);
     
     /// Containers
     // element
@@ -1397,10 +1452,10 @@ public:
     // remove an element from the list of elements of curve
     void removeFromListOfElements(unsigned int index);
     
-    // remove all elements from the list of elements of  curve
+    // remove all elements from the list of elements of curve
     void clearListOfElements();
     
-    // get the list of elements of  curve
+    // get the list of elements of curve
     const listOfElements& getListOfElements() const;
     
     // get total number of elements
@@ -1419,11 +1474,12 @@ public:
     void shiftPosition(const double& dx, const double& dy);
     
     // get the extent box of the curve points
-    LBox getExtentBox();
+    LBox* getExtentBox();
     
 protected:
     // model info:
     listOfElements _listOfElements;
+    LBox* _extentBox;
 };
 
 /// @class LLineSegment
@@ -1432,18 +1488,20 @@ class LLineSegment : public NetworkElement {
 public:
     /// Constructors
     LLineSegment() {
-        _start = LPoint(0.0, 0.0);
-        _end = LPoint(0.0, 0.0);
+        _start = new LPoint(0.0, 0.0);
+        _end = new LPoint(0.0, 0.0);
         _isSetStart = false;
         _isSetEnd = false;
     }
+    
+    LLineSegment(LLineSegment& line);
 
     /// Functions
     // set the start value of layout point
     void setStart(const LPoint& p);
 
     // get the start value of layout point
-    const LPoint& getStart() const;
+    LPoint* getStart();
 
     // show whether the start point of line segment is set
     const bool isSetStart() const { return _isSetStart; }
@@ -1452,7 +1510,7 @@ public:
     void setEnd(const LPoint& p);
 
     // get the end value of layout point
-    const LPoint& getEnd() const;
+    LPoint* getEnd();
 
     // show whether the end point of line segment is set
     const bool isSetEnd() const { return _isSetEnd; }
@@ -1462,8 +1520,8 @@ public:
 
 protected:
     // model info:
-    LPoint _start;
-    LPoint _end;
+    LPoint* _start;
+    LPoint* _end;
     bool _isSetStart;
     bool _isSetEnd;
 };
@@ -1474,19 +1532,21 @@ class LCubicBezier : public LLineSegment {
 public:
     /// Constructors
     LCubicBezier() {
-        _basePoint1 = LPoint(0.0, 0.0);
-        _basePoint2 = LPoint(0.0, 0.0);
+        _basePoint1 = new LPoint(0.0, 0.0);
+        _basePoint2 = new LPoint(0.0, 0.0);
         _isSetBasePoint1 = false;
         _isSetBasePoint2 = false;
         _isArcLike = false;
     }
+    
+    LCubicBezier(LCubicBezier& cb);
 
     /// Functions
     // set the base point 1 value of cubic bezier
     void setBasePoint1(const LPoint& p);
     
     // get the base point 1 value of cubic bezier
-    const LPoint& getBasePoint1() const;
+    LPoint* getBasePoint1();
     
     // show whether the base point 1 value of cubic bezier is set
     const bool isSetBasePoint1() const { return _isSetBasePoint1; }
@@ -1495,7 +1555,7 @@ public:
     void setBasePoint2(const LPoint& p);
     
     // get the base point 2 value of cubic bezier
-    const LPoint& getBasePoint2() const;
+    LPoint* getBasePoint2();
     
     // show whether the base point 2 value of cubic bezier is set
     const bool isSetBasePoint2() const { return _isSetBasePoint2; }
@@ -1511,8 +1571,8 @@ public:
 
 protected:
     // model info:
-    LPoint _basePoint1;
-    LPoint _basePoint2;
+    LPoint* _basePoint1;
+    LPoint* _basePoint2;
     bool _isSetBasePoint1;
     bool _isSetBasePoint2;
     bool _isArcLike;

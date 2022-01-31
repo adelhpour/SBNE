@@ -52,8 +52,15 @@ bool stringToBoolean(const std::string& str) {
 SBMLDocument* ne_doc_readSBML(const std::string& filename) {
     SBMLDocument* document = readSBMLFromFile(filename.c_str());
     
-    if (!document)
-        std::cerr << "Failed to read SBML : \n";
+    if (document) {
+        if (!document->getNumErrors())
+            return document;
+        else {
+            std::cerr << "Failed to parse SBML correctly because of : \n";
+            for (int i = 0; i < document->getNumErrors(); ++i)
+                std::cerr << i + 1 << ": " << document->getError(i)->getMessage() << std::endl;
+        }
+    }
         
     return document;
 }

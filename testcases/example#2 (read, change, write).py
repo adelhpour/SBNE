@@ -1,4 +1,4 @@
-import _libsbne as sbne
+import libsbne as sbne
 
 # set filename value to the absolute path of the SBML (.xml) file.
 filename = "Absolute path to the sbml (.xml) file"
