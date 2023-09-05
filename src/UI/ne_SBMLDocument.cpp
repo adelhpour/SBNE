@@ -1,14 +1,17 @@
 #include "ne_SBMLDocument.h"
 
 void NESBMLDocument::loadSBML(MainWindow* mw){
-    // get document from by reading the current file
+    // get document by reading the current file
     _document = ne_doc_readSBML(mw->getCurrentFileName().toStdString().c_str());
-
+    
     // get the layout info from the document and display it
     loadLayoutInfo(mw);
     
     // get the render info from the document and display it
     loadRenderInfo(mw);
+    
+    // get doucment by reading the current file through tellurium
+    setTelluriumSBMLDocument(mw);
 }
 
 void NESBMLDocument::loadLayoutInfo(MainWindow *mw){
@@ -234,44 +237,20 @@ void NESBMLDocument::loadRenderInfo(MainWindow *mw){
             }
             
             // get compartments info from veneer
-            for (MainWindow::constGCompartmentIt cIt = mw->gCompartmentsBegin(); cIt != mw->gCompartmentsEnd(); ++cIt){
-                
-                // find the style in veneer
+            for (MainWindow::constGCompartmentIt cIt = mw->gCompartmentsBegin(); cIt != mw->gCompartmentsEnd(); ++cIt)
                 (*cIt)->setStyle(mw);
-                
-                // get graphical compartment values
-                (*cIt)->updateValues(mw);
-            }
             
             // get species info from veneer
-            for (MainWindow::constGSpeciesIt sIt = mw->gSpeciesBegin(); sIt != mw->gSpeciesEnd(); ++sIt) {
-                // find the style in veneer
+            for (MainWindow::constGSpeciesIt sIt = mw->gSpeciesBegin(); sIt != mw->gSpeciesEnd(); ++sIt)
                 (*sIt)->setStyle(mw);
-                
-                // get graphical species values
-                if (isLayoutAlreadyExisted())
-                    (*sIt)->updateValues(mw, false);
-                else
-                    (*sIt)->updateValues(mw, true);
-            }
             
             // get reactions info from veneer
             for (MainWindow::constGReactionIt rIt = mw->gReactionsBegin(); rIt != mw->gReactionsEnd(); ++rIt) {
-                
-                // find the style in veneer
                 (*rIt)->setStyle(mw);
-                
-                // get graphical reaction values
-                (*rIt)->updateValues(mw);
 
-                // get species references
-                for (GraphicalReaction::constGSReferenceIt sRIt = (*rIt)->gSReferencesBegin(); sRIt != (*rIt)->gSReferencesEnd(); ++sRIt) {
-                    // find the style in veneer
+                // get species references info from veneer
+                for (GraphicalReaction::constGSReferenceIt sRIt = (*rIt)->gSReferencesBegin(); sRIt != (*rIt)->gSReferencesEnd(); ++sRIt)
                     (*sRIt)->setStyle(mw);
-                    
-                    // get graphical species reference values
-                    (*sRIt)->updateValues(mw);
-                }
             }
         }
     }
@@ -335,6 +314,91 @@ void NESBMLDocument::setRenderModified(const bool& isRenderModified) {
 
 void NESBMLDocument::setRenderAlreadyExisted(const bool& isRenderAlreadyExisted) {
     _isRenderAlreadyExisted = isRenderAlreadyExisted;
+}
+
+int NESBMLDocument::setTelluriumSBMLDocument(MainWindow* mw) {
+#if TELLURIUM_INCLUDED
+    _pTelluriumSBMLDocument.Release();
+    if (mw && mw->getTelluriumModule().getObject()) {
+        CPyObject pFunc = PyObject_GetAttrString(mw->getTelluriumModule().getObject(), (char*)"loadSBMLModel");
+        if (pFunc.getObject()) {
+            _pTelluriumSBMLDocument = PyObject_CallObject(pFunc.getObject(), PyTuple_Pack(1, PyUnicode_FromString((char*)mw->getCurrentFileName().toStdString().c_str())));
+            
+            if (_pTelluriumSBMLDocument.getObject())
+                return 0;
+        }
+    }
+#endif
+    
+    return -1;
+}
+
+int NESBMLDocument::simulateTelluriumSBMLDocument(MainWindow* mw, const int& start, const int& end, const int& points) {
+#if TELLURIUM_INCLUDED
+    _pTelluriumSimulationResults.Release();
+    if (mw && _pTelluriumSBMLDocument.getObject()) {
+        CPyObject simulate = PyObject_GetAttrString(_pTelluriumSBMLDocument, (char*)"simulate");
+        if (simulate.getObject()) {
+            // simulate the concentrations of the model
+            _pTelluriumSimulationResults = PyObject_CallObject(simulate.getObject(), PyTuple_Pack(3, PyLong_FromLong(start), PyLong_FromLong(end), PyLong_FromLong(points)));
+            
+            if (_pTelluriumSimulationResults) {
+                CPyObject colnames = PyObject_GetAttrString(_pTelluriumSimulationResults, (char*)"colnames");
+                CPyObject shape = PyObject_GetAttrString(_pTelluriumSimulationResults, (char*)"shape");
+                CPyObject item = PyObject_GetAttrString(_pTelluriumSimulationResults, (char*)"item");
+                if (shape.getObject() && item.getObject() && colnames.getObject()) {
+                    int num_rows = PyLong_AsLong(PyTuple_GetItem(shape.getObject(), 0));
+                    int num_columns = PyLong_AsLong(PyTuple_GetItem(shape.getObject(), 1));
+                    std::string columnName;
+                    
+                    // iterate over the columns
+                    for (int i = 0; i < num_columns; ++i) {
+                        // get column name
+                        columnName = PyBytes_AS_STRING(PyUnicode_AsEncodedString(PyObject_Repr(PyList_GetItem(colnames, i)), "utf-8", "~E~"));
+                        columnName.erase(remove(columnName.begin(), columnName.end(), '['), columnName.end());
+                        columnName.erase(remove(columnName.begin(), columnName.end(), ']'), columnName.end());
+                        columnName.erase(remove(columnName.begin(), columnName.end(), '\''), columnName.end());
+                        
+                        // update the simulation time points
+                        if (stringCompare(columnName, "time")) {
+                            for (int j = 0; j < num_rows; ++j)
+                                mw->addTimeStep(PyFloat_AsDouble(PyObject_CallObject(item.getObject(), PyTuple_Pack(1, PyTuple_Pack(2, PyLong_FromLong(j), PyLong_FromLong(i))))));
+                        }
+                        // update the species concentrations
+                        else {
+                            for (MainWindow::constGSpeciesIt sIt = mw->gSpeciesBegin(); sIt != mw->gSpeciesEnd(); ++sIt) {
+                                if (stringCompare(columnName, ne_ne_getId((*sIt)->getNGraphicalObject()))) {
+                                    for (int j = 0; j < num_rows; ++j)
+                                        (*sIt)->addConcentration(PyFloat_AsDouble(PyObject_CallObject(item.getObject(), PyTuple_Pack(1, PyTuple_Pack(2, PyLong_FromLong(j), PyLong_FromLong(i))))));
+                                }
+                            }
+                        }
+                        
+                    }
+                }
+                return 0;
+            }
+        }
+    }
+#endif
+    
+    return -1;
+}
+
+int NESBMLDocument::resetTelluriumSBMLDocumentSimulation() {
+#if TELLURIUM_INCLUDED
+    _pTelluriumSimulationResults.Release();
+    if (_pTelluriumSBMLDocument.getObject()) {
+        CPyObject reset = PyObject_GetAttrString(_pTelluriumSBMLDocument, (char*)"reset");
+        if (reset.getObject()) {
+            // rest the time and concentrations of the model
+            PyObject_CallObject(reset.getObject(), PyTuple_Pack(0));
+            return 0;
+        }
+    }
+#endif
+    
+    return -1;
 }
 
 const QColor getQColor(MainWindow *mw, const std::string& colorId) {
@@ -856,7 +920,7 @@ QGraphicsItem* getTextShape(MainWindow* mw, VTransformation2D* gS, LBox* box, st
         
         
         
-        textItem = new MyQGraphicsTextItem("", renderRect);
+        textItem = new MyGraphicsTextItem("", renderRect);
     }
     
     return textItem;
@@ -1395,25 +1459,7 @@ QBrush getBrushFeatures(MainWindow* mw, std::string fillColor) {
     return brush;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-std::vector<QGraphicsItem*> getInfoFromRenderGroup(MainWindow* mw, VRenderGroup* group, MyQGraphicsTextItem* graphicalText){
+std::vector<QGraphicsItem*> getInfoFromRenderGroup(MainWindow* mw, VRenderGroup* group, MyGraphicsTextItem* graphicalText){
     // get info of graphical text from group of veneer
     getGraphicalItemInfoFromVeneer(mw, group, graphicalText);
     
@@ -1421,7 +1467,7 @@ std::vector<QGraphicsItem*> getInfoFromRenderGroup(MainWindow* mw, VRenderGroup*
     return getInfoFromGeometricShape(mw, group, graphicalText);
 }
 
-std::vector<QGraphicsItem*> getInfoFromGeometricShape(MainWindow* mw, VRenderGroup* group, MyQGraphicsTextItem* graphicalText){
+std::vector<QGraphicsItem*> getInfoFromGeometricShape(MainWindow* mw, VRenderGroup* group, MyGraphicsTextItem* graphicalText){
     std::vector<QGraphicsItem*> gItems(0);
     VTransformation2D* gS = NULL;
     QGraphicsItem* gItem = NULL;
@@ -1443,9 +1489,9 @@ std::vector<QGraphicsItem*> getInfoFromGeometricShape(MainWindow* mw, VRenderGro
     return gItems;
 }
 
-QGraphicsItem* getInfoFromTextShape(VTransformation2D* gS, MyQGraphicsTextItem* graphicalText) {
+QGraphicsItem* getInfoFromTextShape(VTransformation2D* gS, MyGraphicsTextItem* graphicalText) {
     if (graphicalText) {
-        QGraphicsItem* textItem = new MyQGraphicsTextItem(graphicalText->toPlainText(), graphicalText->boundingRect());
+        QGraphicsItem* textItem = new MyGraphicsTextItem(graphicalText->toPlainText(), graphicalText->boundingRect());
         
         // get the existing postion and dimension of text
         qreal x = graphicalText->x();
@@ -1472,7 +1518,7 @@ QGraphicsItem* getInfoFromTextShape(VTransformation2D* gS, MyQGraphicsTextItem* 
     return NULL;
 }
 
-void getGraphicalItemInfoFromVeneer(MainWindow* mw, VRenderGroup* group, MyQGraphicsTextItem* graphicalText) {
+void getGraphicalItemInfoFromVeneer(MainWindow* mw, VRenderGroup* group, MyGraphicsTextItem* graphicalText) {
     std::string strokeColor;
     std::string fontFamily;
     std::string fontWeight;
@@ -1512,7 +1558,7 @@ void getGraphicalItemInfoFromVeneer(MainWindow* mw, VRenderGroup* group, MyQGrap
     setGraphicalItemInfo(mw, graphicalText, strokeColor, fontFamily, fontSize, fontWeight, fontStyle, hTextAnchor, vTextAnchor);
 }
 
-void getGraphicalItemInfoFromVeneer(MainWindow* mw, VTransformation2D* gS, MyQGraphicsTextItem* graphicalText) {
+void getGraphicalItemInfoFromVeneer(MainWindow* mw, VTransformation2D* gS, MyGraphicsTextItem* graphicalText) {
     std::string strokeColor;
     std::string fontFamily;
     std::string fontWeight;
@@ -1552,7 +1598,7 @@ void getGraphicalItemInfoFromVeneer(MainWindow* mw, VTransformation2D* gS, MyQGr
     setGraphicalItemInfo(mw, graphicalText, strokeColor, fontFamily, fontSize, fontWeight, fontStyle, hTextAnchor, vTextAnchor);
 }
 
-void setGraphicalItemInfo(MainWindow* mw, MyQGraphicsTextItem* graphicalText, std::string& strokeColor, std::string& fontFamily, RAVector* fontSize, std::string& fontWeight, std::string& fontStyle, std::string& hTextAnchor, std::string& vTextAnchor) {
+void setGraphicalItemInfo(MainWindow* mw, MyGraphicsTextItem* graphicalText, std::string& strokeColor, std::string& fontFamily, RAVector* fontSize, std::string& fontWeight, std::string& fontStyle, std::string& hTextAnchor, std::string& vTextAnchor) {
     QPainter* painter = new QPainter();
     QFont font;
     QPen pen;

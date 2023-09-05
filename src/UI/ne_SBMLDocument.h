@@ -12,7 +12,7 @@ class GraphicalLineEnding;
 class GraphicalCompartment;
 class GraphicalSpecies;
 class GraphicalReaction;
-class MyQGraphicsTextItem;
+class MyGraphicsTextItem;
 class GraphicalCurve;
 
 class NESBMLDocument{
@@ -24,6 +24,16 @@ public:
         _isLayoutAlreadyExisted = false;
         _isRenderModified = false;
         _isRenderAlreadyExisted = false;
+    }
+    
+    ~ NESBMLDocument () {
+        delete _document;
+        delete _li;
+        delete _ri;
+#if TELLURIUM_INCLUDED
+        _pTelluriumSBMLDocument.Release();
+        _pTelluriumSimulationResults.Release();
+#endif
     }
 
     /// Functions
@@ -84,6 +94,15 @@ public:
     // show whether the rener has already existed
     const bool isRenderAlreadExited() const { return _isRenderAlreadyExisted; };
     
+    // set tellurium sbml document
+    int setTelluriumSBMLDocument(MainWindow* mw);
+    
+    // simulate tellurium sbml model
+    int simulateTelluriumSBMLDocument(MainWindow* mw, const int& start, const int& end, const int& points);
+    
+    // reset tellurium sbml model simulation
+    int resetTelluriumSBMLDocumentSimulation();
+
 protected:
     SBMLDocument* _document;
     LayoutInfo* _li;
@@ -93,6 +112,11 @@ protected:
     bool _isLayoutAlreadyExisted;
     bool _isRenderModified;
     bool _isRenderAlreadyExisted;
+    
+#if TELLURIUM_INCLUDED
+    CPyObject _pTelluriumSBMLDocument;
+    CPyObject _pTelluriumSimulationResults;
+#endif
 };
 
 // get the QColor using its id by searching in main window colors
@@ -109,7 +133,6 @@ void getInfoFromColor(GraphicalColor* gColor, VColorDefinition* color = NULL, co
 
 // get info from the gradient of veneer and store it in a graphical graidient
 void getInfoFromGradient(MainWindow* mw, VGradientBase* gradient, GraphicalGradient* gGradient);
-
 
 
 std::vector<QGraphicsItem*> getInfoFromRenderGroup(MainWindow* mw, VRenderGroup* group, LBox* box);
@@ -148,25 +171,25 @@ QBrush getBrushFeatures(MainWindow* mw, std::string fillColor);
 
 
 // get info from the style of veneer and set the values of a graphical text item using its value
-std::vector<QGraphicsItem*> getInfoFromRenderGroup(MainWindow* mw, VRenderGroup* group, MyQGraphicsTextItem* graphicalText);
+std::vector<QGraphicsItem*> getInfoFromRenderGroup(MainWindow* mw, VRenderGroup* group, MyGraphicsTextItem* graphicalText);
 
 // get info from the graphical shape of a group and set the values of graphics text item using its values
-std::vector<QGraphicsItem*> getInfoFromGeometricShape(MainWindow* mw, VRenderGroup* group, MyQGraphicsTextItem* graphicalText);
+std::vector<QGraphicsItem*> getInfoFromGeometricShape(MainWindow* mw, VRenderGroup* group, MyGraphicsTextItem* graphicalText);
 
 // get info from text shape of a group and set the values of graphical text item using its values
-QGraphicsItem*  getInfoFromTextShape(VTransformation2D *gShape, MyQGraphicsTextItem *graphicalText);
+QGraphicsItem*  getInfoFromTextShape(VTransformation2D *gShape, MyGraphicsTextItem *graphicalText);
 
 // get info of a group and set the values of graphical text item using its values
-void getGraphicalItemInfoFromVeneer(MainWindow* mw, VRenderGroup* group, MyQGraphicsTextItem* graphicalText);
+void getGraphicalItemInfoFromVeneer(MainWindow* mw, VRenderGroup* group, MyGraphicsTextItem* graphicalText);
 
 // get info of a graphical shape and set the values of graphical text item using its values
-void getGraphicalItemInfoFromVeneer(MainWindow* mw, VTransformation2D* gShape, MyQGraphicsTextItem* graphicalText);
+void getGraphicalItemInfoFromVeneer(MainWindow* mw, VTransformation2D* gShape, MyGraphicsTextItem* graphicalText);
 
 // get info of a graphical shape and set the values of graphical curve using its values
 void getGraphicalItemInfoFromVeneer(MainWindow* mw, VTransformation2D* gShape, GraphicalCurve* graphicalCurve);
 
 // set the values of a graphical text item using either group or graphical shape info
-void setGraphicalItemInfo(MainWindow* mw, MyQGraphicsTextItem* graphicalText, std::string& strokeColor, std::string& fontFamily, RAVector* fontSize, std::string& fontWeight, std::string& fontStyle, std::string& hTextAnchor, std::string& vTextAnchor);
+void setGraphicalItemInfo(MainWindow* mw, MyGraphicsTextItem* graphicalText, std::string& strokeColor, std::string& fontFamily, RAVector* fontSize, std::string& fontWeight, std::string& fontStyle, std::string& hTextAnchor, std::string& vTextAnchor);
 
 void setLineEndings(MainWindow* mw, GraphicalCurve* gCurve);
 
