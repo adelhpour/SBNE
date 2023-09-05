@@ -13,6 +13,18 @@ qt5_wrap_cpp(moc_sources ${gui_headers})
 ## add other headers
 set(gui_headers ${gui_headers} ne_SBMLDocument.h)
 
+set (PYTHON_DEVS)
+if (USE_TELLURIUM)
+	## find python packages
+	find_package(Python COMPONENTS Development)
+	set (PYTHON_DEVS Python::Python)
+	
+	## add other sources
+	set(gui_sources ${gui_sources} ne_pyhelper.hpp)
+
+	add_definitions(-DTELLURIUM_INCLUDED=true)
+endif ()
+
 ## create the executable
 add_executable(SBNE-GUI WIN32 MACOSX_BUNDLE 
 	${gui_sources} 
@@ -32,7 +44,8 @@ target_link_libraries(SBNE-GUI
 	Qt5::Widgets
 	Qt5::PrintSupport
 	sbne-static
-	${GRAPHVIZ_LIBS_FIRSTHAND})
+	${GRAPHVIZ_LIBS_FIRSTHAND}
+	${PYTHON_DEVS})
 
 if (APPLE)
 	## set the info plist for macOS	

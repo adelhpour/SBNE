@@ -148,6 +148,9 @@ if (WITH_GUI)
 			file(GLOB Qt_EXTRA "${Qt5_DIR}/../../libicudata.*" "${Qt5_DIR}/../../libicui18n.*" "${Qt5_DIR}/../../libicuuc.*")
 		endif (UNIX)
 	endif(APPLE)
+
+	## integrate Tellurium into GUI
+	option(USE_TELLURIUM "Integrate Tellurium into QT_GUI" OFF)
 endif(WITH_GUI)
 
 ## building the Documentation

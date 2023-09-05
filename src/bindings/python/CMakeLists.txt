@@ -1,7 +1,7 @@
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 ## find python packages
-find_package(Python 3.8 COMPONENTS Interpreter Development)
+find_package(Python COMPONENTS Interpreter Development)
 
 ## if swing version is less than 3.0
 if (${SWIG_FOUND} AND ${Python_VERSION} VERSION_LESS 3.0)
