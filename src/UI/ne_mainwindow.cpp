@@ -4,11 +4,14 @@
 // main window constructor
 MainWindow::MainWindow(QWidget *parent) :  QMainWindow(parent), ui(new Ui::MainWindow)
 {
+    _SBMLDocument = NULL;
+    _gSpeciesFillColorAnimation = NULL;
     _isSetView = false;
     _isSetScene = false;
     _isSetFeatureMenu = false;
     _isSetCurrentFileName = false;
     _isSetSBMLDocument = false;
+    _isSetGSpeciesFillColorAnimation = false;
     resetSceneRectExtents();
     
     ui->setupUi(this);
@@ -33,13 +36,21 @@ MainWindow::MainWindow(QWidget *parent) :  QMainWindow(parent), ui(new Ui::MainW
     setScene(new QGraphicsScene());
     getScene()->setSceneRect(30.0, 20.0, 840.0, 560.0);
 
-    MyQGraphicsView* view = new MyQGraphicsView(this, this);
+    MyGraphicsView* view = new MyGraphicsView(this, this);
     view->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     view->setGeometry(75, 50, 900, 600);
     view->setScene(getScene());
     view->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     view->show();
     setView(view);
+    
+#if TELLURIUM_INCLUDED
+    setTelluriumModule();
+    setGSpeciesFillColorAnimation(new QPropertyAnimation(this, "_currentTime"));
+    qRegisterAnimationInterpolator<qreal>(timeInterpolator);
+#endif
+    
+    connect(this, SIGNAL(currentTimeChanged(const qreal&)), SLOT(updateGraphicalSpeciesAnimatedFillColor(const qreal&)));
     
     FeatureMenu* featureMenu = new FeatureMenu(this, this);
     setFeatureMenu(featureMenu);
@@ -91,143 +102,7 @@ void MainWindow::createMenus() {
     fileMenu->addAction(exitAct);
 }
 
-void MainWindow::open() {
-    bool openWithoutSave = true;
-    
-    if (isSetSBMLDocument()) {
-        if (getSBMLDocument()->isLayoutModified() || getSBMLDocument()->isRenderModified()) {
-            openWithoutSave = false;
-            QMessageBox* saveMessageBox =  new QMessageBox();
-            saveMessageBox->setWindowTitle("Save Action");
-            saveMessageBox->setText("The current model has been modified.");
-            saveMessageBox->setInformativeText("Do you want to save your changes?");
-            saveMessageBox->setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
-            saveMessageBox->setDefaultButton(QMessageBox::Save);
-            
-            int answer = saveMessageBox->exec();
-            if (answer == QMessageBox::Save)
-                save();
-            else if (answer == QMessageBox::Discard)
-                openWithoutSave = true;
-        }
-    }
-    
-    if (openWithoutSave) {
-        // get the file name by showing a file dialog to the user and asking them to select their desired file
-        QString fileName = QFileDialog::getOpenFileName(this, "Open an XML File", ".", tr("Xml files (*.xml)"));
-        
-        // if file name is set successfully
-        if (!fileName.isEmpty()){
-            // clear the previously displayed info
-            clearInfo();
-            
-            // hide all the previous feature menu
-            getFeatureMenu()->hideFeatureMenu();
-            
-            // set the current file name using the file name
-            setCurrentFileName(fileName);
-            
-            // set the title of window as the file name
-            setWindowTitle(QFileInfo(fileName).fileName());
-            
-            // reset the scene extents and view scale
-            resetSceneRectExtents();
-            getView()->resetMatrix();
-            
-            // create a new sbml document
-            setSBMLDocument(new NESBMLDocument());
-            
-            // load sbml
-            getSBMLDocument()->loadSBML(this);
-            
-            // scale the view to show all the layout
-            if ((getView()->geometry().width() / getScene()->sceneRect().width()) < (getView()->geometry().height() / getScene()->sceneRect().height()))
-                getView()->scale(getView()->geometry().width() / getScene()->sceneRect().width(), getView()->geometry().width() / getScene()->sceneRect().width());
-            else
-                getView()->scale(getView()->geometry().height() / getScene()->sceneRect().height(), getView()->geometry().height() / getScene()->sceneRect().height());
-            
-            // reset max and min scale range
-            ((MyQGraphicsView*)getView())->setMaxScale(std::max(3.0, getView()->geometry().width() / (2 * maxSpeciesBoxWidth)));
-            ((MyQGraphicsView*)getView())->setMinScale(std::min(1.0 / 3.0, ((MyQGraphicsView*)getView())->currentScale()));
-            
-            // enable the save act
-            saveAct->setEnabled(true);
-            
-            // enable screenshot act
-            screenshotAct->setEnabled(true);
-        }
-    }
-}
-
-void MainWindow::save() {
-    // get the file name by showing a file dialog to the user and asking them to enter their desired palce to save and the name of the file
-    QString fileName = QFileDialog::getSaveFileName(this, "Save File",  getCurrentFileName(), tr("Xml files (*.xml)"));
-    
-    // if file name is set successfully
-    if (!fileName.isEmpty()) {
-        // if saved
-        if (getSBMLDocument()->saveSBML(this, fileName))
-            setCurrentFileName(fileName);
-        // if not saved
-        else {
-            QMessageBox* savedMessageBox = new QMessageBox();
-            savedMessageBox->setWindowTitle("Failed");
-            savedMessageBox->setText("The model could not be saved");
-            savedMessageBox->setIcon(QMessageBox::Critical);
-            savedMessageBox->exec();
-        }
-    }
-}
-
-void MainWindow::screenshot() {
-    // get the image file name by showing a file dialog to the user and asking them to enter their desired palce to save and the name of the file
-    QString fileName = QFileDialog::getSaveFileName(this, "Save PDF File", QFileInfo(getCurrentFileName()).baseName() + "_drawing", "(*.pdf)");
-    
-    // if file name is set successfully
-    if (!fileName.isEmpty()) {
-        //QPixmap pixmap = QPixmap::grabWidget(_view);
-        
-        QPrinter printer(QPrinter::ScreenResolution);
-        printer.setPageSize(QPageSize(QSize(getScene()->sceneRect().width(), getScene()->sceneRect().height()), QPageSize::Point));
-        printer.setPageMargins(QMarginsF(0.0, 0.0, 0.0, 0.0));
-        printer.setOutputFormat(QPrinter::PdfFormat);
-        printer.setOutputFileName(fileName);
-        
-        QPainter painter(&printer);
-        getScene()->render(&painter);
-    }
-}
-
-void MainWindow::exit() {
-    bool closeWithoutSave = true;
-    
-    if (isSetSBMLDocument()) {
-        if (getSBMLDocument()->isLayoutModified() || getSBMLDocument()->isRenderModified()) {
-            closeWithoutSave = false;
-            QMessageBox* saveMessageBox =  new QMessageBox();
-            saveMessageBox->setWindowTitle("Save Action");
-            saveMessageBox->setText("The current model has been modified.");
-            saveMessageBox->setInformativeText("Do you want to save your changes?");
-            saveMessageBox->setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
-            saveMessageBox->setDefaultButton(QMessageBox::Save);
-            
-            int answer = saveMessageBox->exec();
-            if (answer == QMessageBox::Save) {
-                save();
-                closeWithoutSave = true;
-            }
-            else if (answer == QMessageBox::Discard)
-                closeWithoutSave = true;
-        }
-    }
-    
-    if (closeWithoutSave) {
-        clearInfo();
-        close();
-    }
-}
-
-void MainWindow::setView(MyQGraphicsView* view) {
+void MainWindow::setView(MyGraphicsView* view) {
     _view = view;
     _isSetView = true;
 }
@@ -263,6 +138,29 @@ void MainWindow::setSceneRect(QRectF rect) {
         _maxSceneY = rect.y() + rect.height();
     
     _scene->setSceneRect(_minSceneX - 50.0, _minSceneY - 50.0, _maxSceneX - _minSceneX + 100.0, _maxSceneY - _minSceneY + 100);
+}
+
+void MainWindow::updateSceneItems(const bool& isLayoutAlreadyExisted) {
+    // update compartments graphical items
+    for (constGCompartmentIt cIt = gCompartmentsBegin(); cIt != gCompartmentsEnd(); ++cIt)
+        (*cIt)->updateValues(this);
+    
+    // update species graphical items
+    for (constGSpeciesIt sIt = gSpeciesBegin(); sIt != gSpeciesEnd(); ++sIt) {
+        if (isLayoutAlreadyExisted)
+            (*sIt)->updateValues(this, false);
+        else
+            (*sIt)->updateValues(this, true);
+    }
+    
+    // update reactions graphical items
+    for (constGReactionIt rIt = gReactionsBegin(); rIt != gReactionsEnd(); ++rIt) {
+        (*rIt)->updateValues(this);
+
+        // update species references graphical items
+        for (GraphicalReaction::constGSReferenceIt sRIt = (*rIt)->gSReferencesBegin(); sRIt != (*rIt)->gSReferencesEnd(); ++sRIt)
+            (*sRIt)->updateValues(this);
+    }
 }
 
 void MainWindow::setFeatureMenu(FeatureMenu* featureMenu) {
@@ -485,9 +383,61 @@ const size_t MainWindow::getNumGReactions() const {
     return _reactionInfo.size();
 }
 
+void MainWindow::addTimeStep(const double& s) {
+    _timeSteps.push_back(s);
+}
+
+void MainWindow::setTimeSteps(const timeStepVec& tsv) {
+    _timeSteps = tsv;
+}
+
+const MainWindow::timeStepVec& MainWindow::getTimeSteps() const {
+    return _timeSteps;
+}
+
+const size_t MainWindow::getNumTimeSteps() const {
+    return _timeSteps.size();
+}
+
+void  MainWindow::setCurrentTime(const qreal& t) {
+    if (t >= 0) {
+        _currentTime = t;
+        currentTimeChanged(t);
+        currentTimeChanged(int(t));
+    }
+}
+
+const qreal& MainWindow::getCurrentTime() const {
+    return _currentTime;
+}
+
+void MainWindow::setGSpeciesFillColorAnimation(QPropertyAnimation* gSpeciesFillColorAnimation) {
+    _gSpeciesFillColorAnimation = gSpeciesFillColorAnimation;
+    _isSetGSpeciesFillColorAnimation = true;
+}
+
+QPropertyAnimation* MainWindow::getGSpeciesFillColorAnimation() {
+    return _gSpeciesFillColorAnimation;
+}
+
+QVariant MainWindow::timeInterpolator(const qreal &start, const qreal &end, qreal progress) {
+    return start + progress * (end - start);
+}
+
+void MainWindow::animateSpeciesConcentrations() {
+    if (_gSpeciesFillColorAnimation && getNumTimeSteps() > 1) {
+        _gSpeciesFillColorAnimation->setDuration(1000.0 * (getTimeSteps().at(getNumTimeSteps() - 1) - getTimeSteps().at(0)));
+        _gSpeciesFillColorAnimation->setStartValue(getTimeSteps().at(0));
+        _gSpeciesFillColorAnimation->setEndValue(getTimeSteps().at(getNumTimeSteps() - 1));
+        _gSpeciesFillColorAnimation->start();
+    }
+}
+
 void MainWindow::clearInfo() {
     _scene->clear();
     _scene->setBackgroundBrush(Qt::NoBrush);
+    if (_SBMLDocument)
+        delete _SBMLDocument;
     _SBMLDocument = NULL;
     _colorInfo.clear();
     _gradientInfo.clear();
@@ -497,11 +447,228 @@ void MainWindow::clearInfo() {
     _reactionInfo.clear();
     _isSetCurrentFileName = false;
     _isSetSBMLDocument = false;
+    resetSimulation();
 }
 
-// MyQGraphicsView
+#if TELLURIUM_INCLUDED
+int MainWindow::setTelluriumModule() {
+    pTelluriumModule.Release();
+    pTelluriumModule = PyImport_Import(PyUnicode_FromString((char*)"tellurium"));
+    if (pTelluriumModule)
+        return 0;
+    
+    return -1;
+}
 
-void MyQGraphicsView::wheelEvent (QWheelEvent * event) {
+CPyObject MainWindow::getTelluriumModule() {
+    return pTelluriumModule;
+}
+#endif
+
+void MainWindow::pauseGraphicalSpeciesFillColorAnimation() {
+    if (_gSpeciesFillColorAnimation && _gSpeciesFillColorAnimation->state() == 2)
+        _gSpeciesFillColorAnimation->pause();
+}
+
+void MainWindow::resumeGraphicalSpeciesFillColorAnimation() {
+    if (_gSpeciesFillColorAnimation) {
+        if (_gSpeciesFillColorAnimation->state() == 0)
+            _gSpeciesFillColorAnimation->start();
+        else if (_gSpeciesFillColorAnimation->state() == 1)
+            _gSpeciesFillColorAnimation->resume();
+    }
+}
+
+void MainWindow::open() {
+    bool openWithoutSave = true;
+    
+    if (isSetSBMLDocument()) {
+        if (getSBMLDocument()->isLayoutModified() || getSBMLDocument()->isRenderModified()) {
+            openWithoutSave = false;
+            QMessageBox* saveMessageBox =  new QMessageBox();
+            saveMessageBox->setWindowTitle("Save Action");
+            saveMessageBox->setText("The current model has been modified.");
+            saveMessageBox->setInformativeText("Do you want to save your changes?");
+            saveMessageBox->setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+            saveMessageBox->setDefaultButton(QMessageBox::Save);
+            
+            int answer = saveMessageBox->exec();
+            if (answer == QMessageBox::Save)
+                save();
+            else if (answer == QMessageBox::Discard)
+                openWithoutSave = true;
+        }
+    }
+    
+    if (openWithoutSave) {
+        // get the file name by showing a file dialog to the user and asking them to select their desired file
+        QString fileName = QFileDialog::getOpenFileName(this, "Open an XML File", ".", tr("Xml files (*.xml)"));
+        
+        // if file name is set successfully
+        if (!fileName.isEmpty()){
+            // clear the previously displayed info
+            clearInfo();
+            
+            // hide all the previous feature menus
+            getFeatureMenu()->hideFeatureMenu();
+            
+            // set the current file name using the file name
+            setCurrentFileName(fileName);
+            
+            // set the title of window as the file name
+            setWindowTitle(QFileInfo(fileName).fileName());
+            
+            // reset the scene extents and view scale
+            resetSceneRectExtents();
+            getView()->resetMatrix();
+            
+            // create a new sbml document
+            setSBMLDocument(new NESBMLDocument());
+            
+            // load sbml
+            getSBMLDocument()->loadSBML(this);
+            
+            // update scene items
+            updateSceneItems(getSBMLDocument()->isLayoutAlreadyExisted());
+            
+#if TELLURIUM_INCLUDED
+            // show model feature menu
+            getFeatureMenu()->showFeatureMenu();
+#endif
+            
+            // scale the view to show all the layout
+            if ((getView()->geometry().width() / getScene()->sceneRect().width()) < (getView()->geometry().height() / getScene()->sceneRect().height()))
+                getView()->scale(getView()->geometry().width() / getScene()->sceneRect().width(), getView()->geometry().width() / getScene()->sceneRect().width());
+            else
+                getView()->scale(getView()->geometry().height() / getScene()->sceneRect().height(), getView()->geometry().height() / getScene()->sceneRect().height());
+            
+            // reset max and min scale range
+            ((MyGraphicsView*)getView())->setMaxScale(std::max(3.0, getView()->geometry().width() / (2 * maxSpeciesBoxWidth)));
+            ((MyGraphicsView*)getView())->setMinScale(std::min(1.0 / 3.0, ((MyGraphicsView*)getView())->currentScale()));
+            
+            // enable the save act
+            saveAct->setEnabled(true);
+            
+            // enable screenshot act
+            screenshotAct->setEnabled(true);
+        }
+    }
+}
+
+void MainWindow::save() {
+    // get the file name by showing a file dialog to the user and asking them to enter their desired palce to save and the name of the file
+    QString fileName = QFileDialog::getSaveFileName(this, "Save File",  getCurrentFileName(), tr("Xml files (*.xml)"));
+    
+    // if file name is set successfully
+    if (!fileName.isEmpty()) {
+        // if saved
+        if (getSBMLDocument()->saveSBML(this, fileName))
+            setCurrentFileName(fileName);
+        // if not saved
+        else {
+            QMessageBox* savedMessageBox = new QMessageBox();
+            savedMessageBox->setWindowTitle("Failed");
+            savedMessageBox->setText("The model could not be saved");
+            savedMessageBox->setIcon(QMessageBox::Critical);
+            savedMessageBox->exec();
+        }
+    }
+}
+
+void MainWindow::screenshot() {
+    // get the image file name by showing a file dialog to the user and asking them to enter their desired palce to save and the name of the file
+    QString fileName = QFileDialog::getSaveFileName(this, "Save PDF File", QFileInfo(getCurrentFileName()).baseName() + "_drawing", "(*.pdf)");
+    
+    // if file name is set successfully
+    if (!fileName.isEmpty()) {
+        //QPixmap pixmap = QPixmap::grabWidget(_view);
+        
+        QPrinter printer(QPrinter::ScreenResolution);
+        printer.setPageSize(QPageSize(QSize(getScene()->sceneRect().width(), getScene()->sceneRect().height()), QPageSize::Point));
+        printer.setPageMargins(QMarginsF(0.0, 0.0, 0.0, 0.0));
+        printer.setOutputFormat(QPrinter::PdfFormat);
+        printer.setOutputFileName(fileName);
+        
+        QPainter painter(&printer);
+        getScene()->render(&painter);
+    }
+}
+
+void MainWindow::exit() {
+    bool closeWithoutSave = true;
+    
+    if (isSetSBMLDocument()) {
+        if (getSBMLDocument()->isLayoutModified() || getSBMLDocument()->isRenderModified()) {
+            closeWithoutSave = false;
+            QMessageBox* saveMessageBox =  new QMessageBox();
+            saveMessageBox->setWindowTitle("Save Action");
+            saveMessageBox->setText("The current model has been modified.");
+            saveMessageBox->setInformativeText("Do you want to save your changes?");
+            saveMessageBox->setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+            saveMessageBox->setDefaultButton(QMessageBox::Save);
+            
+            int answer = saveMessageBox->exec();
+            if (answer == QMessageBox::Save) {
+                save();
+                closeWithoutSave = true;
+            }
+            else if (answer == QMessageBox::Discard)
+                closeWithoutSave = true;
+        }
+    }
+    
+    if (closeWithoutSave) {
+        clearInfo();
+        close();
+    }
+}
+
+void MainWindow::updateGraphicalSpeciesAnimatedFillColor(const qreal& time) {
+    constTimeStepIt tSIt = timeStepsBegin();
+    while ((tSIt != timeStepsEnd() - 1) &&  (time - *tSIt) > (*(tSIt + 1) - time))
+        ++tSIt;
+    
+    for (constGSpeciesIt sIt = gSpeciesBegin(); sIt != gSpeciesEnd(); ++sIt) {
+        double maxConcentration = (*sIt)->maxConcentration();
+        if ((tSIt - timeStepsBegin()) < (*sIt)->getConcentrations().size() && maxConcentration > 0.0001) {
+            for (GraphicalObjectBase::constGItemIt gIIt = (*sIt)->gItemsBegin(); gIIt != (*sIt)->gItemsEnd(); ++gIIt) {
+                if ((*gIIt)->type() < 7) {
+                    ((QAbstractGraphicsShapeItem *)(*gIIt))->setBrush(QBrush(PercentagedLinearGradient(getQColor(this, "red"), (*gIIt)->boundingRect().x() + 0.5 * (*gIIt)->boundingRect().width(), (*gIIt)->boundingRect().y() + (*gIIt)->boundingRect().width(), (*gIIt)->boundingRect().x() + 0.5 * (*gIIt)->boundingRect().width(), (*gIIt)->boundingRect().y(), ((*sIt)->getConcentrations().at(tSIt - timeStepsBegin()) / maxConcentration)).linearGradient()));
+                }
+            }
+        }
+    }
+}
+
+void MainWindow::updateGraphicalSpeciesAnimatedFillColor(int time) {
+    updateGraphicalSpeciesAnimatedFillColor(qreal(time));
+}
+
+void  MainWindow::setCurrentTime(int t) {
+    if (_gSpeciesFillColorAnimation) {
+        if (_gSpeciesFillColorAnimation->state() == 0)
+            _gSpeciesFillColorAnimation->start();
+        _gSpeciesFillColorAnimation->setCurrentTime(1000 * t);
+    }
+}
+
+void MainWindow::resetSimulation() {
+    _timeSteps.clear();
+    for (constGSpeciesIt sIt = gSpeciesBegin(); sIt != gSpeciesEnd(); ++sIt) {
+        (*sIt)->resetConcentrations();
+        (*sIt)->updateValues(this, false);
+    }
+    if (_gSpeciesFillColorAnimation) {
+        _gSpeciesFillColorAnimation->stop();
+        _gSpeciesFillColorAnimation->setCurrentTime(0);
+    }
+    if (getSBMLDocument())
+        getSBMLDocument()->resetTelluriumSBMLDocumentSimulation();
+}
+
+// MyGraphicsView
+
+void MyGraphicsView::wheelEvent (QWheelEvent * event) {
     int numDegrees = event->delta();
     int numSteps = numDegrees;
     _numScheduledScalings += numSteps;
@@ -517,13 +684,13 @@ void MyQGraphicsView::wheelEvent (QWheelEvent * event) {
     anim->start();
 }
 
-void MyQGraphicsView::scalingTime(qreal x) {
+void MyGraphicsView::scalingTime(qreal x) {
     qreal factor = 1.0 + qreal(_numScheduledScalings) / 10000.0;
     if ((factor  > 1.00000 && (currentScale() < _maxScale)) || (factor  < 1.00000 && (currentScale() > _minScale)))
         scale(factor, factor);
 }
 
-void MyQGraphicsView::animFinished() {
+void MyGraphicsView::animFinished() {
     if (_numScheduledScalings > 0)
         _numScheduledScalings--;
     else
@@ -531,27 +698,27 @@ void MyQGraphicsView::animFinished() {
     sender()->~QObject();
 }
 
-const qreal MyQGraphicsView::currentScale() const {
+const qreal MyGraphicsView::currentScale() const {
     return transform().m11();
 }
 
-void MyQGraphicsView::setMaxScale(const qreal& maxScale) {
+void MyGraphicsView::setMaxScale(const qreal& maxScale) {
     _maxScale = maxScale;
 }
 
-const qreal MyQGraphicsView::getMaxScale() const {
+const qreal MyGraphicsView::getMaxScale() const {
     return _maxScale;
 }
 
-void MyQGraphicsView::setMinScale(const qreal& minScale) {
+void MyGraphicsView::setMinScale(const qreal& minScale) {
     _minScale = minScale;
 }
 
-const qreal MyQGraphicsView::getMinScale() const {
+const qreal MyGraphicsView::getMinScale() const {
     return _minScale;
 }
 
-void MyQGraphicsView::mousePressEvent(QMouseEvent *event) {
+void MyGraphicsView::mousePressEvent(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton)
     {
         // start panning
@@ -566,7 +733,7 @@ void MyQGraphicsView::mousePressEvent(QMouseEvent *event) {
     event->ignore();
 }
 
-void MyQGraphicsView::mouseMoveEvent(QMouseEvent *event) {
+void MyGraphicsView::mouseMoveEvent(QMouseEvent *event) {
     if (_pan)
     {
         horizontalScrollBar()->setValue(horizontalScrollBar()->value() - (event->x() - _panStartX));
@@ -579,7 +746,7 @@ void MyQGraphicsView::mouseMoveEvent(QMouseEvent *event) {
     event->ignore();
 }
 
-void MyQGraphicsView::mouseReleaseEvent(QMouseEvent *event) {
+void MyGraphicsView::mouseReleaseEvent(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton)
     {
         _pan = false;
@@ -590,7 +757,7 @@ void MyQGraphicsView::mouseReleaseEvent(QMouseEvent *event) {
     event->ignore();
 }
 
-void MyQGraphicsView::mouseDoubleClickEvent(QMouseEvent *event) {
+void MyGraphicsView::mouseDoubleClickEvent(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton)
     {
         // hide all the previous feature menu
@@ -604,7 +771,7 @@ void MyQGraphicsView::mouseDoubleClickEvent(QMouseEvent *event) {
     event->ignore();
 }
 
-int MyQGraphicsView::findGraphicalItem(QPointF position) {
+int MyGraphicsView::findGraphicalItem(QPointF position) {
     QRectF boundingRect;
     
     // search among the species
@@ -631,7 +798,7 @@ int MyQGraphicsView::findGraphicalItem(QPointF position) {
         // search among the text of species
         for (GraphicalObjectBase::constGTextIt gTIt = (*gSIt)->gTextsBegin(); gTIt != (*gSIt)->gTextsEnd(); ++gTIt) {
             for (GraphicalText::constGItemIt gIIt = (*gTIt)->gItemsBegin(); gIIt != (*gTIt)->gItemsEnd(); ++gIIt) {
-                boundingRect = ((MyQGraphicsTextItem*)(*gIIt))->boundingRect();
+                boundingRect = ((MyGraphicsTextItem*)(*gIIt))->boundingRect();
                 if ((position.x() >= boundingRect.x() && position.x() <=  boundingRect.x() + boundingRect.width()) && (position.y() >= boundingRect.y() && position.y() <=  boundingRect.y() + boundingRect.height())) {
                     _mw->getFeatureMenu()->showFeatureMenu(*gSIt);
                     return 0;
@@ -726,7 +893,7 @@ int MyQGraphicsView::findGraphicalItem(QPointF position) {
         // search for the text of compartments
         for (GraphicalObjectBase::constGTextIt gTIt = (*gCIt)->gTextsBegin(); gTIt != (*gCIt)->gTextsEnd(); ++gTIt) {
             for (GraphicalText::constGItemIt gIIt = (*gTIt)->gItemsBegin(); gIIt != (*gTIt)->gItemsEnd(); ++gIIt) {
-                boundingRect = ((MyQGraphicsTextItem*)(*gIIt))->boundingRect();
+                boundingRect = ((MyGraphicsTextItem*)(*gIIt))->boundingRect();
                 if ((position.x() >= boundingRect.x() && position.x() <=  boundingRect.x() + boundingRect.width()) && (position.y() >= boundingRect.y() && position.y() <=  boundingRect.y() + boundingRect.height())) {
                     _mw->getFeatureMenu()->showFeatureMenu(*gCIt);
                     return 0;
@@ -738,7 +905,7 @@ int MyQGraphicsView::findGraphicalItem(QPointF position) {
     return -1;
 }
 
-bool MyQGraphicsView::isCloseEnoughToCurveSemgent(const QPainterPath& path, const QPointF& position, const qreal& minRequiredDistance) {
+bool MyGraphicsView::isCloseEnoughToCurveSemgent(const QPainterPath& path, const QPointF& position, const qreal& minRequiredDistance) {
     QPointF distance;
     qreal distanceSize = 0.0;
     qreal oneDistanceAgoSize = INT_MAX;
@@ -766,7 +933,7 @@ bool MyQGraphicsView::isCloseEnoughToCurveSemgent(const QPainterPath& path, cons
     return false;
 }
 
-bool MyQGraphicsView::isInsideTheRotatedRectangle(const QRectF& boundingRect, const QPointF& rotationCenter, const qreal& rotatedAngle, const QPointF& position) {
+bool MyGraphicsView::isInsideTheRotatedRectangle(const QRectF& boundingRect, const QPointF& rotationCenter, const qreal& rotatedAngle, const QPointF& position) {
     
     QPointF A = QPointF(rotationCenter.x() + boundingRect.x() * std::cos(rotatedAngle) - boundingRect.y() * std::sin(rotatedAngle), rotationCenter.y() + boundingRect.x() * std::sin(rotatedAngle) + boundingRect.y() * std::cos(rotatedAngle));
     QPointF B = QPointF(rotationCenter.x() + (boundingRect.x() + boundingRect.width()) * std::cos(rotatedAngle) - boundingRect.y() * std::sin(rotatedAngle), rotationCenter.y() + (boundingRect.x() + boundingRect.width()) * std::sin(rotatedAngle) + boundingRect.y() * std::cos(rotatedAngle));
@@ -784,13 +951,13 @@ bool MyQGraphicsView::isInsideTheRotatedRectangle(const QRectF& boundingRect, co
         return false;
 }
 
-// MyQGraphicsTextItem
+// MyGraphicsTextItem
 
-QRectF MyQGraphicsTextItem::boundingRect() const {
+QRectF MyGraphicsTextItem::boundingRect() const {
     return _boundingRect;
 }
 
-void MyQGraphicsTextItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) {
+void MyGraphicsTextItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) {
     
     // set the color of text
     painter->setPen(_textPen);
@@ -834,36 +1001,54 @@ void MyQGraphicsTextItem::paint(QPainter* painter, const QStyleOptionGraphicsIte
     }
 }
 
-void MyQGraphicsTextItem::setTextPen(const QPen& textPen) {
+void MyGraphicsTextItem::setTextPen(const QPen& textPen) {
     _textPen = textPen;
 }
 
-const QPen& MyQGraphicsTextItem::textPen() const {
+const QPen& MyGraphicsTextItem::textPen() const {
     return _textPen;
 }
 
-void MyQGraphicsTextItem::setTextFont(const QFont& textFont) {
+void MyGraphicsTextItem::setTextFont(const QFont& textFont) {
     _textFont = textFont;
 }
 
-const QFont& MyQGraphicsTextItem::textFont() const {
+const QFont& MyGraphicsTextItem::textFont() const {
     return _textFont;
 }
 
-void MyQGraphicsTextItem::setVerticalAlignment(const std::string& vAlignment) {
+void MyGraphicsTextItem::setVerticalAlignment(const std::string& vAlignment) {
     _verticalAlignment = vAlignment;
 }
 
-const std::string& MyQGraphicsTextItem::verticalAlignment() const {
+const std::string& MyGraphicsTextItem::verticalAlignment() const {
     return _verticalAlignment;
 }
 
-void MyQGraphicsTextItem::setHorizontalAlignment(const std::string& hAlignment) {
+void MyGraphicsTextItem::setHorizontalAlignment(const std::string& hAlignment) {
     _horizontalAlignment = hAlignment;
 }
 
-const std::string& MyQGraphicsTextItem::horizontalAlignment() const {
+const std::string& MyGraphicsTextItem::horizontalAlignment() const {
     return _horizontalAlignment;
+}
+
+
+PercentagedLinearGradient::PercentagedLinearGradient(const QColor& color, qreal x1, qreal y1, qreal x2, qreal y2, qreal percentage) {
+    if (percentage >= 0.999)
+        percentage = 0.999;
+    if (percentage < 0.000)
+        percentage = 0.000;
+    _gradient.setStart(QPointF(x1, y1));
+    _gradient.setFinalStop(QPointF(x2, y2));
+    _gradient.setColorAt(0, color);
+    _gradient.setColorAt(percentage, color);
+    _gradient.setColorAt(percentage + 0.001, Qt::white);
+    _gradient.setColorAt(1, Qt::white);
+}
+
+const QLinearGradient& PercentagedLinearGradient::linearGradient() const {
+    return _gradient;
 }
 
 // Graphical Element
@@ -1222,7 +1407,7 @@ void GraphicalSpecies::fitConnectedItemsToBoundingBox(MainWindow* mw) {
     if (isSetNGraphicalObject() && ne_go_isSetBoundingBox(getNGraphicalObject())) {
         for (constGTextIt gTIt = gTextsBegin(); gTIt != gTextsEnd(); ++gTIt) {
             if ((*gTIt)->getGraphicalItems().at(0) && (*gTIt)->isSetPlainText()) {
-                QFontMetrics fontMetrics(((MyQGraphicsTextItem*)((*gTIt)->getGraphicalItems().at(0)))->textFont());
+                QFontMetrics fontMetrics(((MyGraphicsTextItem*)((*gTIt)->getGraphicalItems().at(0)))->textFont());
                 qreal textWidth = fontMetrics.width((QString((*gTIt)->getPlainText().c_str())));
                 qreal textHeight = fontMetrics.height();
                 sbne::LBox* bbox = ne_go_getBoundingBox(getNGraphicalObject());
@@ -1352,6 +1537,35 @@ void GraphicalSpecies::updateValues(MainWindow* mw, const bool& _fitConnectedIte
             fitConnectedItemsToBoundingBox(mw);
 #endif
     }
+}
+
+void GraphicalSpecies::addConcentration(const double& c) {
+    _concentrations.push_back(c);
+}
+
+void GraphicalSpecies::setConcentrations(const concentrationsVec& cv) {
+    _concentrations = cv;
+}
+
+const GraphicalSpecies::concentrationsVec& GraphicalSpecies::getConcentrations() const {
+    return _concentrations;
+}
+
+const size_t GraphicalSpecies::getNumConcentrationsSteps() const {
+    return _concentrations.size();
+}
+
+const double GraphicalSpecies::maxConcentration() const {
+    double max = 0.0000;
+    for (constConcentrationsIt cIt = concentrationsBegin(); cIt != concentrationsEnd(); ++cIt) {
+        if (*cIt > max)
+            max = *cIt;
+    }
+    return max;
+}
+
+void GraphicalSpecies::resetConcentrations() {
+    _concentrations.clear();
 }
 
 // Graphical Reaction
@@ -1642,10 +1856,10 @@ void GraphicalText::updateValues(MainWindow* mw) {
             if (bbox) {
                 // graphical item
                 gItemVec _gItems(0);
-                _gItems.push_back(new MyQGraphicsTextItem(QString(getPlainText().c_str()), QRectF(ne_bb_getX(bbox) + 0.05 * ne_bb_getWidth(bbox), ne_bb_getY(bbox) + 0.05 * ne_bb_getHeight(bbox), 0.9 * ne_bb_getWidth(bbox), 0.9 * ne_bb_getHeight(bbox))));
+                _gItems.push_back(new MyGraphicsTextItem(QString(getPlainText().c_str()), QRectF(ne_bb_getX(bbox) + 0.05 * ne_bb_getWidth(bbox), ne_bb_getY(bbox) + 0.05 * ne_bb_getHeight(bbox), 0.9 * ne_bb_getWidth(bbox), 0.9 * ne_bb_getHeight(bbox))));
                 
                 if (isSetStyle())
-                    _gItems = getInfoFromRenderGroup(mw, ne_stl_getGroup(getStyle()), (MyQGraphicsTextItem*)_gItems.at(0));
+                    _gItems = getInfoFromRenderGroup(mw, ne_stl_getGroup(getStyle()), (MyGraphicsTextItem*)_gItems.at(0));
                 
                 for(int i = 0; i < _gItems.size(); ++i) {
                     _gItems.at(i)->setZValue(5);

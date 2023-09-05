@@ -1,6 +1,10 @@
 #ifndef __NE_MAINWINDOW_H
 #define __NE_MAINWINDOW_H
 
+#if TELLURIUM_INCLUDED
+#include <ne_pyhelper.hpp>
+#endif
+
 #include <QMainWindow>
 #include <QGraphicsView>
 #include <QGraphicsScene>
@@ -35,7 +39,7 @@
 #include <QWidgetAction>
 #include <QMenu>
 
-#include "sbne//ne_core.h"
+#include "sbne/ne_core.h"
 #include "sbne/layout/ne_layout.h"
 #include "sbne/render/ne_render.h"
 #include "ne_featureMenu.h"
@@ -47,7 +51,7 @@ namespace Ui {
 class MainWindow;
 }
 
-class MyQGraphicsView;
+class MyGraphicsView;
 class NESBMLDocument;
 class FeatureMenu;
 class GraphicalColor;
@@ -58,12 +62,13 @@ class GraphicalSpecies;
 class GraphicalReaction;
 class GraphicalSReference;
 class GraphicalText;
-class MyQGraphicsTextItem;
+class MyGraphicsTextItem;
 class GraphicalCurve;
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
-
+    Q_PROPERTY(qreal _currentTime READ getCurrentTime WRITE setCurrentTime)
+    
 public:
     /// Constructor
     explicit MainWindow(QWidget *parent = nullptr);
@@ -90,6 +95,9 @@ public:
     // reactions
     typedef std::vector<GraphicalReaction *> gReactionVec;
     
+    // time steps
+    typedef std::vector<double> timeStepVec;
+    
     /// Iterators
     // colors
     typedef gColorVec::iterator gColorIt;
@@ -114,6 +122,10 @@ public:
     // reactions
     typedef gReactionVec::iterator gReactionIt;
     typedef gReactionVec::const_iterator constGReactionIt;
+    
+    // time steps
+    typedef timeStepVec::iterator timeStepIt;
+    typedef timeStepVec::const_iterator constTimeStepIt;
     
     /// Functions related to beginning and end of containers
     // colors
@@ -140,9 +152,13 @@ public:
     const constGReactionIt gReactionsBegin() const { return _reactionInfo.begin();}
     const constGReactionIt gReactionsEnd() const { return _reactionInfo.end(); }
     
+    // time steps
+    const constTimeStepIt timeStepsBegin() const { return _timeSteps.begin();}
+    const constTimeStepIt timeStepsEnd() const { return _timeSteps.end(); }
+    
     /// Functinos
     // set view
-    void setView(MyQGraphicsView* view);
+    void setView(MyGraphicsView* view);
     
     // get view
     QGraphicsView* getView();
@@ -164,6 +180,9 @@ public:
     
     // set scene extends
     void setSceneRect(QRectF rect);
+    
+    // update scene graphical items
+    void updateSceneItems(const bool& isLayoutAlreadyExisted);
     
     // set feature menu
     void setFeatureMenu(FeatureMenu* featureMenu);
@@ -285,11 +304,62 @@ public:
     // get total number of graphical reactions
     const size_t getNumGReactions() const;
     
+    // add a new time step to the time steps
+    void addTimeStep(const double& s);
+    
+    // set timeStepVec
+    void setTimeSteps(const timeStepVec& tsv);
+
+    // get timeStepVec
+    const timeStepVec& getTimeSteps() const;
+    
+    // get number of time steps
+    const size_t getNumTimeSteps() const;
+    
+    // set current time
+    void setCurrentTime(const qreal& t);
+    
+    // get current time step
+    const qreal& getCurrentTime() const;
+    
+    // set graphical species fill color animation
+    void setGSpeciesFillColorAnimation(QPropertyAnimation* gSpeciesFillColorAnimation);
+    
+    // get graphical species fill color animation
+    QPropertyAnimation* getGSpeciesFillColorAnimation();
+    
+    // show whether graphical species fill color animation is set
+    const bool isSetGSpeciesFillColorAnimation() const { return _isSetGSpeciesFillColorAnimation; }
+    
+    // get interploated time step
+    static QVariant timeInterpolator(const qreal &start, const qreal &end, qreal progress);
+    
+    // animate species concentrations
+    void animateSpeciesConcentrations();
+    
     // clear all the info
     void clearInfo();
     
+#if TELLURIUM_INCLUDED
+    // set tellurium module
+    int setTelluriumModule();
+    
+    // get tellurium module
+    CPyObject getTelluriumModule();
+#endif
+    
 signals:
     void numberOfGLEndingChanged();
+    
+    void currentTimeChanged(const qreal& time);
+    
+    void currentTimeChanged(int time);
+    
+public slots:
+    
+    void pauseGraphicalSpeciesFillColorAnimation();
+    
+    void resumeGraphicalSpeciesFillColorAnimation();
 
 private slots:
     // open act
@@ -303,7 +373,15 @@ private slots:
     
     // exit act
     void exit();
-
+    
+    void updateGraphicalSpeciesAnimatedFillColor(const qreal& time);
+    
+    void updateGraphicalSpeciesAnimatedFillColor(int time);
+    
+    void setCurrentTime(int t);
+    
+    void resetSimulation();
+    
 private:
     // main window info
     Ui::MainWindow* ui;
@@ -312,7 +390,7 @@ private:
     QAction* saveAct;
     QAction* screenshotAct;
     QAction* exitAct;
-    MyQGraphicsView* _view;
+    MyGraphicsView* _view;
     QGraphicsScene* _scene;
     FeatureMenu* _featureMenu;
     QString _currentFileName;
@@ -338,13 +416,24 @@ private:
     gSpeciesVec _speciesInfo;
     gReactionVec _reactionInfo;
     bool _isSetSBMLDocument;
+    
+    // simulation
+    timeStepVec _timeSteps;
+    qreal _currentTime;
+    QPropertyAnimation* _gSpeciesFillColorAnimation;
+    bool _isSetGSpeciesFillColorAnimation;
+    
+    // tellurium
+#if TELLURIUM_INCLUDED
+    CPyObject pTelluriumModule;
+#endif
 };
 
-class MyQGraphicsView : public QGraphicsView {
+class MyGraphicsView : public QGraphicsView {
     Q_OBJECT
     
 public:
-    MyQGraphicsView(QWidget* parent = 0, MainWindow* mw = NULL) : QGraphicsView(parent) {
+    MyGraphicsView(QWidget* parent = 0, MainWindow* mw = NULL) : QGraphicsView(parent) {
         _maxScale = 3.0;
         _minScale = 1.0 / 3.0;
         _numScheduledScalings = 0;
@@ -394,11 +483,11 @@ protected:
     MainWindow* _mw;
 };
 
-class MyQGraphicsTextItem : public QGraphicsTextItem {
+class MyGraphicsTextItem : public QGraphicsTextItem {
     Q_OBJECT
     
 public:
-    MyQGraphicsTextItem(QString plainText, QRectF boundingRect, QGraphicsItem *parent = 0) :
+    MyGraphicsTextItem(QString plainText, QRectF boundingRect, QGraphicsItem *parent = 0) :
         QGraphicsTextItem(parent) {
             _plainText = plainText;
             _boundingRect = boundingRect;
@@ -433,6 +522,17 @@ protected:
     std::string _verticalAlignment;
     std::string _horizontalAlignment;
     QRectF _boundingRect;
+};
+
+class PercentagedLinearGradient {
+    
+public:
+    PercentagedLinearGradient(const QColor& color, qreal x1, qreal y1, qreal x2, qreal y2, qreal percentage);
+    
+    const QLinearGradient& linearGradient() const;
+    
+protected:
+    QLinearGradient _gradient;
 };
 
 class GraphicalElement {
@@ -719,12 +819,46 @@ public:
 
 class GraphicalSpecies : public GraphicalObjectBase {
 public:
+    /// Containers
+    // concentrations
+    typedef std::vector<double> concentrationsVec;
+    
+    /// Iterators
+    // concentrations
+    typedef concentrationsVec::iterator concentrationsIt;
+    typedef concentrationsVec::const_iterator constConcentrationsIt;
+    
+    /// Functions related to beginning and end of containers
+    // concentrations
+    const constConcentrationsIt concentrationsBegin() const { return _concentrations.begin(); }
+    const constConcentrationsIt concentrationsEnd() const { return _concentrations.end(); }
     
     /// Functinos
     void updateValues(MainWindow* mw, const bool& _fitConnectedItems);
     
     // fit the species connected items to its bounding box
     void fitConnectedItemsToBoundingBox(MainWindow* mw);
+    
+    // add a new concentraton value to the concentrations
+    void addConcentration(const double& c);
+    
+    // set concentrationsVec
+    void setConcentrations(const concentrationsVec& cv);
+
+    // get gItemsVec
+    const concentrationsVec& getConcentrations() const;
+    
+    // get number of concentration steps
+    const size_t getNumConcentrationsSteps() const;
+    
+    // get maxium amount among concentrations
+    const double maxConcentration() const;
+    
+    // remove all concentration steps
+    void resetConcentrations();
+
+protected:
+    concentrationsVec _concentrations;
 };
 
 class GraphicalReaction : public GraphicalObjectBase {
@@ -983,33 +1117,6 @@ public:
     // remove all graphical items from the list of end graphical items
     void clearEndGraphicalItems(MainWindow* mw, const bool& isLineEnding = false);
     
-    
-    /*
-    // set the start graphical item of graphical curve
-    void setStartGraphicalItem(QGraphicsItem* startGraphicalItem);
-    
-    // unset the start graphical item of graphical curve
-    void unSetStartGraphicalItem(MainWindow* mw);
-
-    // get the start graphical item of graphical curve
-    QGraphicsItem* getStartGraphicalItem();
-          
-    // show whether the start graphical item of graphical curve is set
-    const bool isSetStartGraphicalItem() const { return _isSetStartGraphicalItem; }
-    
-    // set the end graphical item of graphical curve
-    void setEndGraphicalItem(QGraphicsItem* endGraphicalItem);
-    
-    // unset the end graphical item of graphical curve
-    void unSetEndGraphicalItem(MainWindow* mw);
-
-    // get the end graphical item of graphical curve
-    QGraphicsItem* getEndGraphicalItem();
-          
-    // show whether the end graphical item of graphical curve is set
-    const bool isSetEndGraphicalItem() const { return _isSetEndGraphicalItem; }
-     */
-    
     // set the start point of graphical curve
     void setStartPoint(const QPointF& sPoint);
     
@@ -1135,557 +1242,5 @@ protected:
     bool _isSetStartLineEnding;
     bool _isSetEndLineEnding;
 };
-
-/*
- class GraphicalLineEnding : public GraphicalElement {
- public:
-     /// Constructors
-     GraphicalLineEnding() {
-         _graphicalItem = NULL;
-         _lEnding = NULL;
-         _enableRotation = true;
-         _isSetGraphicalItem = false;
-         _isSetLEnding = false;
-         _isSetEnableRotation = false;
-     }
-     
-     /// Functions
-     // set the graphical item of graphical line ending
-     void setGraphicalItem(QGraphicsItem* g);
-     
-     // unset the graphical item of graphical line ending
-     void unSetGraphicalItem();
-
-     // get the graphical item of graphical line ending
-     QGraphicsItem* getGraphicalItem();
-     
-     // show whether the the graphical item is set
-     const bool isSetGraphicalItem() const { return _isSetGraphicalItem; }
-     
-     // set the line ending of graphical line ending
-     void setLEnding(sbne::VLineEnding* le);
-     
-     // unset the line ending of graphical line ending
-     void unSetLEnding();
-
-     // get the line ending of graphical line ending
-     sbne::VLineEnding* getLEnding();
-     
-     // show whether the the line ending is set
-     const bool isSetLEnding() const { return _isSetLEnding; }
-     
-     // set the enable rotation of graphical line ending
-     void setRotation(const bool& rotation);
-     
-     // unset the enable rotation of graphical line ending
-     void unSetRotation();
-
-     // get the enable rotation of graphical line ending
-     const bool& getRotation() const;
-     
-     // show whether the enable rotation is set
-     const bool isSetEnableRotation() const { return _isSetEnableRotation; }
-     
- protected:
-     QGraphicsItem* _graphicalItem;
-     sbne::VLineEnding* _lEnding;
-     bool _enableRotation;
-     bool _isSetGraphicalItem;
-     bool _isSetLEnding;
-     bool _isSetEnableRotation;
- };
-
- 
- 
- */
-
-
-/*
-class GraphicalCompartment : public GraphicalElement {
-public:
-    /// Constructors
-    GraphicalCompartment() {
-        //_graphicalItem = NULL;
-        _compartment = NULL;
-        _style = NULL;
-        _graphicalText = NULL;
-        _graphicalItems.clear();
-        //_isSetGraphicalItem = false;
-        _isSetCompartment = false;
-        _isSetStyle = false;
-        _isSetGraphicalText = false;
-    }
-    
-    /// Containers
-    // graphical items
-    typedef std::vector<QGraphicsItem *> gItemVec;
-    
-    /// Iterators
-    // graphical items
-    typedef gItemVec::iterator gItemIt;
-    typedef gItemVec::const_iterator constGItemIt;
-    
-    /// Functions related to beginning and end of containers
-    // graphical items
-    const constGItemIt gItemsBegin() const { return _graphicalItems.begin(); }
-    const constGItemIt gItemsEnd() const { return _graphicalItems.end(); }
-    
-    /// Functinos
-    // add a new graphical item to the list of graphical items
-    void addGraphicalItems(QGraphicsItem* g);
-    
-    // remove a graphical item from list of graphical items using its index
-    void removeGraphicalItems(unsigned int graphicalItemIndex);
-    
-    // set gItemsVec
-    void setGraphicalItems(const gItemVec& giv);
-
-    // get gItemsVec
-    const gItemVec& getGraphicalItems() const;
-    
-    // set the graphical item of graphical compartment
-    //void setGraphicalItem(QGraphicsItem* g);
-    
-    // unset the graphical item of graphical compartment
-    //void unSetGraphicalItem();
-
-    // get the graphical item of graphical compartment
-    //QGraphicsItem* getGraphicalItem();
-          
-    // show whether the the graphical item is set
-    //const bool isSetGraphicalItem() const { return _isSetGraphicalItem; }
-    
-
-    // set the compartment of graphical compartment
-    void setCompartment(sbne::NCompartment* c);
-
-    // get the compartment of graphical compartment
-    sbne::NCompartment* getCompartment();
-          
-    // show whether the the compartment is set
-    const bool isSetCompartment() const { return _isSetCompartment; }
-
-    // set the style of graphical compartment
-    void setStyle(sbne::VGlobalStyle* s);
-    
-    // find the style and set it to the graphical compartment
-    void setStyle(MainWindow* mw, const bool& addNewStyle);
-    
-    // unset the style of graphical compartment
-    void unSetStyle();
-
-    // get the style of graphical compartment
-    sbne::VGlobalStyle* getStyle();
-       
-    // show whether the style is set
-    const bool isSetStyle() const { return _isSetStyle; }
-    
-    // set the graphical text of graphical compartment
-    void setGText(GraphicalText* t);
-
-    // get the graphical text of graphical compartment
-    GraphicalText* getGText();
-       
-    // show whether the graphical text is set
-    const bool isSetGText() const { return _isSetGraphicalText; }
-    
-    void updateValues(MainWindow* mw);
-    
-    void resetGraphicalItems(MainWindow* mw);
-    
-protected:
-    //QGraphicsItem* _graphicalItem;
-    gItemVec _graphicalItems;
-    sbne::NCompartment* _compartment;
-    sbne::VGlobalStyle* _style;
-    GraphicalText* _graphicalText;
-    //bool _isSetGraphicalItem;
-    bool _isSetCompartment;
-    bool _isSetStyle;
-    bool _isSetGraphicalText;
-};
- */
-
-/*
-class GraphicalSpecies : public GraphicalElement {
-public:
-    /// Constructors
-    GraphicalSpecies() {
-        //_graphicalItem = NULL;
-        _species = NULL;
-        _style = NULL;
-        _graphicalText = NULL;
-        _graphicalItems.clear();
-        //_isSetGraphicalItem = false;
-        _isSetSpecies = false;
-        _isSetStyle = false;
-        _isSetGraphicalText = false;
-    }
-    
-    /// Containers
-    // graphical items
-    typedef std::vector<QGraphicsItem *> gItemVec;
-    
-    /// Iterators
-    // graphical items
-    typedef gItemVec::iterator gItemIt;
-    typedef gItemVec::const_iterator constGItemIt;
-    
-    /// Functions related to beginning and end of containers
-    // graphical items
-    const constGItemIt gItemsBegin() const { return _graphicalItems.begin(); }
-    const constGItemIt gItemsEnd() const { return _graphicalItems.end(); }
-    
-    /// Functinos
-    // add a new graphical item to the list of graphical items
-    void addGraphicalItems(QGraphicsItem* g);
-    
-    // remove a graphical item from list of graphical items using its index
-    void removeGraphicalItems(unsigned int graphicalItemIndex);
-    
-    // set gItemsVec
-    void setGraphicalItems(const gItemVec& giv);
-
-    // get gItemsVec
-    const gItemVec& getGraphicalItems() const;
-    
-    // set the graphical item of graphical species
-    //void setGraphicalItem(QGraphicsItem* g);
-    
-    // unset the graphical item of graphical species
-    //void unSetGraphicalItem();
-
-    // get the graphical item of graphical species
-    //QGraphicsItem* getGraphicalItem();
-          
-    // show whether the the graphical item is set
-    //const bool isSetGraphicalItem() const { return _isSetGraphicalItem; }
-    
-    // set the species of graphical species
-    void setSpecies(sbne::NSpecies* s);
-
-    // get the species of graphical species
-    sbne::NSpecies* getSpecies();
-       
-    // show whether the the species is set
-    const bool isSetSpecies() const { return _isSetSpecies; }
-    
-    // set the style of graphical species
-    void setStyle(sbne::VGlobalStyle* s);
-    
-    // find the style and set it to the graphical species
-    void setStyle(MainWindow* mw, const bool& addNewStyle);
-    
-    // unset the style of graphical species
-    void unSetStyle();
-
-    // get the style of graphical species
-    sbne::VGlobalStyle* getStyle();
-       
-    // show whether the the style is set
-    const bool isSetStyle() const { return _isSetStyle; }
-    
-    // set the graphical text of graphical species
-    void setGText(GraphicalText* t);
-
-    // get the graphical text of graphical species
-    GraphicalText* getGText();
-       
-    // show whether the graphical text is set
-    const bool isSetGText() const { return _isSetGraphicalText; }
-    
-    // fit the species connected items to its bounding box
-    void fitConnectedItemsToBoundingBox(MainWindow* mw);
-    
-    void updateValues(MainWindow* mw, const bool& _fitConnectedItems);
-    
-    void resetGraphicalItems(MainWindow* mw);
-    
-protected:
-    //QGraphicsItem* _graphicalItem;
-    gItemVec _graphicalItems;
-    sbne::NSpecies* _species;
-    sbne::VGlobalStyle* _style;
-    GraphicalText* _graphicalText;
-    //bool _isSetGraphicalItem;
-    bool _isSetSpecies;
-    bool _isSetStyle;
-    bool _isSetGraphicalText;
-};
- */
-
-/*
-class GraphicalReaction : public GraphicalElement {
-public:
-    /// Constructors
-    GraphicalReaction() {
-        _sReferenceInfo.clear();
-        _gCurve = NULL;
-        _graphicalItem = NULL;
-        _reaction = NULL;
-        _style = NULL;
-        _isSetGCurve = false;
-        _isSetGraphicalItem = false;
-        _isSetReaction = false;
-        _isSetStyle = false;
-    }
-    
-    /// Containers
-    // graphical species references
-    typedef std::vector<GraphicalSReference *> gSReferenceVec;
-    
-    /// Iterators
-    // graphical species references
-    typedef gSReferenceVec::iterator gSReferenceIt;
-    typedef gSReferenceVec::const_iterator constGSReferenceIt;
-    
-    /// Functions related to beginning and end of containers
-    // graphical species references
-    const constGSReferenceIt gSReferencesBegin() const { return _sReferenceInfo.begin(); }
-    const constGSReferenceIt gSReferencesEnd() const { return _sReferenceInfo.end(); }
-
-    /// Functions
-    // add a new graphical species reference to list of species references
-    void addGSReference(GraphicalSReference* sr);
-
-    // remove a graphical species reference from list of species references using its index
-    void removeGSReference(unsigned int graphicalSReferenceIndex);
-
-    // set gSReferenceVec
-    void setGSReferences(const gSReferenceVec& srv);
-
-    // get gSReferenceVec
-    const gSReferenceVec& getGSReferences() const;
-
-    // get total number of graphical species references
-    const size_t getNumGSReference() const;
-    
-    // set the graphical curve of graphical reaction
-    void setGCurve(GraphicalCurve* c);
-    
-    // get the graphical curve of graphical reaction
-    GraphicalCurve* getGCurve();
-    
-    // show whether the graphical curve is set
-    const bool isSetGCurve() const { return _isSetGCurve; }
-    
-    // set the graphical item of graphical reaction
-    void setGraphicalItem(QGraphicsItem* g);
-    
-    // unset the graphical item of graphical reaction
-    void unSetGraphicalItem();
-
-    // get the graphical item of graphical reaction
-    QGraphicsItem* getGraphicalItem();
-          
-    // show whether the the graphical item is set
-    const bool isSetGraphicalItem() const { return _isSetGraphicalItem; }
-    
-    // set the reaction of graphical reaction
-    void setReaction(sbne::NReaction* r);
-
-    // get the reaction of graphical reaction
-    sbne::NReaction* getReaction();
-          
-    // show whether the reaction is set
-    const bool isSetReaction() const { return _isSetReaction; }
-    
-    // set the style of graphical reaction
-    void setStyle(sbne::VGlobalStyle* s);
-    
-    // find the style and set it to the graphical reaction
-    void setStyle(MainWindow* mw, const bool& addNewStyle);
-    
-    // unset the style of graphical reaction
-    void unSetStyle();
-
-    // get the style of graphical reaction
-    sbne::VGlobalStyle* getStyle();
-          
-    // show whether the style is set
-    const bool isSetStyle() const { return _isSetStyle; }
-    
-    void updateValues(MainWindow* mw);
-    
-protected:
-    gSReferenceVec _sReferenceInfo;
-    GraphicalCurve* _gCurve;
-    QGraphicsItem* _graphicalItem;
-    sbne::NReaction* _reaction;
-    sbne::VGlobalStyle* _style;
-    bool _isSetGCurve;
-    bool _isSetGraphicalItem;
-    bool _isSetReaction;
-    bool _isSetStyle;
-};
- */
-
-/*
-class GraphicalSReference : public GraphicalElement {
-public:
-    /// Constructors
-    GraphicalSReference() {
-        _gCurve = NULL;
-        _speciesReference = NULL;
-        _style = NULL;
-        _isSetGCurve = false;
-        _isSetSReference = false;
-        //_isSetSpecies = false;
-        _isSetStyle = false;
-        _isSetRole = false;
-    }
-    
-    /// Functions
-    // set the graphical curve of graphical species reference
-    void setGCurve(GraphicalCurve* c);
-    
-    // get the graphical curve of graphical species reference
-    GraphicalCurve* getGCurve();
-    
-    // show whether the graphical species reference is set
-    const bool isSetGCurve() const { return _isSetGCurve; }
-    
-    // set the species reference of graphical species reference
-    void setSReference(sbne::NSpeciesReference* sr);
-
-    // get the species reference of graphical species reference
-    sbne::NSpeciesReference* getSReference();
-          
-    // show whether the species reference is set
-    const bool isSetSReference() const { return _isSetSReference; }
-    
-    // set the style of graphical species reference
-    void setStyle(sbne::VGlobalStyle* s);
-    
-    // find the style and set it to the graphical species reference
-    void setStyle(MainWindow* mw, const bool& addNewStyle);
-    
-    // unset the style of graphical species reference
-    void unSetStyle();
-
-    // get the style of graphical species reference
-    sbne::VGlobalStyle* getStyle();
-          
-    // show whether the style is set
-    const bool isSetStyle() const { return _isSetStyle; }
-    
-    // set the role of graphical species reference
-    void setRole(const std::string& role);
-    
-    // unset the role of graphical species reference
-    void unSetRole();
-
-    // get the role of graphical species reference
-    const std::string& getRole() const;
-       
-    // show whether the role is set
-    const bool isSetRole() const { return _isSetRole; }
-    
-    // fit the species reference graphical curve to to the species position
-    void fitToSpeciesPosition(MainWindow* mw);
-    
-    void updateValues(MainWindow* mw);
-    
-protected:
-    GraphicalCurve* _gCurve;
-    sbne::NSpeciesReference* _speciesReference;
-    sbne::VGlobalStyle* _style;
-    std::string _role;
-    bool _isSetGCurve;
-    bool _isSetSReference;
-    //bool _isSetSpecies;
-    bool _isSetStyle;
-    bool _isSetRole;
-};
- */
-
-/*
-class GraphicalText : public GraphicalElement {
-public:
-    /// Constructors
-    GraphicalText() {
-        _gTextItem = NULL;
-        _text = NULL;
-        _style = NULL;
-        _isSetGTextItem = false;
-        _isSetText = false;
-        _isSetGObject = false;
-        _isSetStyle = false;
-        _isSetPlainText = false;
-    }
-    
-    /// Functions
-    // set the graphical text item of graphical text
-    void setGTextItem(MyQGraphicsTextItem* t);
-    
-    // unset the graphical text item of graphical text
-    void unSetGTextItem();
-
-    // get the graphical text item of graphical text
-    MyQGraphicsTextItem* getGTextItem();
-          
-    // show whether the the graphical text item is set
-    const bool isSetGTextItem() const { return _isSetGTextItem; }
-    
-    // set the text glyph of graphical text
-    void setText(sbne::NText* t);
-
-    // get the text glyph of graphical text
-    sbne::NText* getText();
-       
-    // show whether the text glyph is set
-    const bool isSetText() const { return _isSetText; }
-    
-    // set the graphical object of graphical text
-    void setGObject(sbne::NGraphicalObject* gO);
-
-    // get the graphical object of graphical text
-    sbne::NGraphicalObject* getGObject();
-       
-    // show whether the graphical object is set
-    const bool isSetGObject() const { return _isSetGObject; }
-    
-    // set the style of graphical text
-    void setStyle(sbne::VGlobalStyle* s);
-    
-    // find the style and set it to the graphical text
-    void setStyle(MainWindow* mw, const bool& addNewStyle);
-    
-    // unset the style of graphical text
-    void unSetStyle();
-
-    // get the style of graphical text
-    sbne::VGlobalStyle* getStyle();
-          
-    // show whether the style is set
-    const bool isSetStyle() const { return _isSetStyle; }
-    
-    void updateValues(MainWindow* mw);
-    
-    // set the plain text of graphical text
-    void setPlainText(const std::string& plainText);
-    
-    // unset the plain text of graphical text
-    void unSetPlainText();
-
-    // get the plain text of graphical text
-    const std::string& getPlainText() const;
-       
-    // show whether the plain text is set
-    const bool isSetPlainText() const { return _isSetPlainText; }
-    
-protected:
-    MyQGraphicsTextItem* _gTextItem;
-    sbne::NText* _text;
-    sbne::NGraphicalObject* _gObject;
-    sbne::VGlobalStyle* _style;
-    std::string _plainText;
-    bool _isSetGTextItem;
-    bool _isSetText;
-    bool _isSetGObject;
-    bool _isSetStyle;
-    bool _isSetPlainText;
-};
- */
 
 #endif
