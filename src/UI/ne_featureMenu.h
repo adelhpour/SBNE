@@ -17,6 +17,7 @@ class GraphicalLineEnding;
 class GraphicalText;
 class FeatureMenu;
 class FeatureMenuElement;
+class ItemFeatureMenuElement;
 class SpeciesFeatureMenu;
 class CompartmentFeatureMenu;
 class ReactionReferenceFeatureMenu;
@@ -215,6 +216,31 @@ public:
     
 signals:
     void ratioChosen(const double& ratio);
+};
+
+class MyPauseOrResumeButton : public QPushButton {
+    Q_OBJECT
+    
+public:
+    MyPauseOrResumeButton(QWidget* parent = 0);
+    
+    void enable();
+    
+    void disable();
+    
+    void mousePressEvent(QMouseEvent *e);
+    
+signals:
+    
+    void paused();
+    
+    void resumed();
+    
+private slots:
+    
+    void pause();
+    
+    void resume();
 };
 
 class MyColorTileButton : public QPushButton {
@@ -469,11 +495,14 @@ public:
     // get total number of feature menu elements
     const size_t getNumFeatureMenuElements() const;
     
-    // show the the feature of a compartment on the menu
-    void showFeatureMenu(GraphicalCompartment* gC);
+    // show the the feature of the model on the menu
+    void showFeatureMenu();
     
     // show the the feature of a species on the menu
     void showFeatureMenu(GraphicalSpecies* gS);
+    
+    // show the the feature of a compartment on the menu
+    void showFeatureMenu(GraphicalCompartment* gC);
     
     // show the the feature of a reaction on the menu
     void showFeatureMenu(GraphicalReaction* gR);
@@ -500,6 +529,62 @@ class FeatureMenuElement : public QGroupBox {
     
 public:
     FeatureMenuElement(QWidget* parent = 0, MainWindow* mw = NULL);
+    
+    /// Functions
+    void hideInfo();
+    
+protected:
+    // item
+    QLabel titleLabel;
+    
+    // tab
+    MyTabWidget* tabMenu;
+    
+    // layouts
+    QGridLayout qLayout;
+    
+    // info
+    MainWindow* _mw;
+};
+
+class ModelFeatureMenu : public FeatureMenuElement {
+    Q_OBJECT
+    
+public:
+    ModelFeatureMenu(QWidget* parent = 0, MainWindow* mw = NULL);
+    
+    void showInfo();
+    
+private slots:
+    
+    void resetInfo();
+
+    void simulate();
+    
+protected:
+    // features
+    MyGroupBox* featuresBranch;
+    
+    // simulation
+    MyGroupBox* simulationBranch;
+    MyDoubleSpinBox startTimeSpinBox;
+    MyDoubleSpinBox endTimeSpinBox;
+    MySpinBox timePointsSpinBox;
+    QPushButton resetButton;
+    MyPauseOrResumeButton pauseOrResumeButton;
+    QPushButton simulateButton;
+    QSlider simulationTimeSlider;
+    
+    // layouts
+    QGridLayout featuresContentLayout;
+    QGridLayout simulationContentLayout;
+};
+
+class ItemFeatureMenuElement : public FeatureMenuElement {
+    Q_OBJECT
+    
+public:
+    ItemFeatureMenuElement(QWidget* parent = 0, MainWindow* mw = NULL);
     
     /// Containers
     // geometric shape feature menu elemnt
@@ -559,8 +644,6 @@ private slots:
     
     void removeGeometricShape(const unsigned int& itemIndex);
     
-    //void clearGeometricShapes();
-    
     void addText(const QString& plainText);
     
     void removeText(const unsigned int& itemIndex);
@@ -572,12 +655,6 @@ protected slots:
     void removeBoundingBox();
     
 protected:
-    // item
-    QLabel itemLabel;
-    
-    // tab
-    MyTabWidget* tabMenu;
-    
     // tree
     MyTreeView* renderTreeView;
     MyTreeView* textTreeView;
@@ -610,7 +687,6 @@ protected:
     textFMenuVec _textFMenus;
     
     // layouts
-    QGridLayout qLayout;
     QGridLayout modelContentLayout;
     QGridLayout layoutContentLayout;
     QGridLayout renderStyleContentLayout;
@@ -618,7 +694,6 @@ protected:
     QGridLayout textContentLayout;
     
     // info
-    MainWindow* _mw;
     GraphicalObjectBase* _gObject;
     GraphicalText* _gText;
     NGraphicalObject* _gO;
@@ -626,7 +701,7 @@ protected:
     VLineEnding* _lE;
 };
 
-class SpeciesFeatureMenu : public FeatureMenuElement {
+class SpeciesFeatureMenu : public ItemFeatureMenuElement {
     Q_OBJECT
     
 public:
@@ -645,7 +720,7 @@ protected:
     MyLineEdit compartmentIdLineEdit;
 };
 
-class CompartmentFeatureMenu : public FeatureMenuElement {
+class CompartmentFeatureMenu : public ItemFeatureMenuElement {
     Q_OBJECT
     
 public:
@@ -663,7 +738,7 @@ protected:
     
 };
 
-class ReactionFeatureMenu : public FeatureMenuElement {
+class ReactionFeatureMenu : public ItemFeatureMenuElement {
     Q_OBJECT
     
 public:
@@ -682,7 +757,7 @@ protected:
     MyAddOrRemoveReactionBoundingBoxButton addOrRemoveReactionBoundingBoxButton;
 };
 
-class SpeciesReferenceFeatureMenu : public FeatureMenuElement {
+class SpeciesReferenceFeatureMenu : public ItemFeatureMenuElement {
     Q_OBJECT
     
 public:
@@ -708,7 +783,7 @@ protected:
     HeadFeatureMenu* headFMenu;
 };
 
-class LineEndingFeatureMenu : public FeatureMenuElement {
+class LineEndingFeatureMenu : public ItemFeatureMenuElement {
     Q_OBJECT
     
 public:

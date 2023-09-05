@@ -499,6 +499,40 @@ void MyDimensionRatioComboBox::resetValues() {
     setCurrentIndex(0);
 }
 
+// MyPauseOrResumeButton
+
+MyPauseOrResumeButton::MyPauseOrResumeButton(QWidget* parent) : QPushButton(parent) {
+    
+}
+
+void MyPauseOrResumeButton::enable() {
+    setEnabled(true);
+}
+
+void MyPauseOrResumeButton::disable() {
+    setEnabled(false);
+    setText("Pause");
+}
+
+void MyPauseOrResumeButton::mousePressEvent(QMouseEvent *e) {
+    QPushButton::mousePressEvent(e);
+    if (text() == "Pause")
+        pause();
+    else if (text() == "Resume")
+        resume();
+    
+}
+
+void MyPauseOrResumeButton::pause() {
+    setText("Resume");
+    emit paused();
+}
+
+void MyPauseOrResumeButton::resume() {
+    setText("Pause");
+    emit resumed();
+}
+
 // MyColorTileButton
 
 MyColorTileButton::MyColorTileButton(const QString& color, const QString& value, QWidget* parent) : QPushButton(parent) {
@@ -2044,7 +2078,7 @@ void MyTreeView::removeBranches(const QString& rootTitle, const unsigned int& st
 
 MyTabWidget::MyTabWidget(QWidget* parent) : QTabWidget(parent) {
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    setStyleSheet("QTabWidget::pane { border: 1px solid lightgray; border-radius: 5px; top:-1px; background: white; } QTabBar::tab { width: 50px; background: rgb(230, 230, 230); border: 1px solid lightgray; border-top-left-radius: 5px; border-top-right-radius: 5px; padding: 10px;} QTabBar::tab:selected { background: white; margin-bottom: -1px; }");
+    setStyleSheet("QTabWidget::pane { border: 1px solid lightgray; border-radius: 5px; top:-1px; background: white; } QTabBar::tab { width: 65px; background: rgb(230, 230, 230); border: 1px solid lightgray; border-top-left-radius: 5px; border-top-right-radius: 5px; padding: 10px;} QTabBar::tab:selected { background: white; margin-bottom: -1px; }");
     setContentsMargins(0, 0, 0, 0);
 }
 
@@ -2073,6 +2107,12 @@ FeatureMenu::FeatureMenu(QWidget* parent, MainWindow* mw) {
     // add line ending feature menu
     fMElement = new LineEndingFeatureMenu(parent, mw);
     _featureMenuElements.push_back(fMElement);
+    
+#if TELLURIUM_INCLUDED
+    // add model feature menu
+    fMElement = new ModelFeatureMenu(parent, mw);
+    _featureMenuElements.push_back(fMElement);
+#endif
     
     // construct color picker menu
     _colorPickerMenu = new MyColorPickerMenu();
@@ -2106,6 +2146,12 @@ void FeatureMenu::showFeatureMenu(GraphicalLineEnding* gLE, GraphicalSReference*
     ((LineEndingFeatureMenu*)(_featureMenuElements.at(4)))->showInfo(gLE, gSR, head);
 }
 
+#if TELLURIUM_INCLUDED
+void FeatureMenu::showFeatureMenu() {
+    ((ModelFeatureMenu*)(_featureMenuElements.at(5)))->showInfo();
+}
+#endif
+
 void FeatureMenu::hideFeatureMenu() {
     for (constFMenuElementIt fMEIt = fMenuElementsBegin(); fMEIt != fMenuElementsEnd(); ++fMEIt)
         (*fMEIt)->hideInfo();
@@ -2121,8 +2167,130 @@ FeatureMenuElement::FeatureMenuElement(QWidget* parent, MainWindow* mw) : QGroup
     _mw = mw;
     hide();
     setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
-    setFixedSize(QSize(450, maximumHeight()));
+    setStyleSheet("QGroupBox { background-color: white; font: bold; border: 1px white; border-radius: 5px; margin-top: 1ex; }" "QGroupBox::title { subcontrol-origin: margin; subcontrol-position: top center; padding: 0px 5px 0px 5px; }");
+    setContentsMargins(0, 0, 0, 0);
+    QFont headlineFont = titleLabel.font();
+    headlineFont.setBold(true);
+    headlineFont.setCapitalization(QFont::SmallCaps);
+    headlineFont.setPointSize(24);
+    titleLabel.setFont(headlineFont);
+    qLayout.setAlignment(Qt::AlignTop);
+    qLayout.setContentsMargins(10, 20, 10, 10);
+    setLayout(&qLayout);
+    qLayout.addWidget(&titleLabel, qLayout.rowCount() - 1, 0);
+}
+
+void FeatureMenuElement::hideInfo() {
+    hide();
     
+    // tabs
+    if (tabMenu)
+        tabMenu->setCurrentIndex(0);
+}
+
+// Model Feature Menu
+
+ModelFeatureMenu::ModelFeatureMenu(QWidget* parent, MainWindow* mw) : FeatureMenuElement(parent, mw) {
+    tabMenu = NULL;
+    simulationBranch = NULL;
+    setFixedSize(QSize(350, maximumHeight()));
+    titleLabel.setText("Model");
+    tabMenu = new MyTabWidget(this);
+    
+    /// simulation
+    simulationBranch = new MyGroupBox(tabMenu);
+    // start time
+    simulationContentLayout.addWidget(new MyLabel("Start Time:"), simulationContentLayout.rowCount() - 1, 0);
+    startTimeSpinBox.setMinimum(0.0);
+    startTimeSpinBox.setFixedWidth(75.0);
+    simulationContentLayout.addWidget(&startTimeSpinBox, simulationContentLayout.rowCount() - 1, 2);
+    // end time
+    simulationContentLayout.addWidget(new MyLabel("End Time:"), simulationContentLayout.rowCount(), 0);
+    endTimeSpinBox.setMinimum(1.0);
+    endTimeSpinBox.setFixedWidth(75.0);
+    simulationContentLayout.addWidget(&endTimeSpinBox, simulationContentLayout.rowCount() - 1, 2);
+    // number of steps
+    simulationContentLayout.addWidget(new MyLabel("Time Points:"), simulationContentLayout.rowCount(), 0);
+    timePointsSpinBox.setSpecialValueText("");
+    timePointsSpinBox.setRange(1, 100000);
+    timePointsSpinBox.setFixedWidth(75.0);
+    simulationContentLayout.addWidget(&timePointsSpinBox, simulationContentLayout.rowCount() - 1, 2);
+    
+    // reset button
+    resetButton.setText("Reset");
+    simulateButton.setFixedWidth(85.0);
+    connect(&resetButton, SIGNAL(clicked()), this, SLOT(resetInfo()));
+    connect(&resetButton, SIGNAL(clicked()), _mw, SLOT(resetSimulation()));
+    simulationContentLayout.addWidget(&resetButton, simulationContentLayout.rowCount(), 0);
+    
+    // pause/ resume button
+    pauseOrResumeButton.setFixedWidth(85.0);
+    connect(&pauseOrResumeButton, SIGNAL(paused()), _mw, SLOT(pauseGraphicalSpeciesFillColorAnimation()));
+    connect(&pauseOrResumeButton, SIGNAL(resumed()), _mw, SLOT(resumeGraphicalSpeciesFillColorAnimation()));
+    simulationContentLayout.addWidget(&pauseOrResumeButton, simulationContentLayout.rowCount() - 1, 1);
+    
+    // simulate button
+    simulateButton.setText("Simulate");
+    simulateButton.setFixedWidth(85.0);
+    connect(&simulateButton, SIGNAL(clicked()), _mw, SLOT(resetSimulation()));
+    connect(&simulateButton, SIGNAL(clicked()), this, SLOT(simulate()));
+    simulationContentLayout.addWidget(&simulateButton, simulationContentLayout.rowCount() - 1, 2);
+    
+    // simulation time slider
+    simulationTimeSlider.setOrientation(Qt::Horizontal);
+    connect(_mw, SIGNAL(currentTimeChanged(int)), &simulationTimeSlider, SLOT(setValue(int)));
+    connect(&simulationTimeSlider, SIGNAL(sliderPressed()), &pauseOrResumeButton, SLOT(pause()));
+    connect(&simulationTimeSlider, SIGNAL(sliderReleased()), &pauseOrResumeButton, SLOT(resume()));
+    connect(&simulationTimeSlider, SIGNAL(sliderMoved(int)), _mw, SLOT(setCurrentTime(int)));
+    if (_mw && _mw->isSetGSpeciesFillColorAnimation()) {
+        connect(_mw->getGSpeciesFillColorAnimation(), SIGNAL(finished()), &pauseOrResumeButton, SLOT(pause()));
+    }
+    simulationContentLayout.addWidget(&simulationTimeSlider, simulationContentLayout.rowCount(), 0, 1, 3);
+    
+    simulationContentLayout.setAlignment(Qt::AlignTop);
+    simulationBranch->setLayout(&simulationContentLayout);
+    
+    /// features
+    featuresBranch = new MyGroupBox(tabMenu);
+    // id
+    featuresContentLayout.addWidget(new MyLabel("Id:"), featuresContentLayout.rowCount() - 1, 0);
+    featuresContentLayout.setAlignment(Qt::AlignTop);
+    featuresBranch->setLayout(&featuresContentLayout);
+    
+    // tabs
+    tabMenu->addTab(simulationBranch, "Simulation");
+    tabMenu->addTab(featuresBranch, "Features");
+    qLayout.addItem(new QSpacerItem(0, 10), qLayout.rowCount(), 0);
+    qLayout.addWidget(tabMenu, qLayout.rowCount(), 0);
+}
+
+void ModelFeatureMenu::showInfo() {
+    resetInfo();
+    show();
+}
+
+void ModelFeatureMenu::resetInfo() {
+    startTimeSpinBox.setValue(startTimeSpinBox.minimum());
+    endTimeSpinBox.setValue(5.0);
+    timePointsSpinBox.setValue(10.0);
+    pauseOrResumeButton.disable();
+    simulationTimeSlider.setRange(0, 1);
+    simulationTimeSlider.setSliderPosition(0);
+    simulationTimeSlider.setEnabled(false);
+}
+
+void ModelFeatureMenu::simulate() {
+    if (_mw && _mw->getSBMLDocument() && !(_mw->getSBMLDocument()->simulateTelluriumSBMLDocument(_mw, startTimeSpinBox.value(), endTimeSpinBox.value(), timePointsSpinBox.value()))) {
+        pauseOrResumeButton.enable();
+        simulationTimeSlider.setRange(startTimeSpinBox.value(), endTimeSpinBox.value());
+        simulationTimeSlider.setEnabled(true);
+        _mw->animateSpeciesConcentrations();
+    }
+}
+
+// Item Feature Menu
+
+ItemFeatureMenuElement::ItemFeatureMenuElement(QWidget* parent, MainWindow* mw) : FeatureMenuElement(parent, mw) {
     _gObject = NULL;
     _gO = NULL;
     _style = NULL;
@@ -2135,27 +2303,16 @@ FeatureMenuElement::FeatureMenuElement(QWidget* parent, MainWindow* mw) : QGroup
     renderTreeView = NULL;
     textBranch = NULL;
     textTreeView = NULL;
-    tabMenu = NULL;
     bBoxFMenu = NULL;
     curveFMenu = NULL;
     strokeFMenu = NULL;
     fillFMenu = NULL;
     _gSFMenuElements.clear();
     _textFMenus.clear();
+    setFixedSize(QSize(450, maximumHeight()));
     
-    setStyleSheet("QGroupBox { background-color: white; font: bold; border: 1px white; border-radius: 5px; margin-top: 1ex; }" "QGroupBox::title { subcontrol-origin: margin; subcontrol-position: top center; padding: 0px 5px 0px 5px; }");
-    setContentsMargins(0, 0, 0, 0);
-    QFont headlineFont = itemLabel.font();
-    headlineFont.setBold(true);
-    headlineFont.setCapitalization(QFont::SmallCaps);
-    headlineFont.setPointSize(24);
-    itemLabel.setFont(headlineFont);
+    tabMenu = new MyTabWidget(this);
     modelIdLineEdit.setReadOnly(true);
-
-    qLayout.setAlignment(Qt::AlignTop);
-    qLayout.setContentsMargins(10, 20, 10, 10);
-    setLayout(&qLayout);
-    qLayout.addWidget(&itemLabel, qLayout.rowCount() - 1, 0);
     
     // layout features
     connect(&layoutIdLineEdit, SIGNAL(editingFinished()), this, SLOT(changeLayoutId()));
@@ -2170,12 +2327,8 @@ FeatureMenuElement::FeatureMenuElement(QWidget* parent, MainWindow* mw) : QGroup
     connect(&styleAddOrRemoveButton, SIGNAL(clicked()), this, SLOT(addOrRemoveStyle()));
 }
 
-void FeatureMenuElement::hideInfo() {
-    hide();
-    // tabs
-    if (tabMenu)
-        tabMenu->setCurrentIndex(0);
-    
+void ItemFeatureMenuElement::hideInfo() {
+    FeatureMenuElement::hideInfo();
     if (renderTreeView)
         renderTreeView->collapseAll();
     
@@ -2189,28 +2342,28 @@ void FeatureMenuElement::hideInfo() {
         (*gSIt)->collapseTree();
 }
 
-void FeatureMenuElement::updateStyle(VLocalStyle* style) {
+void ItemFeatureMenuElement::updateStyle(VLocalStyle* style) {
     if (_gObject && style) {
         _gObject->setStyle(style);
         updateValues();
     }
 }
 
-void FeatureMenuElement::setStyle() {
+void ItemFeatureMenuElement::setStyle() {
     if (_gObject) {
         _gObject->setStyle(_mw, true);
         updateValues();
     }
 }
 
-void FeatureMenuElement::unSetStyle() {
+void ItemFeatureMenuElement::unSetStyle() {
     if (_gObject) {
         _gObject->unSetStyle();
         updateValues();
     }
 }
 
-void FeatureMenuElement::clearGSFMenuElements() {
+void ItemFeatureMenuElement::clearGSFMenuElements() {
     for (constGSFMenuElementIt gSFMIt = gSFMenuElementsBegin(); gSFMIt != gSFMenuElementsEnd(); ++ gSFMIt) {
         (*gSFMIt)->resetValues();
         (*gSFMIt)->deleteLater();
@@ -2218,7 +2371,7 @@ void FeatureMenuElement::clearGSFMenuElements() {
     _gSFMenuElements.clear();
 }
 
-void FeatureMenuElement::clearTextFMenus() {
+void ItemFeatureMenuElement::clearTextFMenus() {
     for (constTextFMenuIt tFMIt = textFMenuBegin(); tFMIt != textFMenuEnd(); ++ tFMIt) {
         (*tFMIt)->resetValues();
         (*tFMIt)->deleteLater();
@@ -2226,21 +2379,21 @@ void FeatureMenuElement::clearTextFMenus() {
     _textFMenus.clear();
 }
 
-void FeatureMenuElement::changeLayoutId() {
+void ItemFeatureMenuElement::changeLayoutId() {
     if (_mw && _mw->isSetSBMLDocument() && !stringCompare(layoutIdLineEdit.text().toStdString(), ne_go_getGlyphId(_gO)) && !ne_go_setGlyphId(_mw->getSBMLDocument()->getNetwork(), _gO, layoutIdLineEdit.text().toStdString())) {
         _mw->getSBMLDocument()->setLayoutModified(true);
         updateValues();
     }
 }
 
-void FeatureMenuElement::addOrRemoveBoundingBox() {
+void ItemFeatureMenuElement::addOrRemoveBoundingBox() {
     if (boundingBoxAddOrRemoveButton.text() == "+")
         addBoundingBox();
     else if (boundingBoxAddOrRemoveButton.text() == "-")
         removeBoundingBox();
 }
 
-void FeatureMenuElement::addBoundingBox(const double& x, const double& y, const double& width, const double& height) {
+void ItemFeatureMenuElement::addBoundingBox(const double& x, const double& y, const double& width, const double& height) {
     if (_gO && bBoxFMenu) {
         if (_mw && _mw->isSetSBMLDocument()) {
             LBox* bBox = NULL;
@@ -2261,7 +2414,7 @@ void FeatureMenuElement::addBoundingBox(const double& x, const double& y, const 
     }
 }
 
-void FeatureMenuElement::removeBoundingBox() {
+void ItemFeatureMenuElement::removeBoundingBox() {
     if (_gO && bBoxFMenu) {
         if (_gText && ne_go_getNumTexts(_gO)) {
             NText* text = ne_go_getText(_gO, 0);
@@ -2277,7 +2430,7 @@ void FeatureMenuElement::removeBoundingBox() {
     }
 }
 
-void FeatureMenuElement::addOrRemoveCurve() {
+void ItemFeatureMenuElement::addOrRemoveCurve() {
     if (curveFMenu) {
         if (curveAddOrRemoveButton.text() == "-") {
             if (_gO->getType() == 2 && ne_rxn_isSetCurve((NReaction*)_gO)) {
@@ -2315,7 +2468,7 @@ void FeatureMenuElement::addOrRemoveCurve() {
     }
 }
 
-void FeatureMenuElement::addOrRemoveStyle() {
+void ItemFeatureMenuElement::addOrRemoveStyle() {
     if (_gO) {
         if (styleAddOrRemoveButton.text() == "-") {
             if (renderTreeView)
@@ -2327,7 +2480,7 @@ void FeatureMenuElement::addOrRemoveStyle() {
     }
 }
 
-void FeatureMenuElement::addGeometricShape(const QString& geometricShape) {
+void ItemFeatureMenuElement::addGeometricShape(const QString& geometricShape) {
     if (_mw && _mw->isSetSBMLDocument()) {
         QString imageFileName;
         int numberOfPolygonVertices = -1;
@@ -2386,7 +2539,7 @@ void FeatureMenuElement::addGeometricShape(const QString& geometricShape) {
     }
 }
 
-void FeatureMenuElement::removeGeometricShape(const unsigned int& itemIndex) {
+void ItemFeatureMenuElement::removeGeometricShape(const unsigned int& itemIndex) {
     if (_mw && _mw->isSetSBMLDocument()) {
         if (_gO && _style) {
             VLocalStyle* style = ne_ven_getLocalStyleFromGlobalStyle(_mw->getSBMLDocument()->getVeneer(), _gO, _style);
@@ -2407,20 +2560,7 @@ void FeatureMenuElement::removeGeometricShape(const unsigned int& itemIndex) {
     }
 }
 
-/*
-void FeatureMenuElement::clearGeometricShapes() {
-    if (_mw && _mw->isSetSBMLDocument()) {
-        VLocalStyle* style = ne_ven_getLocalStyleFromGlobalStyle(_mw->getSBMLDocument()->getVeneer(), _gO, _style);
-        
-        if (!ne_grp_removeGeometricShapes(ne_stl_getGroup(style))) {
-            _mw->getSBMLDocument()->setRenderModified(true);
-            updateStyle(style);
-        }
-    }
-}
- */
-
-void FeatureMenuElement::addText(const QString& plainText) {
+void ItemFeatureMenuElement::addText(const QString& plainText) {
     if (_mw && _mw->isSetSBMLDocument()) {
         if (ne_go_addText(_mw->getSBMLDocument()->getNetwork(), _gO, NULL, plainText.toStdString())) {
             _mw->getSBMLDocument()->setLayoutModified(true);
@@ -2429,7 +2569,7 @@ void FeatureMenuElement::addText(const QString& plainText) {
     }
 }
 
-void FeatureMenuElement::removeText(const unsigned int& itemIndex) {
+void ItemFeatureMenuElement::removeText(const unsigned int& itemIndex) {
     if (_mw && _mw->isSetSBMLDocument() && _gO) {
         if (!ne_go_removeText(_mw->getSBMLDocument()->getNetwork(), _gO, itemIndex)) {
             _mw->getSBMLDocument()->setLayoutModified(true);
@@ -2440,10 +2580,8 @@ void FeatureMenuElement::removeText(const unsigned int& itemIndex) {
 
 // Species Feature Menu
 
-SpeciesFeatureMenu::SpeciesFeatureMenu(QWidget* parent, MainWindow* mw) : FeatureMenuElement(parent, mw) {
-    
-    itemLabel.setText("Species");
-    tabMenu = new MyTabWidget(this);
+SpeciesFeatureMenu::SpeciesFeatureMenu(QWidget* parent, MainWindow* mw) : ItemFeatureMenuElement(parent, mw) {
+    titleLabel.setText("Species");
     
     /// model features
     modelBranch = new MyGroupBox(tabMenu);
@@ -2671,10 +2809,8 @@ void SpeciesFeatureMenu::updateValues() {
 
 // Compartment Feature Menu
 
-CompartmentFeatureMenu::CompartmentFeatureMenu(QWidget* parent, MainWindow* mw) : FeatureMenuElement(parent, mw) {
-    
-    itemLabel.setText("Compartment");
-    tabMenu = new MyTabWidget(this);
+CompartmentFeatureMenu::CompartmentFeatureMenu(QWidget* parent, MainWindow* mw) : ItemFeatureMenuElement(parent, mw) {
+    titleLabel.setText("Compartment");
     
     /// model features
     modelBranch = new MyGroupBox(tabMenu);
@@ -2894,9 +3030,9 @@ void CompartmentFeatureMenu::updateValues() {
 
 // Reaction Feature Menu
 
-ReactionFeatureMenu::ReactionFeatureMenu(QWidget* parent, MainWindow* mw) : FeatureMenuElement(parent, mw) {
+ReactionFeatureMenu::ReactionFeatureMenu(QWidget* parent, MainWindow* mw) : ItemFeatureMenuElement(parent, mw) {
     
-    itemLabel.setText("Reaction");
+    titleLabel.setText("Reaction");
     tabMenu = new MyTabWidget(this);
     
     /// model features
@@ -3138,11 +3274,9 @@ void ReactionFeatureMenu::updateValues() {
 
 // Species Reference Feature Menu
 
-SpeciesReferenceFeatureMenu::SpeciesReferenceFeatureMenu(QWidget* parent, MainWindow* mw) : FeatureMenuElement(parent, mw) {
+SpeciesReferenceFeatureMenu::SpeciesReferenceFeatureMenu(QWidget* parent, MainWindow* mw) : ItemFeatureMenuElement(parent, mw) {
     headFMenu = NULL;
-    
-    itemLabel.setText("Species Reference");
-    tabMenu = new MyTabWidget(this);
+    titleLabel.setText("Species Reference");
     
     /// model features
     modelBranch = new MyGroupBox(tabMenu);
@@ -3298,14 +3432,12 @@ void SpeciesReferenceFeatureMenu::updateValues() {
 
 // Line Ending Feature Menu
 
-LineEndingFeatureMenu::LineEndingFeatureMenu(QWidget* parent, MainWindow* mw) : FeatureMenuElement(parent, mw) {
+LineEndingFeatureMenu::LineEndingFeatureMenu(QWidget* parent, MainWindow* mw) : ItemFeatureMenuElement(parent, mw) {
     layoutBranch = NULL;
     renderStyleBranch = NULL;
     renderGeometricShapeBranch = NULL;
     textBranch = NULL;
-    
-    itemLabel.setText("Line Ending");
-    tabMenu = new MyTabWidget(this);
+    titleLabel.setText("Line Ending");
     
     /// layout features
     layoutBranch = new MyGroupBox(tabMenu);
