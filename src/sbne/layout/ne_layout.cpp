@@ -1227,7 +1227,7 @@ NReaction* ne_sr_getReaction(NSpeciesReference* sR) {
 
 bool ne_sr_isSetSpecies(NSpeciesReference* sR) {
     if (sR)
-        return sR->isSetReaction();
+        return sR->isSetSpecies();
     
     return false;
 }
