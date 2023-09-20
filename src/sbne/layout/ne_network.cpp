@@ -278,9 +278,10 @@ Network* networkFromLayout(const Layout& layout, Network* net) {
                 // find the species reference glyph
                 for (constSReferenceIt sRIt = r->sReferencesBegin(); sRIt < r->sReferencesEnd(); ++sRIt) {
                     if ((*sRIt)->isSetSpecies()) {
-                        if ((*sRIt)->getSpecies()->getGlyphId() == s->getGlyphId()) {
+                        if ((*sRIt)->getSpecies()->getId() == s->getId()) {
+                            (*sRIt)->setSpecies(r, s);
                             sr = *sRIt;
-                            sr->setMatchWithGlyph(true);
+                            sr->setMatchWithGlyph(false);
                         }
                     }
                 }
@@ -329,7 +330,7 @@ Network* networkFromLayout(const Layout& layout, Network* net) {
                     b->setId(srg->getBoundingBox()->getId());
                 sr->setBox(b);
             }
-            
+
             // get species referneces curve
             if (srg->isSetCurve()) {
                 const Curve* curve = srg->getCurve();
@@ -412,17 +413,9 @@ Network* networkFromLayout(const Layout& layout, Network* net) {
                 o->addText(t);
         }
         
-        // get origin of text
-        if (tg->isSetOriginOfTextId()) {
+        // get origin of texts
+        if (tg->isSetOriginOfTextId())
             t->setOriginOfTextId(tg->getOriginOfTextId());
-            NGraphicalObject* o = net->findNetworkElement(tg->getOriginOfTextId());
-            if (o && o->getType() != 4) {
-                if (o->isSetName())
-                    t->setText(o->getName());
-                else if (o->isSetName())
-                    t->setText(o->getId());
-            }
-        }
         
         // get text
         if (tg->isSetText())
