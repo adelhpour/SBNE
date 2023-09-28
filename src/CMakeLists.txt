@@ -70,49 +70,6 @@ if (APPLE)
 			${DEPENDENCIES_DIR}/graphviz
 			COMMAND ${CMAKE_COMMAND} -E copy_if_different ${GRAPHVIZ_API_CONFIG}
 			${DEPENDENCIES_DIR}/graphviz)
-
-		foreach(lib1fullpath IN LISTS GRAPHVIZ_LIBS)
-			get_filename_component(lib1name ${lib1fullpath} NAME)
-			add_custom_command(TARGET sbne POST_BUILD
-					COMMAND ${CMAKE_INSTALL_NAME_TOOL} -id
-					"@rpath/${lib1name}"
-					"${DEPENDENCIES_DIR}/${lib1name}")			
-
-			foreach(lib2fullpath IN LISTS GRAPHVIZ_LIBS)
-				get_filename_component(lib2name ${lib2fullpath} NAME)				
-				add_custom_command(TARGET sbne POST_BUILD
-					COMMAND ${CMAKE_INSTALL_NAME_TOOL} -change
-					"${lib1fullpath}" "@rpath/${lib1name}"
-					 "${DEPENDENCIES_DIR}/${lib2name}")
-			endforeach()
-
-			foreach(lib2fullpath IN LISTS GRAPHVIZ_APIS)
-				get_filename_component(lib2name ${lib2fullpath} NAME)
-				add_custom_command(TARGET sbne POST_BUILD
-					COMMAND ${CMAKE_INSTALL_NAME_TOOL} -id
-					"@rpath/${lib2name}"
-					"${DEPENDENCIES_DIR}/graphviz/${lib2name}")
-				
-				add_custom_command(TARGET sbne POST_BUILD
-					COMMAND ${CMAKE_INSTALL_NAME_TOOL} -change
-					"${lib1fullpath}" "@rpath/${lib1name}"
-					 "${DEPENDENCIES_DIR}/graphviz/${lib2name}")
-			endforeach()
-			
-			#set(GRAPHVIZ_LIBS_MODIFIED ${GRAPHVIZ_LIBS_MODIFIED}
-			#"${DEPENDENCIES_DIR}/${lib1name}")
-		endforeach()
-
-		add_custom_command(TARGET sbne POST_BUILD
-			COMMAND ${CMAKE_INSTALL_NAME_TOOL} -change
-			"/usr/local/opt/graphviz/lib/libgvc.6.dylib"
-			"@rpath/libgvc.6.dylib" $<TARGET_FILE:sbne>
-			COMMAND ${CMAKE_INSTALL_NAME_TOOL} -change
-			"/usr/local/opt/graphviz/lib/libcgraph.6.dylib"
-			"@rpath/libcgraph.6.dylib" $<TARGET_FILE:sbne>
-			COMMAND ${CMAKE_INSTALL_NAME_TOOL} -change
-			"/usr/local/opt/graphviz/lib/libcdt.5.dylib"
-			"@rpath/libcdt.5.dylib" $<TARGET_FILE:sbne>)
 	endif(${USE_GRAPHVIZ})
 endif(APPLE)
 
