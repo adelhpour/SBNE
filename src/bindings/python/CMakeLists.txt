@@ -85,19 +85,6 @@ elseif (APPLE)
     	COMMAND ${CMAKE_INSTALL_NAME_TOOL} -change
 		"libsbml.5.dylib" "@rpath/libsbml.5.dylib"
     		$<TARGET_FILE:binding_python_lib>)
-
-	if (${USE_GRAPHVIZ})
-		add_custom_command(TARGET binding_python_lib POST_BUILD
-			COMMAND ${CMAKE_INSTALL_NAME_TOOL} -change
-			"/usr/local/opt/graphviz/lib/libgvc.6.dylib"
-			"@rpath/libgvc.6.dylib" $<TARGET_FILE:binding_python_lib>
-			COMMAND ${CMAKE_INSTALL_NAME_TOOL} -change
-			"/usr/local/opt/graphviz/lib/libcgraph.6.dylib"
-			"@rpath/libcgraph.6.dylib" $<TARGET_FILE:binding_python_lib>
-			COMMAND ${CMAKE_INSTALL_NAME_TOOL} -change
-			"/usr/local/opt/graphviz/lib/libcdt.5.dylib"
-			"@rpath/libcdt.5.dylib" $<TARGET_FILE:binding_python_lib>)
-	endif(${USE_GRAPHVIZ})
 endif()
 
 ## determine the python installation directory
@@ -148,8 +135,7 @@ if (PYTHON_INSTALL_WITH_SETUP)
     	install(CODE "execute_process(COMMAND \"${CMAKE_COMMAND}\" -E chdir 			${CMAKE_INSTALL_PREFIX}/${PYTHON_PACKAGE_INSTALL_DIR} pip install .)" COMPONENT python_extra)
 
 	if (UNIX)
-		install(FILES ${SBML_LIBS} ${GRAPHVIZ_LIBS} DESTINATION ${PYTHON_PACKAGE_INSTALL_DIR}/libsbne/dependencies COMPONENT sbne_python_bindings)
-		install(FILES ${GRAPHVIZ_APIS} ${GRAPHVIZ_API_CONFIG} DESTINATION ${PYTHON_PACKAGE_INSTALL_DIR}/libsbne/dependencies/graphviz COMPONENT sbne_python_bindings)
+		install(FILES ${SBML_LIBS} DESTINATION ${PYTHON_PACKAGE_INSTALL_DIR}/libsbne/dependencies COMPONENT sbne_python_bindings)
 	endif ()
         
 endif(PYTHON_INSTALL_WITH_SETUP)

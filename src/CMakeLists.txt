@@ -60,17 +60,6 @@ if (APPLE)
 		COMMAND ${CMAKE_INSTALL_NAME_TOOL} -change
 		"libsbml.5.dylib"
 		"@rpath/libsbml.5.dylib" $<TARGET_FILE:sbne>)
-
-	if (${USE_GRAPHVIZ})
-		add_custom_command(TARGET sbne POST_BUILD
-			COMMAND ${CMAKE_COMMAND} -E make_directory ${DEPENDENCIES_DIR}/graphviz
-			COMMAND ${CMAKE_COMMAND} -E copy_if_different ${GRAPHVIZ_LIBS}
-			${DEPENDENCIES_DIR}
-			COMMAND ${CMAKE_COMMAND} -E copy_if_different ${GRAPHVIZ_APIS}
-			${DEPENDENCIES_DIR}/graphviz
-			COMMAND ${CMAKE_COMMAND} -E copy_if_different ${GRAPHVIZ_API_CONFIG}
-			${DEPENDENCIES_DIR}/graphviz)
-	endif(${USE_GRAPHVIZ})
 endif(APPLE)
 
 ## set library dist
