@@ -2496,7 +2496,11 @@ int ne_stl_setStyleValues(VGlobalStyle* s, StyleType type, RxnRoleType role) {
         ne_grp_setFillColor(group, colorStringToStr(CLR_STR_WHITE));
         
         // set the default font size
+#if defined(_WIN32)
+        rAV->setA(12.);
+#else
         rAV->setA(24.);
+#endif
         ne_grp_setFontSize(group, rAV);
         
         // set the default font family
@@ -2524,7 +2528,11 @@ int ne_stl_setStyleValues(VGlobalStyle* s, StyleType type, RxnRoleType role) {
                 ne_grp_setFillColor(group, colorStringToStr(CLR_STR_LIGHT_GRAY));
                 
                 // set font size
+#if defined(_WIN32)
+                rAV->setA(8.);
+#else
                 rAV->setA(12.);
+#endif
                 ne_grp_setFontSize(group, rAV);
                 
                 // set vertical text anchor
