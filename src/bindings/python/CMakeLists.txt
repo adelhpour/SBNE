@@ -1,7 +1,7 @@
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 ## find python packages
-find_package(Python 3.8 COMPONENTS Interpreter Development)
+find_package(Python COMPONENTS Interpreter Development)
 
 ## if swing version is less than 3.0
 if (${SWIG_FOUND} AND ${Python_VERSION} VERSION_LESS 3.0)
@@ -54,12 +54,14 @@ add_library(binding_python_lib SHARED libsbne_wrap.cpp)
 target_include_directories(binding_python_lib PRIVATE
 		${CMAKE_SOURCE_DIR}/src
 		${CMAKE_CURRENT_SOURCE_DIR}/../swig
-		${GRAPHVIZ_INCLUDEDIR})
+		${GRAPHVIZ_INCLUDE_DIR}
+		${Python_INCLUDE_DIRS}
+		${SBML_INCLUDE_DIR})
 
-target_link_libraries(binding_python_lib
-		Python::Python
-		sbne-static
-		${GRAPHVIZ_LIBS_FIRSTHAND})
+if (APPLE)
+	set_target_properties (binding_python_lib PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+endif()
+target_link_libraries(binding_python_lib sbne-static)
 
 add_dependencies(binding_python_lib binding_python_swig)
 set_target_properties(binding_python_lib PROPERTIES OUTPUT_NAME "_libsbne")
@@ -99,9 +101,9 @@ option (PYTHON_INSTALL_IN_PREFIX
     "Install python binaries using the specified install prefix." ON)
 
 if (PYTHON_INSTALL_IN_PREFIX)
-    install(TARGETS binding_python_lib DESTINATION ${PYTHON_PACKAGE_INSTALL_DIR}/libsbne 	COMPONENT sbne_python_bindings)
+    install(TARGETS binding_python_lib DESTINATION ${PYTHON_PACKAGE_INSTALL_DIR}/libsbne COMPONENT sbne_python_bindings)
 
-    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libsbne.py  DESTINATION ${PYTHON_PACKAGE_INSTALL_DIR} COMPONENT sbne_python_bindings)
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libsbne.py DESTINATION ${PYTHON_PACKAGE_INSTALL_DIR} COMPONENT sbne_python_bindings)
 
 	if (WIN32)
 		include(InstallRequiredSystemLibraries)
@@ -120,22 +122,18 @@ if (PYTHON_INSTALL_WITH_SETUP)
 	## setup.py
 	configure_file(${CMAKE_CURRENT_SOURCE_DIR}/setup.py.cmake 				${CMAKE_CURRENT_BINARY_DIR}/setup.py)
 
-	install(FILES ${CMAKE_CURRENT_BINARY_DIR}/setup.py  DESTINATION 			${PYTHON_PACKAGE_INSTALL_DIR} COMPONENT sbne_python_bindings)
+	install(FILES ${CMAKE_CURRENT_BINARY_DIR}/setup.py  DESTINATION ${PYTHON_PACKAGE_INSTALL_DIR} COMPONENT sbne_python_bindings)
 
 	## libsbne.py
 	if (NOT EXISTS ${PYTHON_PACKAGE_INSTALL_DIR}/libsbne.py)
-		install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libsbne.py  DESTINATION 			${PYTHON_PACKAGE_INSTALL_DIR} COMPONENT sbne_python_bindings)
+		install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libsbne.py  DESTINATION ${PYTHON_PACKAGE_INSTALL_DIR} COMPONENT sbne_python_bindings)
 	endif()
 
 	## __init__.py
-	install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libsbne.py  DESTINATION 			${CMAKE_CURRENT_BINARY_DIR}/libsbne RENAME __init__.py COMPONENT python_extra)
+	install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libsbne.py  DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/libsbne RENAME __init__.py COMPONENT python_extra)
 
-	install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libsbne/__init__.py  DESTINATION 		${PYTHON_PACKAGE_INSTALL_DIR}/libsbne COMPONENT sbne_python_bindings)
+	install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libsbne/__init__.py  DESTINATION ${PYTHON_PACKAGE_INSTALL_DIR}/libsbne COMPONENT sbne_python_bindings)
 
-    	install(CODE "execute_process(COMMAND \"${CMAKE_COMMAND}\" -E chdir 			${CMAKE_INSTALL_PREFIX}/${PYTHON_PACKAGE_INSTALL_DIR} pip install .)" COMPONENT python_extra)
-
-	if (UNIX)
-		install(FILES ${SBML_LIBS} DESTINATION ${PYTHON_PACKAGE_INSTALL_DIR}/libsbne/dependencies COMPONENT sbne_python_bindings)
-	endif ()
+	install(CODE "execute_process(COMMAND \"${CMAKE_COMMAND}\" -E chdir ${CMAKE_INSTALL_PREFIX}/${PYTHON_PACKAGE_INSTALL_DIR} pip install .)" COMPONENT python_extra)
         
 endif(PYTHON_INSTALL_WITH_SETUP)

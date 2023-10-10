@@ -44,6 +44,10 @@
 #   endif
 #endif
 
+#ifndef SWIG
+using namespace libsbml;
+#endif
+
 namespace sbne {
 
 bool compareChar(const char& c1, const char& c2);
